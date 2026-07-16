@@ -129,7 +129,8 @@ form.onsubmit = (e) => {
   const text = input.value.trim();
   if (!text) return;
   input.value = '';
-  messages.innerHTML += `<div class="chat-msg user">${text}</div>`;
+  const safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  messages.innerHTML += `<div class="chat-msg user">${safe}</div>`;
   const reply = getReply(text);
   setTimeout(() => {
     messages.innerHTML += `<div class="chat-msg bot">${reply}</div>`;

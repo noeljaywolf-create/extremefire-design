@@ -551,7 +551,9 @@
   /* 7. Smooth scroll for anchor links */
   $$('a[href^="#"]').forEach(function (anchor) {
     on(anchor, 'click', function (e) {
-      var target = $(anchor.getAttribute('href'));
+      var href = anchor.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      var target = $(href);
       if (target) {
         e.preventDefault();
         var headerH = siteHeader ? siteHeader.offsetHeight : 0;
