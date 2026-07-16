@@ -802,7 +802,7 @@ input:focus, textarea:focus, select:focus {
   .nav a:hover, .nav a.active { color: #ff3d00 !important; }
   .nav.open { right: 0; }
 
-  #bg-video-fixed { display: none; }
+  #bg-video-fixed { width: 100vw; height: 100vh; object-fit: cover; }
 
   .util-inner { padding: 3px 16px !important; }
   .header { padding: 6px 16px !important; }
