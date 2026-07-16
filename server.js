@@ -8,7 +8,26 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10kb' }));
+
+// Simple in-memory rate limiter for /api/chat
+const chatRateLimit = {};
+const RATE_WINDOW = 60000;
+const RATE_MAX = 15;
+
+function rateLimit(req, res, next) {
+  const ip = req.ip || req.connection.remoteAddress;
+  const now = Date.now();
+  if (!chatRateLimit[ip] || now - chatRateLimit[ip].start > RATE_WINDOW) {
+    chatRateLimit[ip] = { start: now, count: 1 };
+    return next();
+  }
+  chatRateLimit[ip].count++;
+  if (chatRateLimit[ip].count > RATE_MAX) {
+    return res.status(429).json({ reply: 'Too many messages. Please wait a moment and try again.' });
+  }
+  next();
+}
 
 // Gzip compression middleware
 app.use((req, res, next) => {
@@ -92,7 +111,7 @@ PRODUCT BRANDS: FM 200, Ansul, Reliable Sprinklers, Fire Class, Globe, Grinnell,
 ADDITIONAL SERVICES: Air conditioning and refrigeration support for commercial buildings.
 `;
 
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', rateLimit, async (req, res) => {
   try {
     const { message } = req.body;
     const completion = await openai.chat.completions.create({
