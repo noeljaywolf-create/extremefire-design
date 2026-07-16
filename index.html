@@ -46,6 +46,18 @@
     @keyframes ac-glow{0%,100%{filter:drop-shadow(0 0 8px rgba(0,180,255,0.3))}50%{filter:drop-shadow(0 0 24px rgba(0,180,255,0.6))}}
     .ac-refrigeration-section .overview-img-block img{animation:ac-float 5s ease-in-out infinite,ac-glow 3s ease-in-out infinite}
   </style>
+  <style>
+    #debug-bar{position:fixed;top:0;left:0;right:0;z-index:99999;background:#000;color:#0f0;font:bold 14px monospace;text-align:center;padding:6px 8px;line-height:1.4}
+  </style>
+  <script>
+    (function(){
+      var d=document.createElement('div');
+      d.id='debug-bar';
+      d.textContent='Viewport: '+window.innerWidth+'px × '+window.innerHeight+'px | DPR: '+window.devicePixelRatio+' | UA: '+navigator.userAgent.substring(0,60);
+      document.addEventListener('DOMContentLoaded',function(){document.body.prepend(d)});
+      window.addEventListener('resize',function(){d.textContent='Viewport: '+window.innerWidth+'px × '+window.innerHeight+'px | DPR: '+window.devicePixelRatio});
+    })();
+  </script>
   <script>
     /* Block FOUC - hide page until CSS loads */
     document.documentElement.classList.add('loading');
