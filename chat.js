@@ -119,6 +119,12 @@ const form = document.getElementById('chat-form');
 const input = document.getElementById('chat-input');
 const messages = document.getElementById('chat-messages');
 
+// Move panel out of #chat-widget so position:fixed escapes the parent stacking context
+document.body.appendChild(panel);
+const panelPos = document.createElement('style');
+panelPos.textContent = '#chat-panel{position:fixed;bottom:164px;right:24px}';
+document.head.appendChild(panelPos);
+
 function isMobile(){return window.innerWidth<=640}
 function applyMobileStyles(){if(!isMobile())return;panel.style.cssText='position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;border:none!important;z-index:10002!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;background:#0b1220!important;'}
 function clearMobileStyles(){panel.style.cssText=''}
