@@ -119,10 +119,16 @@ const form = document.getElementById('chat-form');
 const input = document.getElementById('chat-input');
 const messages = document.getElementById('chat-messages');
 
-toggle.onclick = () => panel.classList.toggle('open');
-close.onclick = () => panel.classList.remove('open');
+function isMobile(){return window.innerWidth<=640}
+function applyMobileStyles(){if(!isMobile())return;panel.style.cssText='position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;border:none!important;z-index:10002!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;background:#0b1220!important;'}
+function clearMobileStyles(){panel.style.cssText=''}
 
-document.getElementById('hero-chat-btn')?.addEventListener('click', () => panel.classList.add('open'));
+toggle.onclick=()=>{panel.classList.toggle('open');panel.classList.contains('open')?applyMobileStyles():clearMobileStyles()};
+close.onclick=()=>{panel.classList.remove('open');clearMobileStyles()};
+
+document.getElementById('hero-chat-btn')?.addEventListener('click',()=>{panel.classList.add('open');applyMobileStyles()});
+
+window.addEventListener('resize',()=>{if(panel.classList.contains('open')){isMobile()?applyMobileStyles():clearMobileStyles()}});
 
 form.onsubmit = (e) => {
   e.preventDefault();
