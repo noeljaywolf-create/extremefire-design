@@ -2,6 +2,44 @@
    SCRIPT.JS - Extreme Fire Design Inc
    Premium Enterprise Experience
    ============================================================ */
+
+/* --------------------------------------------------------
+   MOBILE SCALE-DOWN: wrap body content in #site-content
+   and zoom to fit desktop layout on mobile screens
+   -------------------------------------------------------- */
+(function () {
+  var DESKTOP_WIDTH = 1120;
+  var BREAKPOINT = 640;
+  var wrapper = document.createElement('div');
+  wrapper.id = 'site-content';
+  var children = Array.prototype.slice.call(document.body.childNodes);
+  children.forEach(function (child) {
+    if (child.nodeType === 1 && child.id === 'debug-bar') return;
+    wrapper.appendChild(child);
+  });
+  document.body.appendChild(wrapper);
+  var whatsapp = wrapper.querySelector('.whatsapp-float');
+  if (whatsapp) document.body.appendChild(whatsapp);
+  var backToTop = wrapper.querySelector('.back-to-top');
+  if (backToTop) document.body.appendChild(backToTop);
+  function applyScale() {
+    if (window.innerWidth <= BREAKPOINT) {
+      var scale = window.innerWidth / DESKTOP_WIDTH;
+      wrapper.style.width = DESKTOP_WIDTH + 'px';
+      wrapper.style.zoom = scale;
+      wrapper.style.transformOrigin = '0 0';
+      document.body.style.overflowX = 'hidden';
+    } else {
+      wrapper.style.width = '';
+      wrapper.style.zoom = '';
+      wrapper.style.transformOrigin = '';
+      document.body.style.overflowX = '';
+    }
+  }
+  applyScale();
+  window.addEventListener('resize', applyScale);
+})();
+
 (function () {
   'use strict';
 
