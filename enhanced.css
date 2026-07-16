@@ -8,6 +8,139 @@
    ============================================================ */
 
 /* ============================================================
+   0. FIRE ELIMINATION-INSPIRED VISUAL POLISH
+   Sen font, refined typography, button polish, spacing
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
+
+:root {
+  --fire-font: 'Sen', system-ui, -apple-system, sans-serif;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Global font upgrade */
+body, h1, h2, h3, h4, h5, h6, p, li, span, a, button, input, textarea, select {
+  font-family: var(--fire-font);
+}
+
+/* Refined heading weights */
+h1 { font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-weight: 700; }
+
+/* Button polish — fireelimination style */
+.button, .btn, .cta-button {
+  font-family: var(--fire-font);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.button:hover, .btn:hover, .cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.button:active, .btn:active, .cta-button:active {
+  transform: translateY(0);
+}
+
+/* Primary button — bold red/orange gradient */
+.button.primary, .btn.primary {
+  background: linear-gradient(135deg, #d62828, #ff6700);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(255, 61, 0, 0.3);
+}
+.button.primary:hover, .btn.primary:hover {
+  box-shadow: 0 8px 32px rgba(255, 61, 0, 0.45);
+}
+
+/* Secondary button — ghost/outlined */
+.button.secondary, .btn.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid rgba(255,255,255,0.2);
+}
+.button.secondary:hover, .btn.secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.35);
+}
+
+/* Hamburger — SVG rect animation like fireelimination */
+.nav-toggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 110;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #f5f8ff;
+  margin: 5px 0;
+  transition: all 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  border-radius: 2px;
+  transform-origin: center;
+}
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Section spacing — generous like fireelimination */
+.section {
+  padding: 72px 0;
+}
+
+/* Paragraph line height — clean and readable */
+p {
+  line-height: 1.75;
+}
+
+/* Link hover underline effect */
+.nav a {
+  position: relative;
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: 1px;
+}
+.nav a:hover::after,
+.nav a.active::after {
+  width: 100%;
+}
+
+/* ============================================================
    1. PAGE LOADER
    Professional loading screen that builds trust on first visit
    ============================================================ */
@@ -37,7 +170,7 @@
 .loader-bar {
   width: 120px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.08);
   border-radius: 2px;
   margin-top: 24px;
   overflow: hidden;
@@ -59,63 +192,33 @@
   100% { width: 100%; }
 }
 
+/* Nav link underline animation — handled in section 0 */
+
 /* ============================================================
-   2. NAV UNDERLINE ANIMATION
-   Elegant hover underline on nav links (unique to enhanced.css)
+   OG DARK THEME RESTORED
    ============================================================ */
-.nav a {
-  position: relative;
-  padding-bottom: 4px;
+body {
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,61,0,0.12), transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(214,40,40,0.08), transparent 50%),
+              linear-gradient(180deg, #06070d 0%, #0a0f1c 50%, #06070d 100%) !important;
+  color: #f5f8ff !important;
 }
-.nav a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent);
-  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  border-radius: 1px;
-}
-.nav a:hover::after,
-.nav a.active::after {
-  width: 100%;
-}
-
-/* Utility strip stays dark */
 .util-strip {
-  background: #0a0f1c;
-  color: #cfd2d6;
+  background: #ffffff !important;
+  color: #1a1a1a !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }
-
-/* Mobile hamburger */
-.nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 110;
+.util-strip a { color: #333 !important; }
+.util-strip a:hover { color: #ff3d00 !important; }
+.header {
+  background: rgba(255,255,255,0.98) !important;
+  border-bottom-color: #e0e0e0 !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
 }
-.nav-toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #1a1a2e;
-  margin: 6px 0;
-  transition: all 0.3s ease;
-  border-radius: 2px;
-}
-.nav-toggle.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 6px);
-}
-.nav-toggle.open span:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -6px);
-}
+.header .logo img { height: 50px; }
+.nav a { color: #1a1a1a !important; }
+.nav a:hover, .nav a.active { color: #ff3d00 !important; }
+.nav-toggle span { background: #1a1a1a; }
 
 /* ============================================================
    3. HERO PARALLAX + CTA MICRO-INTERACTIONS
@@ -160,9 +263,9 @@
    ============================================================ */
 .stats-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, rgba(255, 61, 0, 0.06), rgba(6, 7, 13, 0.95), rgba(255, 61, 0, 0.04));
-  border-top: 1px solid rgba(255, 61, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 61, 0, 0.1);
+  background: linear-gradient(135deg, rgba(255,61,0,0.06), rgba(6,7,13,0.95), rgba(255,61,0,0.04));
+  border-top: 1px solid rgba(255,61,0,0.1);
+  border-bottom: 1px solid rgba(255,61,0,0.1);
 }
 .stats-grid {
   display: grid;
@@ -343,8 +446,8 @@ input:focus, textarea:focus, select:focus {
   padding: 80px 0 60px;
   overflow: hidden;
   background: linear-gradient(180deg, #06070d 0%, #0a0f1c 50%, #06070d 100%);
-  border-top: 1px solid rgba(255, 61, 0, 0.08);
-  border-bottom: 1px solid rgba(255, 61, 0, 0.08);
+  border-top: 1px solid rgba(255,61,0,0.08);
+  border-bottom: 1px solid rgba(255,61,0,0.08);
 }
 .services-slider-heading {
   text-align: center;
@@ -423,8 +526,8 @@ input:focus, textarea:focus, select:focus {
 /* Individual card */
 .service-slide-card {
   flex: 0 0 340px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 16px;
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
@@ -435,9 +538,8 @@ input:focus, textarea:focus, select:focus {
 }
 .service-slide-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5),
-              0 0 40px rgba(255, 61, 0, 0.08);
-  border-color: rgba(255, 61, 0, 0.25);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 40px rgba(255,61,0,0.08);
+  border-color: rgba(255,61,0,0.25);
 }
 
 /* Card image area */
@@ -462,7 +564,7 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(6, 7, 13, 0.75);
+  background: rgba(6,7,13,0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: #ff3d00;
@@ -472,7 +574,7 @@ input:focus, textarea:focus, select:focus {
   letter-spacing: 0.1em;
   padding: 5px 12px;
   border-radius: 20px;
-  border: 1px solid rgba(255, 61, 0, 0.2);
+  border: 1px solid rgba(255,61,0,0.2);
 }
 
 /* Card body */
@@ -556,82 +658,271 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ============================================================
-   12. RESPONSIVE BREAKPOINTS
+   11b. GLOBAL MOBILE RESPONSIVE TYPOGRAPHY
+   ============================================================ */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  font-size: clamp(16px, 2vw, 18px);
+}
+h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  line-height: 1.1;
+}
+h2 {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+}
+h3 {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+}
+p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+.btn {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  padding: 12px 24px;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+  h1 {
+    font-size: 2.8rem;
+  }
+  h2 {
+    font-size: 2.2rem;
+  }
+  h3 {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+/* ============================================================
+   FORCE DESKTOP LAYOUT ON ALL SCREEN SIZES
+   Override styles.css responsive collapses
+   ============================================================ */
+.stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.overview-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.overview-grid-2col { grid-template-columns: 1fr 1.4fr !important; }
+.recent-work-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+.featured-services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.client-brand-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+.client-list { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+.footer-grid { grid-template-columns: 1.2fr 1fr 1fr !important; }
+.live-footer-main { grid-template-columns: 1.15fr 0.75fr 1.1fr 0.9fr !important; }
+.profile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.accordion-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.reviews-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.split-layout { grid-template-columns: 1.4fr 1fr !important; }
+.contact-card { grid-template-columns: 1.05fr 1fr !important; }
+.passion-cta-inner { grid-template-columns: minmax(0, 1fr) auto !important; }
+.scope-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.news-card { grid-template-columns: 86px 1fr !important; }
+.latest-news-section .news-card { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+
+/* Header — full desktop padding, no compression */
+.header { padding: 16px 32px !important; }
+.header .logo img { height: auto !important; }
+
+/* Nav — desktop horizontal row, no column wrap */
+.nav { flex-direction: row !important; gap: 32px !important; padding: 0 !important; position: static !important; width: auto !important; height: auto !important; background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-left: none !important; border-radius: 0 !important; }
+.nav a { width: auto !important; padding: 0 !important; border-bottom: none !important; }
+.nav-links { justify-content: flex-end !important; }
+
+/* Util strip — full desktop row */
+.util-inner { grid-template-columns: 1fr !important; flex-direction: row !important; text-align: left !important; padding: 8px 24px !important; }
+.util-contact { flex-direction: row !important; gap: 24px !important; }
+.util-tagline { display: block !important; }
+
+/* Buttons — not full width */
+.button, .btn, .cta-button { width: auto !important; }
+
+/* Hero — desktop padding, no min-height hack */
+.home-hero-copy { min-height: auto !important; }
+.hero-content h1, .page-hero h1 { font-size: clamp(2.6rem, 4vw, 4.2rem) !important; }
+
+/* Welcome section — full desktop padding */
+.welcome-banner { padding: 80px 0 !important; }
+
+/* Card images — desktop height */
+.card-img { height: auto !important; min-height: 260px !important; }
+
+/* Footer — desktop row */
+.footer-bottom { flex-direction: row !important; text-align: left !important; }
+.live-footer-bottom-inner { flex-direction: row !important; align-items: center !important; padding: 16px 24px !important; }
+
+/* WhatsApp float — desktop size */
+.whatsapp-float { width: 60px !important; height: 60px !important; bottom: 24px !important; right: 24px !important; }
+.whatsapp-float svg { width: 30px !important; height: 30px !important; }
+
+/* FAQ — desktop padding */
+.faq-question { padding: 24px 32px !important; }
+.faq-answer { padding: 0 32px 24px !important; }
+
+/* Sections — desktop padding */
+.section { padding: 80px 0 !important; }
+
+/* ============================================================
+   12. RESPONSIVE BREAKPOINTS — TABLET (max-width: 900px)
+   Layout matches desktop — font sizes only
    ============================================================ */
 @media (max-width: 900px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .overview-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .card-img {
-    height: 260px;
-  }
-  .nav-toggle {
-    display: block;
-  }
+  /* Desktop layout preserved — no tablet overrides */
+}
+
+/* ============================================================
+   12b. RESPONSIVE — MOBILE (max-width: 640px)
+   Layout matches desktop exactly — font sizes only
+   ============================================================ */
+@media (max-width: 640px) {
+
+  /* --- FONT SIZES ONLY --- */
+  html { font-size: 18px; -webkit-text-size-adjust: 100%; }
+  h1 { font-size: 39px !important; }
+  h2 { font-size: 30px !important; }
+  h3 { font-size: 24px !important; }
+  p, li, td, th, span, label { font-size: 18px; }
+  input, textarea, select { font-size: 18px; }
+  .eyebrow { font-size: 11px !important; letter-spacing: 0.18em !important; }
+  .stat-number { font-size: 32px !important; }
+  .stat-label { font-size: 13px; }
+  .welcome-heading { font-size: 26px !important; }
+  .welcome-intro h3, .welcome-rich-content h3 { font-size: 20px !important; }
+  .services-slider-heading h2 { font-size: 28px !important; }
+  .service-slide-body h3 { font-size: 19px; }
+  .service-slide-body p { font-size: 17px; }
+  .sys-card h3 { font-size: 20px !important; }
+  .profile-card h3 { font-size: 20px !important; }
+  .faq-question { font-size: 18px; }
+  .faq-answer { font-size: 17px; }
+  .cta-section h2 { font-size: 28px !important; }
+  .hero-content h1 { font-size: 39px !important; }
+  .hero-content p { font-size: 18px; }
+  .hero-actions .button { font-size: 18px !important; }
+  #hero-chat-btn { font-size: 18px !important; }
+  .nav a { font-size: 20px; }
+
+  /* --- NAV: toggle + slide-out (white theme to match header) --- */
+  .nav-toggle { display: flex; }
   .nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 300px;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
+    height: 100dvh;
+    background: rgba(255,255,255,0.99);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     flex-direction: column;
-    padding: 80px 32px 32px;
-    transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 80px 32px 40px;
+    transition: right 0.35s cubic-bezier(0.22,1,0.36,1);
     z-index: 105;
-    gap: 16px;
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+    gap: 0;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+    border-left: 1px solid #f0f0f0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .nav.open {
-    right: 0;
+  .nav a {
+    color: #1a1a1a !important;
+    padding: 18px 0;
+    border-bottom: 1px solid #f0f0f0;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 500;
   }
-  .service-slide-card {
-    flex: 0 0 280px;
+  .nav a:hover,
+  .nav a.active {
+    color: #ff3d00 !important;
   }
-  .services-slider-track {
-    gap: 20px;
-  }
+  .nav.open { right: 0; }
+
+  /* --- VIDEO: hidden on mobile --- */
+  #bg-video-fixed { display: none; }
+
+  /* --- RESPONSIVE MEDIA --- */
+  img { max-width: 100%; height: auto; }
+  video { max-width: 100%; height: auto; }
 }
+
+/* ============================================================
+   12c. RESPONSIVE — SMALL MOBILE (max-width: 380px)
+   Font sizes only — layout matches desktop
+   ============================================================ */
+@media (max-width: 380px) {
+  html { font-size: 17px; }
+  h1 { font-size: 34px !important; }
+  h2 { font-size: 26px !important; }
+  h3 { font-size: 22px !important; }
+  p, li, td, th, span, label { font-size: 17px; }
+  .stat-number { font-size: 28px !important; }
+  .welcome-heading { font-size: 22px !important; }
+  .cta-section h2 { font-size: 24px !important; }
+  .hero-content h1 { font-size: 34px !important; }
+  .hero-actions .button { font-size: 17px !important; }
+}
+
+/* ============================================================
+   12d. CHATBOT — FULL SCREEN ON MOBILE
+   ============================================================ */
 @media (max-width: 640px) {
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+  #chat-panel {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    z-index: 10001 !important;
   }
-  .stat-number {
-    font-size: 2rem;
+  #chat-panel.open {
+    display: flex !important;
   }
-  .overview-grid {
-    grid-template-columns: 1fr;
+  #chat-header {
+    padding: 18px 20px;
+    font-size: 18px;
+    border-radius: 0;
+    min-height: 56px;
   }
-  .card-img {
-    height: 220px;
+  #chat-messages {
+    padding: 20px;
+    min-height: calc(100vh - 180px);
+    min-height: calc(100dvh - 180px);
+    font-size: 18px;
+    line-height: 1.7;
   }
-  .back-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 42px;
-    height: 42px;
+  .chat-msg {
+    font-size: 18px;
+    max-width: 90%;
+    padding: 14px 18px;
   }
-  .services-slider-section {
-    padding: 60px 0 40px;
+  #chat-input {
+    font-size: 18px;
+    padding: 18px;
+    min-height: 56px;
   }
-  .services-slider-heading {
-    margin-bottom: 32px;
+  #chat-form button {
+    padding: 18px 24px;
+    font-size: 18px;
+    min-height: 56px;
   }
-  .service-slide-card {
-    flex: 0 0 calc(100vw - 48px);
-    max-width: 340px;
-  }
-  .services-slider-track {
-    gap: 16px;
-  }
-  .service-slide-img {
-    height: 160px;
+  #chat-close {
+    padding: 16px;
+    font-size: 18px;
+    border-radius: 0;
+    min-height: 52px;
   }
 }
 
@@ -660,14 +951,25 @@ input:focus, textarea:focus, select:focus {
 
 /* ============================================================
    13. PERFORMANCE HINTS
-   GPU acceleration for smooth animations
+   GPU acceleration and rendering containment
    ============================================================ */
 .hero-bg__slide,
 .back-to-top,
 .button,
 .card,
 .profile-card,
-.recent-work-item {
+.recent-work-item,
+.service-slide-card,
+.whatsapp-float,
+#chat-toggle {
   will-change: transform;
   contain: layout style;
+}
+img {
+  content-visibility: auto;
+}
+/* Prevent layout shifts from lazy images */
+img[loading="lazy"] {
+  min-height: 100px;
+  background: var(--surface);
 }

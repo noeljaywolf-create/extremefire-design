@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
   <title>Extreme Fire Design Inc | Fire Protection Zimbabwe & Fire Safety Solutions</title>
   <meta name="description" content="Extreme Fire Design Inc is the best fire protection company in Zimbabwe providing fire protection systems, fire safety services, fire engineering, fire sprinkler installation, fire alarm systems, and fire safety solutions for commercial and industrial facilities in Harare and across Zimbabwe." />
   <meta name="keywords" content="Fire Protection Zimbabwe, Fire Protection Systems Zimbabwe, Fire Safety Services Zimbabwe, Fire Engineering Zimbabwe, Fire Protection Company Zimbabwe, Fire Safety Solutions Zimbabwe, Fire Sprinkler Installation, Fire Alarm Systems, Fire Safety Equipment, Commercial Fire Protection, Industrial Fire Protection Systems, Fire Protection Harare, Fire Protection Services Zimbabwe, Best Fire Protection Company in Zimbabwe" />
@@ -17,14 +17,34 @@
   <meta name="twitter:title" content="Extreme Fire Design Inc | Fire Protection Zimbabwe & Fire Safety Solutions" />
   <meta name="twitter:description" content="Extreme Fire Design Inc is the best fire protection company in Zimbabwe providing fire protection systems, fire safety services, fire engineering, fire sprinkler installation, fire alarm systems, and fire safety solutions for commercial and industrial facilities in Harare and across Zimbabwe." />
   <link rel="icon" href="images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="images/logo.png" />
+  <link rel="preload" as="image" href="images/our-work/project-03.jpeg" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
   <style>
     /* Astro Motion: fixed video background (copied from TemplateMo 560) */
     #bg-video-fixed{position:fixed;left:50%;top:50%;bottom:auto;right:auto;min-width:100%;min-height:100%;transform:translateX(-50%) translateY(-50%);z-index:-100;object-fit:cover;background-image:url('images/our-work/project-03.jpeg');background-position:center;background-size:cover;background-repeat:no-repeat}
+    @media(max-width:640px){#bg-video-fixed{display:none!important}}
     /* Semi-transparent overlays for sections below hero */
     .astro-overlay{background:rgba(6,7,13,0.72)!important}
     .astro-overlay-light{background:rgba(6,7,13,0.55)!important}
+    /* White util strip - inline override */
+    .util-strip{background:#ffffff!important;color:#1a1a1a!important;border-bottom:1px solid #e0e0e0!important}
+    .util-strip a{color:#333!important}
+    .util-strip a:hover{color:#ff3d00!important}
+    /* White main header - inline override */
+    .header{background:rgba(255,255,255,0.98)!important;box-shadow:0 2px 10px rgba(0,0,0,0.08)!important;border-bottom:1px solid #e0e0e0!important}
+    .nav a{color:#1a1a1a!important}
+    .nav a:hover,.nav a.active{color:#ff3d00!important}
+    .nav-toggle span{background:#1a1a1a!important}
+    /* Chatbot full screen on mobile */
+    @media(max-width:640px){#chat-panel.open{display:flex!important;position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;max-height:100vh!important;max-height:100dvh!important;border-radius:0!important;border:none!important;z-index:10002!important}#chat-header{font-size:18px!important;padding:18px 20px!important;border-radius:0!important}#chat-messages{font-size:18px!important;line-height:1.7!important;padding:20px!important;min-height:auto!important;flex:1!important}.chat-msg{font-size:18px!important;padding:14px 18px!important}#chat-input{font-size:18px!important;padding:18px!important;min-height:56px!important;border-radius:0!important}#chat-form button{font-size:18px!important;padding:18px 24px!important;min-height:56px!important;border-radius:0!important}#chat-close{font-size:18px!important;padding:16px!important;border-radius:0!important;min-height:52px!important}}
+    /* Air conditioning animation */
+    @keyframes ac-float{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-12px) rotate(1deg)}50%{transform:translateY(-4px) rotate(-1deg)}75%{transform:translateY(-16px) rotate(0.5deg)}}
+    @keyframes ac-glow{0%,100%{filter:drop-shadow(0 0 8px rgba(0,180,255,0.3))}50%{filter:drop-shadow(0 0 24px rgba(0,180,255,0.6))}}
+    .ac-refrigeration-section .overview-img-block img{animation:ac-float 5s ease-in-out infinite,ac-glow 3s ease-in-out infinite}
   </style>
   <script>
     /* Block FOUC - hide page until CSS loads */
@@ -99,7 +119,7 @@
 </head>
 <body>
   <!-- Astro Motion: fixed fullscreen video background (TemplateMo 560) -->
-  <video autoplay muted loop playsinline id="bg-video-fixed">
+  <video autoplay muted loop playsinline id="bg-video-fixed" poster="images/our-work/project-03.jpeg" preload="none">
     <source src="Background/extreme-fire-video.mp4" type="video/mp4">
   </video>
 

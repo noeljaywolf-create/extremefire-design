@@ -2,13 +2,44 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const OpenAI = require('openai');
+const zlib = require('zlib');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
+
+// Gzip compression middleware
+app.use((req, res, next) => {
+  const accept = req.headers['accept-encoding'] || '';
+  if (!accept.includes('gzip')) return next();
+  const ext = req.path.split('.').pop().toLowerCase();
+  const compressible = ['html','css','js','json','svg','xml','txt','ico'];
+  if (!compressible.includes(ext)) return next();
+  res.setHeader('Content-Encoding', 'gzip');
+  res.setHeader('Vary', 'Accept-Encoding');
+  const origWrite = res.write.bind(res);
+  const origEnd = res.end.bind(res);
+  const chunks = [];
+  res.write = (data) => { chunks.push(Buffer.isBuffer(data) ? data : Buffer.from(data)); return true; };
+  res.end = (data) => { if (data) chunks.push(Buffer.isBuffer(data) ? data : Buffer.from(data));
+    const buf = Buffer.concat(chunks);
+    zlib.gzip(buf, (err, compressed) => {
+      if (err) { origWrite(buf); origEnd(); return; }
+      res.setHeader('Content-Length', compressed.length);
+      origWrite(compressed); origEnd();
+    });
+  };
+  next();
+});
+
+// Cache headers for static assets
+app.use(express.static(__dirname, {
+  maxAge: '7d',
+  etag: true,
+  lastModified: true
+}));
 
 app.use((req, res) => {
   res.status(404).sendFile(__dirname + '/404.html');

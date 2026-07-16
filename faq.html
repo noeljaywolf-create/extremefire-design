@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
   <title>Fire Protection FAQ | Extreme Fire Design Inc</title>
   <meta name="description" content="Frequently asked questions about fire protection systems, fire sprinkler installation, fire alarm systems, fire safety compliance, and fire engineering services in Zimbabwe." />
   <meta name="keywords" content="Fire Protection FAQ Zimbabwe, Fire Sprinkler FAQ, Fire Alarm FAQ, Fire Safety FAQ, Fire Engineering FAQ Zimbabwe" />
@@ -12,60 +12,111 @@
   <meta property="og:description" content="Frequently asked questions about fire protection systems in Zimbabwe." />
   <meta property="og:url" content="https://www.extremefiredesigninc.com/faq.html" />
   <link rel="icon" href="images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
   <style>
-    .faq-hero{position:relative;min-height:60vh;display:flex;align-items:center;overflow:hidden}
+    .util-strip{background:#ffffff!important;color:#1a1a1a!important;border-bottom:1px solid #e0e0e0!important}
+    .util-strip a{color:#333!important}
+    .util-strip a:hover{color:#ff3d00!important}
+    .header{background:rgba(255,255,255,0.98)!important;box-shadow:0 2px 10px rgba(0,0,0,0.08)!important;border-bottom:1px solid #e0e0e0!important}
+    .nav a{color:#1a1a1a!important}
+    .nav a:hover,.nav a.active{color:#ff3d00!important}
+    .nav-toggle span{background:#1a1a1a!important}
+    .faq-hero{position:relative;min-height:55vh;display:flex;align-items:center;overflow:hidden}
     .faq-hero .parallax-bg{position:absolute;top:-50%;left:0;width:100%;height:200%;background:url('images/our-work/project-03.jpeg') center/cover no-repeat;will-change:transform;transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);z-index:0}
-    .faq-hero .parallax-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,7,13,0.88),rgba(6,7,13,0.65));z-index:1}
-    .faq-hero .container{position:relative;z-index:2;text-align:center;max-width:800px}
-    .faq-hero .eyebrow{color:var(--accent);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px}
-    .faq-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.2;margin:0 0 20px;color:#fff}
-    .faq-hero p{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.7;max-width:650px;margin:0 auto}
+    .faq-hero .parallax-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,7,13,0.92) 0%,rgba(6,7,13,0.7) 50%,rgba(255,61,0,0.08) 100%);z-index:1}
+    .faq-hero .container{position:relative;z-index:2;text-align:center;max-width:780px}
+    .faq-hero .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:0.8rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:16px;background:rgba(255,61,0,0.1);border:1px solid rgba(255,61,0,0.2);padding:8px 20px;border-radius:100px}
+    .faq-hero .eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:dotPulse 1.5s ease infinite}
+    @keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
+    .faq-hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;line-height:1.15;margin:0 0 20px;color:#fff}
+    .faq-hero h1 span{color:var(--accent)}
+    .faq-hero p{font-size:1.05rem;color:rgba(255,255,255,0.65);line-height:1.7;max-width:600px;margin:0 auto 32px}
+    .faq-hero-search{position:relative;max-width:520px;margin:0 auto}
+    .faq-hero-search input{width:100%;padding:16px 24px 16px 52px;font-size:1rem;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;color:#fff;outline:none;transition:border-color 0.3s,box-shadow 0.3s;font-family:inherit}
+    .faq-hero-search input::placeholder{color:rgba(255,255,255,0.35)}
+    .faq-hero-search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,61,0,0.15)}
+    .faq-hero-search .search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:rgba(255,255,255,0.35);pointer-events:none}
+    .faq-hero-search input:focus ~ .search-icon{color:var(--accent)}
+    .hero-stats-row{display:flex;justify-content:center;gap:40px;margin-top:36px}
+    .hero-stat{text-align:center}
+    .hero-stat .num{display:block;font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+    .hero-stat .lbl{font-size:0.75rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px}
 
-    .faq-categories{padding:80px 0 40px;background:#06070d}
-    .faq-categories .container{text-align:center;margin-bottom:48px}
-    .faq-categories .eyebrow{color:var(--accent);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px}
-    .faq-categories h2{font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;margin:0}
-    .faq-cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto}
-    .faq-cat-btn{background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:20px 16px;text-align:center;cursor:pointer;transition:all 0.3s cubic-bezier(0.22,1,0.36,1)}
-    .faq-cat-btn:hover,.faq-cat-btn.active{border-color:var(--accent);background:linear-gradient(135deg,rgba(255,61,0,0.1),rgba(255,61,0,0.03));transform:translateY(-3px)}
-    .faq-cat-btn .cat-icon{font-size:1.8rem;margin-bottom:8px;display:block}
+    .faq-categories{padding:60px 0 40px;background:linear-gradient(180deg,#0a0f1c,#06070d);border-bottom:1px solid rgba(255,255,255,0.04)}
+    .faq-cat-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .faq-cat-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:12px 24px;cursor:pointer;transition:all 0.3s cubic-bezier(0.22,1,0.36,1);font-family:inherit}
+    .faq-cat-btn:hover{border-color:rgba(255,61,0,0.3);background:rgba(255,61,0,0.06);transform:translateY(-2px)}
+    .faq-cat-btn.active{background:linear-gradient(135deg,rgba(255,61,0,0.15),rgba(255,61,0,0.05));border-color:var(--accent);box-shadow:0 0 20px rgba(255,61,0,0.1)}
+    .faq-cat-btn .cat-icon{font-size:1.1rem}
     .faq-cat-btn .cat-label{font-size:0.85rem;color:rgba(255,255,255,0.7);font-weight:600}
-    @media(max-width:768px){.faq-cat-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:480px){.faq-cat-grid{grid-template-columns:1fr 1fr}}
+    .faq-cat-btn.active .cat-label{color:#fff}
 
-    .faq-section{padding:60px 0;background:#06070d}
-    .faq-section:nth-child(even){background:linear-gradient(180deg,#06070d,#0a0f1c)}
-    .faq-section .container{max-width:900px}
-    .faq-section-header{display:flex;align-items:center;gap:16px;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06)}
-    .faq-section-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(255,61,0,0.15),rgba(255,103,0,0.08));display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.3rem;flex-shrink:0}
-    .faq-section-title{font-size:1.4rem;color:#fff;font-weight:700;margin:0}
+    .faq-section{padding:72px 0;background:#06070d;position:relative}
+    .faq-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:1px}
+    .faq-section .container{max-width:880px}
+    .faq-section-header{display:flex;align-items:center;gap:16px;margin-bottom:40px}
+    .faq-section-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(255,61,0,0.15),rgba(255,103,0,0.08));border:1px solid rgba(255,61,0,0.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+    .faq-section-title{font-size:1.5rem;color:#fff;font-weight:700;margin:0}
+    .faq-section-subtitle{font-size:0.85rem;color:rgba(255,255,255,0.45);margin:4px 0 0}
 
-    .faq-item{background:linear-gradient(145deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s}
-    .faq-item:hover{border-color:rgba(255,61,0,0.2)}
-    .faq-item[open]{border-color:rgba(255,61,0,0.25);box-shadow:0 4px 24px rgba(0,0,0,0.3),0 0 20px rgba(255,61,0,0.05)}
-    .faq-item summary{padding:20px 24px;cursor:pointer;font-weight:600;color:#fff;font-size:1rem;line-height:1.5;list-style:none;display:flex;align-items:center;gap:12px;transition:color 0.3s}
+    .faq-item{background:linear-gradient(145deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.06);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:all 0.35s cubic-bezier(0.22,1,0.36,1)}
+    .faq-item:hover{border-color:rgba(255,61,0,0.15)}
+    .faq-item[open]{border-color:rgba(255,61,0,0.25);box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 24px rgba(255,61,0,0.05)}
+    .faq-item summary{padding:22px 28px;cursor:pointer;font-weight:600;color:#fff;font-size:1rem;line-height:1.5;list-style:none;display:flex;align-items:center;gap:14px;transition:color 0.3s}
     .faq-item summary::-webkit-details-marker{display:none}
-    .faq-item summary::before{content:'';width:24px;height:24px;border-radius:6px;background:rgba(255,61,0,0.1);border:1px solid rgba(255,61,0,0.2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff3d00' stroke-width='2'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:12px}
-    .faq-item[open] summary::before{transform:rotate(90deg);background-color:rgba(255,61,0,0.2)}
+    .faq-item summary::before{content:'';width:28px;height:28px;min-width:28px;border-radius:8px;background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.15);transition:all 0.3s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff3d00' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18l6-6-6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:14px}
+    .faq-item[open] summary::before{transform:rotate(90deg);background-color:rgba(255,61,0,0.15);border-color:var(--accent)}
     .faq-item summary:hover{color:var(--accent)}
-    .faq-item p{padding:0 24px 20px 60px;color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.8;margin:0}
+    .faq-answer{padding:0 28px 24px 70px;animation:faqSlideDown 0.3s ease}
+    .faq-answer p{color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.85;margin:0}
+    .faq-answer strong{color:rgba(255,255,255,0.85)}
+    @keyframes faqSlideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
-    .faq-parallax-cta{position:relative;overflow:hidden;padding:100px 0}
-    .faq-parallax-cta .parallax-bg{position:absolute;top:-50%;left:0;width:100%;height:200%;background:url('images/our-work/project-19.jpeg') center/cover no-repeat;will-change:transform;transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);z-index:0}
-    .faq-parallax-cta .parallax-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,7,13,0.85),rgba(6,7,13,0.6));z-index:1}
-    .faq-parallax-cta .container{position:relative;z-index:2;text-align:center;max-width:700px}
-    .faq-parallax-cta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin:0 0 16px}
-    .faq-parallax-cta p{color:rgba(255,255,255,0.7);font-size:1.05rem;margin:0 0 32px;line-height:1.7}
-    .faq-parallax-cta .button{display:inline-block;padding:16px 40px;background:var(--accent);color:#fff;border-radius:var(--radius-sm);font-weight:700;text-decoration:none;transition:all 0.3s}
-    .faq-parallax-cta .button:hover{background:#e53500;box-shadow:0 8px 32px rgba(255,61,0,0.3);transform:translateY(-2px)}
-
-    .faq-stats{padding:60px 0;background:#06070d;border-top:1px solid rgba(255,255,255,0.04)}
+    .faq-stats{padding:80px 0;background:linear-gradient(135deg,rgba(255,61,0,0.04),#06070d,rgba(255,61,0,0.02));border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)}
     .faq-stats .container{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
-    .faq-stat .num{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--accent);display:block;margin-bottom:4px}
+    .faq-stat{padding:24px}
+    .faq-stat .num{font-size:clamp(2.2rem,4vw,3rem);font-weight:800;color:var(--accent);display:block;margin-bottom:8px;line-height:1}
     .faq-stat .label{font-size:0.85rem;color:rgba(255,255,255,0.5);letter-spacing:0.03em}
-    @media(max-width:768px){.faq-stats .container{grid-template-columns:repeat(2,1fr)}}
+
+    .faq-parallax-cta{position:relative;overflow:hidden;padding:120px 0}
+    .faq-parallax-cta .parallax-bg{position:absolute;top:-50%;left:0;width:100%;height:200%;background:url('images/our-work/project-19.jpeg') center/cover no-repeat;will-change:transform;transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);z-index:0}
+    .faq-parallax-cta .parallax-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(6,7,13,0.9),rgba(6,7,13,0.65),rgba(255,61,0,0.06));z-index:1}
+    .faq-parallax-cta .container{position:relative;z-index:2;text-align:center;max-width:650px}
+    .faq-parallax-cta h2{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin:0 0 16px;font-weight:800}
+    .faq-parallax-cta p{color:rgba(255,255,255,0.6);font-size:1.05rem;margin:0 0 36px;line-height:1.7}
+    .faq-cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .faq-cta-buttons .button{padding:16px 36px;border-radius:12px;font-weight:700;text-decoration:none;transition:all 0.3s;font-size:1rem}
+    .faq-cta-buttons .button.primary{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(255,61,0,0.3)}
+    .faq-cta-buttons .button.primary:hover{background:#e53500;box-shadow:0 8px 32px rgba(255,61,0,0.4);transform:translateY(-2px)}
+    .faq-cta-buttons .button.outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.2)}
+    .faq-cta-buttons .button.outline:hover{border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05)}
+
+    .faq-no-results{display:none;text-align:center;padding:60px 20px;color:rgba(255,255,255,0.4);font-size:1.1rem}
+    .faq-no-results.visible{display:block}
+
+    @media(max-width:768px){
+      .faq-hero{min-height:50vh}
+      .faq-hero h1{font-size:2rem}
+      .hero-stats-row{gap:24px}
+      .hero-stat .num{font-size:1.2rem}
+      .faq-cat-grid{gap:8px}
+      .faq-cat-btn{padding:10px 16px}
+      .faq-cat-btn .cat-label{font-size:0.8rem}
+      .faq-section{padding:48px 0}
+      .faq-section-header{margin-bottom:28px}
+      .faq-item summary{padding:18px 20px;font-size:0.95rem}
+      .faq-answer{padding:0 20px 18px 62px}
+      .faq-stats .container{grid-template-columns:repeat(2,1fr);gap:16px}
+    }
+    @media(max-width:480px){
+      .hero-stats-row{flex-wrap:wrap;gap:20px}
+      .faq-cat-btn{padding:8px 14px}
+      .faq-cta-buttons{flex-direction:column;align-items:stretch}
+    }
   </style>
 </head>
 <body>
@@ -99,24 +150,28 @@
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="faq-hero">
       <div class="parallax-bg"></div>
       <div class="parallax-overlay"></div>
       <div class="container">
         <p class="eyebrow" data-reveal data-reveal-delay="1">Expert Answers</p>
-        <h1 id="faq-typewriter">Fire Protection Questions Answered</h1>
+        <h1 id="faq-typewriter">Fire Protection <span>Questions Answered</span></h1>
         <p data-reveal data-reveal-delay="2">Find answers to common questions about fire sprinkler systems, fire alarms, extinguishers, compliance, and our engineering services across Zimbabwe.</p>
+        <div class="faq-hero-search" data-reveal data-reveal-delay="3">
+          <input type="text" id="faq-search" placeholder="Search questions... (e.g. sprinkler, alarm, compliance)">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div class="hero-stats-row" data-reveal data-reveal-delay="4">
+          <div class="hero-stat"><span class="num">20+</span><span class="lbl">Questions</span></div>
+          <div class="hero-stat"><span class="num">30+</span><span class="lbl">Years Exp</span></div>
+          <div class="hero-stat"><span class="num">24/7</span><span class="lbl">Support</span></div>
+          <div class="hero-stat"><span class="num">100%</span><span class="lbl">Compliance</span></div>
+        </div>
       </div>
     </section>
 
-    <!-- QUICK CATEGORY FILTER -->
     <section class="faq-categories" data-section-reveal>
-      <div class="container">
-        <p class="eyebrow">Browse by Topic</p>
-        <h2>What Do You Need Help With?</h2>
-      </div>
-      <div class="faq-cat-grid container">
+      <div class="faq-cat-grid">
         <div class="faq-cat-btn active" data-cat="all"><span class="cat-icon">🔥</span><span class="cat-label">All Questions</span></div>
         <div class="faq-cat-btn" data-cat="systems"><span class="cat-icon">🏗️</span><span class="cat-label">Systems</span></div>
         <div class="faq-cat-btn" data-cat="compliance"><span class="cat-icon">📋</span><span class="cat-label">Compliance</span></div>
@@ -124,154 +179,156 @@
       </div>
     </section>
 
-    <!-- SYSTEMS FAQ -->
     <section class="faq-section" data-cat="systems" data-section-reveal>
       <div class="container">
         <div class="faq-section-header">
           <div class="faq-section-icon">🏗️</div>
-          <h3 class="faq-section-title">Fire Protection Systems</h3>
+          <div>
+            <h3 class="faq-section-title">Fire Protection Systems</h3>
+            <p class="faq-section-subtitle">Engineering, design & installation</p>
+          </div>
         </div>
 
         <details class="faq-item" data-reveal data-reveal-delay="1">
           <summary>What fire protection standards do you design to?</summary>
-          <p>We design all systems in accordance with NFPA 13 (Sprinkler Systems), NFPA 72 (Fire Alarm Code), EN 12845 (Fixed Firefighting Systems), ASIB guidelines, and local Zimbabwean authority requirements. Our designs meet international and local code compliance for commercial, industrial, and mining facilities.</p>
+          <div class="faq-answer"><p>We design all systems in accordance with <strong>NFPA 13</strong> (Sprinkler Systems), <strong>NFPA 72</strong> (Fire Alarm Code), <strong>EN 12845</strong> (Fixed Firefighting Systems), <strong>ASIB</strong> guidelines, and local Zimbabwean authority requirements. Our designs meet international and local code compliance for commercial, industrial, and mining facilities.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="2">
           <summary>Do you provide fire sprinkler system design and hydraulic calculations?</summary>
-          <p>Yes. Our core service includes complete fire sprinkler system design with computerized hydraulic calculations using industry-standard software. We provide fully dimensioned layouts, pipe sizing, pressure loss calculations, pump sizing, and material schedules — all stamped by qualified fire protection engineers.</p>
+          <div class="faq-answer"><p>Yes. Our core service includes complete fire sprinkler system design with computerized hydraulic calculations using industry-standard software. We provide fully dimensioned layouts, pipe sizing, pressure loss calculations, pump sizing, and material schedules — all stamped by qualified fire protection engineers.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="3">
           <summary>What types of fire suppression systems do you install?</summary>
-          <p>We work with wet pipe, dry pipe, pre-action, deluge, foam, FM-200, CO₂, and inert gas systems. We also install and maintain fire hydrant systems, hose reel systems, and special hazard suppression for server rooms, generator rooms, and hazardous material storage.</p>
+          <div class="faq-answer"><p>We work with wet pipe, dry pipe, pre-action, deluge, foam, FM-200, CO₂, and inert gas systems. We also install and maintain fire hydrant systems, hose reel systems, and special hazard suppression for server rooms, generator rooms, and hazardous material storage.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="4">
           <summary>What is the difference between a fire alarm and fire detection system?</summary>
-          <p>Fire detection systems (smoke/heat detectors) sense fire and signal the control panel. The fire alarm system includes detection plus notification appliances (sounders, strobes, voice evacuation), control functions (door release, HVAC shutdown, lift recall), and communication to monitoring stations. We design and install both as integrated systems.</p>
+          <div class="faq-answer"><p>Fire detection systems (smoke/heat detectors) sense fire and signal the control panel. The fire alarm system includes detection plus notification appliances (sounders, strobes, voice evacuation), control functions (door release, HVAC shutdown, lift recall), and communication to monitoring stations. We design and install both as integrated systems.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>What is a fire pump and when is one required?</summary>
-          <p>A fire pump boosts water pressure to meet sprinkler/standpipe demand when municipal supply is insufficient. Required when hydraulic calculations show pressure deficit, building height exceeds municipal capability, or for high-hazard storage. We design, supply, install, and commission electric and diesel fire pump sets per NFPA 20.</p>
+          <div class="faq-answer"><p>A fire pump boosts water pressure to meet sprinkler/standpipe demand when municipal supply is insufficient. Required when hydraulic calculations show pressure deficit, building height exceeds municipal capability, or for high-hazard storage. We design, supply, install, and commission electric and diesel fire pump sets per <strong>NFPA 20</strong>.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>How do I know if my building needs a fire sprinkler system?</summary>
-          <p>Requirements depend on occupancy type, building height, floor area, and local bylaws. In Zimbabwe, sprinklers are mandated for high-rise buildings (>30m), large warehouses/factories, shopping centres, hospitals, hotels, underground parking, and hazardous occupancies. We offer free preliminary consultations to determine your obligations.</p>
+          <div class="faq-answer"><p>Requirements depend on occupancy type, building height, floor area, and local bylaws. In Zimbabwe, sprinklers are mandated for high-rise buildings (&gt;30m), large warehouses/factories, shopping centres, hospitals, hotels, underground parking, and hazardous occupancies. We offer free preliminary consultations to determine your obligations.</p></div>
         </details>
       </div>
     </section>
 
-    <!-- COMPLIANCE FAQ -->
     <section class="faq-section" data-cat="compliance" data-section-reveal>
       <div class="container">
         <div class="faq-section-header">
           <div class="faq-section-icon">📋</div>
-          <h3 class="faq-section-title">Compliance & Standards</h3>
+          <div>
+            <h3 class="faq-section-title">Compliance & Standards</h3>
+            <p class="faq-section-subtitle">Regulations, inspections & certification</p>
+          </div>
         </div>
 
         <details class="faq-item" data-reveal data-reveal-delay="1">
           <summary>How often should fire protection systems be inspected?</summary>
-          <p>Per NFPA 25 and local regulations: sprinkler systems require quarterly, semi-annual, and annual inspections; fire pumps need weekly/monthly/annual testing; fire alarm systems require annual testing per NFPA 72; extinguishers need monthly visual checks and annual professional maintenance. We provide scheduled maintenance contracts.</p>
+          <div class="faq-answer"><p>Per <strong>NFPA 25</strong> and local regulations: sprinkler systems require quarterly, semi-annual, and annual inspections; fire pumps need weekly/monthly/annual testing; fire alarm systems require annual testing per NFPA 72; extinguishers need monthly visual checks and annual professional maintenance. We provide scheduled maintenance contracts.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="2">
           <summary>What is involved in a fire risk assessment?</summary>
-          <p>Our assessment evaluates: fire hazards and ignition sources, people at risk, existing protection measures, means of escape, detection and warning systems, firefighting equipment, management procedures, and training. We deliver a detailed report with prioritized recommendations for compliance and risk reduction.</p>
+          <div class="faq-answer"><p>Our assessment evaluates: fire hazards and ignition sources, people at risk, existing protection measures, means of escape, detection and warning systems, firefighting equipment, management procedures, and training. We deliver a detailed report with prioritized recommendations for compliance and risk reduction.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="3">
           <summary>Can you help with fire safety compliance for insurance?</summary>
-          <p>Yes. We work with insurers and brokers to ensure fire protection meets policy conditions: risk surveys, COPE reports, sprinkler impairment management, pump testing certificates, alarm certification, and extinguisher compliance. Our documentation is accepted by major insurers in Zimbabwe and the region.</p>
+          <div class="faq-answer"><p>Yes. We work with insurers and brokers to ensure fire protection meets policy conditions: risk surveys, COPE reports, sprinkler impairment management, pump testing certificates, alarm certification, and extinguisher compliance. Our documentation is accepted by major insurers in Zimbabwe and the region.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="4">
           <summary>What is the process for getting a system approved?</summary>
-          <p>1) Engage us for design. 2) We prepare drawings & calculations per NFPA/ASIB/local codes. 3) Submit to local authority for plan approval. 4) Install per approved plans. 5) Coordinate testing & commissioning with authority witness. 6) Obtain compliance/occupancy certificate. We manage the full process end-to-end.</p>
+          <div class="faq-answer"><p>1) Engage us for design. 2) We prepare drawings & calculations per NFPA/ASIB/local codes. 3) Submit to local authority for plan approval. 4) Install per approved plans. 5) Coordinate testing & commissioning with authority witness. 6) Obtain compliance/occupancy certificate. <strong>We manage the full process end-to-end.</strong></p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>Do you provide as-built drawings and documentation?</summary>
-          <p>Yes. Every project includes as-built drawings (AutoCAD), hydraulic calculation reports, material certificates, pump test curves, alarm zone charts, operation & maintenance manuals, and commissioning certificates — all organized in a digital handover package for building owners and authorities.</p>
+          <div class="faq-answer"><p>Yes. Every project includes as-built drawings (AutoCAD), hydraulic calculation reports, material certificates, pump test curves, alarm zone charts, operation & maintenance manuals, and commissioning certificates — all organized in a digital handover package for building owners and authorities.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>How do you handle system impairments (shutdowns)?</summary>
-          <p>We follow NFPA 25 impairment procedures: 1) Notify insurance, fire brigade, and building management. 2) Implement fire watch if required. 3) Isolate only affected zone. 4) Expedite repairs. 5) Restore, test, and document. 6) Notify all parties. Our impairment management reduces downtime and maintains insurance coverage.</p>
+          <div class="faq-answer"><p>We follow NFPA 25 impairment procedures: 1) Notify insurance, fire brigade, and building management. 2) Implement fire watch if required. 3) Isolate only affected zone. 4) Expedite repairs. 5) Restore, test, and document. 6) Notify all parties. Our impairment management reduces downtime and maintains insurance coverage.</p></div>
         </details>
       </div>
     </section>
 
-    <!-- SERVICES FAQ -->
     <section class="faq-section" data-cat="services" data-section-reveal>
       <div class="container">
         <div class="faq-section-header">
           <div class="faq-section-icon">🛠️</div>
-          <h3 class="faq-section-title">Services & Support</h3>
+          <div>
+            <h3 class="faq-section-title">Services & Support</h3>
+            <p class="faq-section-subtitle">Maintenance, training & emergency response</p>
+          </div>
         </div>
 
         <details class="faq-item" data-reveal data-reveal-delay="1">
           <summary>Can you service systems installed by other companies?</summary>
-          <p>Absolutely. We take over maintenance, inspection, and testing of existing sprinkler, alarm, and suppression systems regardless of original installer. Our technicians are trained on major brands (Tyco, Viking, Reliable, Globe, Grinnell, Kidde, Ansul, Fireclass, Technoswitch) and can bring non-compliant systems up to code.</p>
+          <div class="faq-answer"><p>Absolutely. We take over maintenance, inspection, and testing of existing sprinkler, alarm, and suppression systems regardless of original installer. Our technicians are trained on major brands (Tyco, Viking, Reliable, Globe, Grinnell, Kidde, Ansul, Fireclass, Technoswitch) and can bring non-compliant systems up to code.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="2">
           <summary>What areas in Zimbabwe do you service?</summary>
-          <p>We are based in Harare (Damofalls Industrial Area) and serve all of Zimbabwe including Bulawayo, Mutare, Gweru, Kwekwe, Kadoma, Masvingo, Marondera, Bindura, Chinhoyi, and mining operations nationwide. We also support cross-border projects in the SADC region.</p>
+          <div class="faq-answer"><p>We are based in Harare (Damofalls Industrial Area) and serve all of Zimbabwe including Bulawayo, Mutare, Gweru, Kwekwe, Kadoma, Masvingo, Marondera, Bindura, Chinhoyi, and mining operations nationwide. We also support cross-border projects in the SADC region.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="3">
           <summary>Are your technicians certified?</summary>
-          <p>Yes. Our team holds NFPA training, ASIB competency, manufacturer-specific certifications (Viking, Reliable, Tyco, Ansul, Fireclass, Technoswitch), and trade qualifications in pipefitting, electrical, and instrumentation. We maintain continuous professional development through industry associations.</p>
+          <div class="faq-answer"><p>Yes. Our team holds NFPA training, ASIB competency, manufacturer-specific certifications (Viking, Reliable, Tyco, Ansul, Fireclass, Technoswitch), and trade qualifications in pipefitting, electrical, and instrumentation. We maintain continuous professional development through industry associations.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="4">
           <summary>What brands do you supply and install?</summary>
-          <p>We are authorized partners for: Viking, Reliable, Tyco/Grinnell, Globe, Ansul, FM-200, Kidde, Fireclass, Technoswitch, SafeQIP, Inbal, Hygood, and Grinnel. We supply sprinklers, valves, pipes, fittings, fire pumps, alarm panels, detectors, extinguishers, and special hazard agents — all with manufacturer warranties.</p>
+          <div class="faq-answer"><p>We are authorized partners for: Viking, Reliable, Tyco/Grinnell, Globe, Ansul, FM-200, Kidde, Fireclass, Technoswitch, SafeQIP, Inbal, Hygood, and Grinnel. We supply sprinklers, valves, pipes, fittings, fire pumps, alarm panels, detectors, extinguishers, and special hazard agents — all with manufacturer warranties.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>Do you offer emergency/after-hours support?</summary>
-          <p>Yes. We provide 24/7 emergency response for system impairments, sprinkler leaks, alarm activations, pump failures, and post-fire restoration. Our Harare-based team can mobilize quickly. Emergency call-out: +263 776 400 176 (WhatsApp available).</p>
+          <div class="faq-answer"><p>Yes. We provide 24/7 emergency response for system impairments, sprinkler leaks, alarm activations, pump failures, and post-fire restoration. Our Harare-based team can mobilize quickly. Emergency call-out: <strong>+263 776 400 176</strong> (WhatsApp available).</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>How long does a fire protection design project take?</summary>
-          <p>Typical timeline: Site survey & risk assessment (1-2 days), Concept design (3-5 days), Detailed engineering & hydraulic calculations (5-10 days), Authority submission & approval (2-6 weeks), Installation support & commissioning (project-dependent). We provide clear schedules upfront.</p>
+          <div class="faq-answer"><p>Typical timeline: Site survey & risk assessment (1-2 days), Concept design (3-5 days), Detailed engineering & hydraulic calculations (5-10 days), Authority submission & approval (2-6 weeks), Installation support & commissioning (project-dependent). We provide clear schedules upfront.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>What fire extinguisher types do you supply?</summary>
-          <p>We supply and service all classes: Class A (water, foam), Class B (foam, CO₂, dry powder), Class C (dry powder), Class D (specialist powders for metals), Class F (wet chemical for cooking oils), and CO₂ for electrical risks. Services include annual inspections, refilling, and hydrostatic testing.</p>
+          <div class="faq-answer"><p>We supply and service all classes: Class A (water, foam), Class B (foam, CO₂, dry powder), Class C (dry powder), Class D (specialist powders for metals), Class F (wet chemical for cooking oils), and CO₂ for electrical risks. Services include annual inspections, refilling, and hydrostatic testing.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
           <summary>Do you provide training for building staff?</summary>
-          <p>Yes. We offer on-site training covering: system operation, inspection routines, emergency procedures, impairment management, false alarm reduction, and extinguisher use (practical). Training is customized per facility and includes quick-reference guides and competency certificates.</p>
+          <div class="faq-answer"><p>Yes. We offer on-site training covering: system operation, inspection routines, emergency procedures, impairment management, false alarm reduction, and extinguisher use (practical). Training is customized per facility and includes quick-reference guides and competency certificates.</p></div>
         </details>
       </div>
     </section>
 
-    <!-- STATS -->
-    <section class="faq-stats" data-section-reveal>
-      <div class="container">
-        <div class="faq-stat" data-reveal data-reveal-delay="1"><span class="num">20</span><span class="label">FAQs Answered</span></div>
-        <div class="faq-stat" data-reveal data-reveal-delay="2"><span class="num">30+</span><span class="label">Years Experience</span></div>
-        <div class="faq-stat" data-reveal data-reveal-delay="3"><span class="num">24/7</span><span class="label">Emergency Support</span></div>
-        <div class="faq-stat" data-reveal data-reveal-delay="4"><span class="num">100%</span><span class="label">Compliance Focus</span></div>
-      </div>
-    </section>
+    <div class="faq-no-results" id="faq-no-results">
+      <p>No questions found matching your search. Try different keywords or browse by category above.</p>
+    </div>
 
-    <!-- CTA PARALLAX -->
     <section class="faq-parallax-cta">
       <div class="parallax-bg"></div>
       <div class="parallax-overlay"></div>
       <div class="container" data-reveal>
         <h2>Still Have Questions?</h2>
         <p>Our fire protection engineers are ready to answer any project-specific questions you have. Get a free consultation today.</p>
-        <a class="button" href="contact.html">Ask an Expert</a>
+        <div class="faq-cta-buttons">
+          <a class="button primary" href="contact.html">Ask an Expert</a>
+          <a class="button outline" href="https://wa.me/263776400176" target="_blank" rel="noopener">WhatsApp Us</a>
+        </div>
       </div>
     </section>
   </main>
@@ -345,30 +402,60 @@
       window.addEventListener('scroll',move,{passive:true});
       window.addEventListener('resize',move);
       move();
+
       var catBtns=document.querySelectorAll('.faq-cat-btn');
-      var sections=document.querySelectorAll('[data-cat]');
+      var sections=document.querySelectorAll('.faq-section[data-cat]');
       catBtns.forEach(function(btn){
         btn.addEventListener('click',function(){
-          catBtns.forEach(function(b){b.classList.remove('active');});
+          catBtns.forEach(function(b){b.classList.remove('active')});
           btn.classList.add('active');
           var cat=btn.getAttribute('data-cat');
           sections.forEach(function(sec){
             if(cat==='all'||sec.getAttribute('data-cat')===cat){
               sec.style.display='';sec.style.opacity='0';sec.style.transform='translateY(20px)';
               setTimeout(function(){sec.style.transition='opacity 0.5s,transform 0.5s';sec.style.opacity='1';sec.style.transform='translateY(0)';},50);
-            } else {
+            }else{
               sec.style.display='none';
             }
           });
-          if(cat==='all'){
-            var all=document.querySelectorAll('.faq-section');
-            all.forEach(function(s){s.style.display='';s.style.opacity='0';s.style.transform='translateY(20px)';setTimeout(function(){s.style.transition='opacity 0.5s,transform 0.5s';s.style.opacity='1';s.style.transform='translateY(0)';},50);});
-          }
         });
       });
+
+      var searchInput=document.getElementById('faq-search');
+      var noResults=document.getElementById('faq-no-results');
+      if(searchInput){
+        searchInput.addEventListener('input',function(){
+          var q=this.value.toLowerCase().trim();
+          var allItems=document.querySelectorAll('.faq-item');
+          var allSections=document.querySelectorAll('.faq-section[data-cat]');
+          if(!q){
+            allItems.forEach(function(item){item.style.display=''});
+            allSections.forEach(function(s){s.style.display=''});
+            noResults.classList.remove('visible');
+            catBtns.forEach(function(b){b.classList.remove('active')});
+            catBtns[0].classList.add('active');
+            return;
+          }
+          catBtns.forEach(function(b){b.classList.remove('active')});
+          allSections.forEach(function(s){s.style.display=''});
+          var found=0;
+          allItems.forEach(function(item){
+            var text=item.textContent.toLowerCase();
+            if(text.indexOf(q)!==-1){item.style.display='';found++;}
+            else{item.style.display='none';}
+          });
+          allSections.forEach(function(s){
+            var visItems=s.querySelectorAll('.faq-item');
+            var hasVisible=false;
+            visItems.forEach(function(vi){if(vi.style.display!=='none')hasVisible=true;});
+            if(!hasVisible)s.style.display='none';
+          });
+          noResults.classList.toggle('visible',found===0);
+        });
+      }
     })();
   </script>
-  <script src="script.js"></script>
-  <script src="chat.js"></script>
+  <script src="script.js" defer></script>
+  <script src="chat.js" defer></script>
 </body>
 </html>
