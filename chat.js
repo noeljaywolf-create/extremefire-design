@@ -124,10 +124,10 @@ document.body.appendChild(panel);
 
 // Inject CSS rules for positioning (desktop + mobile fullscreen)
 const panelCSS = document.createElement('style');
-panelCSS.textContent = '#chat-panel{position:fixed;bottom:164px;right:24px}@media(max-width:640px){#chat-panel,#chat-panel.open{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;border:none!important;z-index:10002!important}#chat-panel.open{display:flex!important;flex-direction:column!important;overflow:hidden!important;background:#0b1220!important}}';
+panelCSS.textContent = '#chat-panel{position:fixed;bottom:164px;right:24px}@media(max-width:768px){#chat-panel,#chat-panel.open{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100dvh!important;max-height:none!important;border-radius:0!important;border:none!important;z-index:10002!important}#chat-panel.open{display:flex!important;flex-direction:column!important;overflow:hidden!important;background:#0b1220!important}}';
 document.head.appendChild(panelCSS);
 
-function isMobile(){return window.innerWidth<=640}
+function isMobile(){return window.innerWidth<=768}
 var mobileProps=[['position','fixed'],['top','0'],['left','0'],['right','0'],['bottom','0'],['width','100vw'],['height','100dvh'],['max-height','none'],['border-radius','0'],['border','none'],['z-index','10002'],['display','flex'],['flex-direction','column'],['overflow','hidden'],['background','#0b1220']];
 function applyMobileStyles(){if(!isMobile())return;mobileProps.forEach(function(p){panel.style.setProperty(p[0],p[1],'important')})}
 function clearMobileStyles(){mobileProps.forEach(function(p){panel.style.removeProperty(p[0])})}
