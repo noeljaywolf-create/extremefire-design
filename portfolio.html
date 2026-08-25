@@ -65,18 +65,12 @@
     </nav>
   </header>
 
-  <div class="page-video-bg">
-    <video class="page-video" autoplay muted loop playsinline preload="metadata">
-      <source src="Background/gallery-bg-video.mp4" type="video/mp4">
-    </video>
-    <div class="page-video-overlay"></div>
-  </div>
-
   <main>
-    <section class="section page-hero slideshow-hero">
-      <div class="hero-slide-bg" style="background-image: url('Background/slide5.jpg')"></div>
-      <div class="hero-slide-bg" style="background-image: url('Background/WhatsApp Image 2026-07-07 at 11.28.57 (1).jpeg')"></div>
-      <div class="hero-slide-bg" style="background-image: url('Background/WhatsApp Image 2026-07-07 at 11.28.58 (1).jpeg')"></div>
+    <section class="section page-hero hero-video">
+      <video class="hero-video-bg" autoplay muted loop playsinline preload="metadata" poster="Background/slide5.jpg">
+        <source src="Background/gallery-bg-video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
       <div class="container">
         <p class="eyebrow">Featured work</p>
         <h1><span class="tw" data-tw="Fire protection engineering projects that protect people and property."></span><span class="tw-cursor">|</span></h1>
@@ -462,12 +456,12 @@
     .lightbox-prev{left:10px}
     .lightbox-next{right:10px}
     /* ── Uniform gallery — all photos same size ── */
-    /* ── Full-page bright video background (hero → footer) ── */
-    .page-video-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-    .page-video{width:100%;height:100%;object-fit:cover;opacity:1;filter:brightness(1.15) contrast(1.08) saturate(1.1)}
-    .page-video-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.08) 0%,rgba(6,7,13,0.18) 35%,rgba(6,7,13,0.32) 70%,rgba(6,7,13,0.55) 100%)}
-    @media(prefers-reduced-motion:reduce){.page-video-bg{display:none}}
-    main,footer{position:relative;z-index:1}
+    /* ── Hero video background (bright) ── */
+    .hero-video{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center}
+    .hero-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+    .hero-video-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(6,7,13,0.45) 0%,rgba(6,7,13,0.22) 55%,rgba(6,7,13,0.08) 100%)}
+    .hero-video .container{position:relative;z-index:2}
+    @media(prefers-reduced-motion:reduce){.hero-video-bg{display:none}.hero-video{background:url('Background/slide5.jpg') center/cover no-repeat}}
 
     .recent-work-item{cursor:zoom-in;height:220px;aspect-ratio:auto!important}
     .recent-work-item img{width:100%;height:100%;object-fit:cover;object-position:center}
