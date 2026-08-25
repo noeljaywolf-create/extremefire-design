@@ -172,7 +172,13 @@
       </div>
     </section>
 
-    <section class="section recent-work-section">
+    <div class="gallery-video-section">
+      <video class="gallery-video-bg" autoplay muted loop playsinline preload="metadata" poster="images/our-work/project-06.jpeg">
+        <source src="Background/gallery-bg-video.mp4" type="video/mp4">
+      </video>
+      <div class="gallery-video-overlay"></div>
+
+      <section class="section recent-work-section gallery-on-video">
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Gallery</p>
@@ -307,6 +313,7 @@
         </div>
       </div>
     </section>
+    </div><!-- /.gallery-video-section -->
 
 
 
@@ -454,6 +461,13 @@
     .lightbox-prev{left:10px}
     .lightbox-next{right:10px}
     /* ── Uniform gallery — all photos same size ── */
+    /* ── Gallery video background ── */
+    .gallery-video-section{position:relative;overflow:hidden}
+    .gallery-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.28}
+    .gallery-video-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,7,13,0.72) 0%,rgba(6,7,13,0.82) 50%,rgba(6,7,13,0.88) 100%)}
+    .gallery-video-section > section{position:relative;z-index:2}
+    @media(prefers-reduced-motion:reduce){.gallery-video-bg{display:none}}
+
     .recent-work-item{cursor:zoom-in;height:220px;aspect-ratio:auto!important}
     .recent-work-item img{width:100%;height:100%;object-fit:cover;object-position:center}
     @media(max-width:980px){.recent-work-item{height:200px}}
