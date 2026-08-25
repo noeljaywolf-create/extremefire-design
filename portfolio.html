@@ -455,9 +455,11 @@
     .recent-work-item{cursor:zoom-in}
     .portfolio-card img{cursor:zoom-in}
 
-    /* ── Gallery: show 3 then View All ── */
+    /* ── Gallery: show 3 then View All — preview uses 3-col so no empty gap ── */
     .gallery-wrap{position:relative}
+    .gallery-wrap.collapsed .recent-work-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
     .gallery-wrap.collapsed .recent-work-item:nth-child(n+4){display:none}
+    @media(max-width:480px){.gallery-wrap.collapsed .recent-work-gallery{grid-template-columns:1fr}}
     .gallery-toggle{text-align:center;margin-top:22px}
     .gallery-toggle button{cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1px solid rgba(255,61,0,0.3);border-radius:24px;background:rgba(255,61,0,0.08);color:var(--accent);font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.3s ease}
     .gallery-toggle button:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,61,0,0.25)}
