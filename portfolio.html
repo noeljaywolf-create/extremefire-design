@@ -213,6 +213,7 @@
         <div class="project-section-header">
           <div class="project-section-accent"></div>
           <div class="project-section-titles">
+            <p style="margin:0 0 6px;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700">Featured Collection</p>
             <h3>Gallery — Fire Systems Highlights</h3>
             <p>Curated fire protection installations across multiple sites</p>
           </div>
@@ -452,7 +453,12 @@
     .lightbox-nav:hover{color:var(--accent)}
     .lightbox-prev{left:10px}
     .lightbox-next{right:10px}
-    .recent-work-item{cursor:zoom-in}
+    /* ── Uniform gallery — all photos same size ── */
+    .recent-work-item{cursor:zoom-in;height:220px;aspect-ratio:auto!important}
+    .recent-work-item img{width:100%;height:100%;object-fit:cover;object-position:center}
+    @media(max-width:980px){.recent-work-item{height:200px}}
+    @media(max-width:720px){.recent-work-item{height:190px}}
+    @media(max-width:480px){.recent-work-item{height:220px}}
     .portfolio-card img{cursor:zoom-in}
 
     /* ── Gallery: show 3 then View All — preview uses 3-col so no empty gap ── */
