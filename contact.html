@@ -11,12 +11,19 @@
   <meta property="og:title" content="Contact Extreme Fire Design Inc | Fire Protection Harare & Zimbabwe" />
   <meta property="og:description" content="Contact Extreme Fire Design Inc for fire protection services in Harare and across Zimbabwe. Get a quote for fire sprinkler installation, fire alarm systems, fire extinguishers, and fire safety compliance services." />
   <meta property="og:url" content="https://www.extremefiredesigninc.com/contact.html" />
+  <meta property="og:image" content="https://www.extremefiredesigninc.com/images/logo.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:image" content="https://www.extremefiredesigninc.com/images/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Extreme Fire Design Inc" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact Extreme Fire Design Inc | Fire Protection Harare & Zimbabwe" />
   <meta name="twitter:description" content="Contact Extreme Fire Design Inc for fire protection services in Harare and across Zimbabwe. Get a quote for fire sprinkler installation, fire alarm systems, fire extinguishers, and fire safety compliance services." />
   <link rel="icon" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
@@ -44,9 +51,9 @@
 
   <header class="header" id="site-header">
     <div class="logo">
-      <img src="images/logo.png" alt="Extreme Fire Design Inc">
+      <img src="images/logo.png" alt="Extreme Fire Design Inc" width="150" height="70" loading="eager">
     </div>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
       <span></span><span></span><span></span>
     </button>
     <nav class="nav" id="main-nav">
@@ -56,7 +63,7 @@
       <a href="about.html">About</a>
       <a href="portfolio.html">Gallery</a>
       <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="active">Contact</a>
     </nav>
   </header>
   <main>
@@ -93,21 +100,66 @@
             <dd>21566 Damofalls Industrial Area, Harare, Zimbabwe</dd>
           </dl>
         </div>
-        <form id="contact-form" action="mailto:info@extremefire.co.zw" method="get" enctype="text/plain">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required />
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your email" required />
+        <form id="contact-form" novalidate>
+          <p id="form-status" role="status" aria-live="polite" style="display:none;padding:12px 16px;border-radius:10px;margin:0 0 12px;font-size:0.9rem"></p>
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" />
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="Your email" required autocomplete="email" />
           <label for="phone">Contact Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Your contact number" />
+          <input type="tel" id="phone" name="phone" placeholder="Your contact number" autocomplete="tel" />
           <label for="company">Subject</label>
           <input type="text" id="company" name="company" placeholder="What do you need help with?" />
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Describe your fire protection project or service need"></textarea>
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" rows="5" placeholder="Describe your fire protection project or service need" required></textarea>
           <button type="submit" class="button primary">Send message</button>
+          <p style="margin:8px 0 0;color:var(--muted);font-size:0.82rem">Or email us directly at <a href="mailto:info@extremefire.co.zw">info@extremefire.co.zw</a> · <a href="https://wa.me/263776400176">WhatsApp 0776 400 176</a></p>
         </form>
       </div>
     </section>
+
+    <section class="section" style="padding:0 0 48px">
+      <div class="container">
+        <div style="border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-md)">
+          <iframe src="https://maps.google.com/maps?q=21566%20Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="420" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Extreme Fire Design — Damofalls Industrial Area, Harare"></iframe>
+        </div>
+        <p style="text-align:center;margin:12px 0 0;color:var(--muted);font-size:0.88rem">21566 Damofalls Industrial Area, Harare, Zimbabwe · <a href="https://www.google.com/maps/search/Damofalls+Industrial+Area+Harare+Zimbabwe" target="_blank" rel="noopener">Open in Google Maps</a></p>
+      </div>
+    </section>
+
+    <script>
+      (function(){
+        var form = document.getElementById('contact-form');
+        var status = document.getElementById('form-status');
+        function showStatus(msg, ok){
+          status.textContent = msg;
+          status.style.display = 'block';
+          status.style.background = ok ? 'rgba(16,185,129,0.12)' : 'rgba(239,68,68,0.12)';
+          status.style.border = ok ? '1px solid rgba(16,185,129,0.35)' : '1px solid rgba(239,68,68,0.35)';
+          status.style.color = ok ? '#10b981' : '#ef4444';
+        }
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          var name = document.getElementById('name').value.trim();
+          var email = document.getElementById('email').value.trim();
+          var phone = document.getElementById('phone').value.trim();
+          var subject = document.getElementById('company').value.trim();
+          var message = document.getElementById('message').value.trim();
+          if(!name || !email || !message){
+            showStatus('Please fill in your name, email, and message.', false);
+            return;
+          }
+          if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+            showStatus('Please enter a valid email address.', false);
+            return;
+          }
+          var body = 'Name: ' + name + '%0D%0AEmail: ' + email + '%0D%0APhone: ' + phone + '%0D%0ASubject: ' + subject + '%0D%0A%0D%0A' + encodeURIComponent(message);
+          var mailto = 'mailto:info@extremefire.co.zw?subject=' + encodeURIComponent(subject || 'Enquiry from ' + name) + '&body=' + body;
+          window.location.href = mailto;
+          showStatus('Opening your email app — if nothing happens, please email info@extremefire.co.zw directly or WhatsApp 0776 400 176.', true);
+        });
+      })();
+    </script>
   </main>
   <footer class="site-footer live-footer">
     <div class="container live-footer-main">
@@ -145,6 +197,9 @@
         <a class="facebook-link" href="https://www.facebook.com/Extreme-Fire-Design-Inc-100063570455758/">Extreme Fire Design Inc</a>
       </div>
     </div>
+    <div class="live-footer-map" style="margin:0 auto;max-width:1120px;padding:0 24px 28px">
+     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0;border-radius:12px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Extreme Fire Design location"></iframe>
+   </div>
 
     <div class="live-footer-bottom">
       <div class="container live-footer-bottom-inner">

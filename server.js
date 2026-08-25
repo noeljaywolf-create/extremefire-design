@@ -1,8 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
 const OpenAI = require('openai');
-const zlib = require('zlib');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,58 +11,16 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json({ limit: '10kb' }));
 
-// Simple in-memory rate limiter for /api/chat
-const chatRateLimit = {};
-const RATE_WINDOW = 60000;
-const RATE_MAX = 15;
+// Gzip / Brotli via compression package
+app.use(compression());
 
-function rateLimit(req, res, next) {
-  const ip = req.ip || req.connection.remoteAddress;
-  const now = Date.now();
-  if (!chatRateLimit[ip] || now - chatRateLimit[ip].start > RATE_WINDOW) {
-    chatRateLimit[ip] = { start: now, count: 1 };
-    return next();
-  }
-  chatRateLimit[ip].count++;
-  if (chatRateLimit[ip].count > RATE_MAX) {
-    return res.status(429).json({ reply: 'Too many messages. Please wait a moment and try again.' });
-  }
-  next();
-}
-
-// Gzip compression middleware
-app.use((req, res, next) => {
-  const accept = req.headers['accept-encoding'] || '';
-  if (!accept.includes('gzip')) return next();
-  const ext = req.path.split('.').pop().toLowerCase();
-  const compressible = ['html','css','js','json','svg','xml','txt','ico'];
-  if (!compressible.includes(ext)) return next();
-  res.setHeader('Content-Encoding', 'gzip');
-  res.setHeader('Vary', 'Accept-Encoding');
-  const origWrite = res.write.bind(res);
-  const origEnd = res.end.bind(res);
-  const chunks = [];
-  res.write = (data) => { chunks.push(Buffer.isBuffer(data) ? data : Buffer.from(data)); return true; };
-  res.end = (data) => { if (data) chunks.push(Buffer.isBuffer(data) ? data : Buffer.from(data));
-    const buf = Buffer.concat(chunks);
-    zlib.gzip(buf, (err, compressed) => {
-      if (err) { origWrite(buf); origEnd(); return; }
-      res.setHeader('Content-Length', compressed.length);
-      origWrite(compressed); origEnd();
-    });
-  };
-  next();
-});
-
-// Cache headers for static assets
-app.use(express.static(__dirname, {
-  maxAge: '7d',
-  etag: true,
-  lastModified: true
-}));
-
-app.use((req, res) => {
-  res.status(404).sendFile(__dirname + '/404.html');
+// Rate limiter for /api/chat — 15 req/min per IP
+const chatLimiter = rateLimit({
+  windowMs: 60000,
+  max: 15,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { reply: 'Too many messages. Please wait a moment and try again.' },
 });
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -111,7 +70,7 @@ PRODUCT BRANDS: FM 200, Ansul, Reliable Sprinklers, Fire Class, Globe, Grinnell,
 ADDITIONAL SERVICES: Air conditioning and refrigeration support for commercial buildings.
 `;
 
-app.post('/api/chat', rateLimit, async (req, res) => {
+app.post('/api/chat', chatLimiter, async (req, res) => {
   try {
     const { message } = req.body;
     const completion = await openai.chat.completions.create({
@@ -127,6 +86,20 @@ app.post('/api/chat', rateLimit, async (req, res) => {
     console.error(err.message);
     res.status(500).json({ reply: 'Sorry, something went wrong. Please try again.' });
   }
+});
+
+// Static files — deny dotfiles (.env, .git, etc.), long cache for assets
+app.use(express.static(__dirname, {
+  dotfiles: 'deny',
+  maxAge: '7d',
+  etag: true,
+  lastModified: true,
+  index: 'index.html',
+}));
+
+// 404 — must be after all routes
+app.use((req, res) => {
+  res.status(404).sendFile(__dirname + '/404.html');
 });
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

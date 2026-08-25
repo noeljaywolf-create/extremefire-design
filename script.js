@@ -467,13 +467,15 @@
   var mainNav = $('#main-nav');
   if (navToggle && mainNav) {
     on(navToggle, 'click', function () {
-      navToggle.classList.toggle('open');
+      var isOpen = navToggle.classList.toggle('open');
       mainNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
     });
     $$('a', mainNav).forEach(function (a) {
       on(a, 'click', function () {
         navToggle.classList.remove('open');
         mainNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
