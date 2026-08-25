@@ -527,6 +527,54 @@
       </div>
     </section>
 
+    <!-- ── Our Products — auto-sliding carousel ── -->
+    <section class="section products-section" style="padding:60px 0;background:#fff;overflow:hidden">
+      <div class="container" style="text-align:center;margin-bottom:32px">
+        <p style="margin:0 0 8px;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:700">What We Supply</p>
+        <h2 style="margin:0 0 10px;font-size:clamp(1.8rem,3.5vw,2.6rem);color:#0a0f1c;letter-spacing:-0.02em">Our Products</h2>
+        <p style="margin:0 auto;max-width:560px;color:#64748b;font-size:0.95rem;line-height:1.6">Premium fire protection equipment — tested, certified, and trusted on every project we deliver.</p>
+      </div>
+      <div class="products-track-wrap" style="overflow:hidden">
+        <div class="products-track" id="products-track">
+          <div class="product-slide"><img src="images/products/images.jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (1).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (2).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (3).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (4).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (5).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (6).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (7).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (8).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (9).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (10).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (11).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (12).jfif" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images.png" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/download.webp" alt="Fire protection product" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/672683314_122177998670769416_5549259663154448307_n.jpg" alt="Fire protection product" loading="lazy"></div>
+          <!-- duplicate for seamless loop -->
+          <div class="product-slide"><img src="images/products/images.jfif" alt="" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (1).jfif" alt="" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (2).jfif" alt="" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (3).jfif" alt="" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (4).jfif" alt="" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (5).jfif" alt="" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (6).jfif" alt="" loading="lazy"></div>
+          <div class="product-slide"><img src="images/products/images (7).jfif" alt="" loading="lazy"></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:28px"><a href="contact.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:24px;background:var(--accent);color:#fff;font-weight:700;font-size:0.85rem;text-decoration:none;transition:all 0.3s">Enquire About Products &rarr;</a></div>
+    </section>
+    <style>
+      .products-track{display:flex;gap:18px;width:max-content;animation:productsScroll 30s linear infinite}
+      .products-track:hover{animation-play-state:paused}
+      .product-slide{flex-shrink:0;width:180px;height:180px;border-radius:14px;overflow:hidden;background:#f8fafc;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;padding:8px;transition:transform 0.3s,box-shadow 0.3s}
+      .product-slide:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.12)}
+      .product-slide img{width:100%;height:100%;object-fit:contain;display:block}
+      @keyframes productsScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+      @media(max-width:640px){.product-slide{width:150px;height:150px}}
+    </style>
+
     <div class="live-rotator">
       <div class="live-rotator-track">
         <section class="section featured-services live-slide active astro-overlay" data-index="0">
