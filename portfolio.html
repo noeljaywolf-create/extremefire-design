@@ -179,8 +179,8 @@
           <span class="project-count-badge"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM18 5v14H6V5h12z"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M18 17l-4-4-3 3-2-2-3 3V5h12z"/></svg> 2 Photos</span>
         </div>
         <div class="project-dual-grid">
-          <figure><img src="images/our-work/CHEP PALLET PRODUCTION PLANT/CHEP PALLET PRODUCTION PLANT PUMPHOUSE.jpeg" alt="CHEP Pallet Plant Pumphouse" loading="lazy"><figcaption>Pumphouse System</figcaption></figure>
-          <figure><img src="images/our-work/CHEP PALLET PRODUCTION PLANT/WhatsApp Image 2026-08-24 at 15.42.32 (1).jpeg" alt="CHEP Pallet Plant Installation" loading="lazy"><figcaption>Plant Installation</figcaption></figure>
+          <figure><img src="images/our-work/CHEP PALLET PRODUCTION PLANT/CHEP PALLET PRODUCTION PLANT PUMPHOUSE.jpeg" alt="CHEP Pallet Plant fire system" loading="lazy"><figcaption>Fire Pump &amp; Suppression System</figcaption></figure>
+          <figure><img src="images/our-work/CHEP PALLET PRODUCTION PLANT/WhatsApp Image 2026-08-24 at 15.42.32 (1).jpeg" alt="CHEP Pallet Plant fire system" loading="lazy"><figcaption>Sprinkler &amp; Detection System</figcaption></figure>
         </div>
       </div>
     </section>
@@ -364,58 +364,59 @@
   <style>
     .tw-cursor{color:var(--accent);font-weight:300;animation:blink 0.7s step-end infinite;font-size:inherit}
     @keyframes blink{50%{opacity:0}}
-.portfolio-card{text-align:center;padding:40px 24px;border:1px solid rgba(255,255,255,0.06);border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));transition:border-color 0.4s ease,box-shadow 0.4s ease}
-.portfolio-card:hover{border-color:var(--accent);box-shadow:0 0 40px rgba(255,61,0,0.1)}
-.portfolio-card h2{font-size:1.5rem;margin:20px 0 12px;color:#fff}
-.portfolio-card p{color:rgba(255,255,255,0.7);line-height:1.7;margin:0 0 8px}
-    .portfolio-card .project-meta{color:var(--accent);font-size:0.9rem;margin-top:12px;font-weight:500;letter-spacing:0.02em}
-    .portfolio-card img{width:100%;height:260px;object-fit:cover;border-radius:12px;margin-bottom:20px}
+ .portfolio-card{text-align:center;padding:28px 18px;border:1px solid rgba(255,255,255,0.07);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012));transition:border-color 0.35s ease,box-shadow 0.35s ease,transform 0.35s ease}
+.portfolio-card:hover{border-color:rgba(255,61,0,0.35);box-shadow:0 8px 32px rgba(0,0,0,0.35),0 0 24px rgba(255,61,0,0.08);transform:translateY(-3px)}
+.portfolio-card h2{font-size:1.2rem;margin:14px 0 8px;color:#fff;letter-spacing:-0.02em}
+.portfolio-card p{color:rgba(255,255,255,0.62);line-height:1.65;margin:0 0 6px;font-size:0.92rem}
+    .portfolio-card .project-meta{color:var(--accent);font-size:0.8rem;margin-top:10px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase}
+    .portfolio-card img{width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:14px}
     .page-hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.2;margin:16px 0}
     .page-hero p{font-size:1.1rem;color:rgba(255,255,255,0.75);max-width:600px;margin:0 auto}
     .recent-work-section h2{font-size:clamp(1.8rem,3.5vw,2.5rem)}
     .contact-cta h2{font-size:clamp(1.8rem,3.5vw,2.5rem);margin-bottom:12px}
     .contact-cta p{color:rgba(255,255,255,0.7);font-size:1.05rem;margin-bottom:24px}
-    .portfolio-grid .container{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:900px}
+    .portfolio-grid .container{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1080px}
     .portfolio-grid{text-align:center}
     .portfolio-card h2{text-align:center}
     .section-heading{text-align:center}
     .contact-cta{text-align:center}
     .page-hero .container{text-align:center}
+    @media(max-width:900px){.portfolio-grid .container{grid-template-columns:repeat(2,1fr)}}
+    .portfolio-grid .section-heading,.recent-work-section .section-heading,.project-gallery-section .project-section-titles{text-align:center}
+    .portfolio-grid .section-heading h2,.recent-work-section .section-heading h2,.project-gallery-section .project-section-titles h3{text-align:center}
+    .portfolio-grid .section-heading p,.recent-work-section .section-heading p,.project-gallery-section .project-section-titles p{text-align:center}
     @media(max-width:700px){.portfolio-grid .container{grid-template-columns:1fr}}
 
-    /* ── Professional project gallery sections ── */
-    .project-gallery-section{padding:72px 0;position:relative}
-    .project-gallery-section + .project-gallery-section{border-top:1px solid rgba(255,255,255,0.06)}
-    .project-gallery-section:nth-child(even){background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
-    .project-section-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
-    .project-section-accent{width:4px;align-self:stretch;min-height:56px;background:linear-gradient(180deg,var(--accent),rgba(255,61,0,0.15));border-radius:4px;flex-shrink:0}
-    .project-section-titles{flex:1}
-    .project-section-titles h3{font-size:clamp(1.35rem,2.6vw,1.85rem);color:#fff;margin:0 0 4px;letter-spacing:-0.02em;line-height:1.2}
-    .project-section-titles p{color:rgba(255,255,255,0.45);margin:0;font-size:0.9rem;line-height:1.5}
-    .project-count-badge{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid rgba(255,61,0,0.25);border-radius:20px;color:var(--accent);font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;background:rgba(255,61,0,0.08);white-space:nowrap}
-    .project-count-badge svg{width:14px;height:14px;fill:var(--accent)}
+    /* ── Enterprise project gallery sections ── */
+    .project-gallery-section{padding:56px 0;position:relative;text-align:center}
+    .project-gallery-section + .project-gallery-section{border-top:1px solid rgba(255,255,255,0.05)}
+    .project-gallery-section:nth-child(even){background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent)}
+    .project-section-header{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:28px;text-align:center}
+    .project-section-accent{width:40px;height:3px;background:linear-gradient(90deg,var(--accent),rgba(255,61,0,0.15));border-radius:3px;flex-shrink:0}
+    .project-section-titles{flex:none;text-align:center}
+    .project-section-titles h3{font-size:clamp(1.2rem,2.2vw,1.55rem);color:#fff;margin:0 0 4px;letter-spacing:-0.02em;line-height:1.25;text-align:center;font-weight:700}
+    .project-section-titles p{color:rgba(255,255,255,0.42);margin:0;font-size:0.85rem;line-height:1.5;text-align:center}
+    .project-count-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid rgba(255,61,0,0.22);border-radius:20px;color:var(--accent);font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;background:rgba(255,61,0,0.07);white-space:nowrap}
+    .project-count-badge svg{width:12px;height:12px;fill:var(--accent)}
 
-    /* 1-image projects → centered premium card */
-    .project-single-card{max-width:560px;margin:0 auto}
-    .project-single-card figure{margin:0;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));transition:border-color 0.4s ease,box-shadow 0.4s ease,transform 0.4s cubic-bezier(0.4,0,0.2,1);cursor:zoom-in}
-    .project-single-card figure:hover{border-color:rgba(255,61,0,0.35);box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px rgba(255,61,0,0.12);transform:translateY(-4px)}
-    .project-single-card img{width:100%;height:380px;object-fit:cover;display:block;transition:transform 0.6s ease}
+    /* 1-image projects → centered enterprise card */
+    .project-single-card{max-width:420px;margin:0 auto}
+    .project-single-card figure{margin:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:linear-gradient(135deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01));transition:border-color 0.35s ease,box-shadow 0.35s ease,transform 0.35s cubic-bezier(0.4,0,0.2,1);cursor:zoom-in}
+    .project-single-card figure:hover{border-color:rgba(255,61,0,0.3);box-shadow:0 16px 40px rgba(0,0,0,0.45),0 0 28px rgba(255,61,0,0.08);transform:translateY(-3px)}
+    .project-single-card img{width:100%;height:280px;object-fit:cover;display:block;transition:transform 0.5s ease}
     .project-single-card figure:hover img{transform:scale(1.03)}
-    .project-single-card figcaption{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .project-single-card figcaption span{color:rgba(255,255,255,0.6);font-size:0.82rem;letter-spacing:0.04em}
-    .project-single-card figcaption em{color:var(--accent);font-style:normal;font-size:0.78rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
+    .project-single-card figcaption{padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center}
+    .project-single-card figcaption span{color:rgba(255,255,255,0.55);font-size:0.78rem;letter-spacing:0.03em;text-align:center}
+    .project-single-card figcaption em{color:var(--accent);font-style:normal;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
 
-    /* 2-image projects → 2-col premium cards */
-    .project-dual-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:860px;margin:0 auto}
-    .project-dual-grid figure{margin:0;overflow:hidden;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));transition:border-color 0.4s ease,box-shadow 0.4s ease,transform 0.4s cubic-bezier(0.4,0,0.2,1);cursor:zoom-in}
-    .project-dual-grid figure:hover{border-color:rgba(255,61,0,0.35);box-shadow:0 16px 48px rgba(0,0,0,0.45),0 0 32px rgba(255,61,0,0.1);transform:translateY(-4px)}
-    .project-dual-grid img{width:100%;height:320px;object-fit:cover;display:block;transition:transform 0.6s ease}
-    .project-dual-grid figure:hover img{transform:scale(1.04)}
-    .project-dual-grid figcaption{padding:14px 16px;color:rgba(255,255,255,0.5);font-size:0.8rem;text-align:center;letter-spacing:0.03em}
-    @media(max-width:640px){.project-dual-grid{grid-template-columns:1fr;max-width:480px}}
-
-    /* responsive header */
-    @media(max-width:640px){.project-section-header{flex-wrap:wrap}.project-count-badge{margin-left:20px}}
+    /* 2-image projects → 2-col compact cards */
+    .project-dual-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:680px;margin:0 auto}
+    .project-dual-grid figure{margin:0;overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,0.07);background:linear-gradient(135deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01));transition:border-color 0.35s ease,box-shadow 0.35s ease,transform 0.35s cubic-bezier(0.4,0,0.2,1);cursor:zoom-in}
+    .project-dual-grid figure:hover{border-color:rgba(255,61,0,0.3);box-shadow:0 12px 36px rgba(0,0,0,0.4),0 0 24px rgba(255,61,0,0.07);transform:translateY(-3px)}
+    .project-dual-grid img{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s ease}
+    .project-dual-grid figure:hover img{transform:scale(1.03)}
+    .project-dual-grid figcaption{padding:10px 14px;color:rgba(255,255,255,0.48);font-size:0.75rem;text-align:center;letter-spacing:0.04em;text-transform:uppercase;font-weight:500}
+    @media(max-width:640px){.project-dual-grid{grid-template-columns:1fr;max-width:380px}}
 
     .lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;opacity:0;transition:opacity 0.3s ease}
     .lightbox-overlay.active{display:flex;opacity:1}
