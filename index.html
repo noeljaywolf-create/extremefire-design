@@ -45,6 +45,17 @@
     @keyframes ac-float{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-12px) rotate(1deg)}50%{transform:translateY(-4px) rotate(-1deg)}75%{transform:translateY(-16px) rotate(0.5deg)}}
     @keyframes ac-glow{0%,100%{filter:drop-shadow(0 0 8px rgba(0,180,255,0.3))}50%{filter:drop-shadow(0 0 24px rgba(0,180,255,0.6))}}
     .ac-refrigeration-section .overview-img-block img{animation:ac-float 5s ease-in-out infinite,ac-glow 3s ease-in-out infinite}
+    /* Recent Work — mobile: 1 image + button */
+    @media(max-width:768px){
+      .recent-work-section .recent-work-gallery .recent-work-item:nth-child(n+2){display:none!important}
+      .recent-work-section .recent-work-gallery{display:block!important;max-width:380px;margin:0 auto}
+      .recent-work-section .recent-work-item{height:260px}
+      .recent-work-section .recent-work-actions{display:none}
+    }
+    .recent-work-mobile-btn{display:none}
+    @media(max-width:768px){.recent-work-mobile-btn{display:block;text-align:center;margin-top:18px}}
+    .recent-work-mobile-btn a{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:24px;background:var(--accent);color:#fff;font-weight:700;font-size:0.85rem;letter-spacing:0.04em;text-decoration:none;transition:all 0.3s ease}
+    .recent-work-mobile-btn a:hover{background:#e63600;transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,61,0,0.3)}
   </style>
   <script>
     /* Block FOUC - hide page until CSS loads */
@@ -506,6 +517,9 @@
           <figure class="recent-work-item"><img src="images/our-work/project-18.jpeg" alt="Extreme Fire Design fire protection installation" loading="lazy"></figure>
           <figure class="recent-work-item"><img src="images/our-work/project-19.jpeg" alt="Extreme Fire Design completed project" loading="lazy"></figure>
           <figure class="recent-work-item"><img src="images/our-work/project-20.jpeg" alt="Extreme Fire Design recent work" loading="lazy"></figure>
+        </div>
+        <div class="recent-work-mobile-btn">
+          <a href="portfolio.html">View All Recent Work &rarr;</a>
         </div>
         <div class="recent-work-actions">
           <a class="button primary recent-work-cta" href="portfolio.html">View Full Gallery</a>
