@@ -1676,3 +1676,36 @@ input:focus, textarea:focus, select:focus {
   .emergency-float { width: 46px; height: 46px; bottom: 80px; left: 14px; }
 }
 
+
+/* ============================================================
+   32. GLOBAL HEADING — center all headings, reduce size
+   ============================================================ */
+h1, h2, h3, h4, h5, h6,
+.section-heading h1, .section-heading h2, .section-heading h3,
+.section-heading,
+.recent-work-title, .why-choose-heading, .welcome-heading,
+.featured-services-subheading, .passion-cta h2, .emergency-text h2 {
+  text-align: center !important;
+}
+.section-heading {
+  text-align: center !important;
+}
+.section-heading .eyebrow,
+.section-heading p:not(.eyebrow) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Reduce heading font sizes */
+h1, .hero-content h1, .page-hero h1,
+.home-hero-copy h1, .hero-typewriter-line {
+  font-size: clamp(2rem, 5.5vw, 3.6rem) !important;
+}
+h2, .section-heading h2,
+.recent-work-title, .why-choose-heading, .welcome-heading,
+.passion-cta h2 {
+  font-size: clamp(1.3rem, 3.5vw, 2rem) !important;
+}
+h3, .featured-services-subheading {
+  font-size: clamp(1rem, 2.6vw, 1.25rem) !important;
+}
