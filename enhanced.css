@@ -1095,3 +1095,22 @@ input:focus, textarea:focus, select:focus {
    18. NAV TOGGLE — white theme to match header
    ============================================================ */
 .nav-toggle span { background: #1a1a1a; }
+
+/* ============================================================
+   19. MAP SECTION — before footer
+   ============================================================ */
+.live-footer-map {
+  background: var(--bg, #06070d);
+  padding: 0 24px 40px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.live-footer-map iframe {
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+@media (max-width: 768px) {
+  .live-footer-map { padding: 0 16px 28px; }
+  .live-footer-map iframe { height: 200px; border-radius: 8px; }
+}
