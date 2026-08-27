@@ -1286,7 +1286,8 @@ input:focus, textarea:focus, select:focus {
   border-color: rgba(255,61,0,0.3);
   box-shadow: 0 8px 32px rgba(255,61,0,0.1);
 }
-.ind-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.ind-icon { width: 52px; height: 52px; margin: 0 auto 12px; }
+.ind-icon svg { width: 100%; height: 100%; }
 .ind-card h3 {
   font-size: 0.95rem;
   font-weight: 700;
@@ -1300,47 +1301,8 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ============================================================
-   24. TESTIMONIALS
+   24. CASE STUDIES (was TESTIMONIALS)
    ============================================================ */
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
-}
-.testimonial-card {
-  padding: 32px 28px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.testimonial-card:hover {
-  border-color: rgba(255,61,0,0.3);
-  box-shadow: 0 8px 32px rgba(255,61,0,0.08);
-}
-.testimonial-stars {
-  color: #ff3d00;
-  font-size: 1.1rem;
-  margin-bottom: 16px;
-  letter-spacing: 2px;
-}
-.testimonial-card blockquote {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.8);
-  font-style: italic;
-  margin-bottom: 20px;
-}
-.testimonial-author { display: flex; flex-direction: column; gap: 2px; }
-.testimonial-author strong {
-  font-size: 0.85rem;
-  color: #f5f8ff;
-}
-.testimonial-author span {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.45);
-}
 
 /* ============================================================
    25. CASE STUDIES
@@ -1571,7 +1533,8 @@ input:focus, textarea:focus, select:focus {
   transition: border-color 0.3s;
 }
 .res-card:hover { border-color: rgba(255,61,0,0.3); }
-.res-icon { font-size: 2rem; margin-bottom: 12px; }
+.res-icon { width: 48px; height: 48px; margin: 0 auto 12px; }
+.res-icon svg { width: 100%; height: 100%; }
 .res-card h3 {
   font-size: 1rem;
   font-weight: 700;
@@ -1694,7 +1657,6 @@ input:focus, textarea:focus, select:focus {
 @media (max-width: 900px) {
   .hiw-grid { grid-template-columns: repeat(2, 1fr); }
   .industries-grid { grid-template-columns: repeat(2, 1fr); }
-  .testimonials-grid { grid-template-columns: 1fr; }
   .case-studies-grid { grid-template-columns: 1fr; }
   .ba-grid { grid-template-columns: 1fr; }
   .resources-grid { grid-template-columns: 1fr; }
@@ -1705,7 +1667,7 @@ input:focus, textarea:focus, select:focus {
   .hiw-grid { grid-template-columns: 1fr; }
   .industries-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .ind-card { padding: 20px 12px; }
-  .ind-icon { font-size: 1.6rem; }
+  .ind-icon { width: 40px; height: 40px; }
   .checklist-box { padding: 24px 16px; }
   .q-opt { padding: 8px 20px; font-size: 0.8rem; }
   .trust-logos { gap: 24px; }
