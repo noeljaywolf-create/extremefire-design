@@ -1,51 +1,9 @@
 /* ============================================================
    ENGINEERING SECTIONS JS - Extreme Fire Design Inc
-   Checklist, before/after sliders, resources gate
+   Checklist, resources gate
    ============================================================ */
 (function () {
   'use strict';
-
-  /* ---------- Before / After Sliders ---------- */
-  var sliders = document.querySelectorAll('[data-ba]');
-  function initSlider(slider) {
-    var before = slider.querySelector('.ba-before');
-    var handle = slider.querySelector('[data-handle]');
-    function setPos(x) {
-      var rect = slider.getBoundingClientRect();
-      if (!rect.width) return;
-      var pct = ((x - rect.left) / rect.width) * 100;
-      pct = Math.max(0, Math.min(100, pct));
-      before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
-      if (handle) handle.style.left = pct + '%';
-    }
-    function onMove(clientX) {
-      var rect = slider.getBoundingClientRect();
-      setPos(clientX);
-    }
-    slider.addEventListener('mousedown', function (e) {
-      e.preventDefault();
-      onMove(e.clientX);
-      function mm(m) { onMove(m.clientX); }
-      function mu() {
-        document.removeEventListener('mousemove', mm);
-        document.removeEventListener('mouseup', mu);
-      }
-      document.addEventListener('mousemove', mm);
-      document.addEventListener('mouseup', mu);
-    });
-    slider.addEventListener('touchstart', function (e) {
-      var t = e.touches[0];
-      onMove(t.clientX);
-      function tm(m) { onMove(m.touches[0].clientX); }
-      function tu() {
-        slider.removeEventListener('touchmove', tm);
-        slider.removeEventListener('touchend', tu);
-      }
-      slider.addEventListener('touchmove', tm, { passive: true });
-      slider.addEventListener('touchend', tu);
-    });
-  }
-  sliders.forEach(initSlider);
 
   /* ---------- Fire Safety Checklist ---------- */
   var checklist = document.getElementById('fire-checklist');

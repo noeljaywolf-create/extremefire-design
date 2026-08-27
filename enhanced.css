@@ -1369,80 +1369,6 @@ input:focus, textarea:focus, select:focus {
 .case-specs li strong { color: rgba(255,255,255,0.7); }
 
 /* ============================================================
-   26. BEFORE / AFTER SLIDERS
-   ============================================================ */
-.ba-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 40px;
-}
-.ba-slider {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4/3;
-  border-radius: 12px;
-  overflow: hidden;
-  cursor: ew-resize;
-  user-select: none;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-.ba-img {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-}
-.ba-before { clip-path: inset(0 50% 0 0); z-index: 2; }
-.ba-after { z-index: 1; }
-.ba-label {
-  position: absolute;
-  bottom: 12px;
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.ba-label-before { left: 12px; background: rgba(0,0,0,0.7); color: #fff; }
-.ba-label-after { right: 12px; background: rgba(255,61,0,0.85); color: #fff; }
-.ba-handle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-}
-.ba-handle-line {
-  flex: 1;
-  width: 2px;
-  background: #fff;
-  box-shadow: 0 0 8px rgba(0,0,0,0.5);
-}
-.ba-handle-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #ff3d00;
-  border: 3px solid #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 700;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-  pointer-events: auto;
-  flex-shrink: 0;
-}
-
-/* ============================================================
    27. FIRE SAFETY CHECKLIST
    ============================================================ */
 .checklist-box {
@@ -1658,7 +1584,6 @@ input:focus, textarea:focus, select:focus {
   .hiw-grid { grid-template-columns: repeat(2, 1fr); }
   .industries-grid { grid-template-columns: repeat(2, 1fr); }
   .case-studies-grid { grid-template-columns: 1fr; }
-  .ba-grid { grid-template-columns: 1fr; }
   .resources-grid { grid-template-columns: 1fr; }
   .emergency-inner { flex-direction: column; text-align: center; }
   .emergency-actions { justify-content: center; }
