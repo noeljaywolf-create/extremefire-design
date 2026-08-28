@@ -522,10 +522,16 @@
       var allImages=document.querySelectorAll('.recent-work-item img, .portfolio-card img, .project-single-card img, .project-dual-grid img');
       var currentIndex=0;
 
+      function fullSrc(src){
+        var hi = src.replace('images/our-work/', 'images/full/');
+        return (hi !== src) ? hi : src;
+      }
+
       function showImage(index){
         currentIndex=index;
-        lightboxImg.src=allImages[index].src;
-        lightboxImg.alt=allImages[index].alt;
+        var img=allImages[index];
+        lightboxImg.src=fullSrc(img.src);
+        lightboxImg.alt=img.alt;
         lightbox.classList.add('active');
         document.body.style.overflow='hidden';
       }
