@@ -530,11 +530,23 @@
       function showImage(index){
         currentIndex=index;
         var img=allImages[index];
-        lightboxImg.src=fullSrc(img.src);
+        var raw=img.getAttribute('src')||img.src;
+        var hi=fullSrc(raw);
+        var fallback=raw;
+        lightboxImg.src=hi;
+        lightboxImg.setAttribute('data-fallback',fallback);
         lightboxImg.alt=img.alt;
         lightbox.classList.add('active');
         document.body.style.overflow='hidden';
       }
+
+      lightboxImg.addEventListener('error',function(){
+        var fb=lightboxImg.getAttribute('data-fallback');
+        if(fb && lightboxImg.src !== fb){
+          lightboxImg.onerror=null;
+          lightboxImg.src=fb;
+        }
+      });
 
       function closeLightbox(){
         lightbox.classList.remove('active');
