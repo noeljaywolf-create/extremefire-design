@@ -7,12 +7,21 @@
 
 window.EFD_CONFIG = {
   // ---- CONTACT ----------------------------------------------------------
-  // TODO_CONFIRM: main landline. Site shows "0242488270/1/2/3" as visible text
-  // but "tel:+263242488720" in links. Those disagree (8270 vs 8720).
-  phoneDisplay: '0242 488 272',           // TODO_CONFIRM
-  phoneDial: '+263242488272',             // TODO_CONFIRM
+  // TODO_CONFIRM: main landline. Three variants are in circulation:
+  //   visible landing text ......... 0242488270/1/2/3   (488 270)
+  //   every tel: link ............. +263242488720      (488 720)
+  //   contact.html meta desc ...... 0242 488 720       (488 720)
+  //   LocalBusiness schema ........ +263-24-2488270    (488 270)
+  // The provisional value below is the one already present in every tel: link,
+  // so tap-to-call behaviour is unchanged until you confirm. The visible text
+  // 0242488270/1/2/3 looks like a digit transposition and is the likely typo.
+  phoneDisplay: '0242 488 720',           // TODO_CONFIRM
+  phoneDial: '+263242488720',             // TODO_CONFIRM
   phoneSecondaryDisplay: '0773 688 904',  // mobile shown in header/footer today
-  phoneSecondaryDial: '+263773688904',    // TODO_CONFIRM - confirm this is still current
+  phoneSecondaryDial: '+263773688904',    // TODO_CONFIRM - confirm still current
+  // A fourth number, 0719 148 295, appeared in the old footer beside the
+  // 0773 mobile. It has been dropped rather than guessed at.
+  // TODO_CONFIRM: is 0719 148 295 still a live line?
 
   // WhatsApp: supplied directly by the client as the single number.
   whatsappDisplay: '0776 400 176',

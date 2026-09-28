@@ -1,6 +1,14 @@
+# TODO_CONFIRM: the Sitemap URL below assumes the final production domain is
+# https://www.extremefiredesigninc.com. The site is currently served from GitHub
+# Pages while the contact email uses @extremefire.co.zw. Confirm the final
+# domain and update this line, the canonical tags and the sitemap together.
 User-agent: *
 Allow: /
 Disallow: /node_modules/
 Disallow: /.env
+
+# Post-conversion and duplicate-tracking pages: not for indexing.
+Disallow: /thank-you.html
+Disallow: /404.html
 
 Sitemap: https://www.extremefiredesigninc.com/sitemap.xml
