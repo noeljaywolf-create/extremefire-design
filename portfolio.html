@@ -76,6 +76,35 @@
     <video class="page-video" autoplay muted loop playsinline preload="metadata" poster="Background/slide5.jpg">
       <source src="Background/extreme-fire-video.mp4" type="video/mp4">
     </video>
+  <script>
+  /* Hero video policy, mobile-first.
+     The background video is ~2.8MB. On mobile, or when the browser reports
+     Save-Data, or on a slow connection, we do not fetch it at all: the poster
+     image is shown instead. The <source> is only attached once we decide the
+     video should actually play, so the file is never downloaded needlessly. */
+  (function () {
+    var v = document.getElementById('bg-video-fixed') || document.querySelector('video');
+    if (!v) return;
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = !!(conn && conn.saveData);
+    var slow = !!(conn && /(^|-)2g$/.test(conn.effectiveType || ''));
+    var small = window.matchMedia('(max-width: 768px)').matches;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveData || slow || small || reduced) {
+      v.removeAttribute('autoplay');
+      v.pause && v.pause();
+      // Leave the poster frame visible; never load the video file.
+      v.removeAttribute('preload');
+      Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+        s.removeAttribute('src');
+      });
+      v.setAttribute('data-video-skipped', '1');
+      return;
+    }
+    v.setAttribute('preload', 'metadata');
+  })();
+  </script>
+
     <div class="page-video-overlay"></div>
   </div>
 
@@ -361,6 +390,7 @@
   </a>
   <script src="site-config.js" defer></script>
 <script src="site-render.js" defer></script>
+<script src="leads.js" defer></script>
 <script src="script.js" defer></script>
   <script src="chat.js" defer></script>
   <div class="lightbox-overlay" id="lightbox">

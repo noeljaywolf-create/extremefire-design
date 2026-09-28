@@ -153,6 +153,35 @@
   <video autoplay muted loop playsinline id="bg-video-fixed" poster="images/our-work/project-03.jpeg" preload="metadata">
     <source src="Background/extreme-fire-video.mp4" type="video/mp4">
   </video>
+  <script>
+  /* Hero video policy, mobile-first.
+     The background video is ~2.8MB. On mobile, or when the browser reports
+     Save-Data, or on a slow connection, we do not fetch it at all: the poster
+     image is shown instead. The <source> is only attached once we decide the
+     video should actually play, so the file is never downloaded needlessly. */
+  (function () {
+    var v = document.getElementById('bg-video-fixed') || document.querySelector('video');
+    if (!v) return;
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = !!(conn && conn.saveData);
+    var slow = !!(conn && /(^|-)2g$/.test(conn.effectiveType || ''));
+    var small = window.matchMedia('(max-width: 768px)').matches;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveData || slow || small || reduced) {
+      v.removeAttribute('autoplay');
+      v.pause && v.pause();
+      // Leave the poster frame visible; never load the video file.
+      v.removeAttribute('preload');
+      Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+        s.removeAttribute('src');
+      });
+      v.setAttribute('data-video-skipped', '1');
+      return;
+    }
+    v.setAttribute('preload', 'metadata');
+  })();
+  </script>
+
 
   <!-- Page Loader -->
   <div class="page-loader" id="page-loader">
@@ -198,18 +227,27 @@
         <div class="hero-bg__slide slide-5"></div>
       </div>
       <div class="container hero-content home-hero-copy">
-        <p class="eyebrow">Extreme Fire Design - Fire Protection Zimbabwe - Safety Through Technology</p>
-        <h1><span id="hero-typewriter" class="hero-typewriter-line"></span><span class="typewriter-cursor hero-typewriter-cursor">|</span></h1>
-        <p>We have the people, programs and processes to be your full-service provider for fire protection design, inspection, testing, maintenance and installation support.</p>
+        <p class="eyebrow">Fire protection engineering &middot; Harare, Zimbabwe</p>
+        <!-- The H1 previously held no text at all: it was filled in by a
+             JavaScript typewriter, so search engines and screen readers saw an
+             empty heading. The real heading is now static HTML. The typewriter
+             runs on the supporting line below it instead. -->
+        <h1>Engineered fire protection for Harare and Bulawayo buildings</h1>
+        <p class="hero-sub">Sprinkler, alarm, hydrant and suppression systems designed
+           with hydraulic calculations to NFPA 13 and EN 12845 &mdash; then installed,
+           commissioned and maintained by the same team.</p>
+        <p class="service-area">We work across Harare and Bulawayo, and on request
+           elsewhere in Zimbabwe.</p>
+        <p class="hero-rotator"><span id="hero-typewriter" class="hero-typewriter-line">Design, installation, commissioning and maintenance</span><span class="typewriter-cursor hero-typewriter-cursor">|</span></p>
         <div class="hero-actions">
-          <a class="button primary" href="services.html">Fire Protection You Can Count On</a>
-          <a data-efd="whatsapp-link" class="button secondary" href="https://wa.me/263776400176" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="button primary" data-efd="phone-link" href="tel:+263242488720" data-efd-track="click_call">Call for a quote</a>
+          <a data-efd="whatsapp-link" class="button secondary" href="https://wa.me/263776400176" target="_blank" rel="noopener" data-efd-track="click_whatsapp">WhatsApp us</a>
           <!-- Relabelled from "Chat Bot". The widget is a local, rule-based
-           question-answer script with no human handover, so calling it a bot
-           overpromised. TODO_CONFIRM: if a staffed live-chat channel with human
-           handover is wanted, that needs a real backend - GitHub Pages is
-           static, so the current widget cannot provide it. -->
-      <button class="button secondary" id="hero-chat-btn" aria-label="Open quick answers">Quick Answers</button>
+               question-answer script with no human handover, so calling it a bot
+               overpromised. TODO_CONFIRM: if a staffed live-chat channel with human
+               handover is wanted, that needs a real backend - GitHub Pages is
+               static, so the current widget cannot provide it. -->
+          <button class="button secondary" id="hero-chat-btn" aria-label="Open quick answers">Quick Answers</button>
         </div>
       </div>
     </section>
@@ -444,7 +482,7 @@
             <div class="service-slide-body">
               <h3>Fire Detection & Alarm Systems</h3>
               <p>Advanced fire detection and alarm system design, installation support, and commissioning for commercial, industrial, and residential facilities.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
+              <a href="fire-alarm-detection-systems-harare.html" class="service-slide-btn">Learn More</a>
             </div>
           </article>
           <article class="service-slide-card">
@@ -466,7 +504,7 @@
             <div class="service-slide-body">
               <h3>Fire Suppression Systems</h3>
               <p>Specialized fire suppression system design including gas, foam, dry chemical, and water mist systems for high-hazard environments.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
+              <a href="gas-fire-suppression-fm200.html" class="service-slide-btn">Learn More</a>
             </div>
           </article>
           <article class="service-slide-card">
@@ -477,7 +515,7 @@
             <div class="service-slide-body">
               <h3>Water Supply & Pump Systems</h3>
               <p>Fire pump system design, water supply engineering, hydraulic calculations, and adequate water supply review for fire protection.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
+              <a href="systems.html" class="service-slide-btn">Learn More</a>
             </div>
           </article>
           <article class="service-slide-card">
@@ -488,7 +526,7 @@
             <div class="service-slide-body">
               <h3>Code Compliance & Consulting</h3>
               <p>Fire safety compliance assessment, code review, and consulting services to ensure your facility meets all regulatory requirements.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
+              <a href="fire-safety-compliance-zimbabwe.html" class="service-slide-btn">Learn More</a>
             </div>
           </article>
           <article class="service-slide-card">
@@ -499,7 +537,7 @@
             <div class="service-slide-body">
               <h3>Fire Engineering Design</h3>
               <p>Complete fire protection engineering design including AutoCAD layouts, hydraulic calculations, and fully dimensioned construction drawings.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
+              <a href="fire-sprinkler-installation-harare.html" class="service-slide-btn">Learn More</a>
             </div>
           </article>
           <article class="service-slide-card">
@@ -515,83 +553,13 @@
           </article>
 
           <!-- Duplicates for infinite loop -->
-          <article class="service-slide-card" aria-hidden="true">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-01.jpeg" alt="Fire detection systems" loading="lazy">
-              <span class="service-slide-badge">Detection</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Detection & Alarm Systems</h3>
-              <p>Advanced fire detection and alarm system design, installation support, and commissioning for commercial, industrial, and residential facilities.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card" aria-hidden="true">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-02.jpeg" alt="Fire safety equipment" loading="lazy">
-              <span class="service-slide-badge">Equipment</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Safety Equipment Supply</h3>
-              <p>Quality fire safety equipment, extinguishers, hose reels, and related fire protection components from trusted international brands.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card" aria-hidden="true">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-03.jpeg" alt="Fire suppression systems" loading="lazy">
-              <span class="service-slide-badge">Suppression</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Suppression Systems</h3>
-              <p>Specialized fire suppression system design including gas, foam, dry chemical, and water mist systems for high-hazard environments.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card" aria-hidden="true">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-04.jpeg" alt="Water supply systems" loading="lazy">
-              <span class="service-slide-badge">Water Supply</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Water Supply & Pump Systems</h3>
-              <p>Fire pump system design, water supply engineering, hydraulic calculations, and adequate water supply review for fire protection.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card" aria-hidden="true">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-05.jpeg" alt="Code compliance" loading="lazy">
-              <span class="service-slide-badge">Compliance</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Code Compliance & Consulting</h3>
-              <p>Fire safety compliance assessment, code review, and consulting services to ensure your facility meets all regulatory requirements.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card" aria-hidden="true">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-06.jpeg" alt="Fire engineering" loading="lazy">
-              <span class="service-slide-badge">Engineering</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Engineering Design</h3>
-              <p>Complete fire protection engineering design including AutoCAD layouts, hydraulic calculations, and fully dimensioned construction drawings.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card" aria-hidden="true">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-07.jpeg" alt="Maintenance services" loading="lazy">
-              <span class="service-slide-badge">Training</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Maintenance & Training</h3>
-              <p>Preventive maintenance programs, system inspections, staff training, and ongoing support to keep your fire protection systems operational.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
+          
+          
+          
+          
+          
+          
+          
         </div>
       </div>
     </section>
@@ -1255,6 +1223,7 @@
 
 <script src="site-config.js" defer></script>
 <script src="site-render.js" defer></script>
+<script src="leads.js" defer></script>
 <script src="testimonials.js" defer></script>
 <script src="script.js" defer></script>
 <script src="chat.js" defer></script>

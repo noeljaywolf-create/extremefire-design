@@ -99,6 +99,86 @@
 </form>
       </div>
     </section>
+    <section class="section" id="compliance-quiz">
+      <div class="container">
+        <div class="section-heading">
+          <h2>How prepared is your building?</h2>
+          <p>Six questions. The result is an indication of where to look first, not a
+             certificate of compliance &mdash; only a site survey can tell you what your
+             building actually needs.</p>
+        </div>
+
+        <form id="quiz-form" class="quiz-form" novalidate>
+          <div id="quiz-questions"></div>
+          <button type="submit" class="button">See my result</button>
+        </form>
+
+        <div id="quiz-result" class="quiz-result" hidden>
+          <h3 id="quiz-result-title"></h3>
+          <p id="quiz-result-body"></p>
+          <form class="lead-form" data-lead-form data-subject="Compliance quiz result">
+            <div class="form-row">
+              <label for="qz-name">Name</label>
+              <input id="qz-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="form-row">
+              <label for="qz-wa">WhatsApp number</label>
+              <input id="qz-wa" name="whatsapp" type="tel" autocomplete="tel"
+                     placeholder="077 000 0000" required>
+            </div>
+            <input type="hidden" name="quiz_result" id="qz-result-value">
+            <input type="text" name="website" tabindex="-1" autocomplete="off"
+                   style="position:absolute;left:-9999px" aria-hidden="true">
+            <p class="form-consent"><label><input type="checkbox" required>
+              I agree that Extreme Fire Design Inc may store and use these details to
+              send me my result and to arrange a free site survey. See the
+              <a href="privacy.html">privacy notice</a>.</label></p>
+            <button type="submit" class="button">Send me the result</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="leads.js" defer></script>
+    <script defer>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (!window.efdQuiz) return;
+        var Q = window.efdQuiz.questions;
+        var wrap = document.getElementById('quiz-questions');
+        if (!wrap) return;
+
+        wrap.innerHTML = Q.map(function (q, qi) {
+          return '<fieldset class="quiz-q">' +
+            '<legend>' + (qi + 1) + '. ' + q.q + '</legend>' +
+            q.opts.map(function (o, oi) {
+              return '<label class="quiz-opt"><input type="radio" name="q' + qi +
+                '" value="' + oi + '" required> <span>' + o.t + '</span></label>';
+            }).join('') + '</fieldset>';
+        }).join('');
+
+        document.getElementById('quiz-form').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var score = 0, answered = 0;
+          Q.forEach(function (q, qi) {
+            var sel = wrap.querySelector('input[name="q' + qi + '"]:checked');
+            if (sel) { score += q.opts[Number(sel.value)].s; answered++; }
+          });
+          if (answered < Q.length) {
+            alert('Please answer all ' + Q.length + ' questions.');
+            return;
+          }
+          var band = window.efdQuiz.bandFor(score);
+          document.getElementById('quiz-result-title').textContent = band.title;
+          document.getElementById('quiz-result-body').textContent = band.body;
+          document.getElementById('qz-result-value').value = band.key + ' (' + score + ')';
+          var res = document.getElementById('quiz-result');
+          res.hidden = false;
+          res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.efdQuiz.track('quiz_complete', { quiz: 'compliance', result: band.key, score: score });
+        });
+      });
+    </script>
+
 
     <section class="section">
       <div class="container">

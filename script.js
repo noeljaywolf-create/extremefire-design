@@ -248,11 +248,15 @@
      -------------------------------------------------------- */
   var heroTw = $('#hero-typewriter');
   if (heroTw) {
+    /* Rewritten from generic marketing lines ("Our Passion Is Helping You
+       Protect Your People & Property") to factual statements about what the
+       firm actually does. Tone is deliberately plain: no fear tactics. */
     var heroTexts = [
-      'Our Passion Is Helping You Protect Your People & Property.',
-      'Your Safety Is Our Mission \u2014 Every System, Every Time.',
-      'Protecting What Matters Most With Expert Fire Solutions.',
-      'From Design To Maintenance \u2014 We Keep You Compliant & Protected.'
+      'Design, installation, commissioning and maintenance',
+      'Hydraulic calculations that support the design',
+      'Sprinklers, alarms, hydrants, hose reels and suppression',
+      'Commissioning records and test results you can hand to an insurer',
+      'Compliance documentation prepared for your building'
     ];
     var htI = 0, htC = 0, htDel = false, htStarted = false;
 
