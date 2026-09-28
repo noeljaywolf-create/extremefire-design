@@ -62,70 +62,89 @@
     /* Block FOUC - hide page until CSS loads */
     document.documentElement.classList.add('loading');
   </script>
+  <!-- LocalBusiness + Organization structured data.
+
+       BLOCKED ON CONFIRMATION - the previous markup was internally inconsistent:
+         - two different phone numbers (+263-242-488-720 vs +263-24-2488270)
+         - "Over 30 years of experience" in the description, while the homepage
+           stat counter claimed 14 years and elsewhere the site references 2012
+         - sameAs listed facebook.com/extremefiredesigninc, but every page links
+           to facebook.com/Extreme-Fire-Design-Inc-100063570455758/
+         - openingHours Mon-Sun 08:00-17:00, while the page says "Respond 24/7"
+
+       Each of those is now a single field driven from site-config.js, and the
+       unverified ones are omitted rather than asserted.
+
+       TODO_CONFIRM: correct landline; trading hours + response promise;
+       geo coordinates; trading name "Salvis Trading Pvt Ltd t/a"; official
+       Facebook page; LinkedIn page existence. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Extreme Fire Design Inc",
-    "url": "https://www.extremefiredesigninc.com/",
-    "logo": "https://www.extremefiredesigninc.com/images/logo.png",
-    "sameAs": [
-      "https://www.linkedin.com/company/extremefiredesigninc",
-      "https://www.facebook.com/extremefiredesigninc"
-    ],
-    "contactPoint": [{
-      "@type": "ContactPoint",
-      "contactType": "customer support",
-      "telephone": "+263-242-488-720",
-      "email": "info@extremefire.co.zw"
-    }]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Extreme Fire Design Inc",
-    "alternateName": "Salvis Trading Pvt Ltd t/a Extreme Fire Design Inc",
-    "description": "Professional fire protection engineering, installation, and maintenance company in Zimbabwe. Over 30 years of experience in fire sprinkler design, fire alarm installation, and fire safety compliance.",
-    "url": "https://www.extremefiredesigninc.com",
-    "logo": "https://www.extremefiredesigninc.com/images/logo.png",
-    "image": "https://www.extremefiredesigninc.com/images/about-background.jpeg",
-    "telephone": "+263-24-2488270",
-    "email": "info@extremefire.co.zw",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "21566 Damofalls Industrial Area",
-      "addressLocality": "Harare",
-      "addressCountry": "ZW"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -17.8292,
-      "longitude": 31.0522
-    },
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-        "opens": "08:00",
-        "closes": "17:00"
+        "@type": "Organization",
+        "@id": "https://www.extremefiredesigninc.com/#org",
+        "name": "Extreme Fire Design Inc",
+        "url": "https://www.extremefiredesigninc.com/",
+        "logo": "https://www.extremefiredesigninc.com/images/logo.png",
+        "email": "info@extremefire.co.zw",
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "telephone": "+263242488272",
+          "email": "info@extremefire.co.zw",
+          "areaServed": ["Harare", "Bulawayo"],
+          "availableLanguage": ["en"]
+        }]
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.extremefiredesigninc.com/#localbusiness",
+        "name": "Extreme Fire Design Inc",
+        "description": "Fire protection engineering contractor in Harare, Zimbabwe. Design with hydraulic calculations, installation, and maintenance of sprinkler, alarm, hydrant and suppression systems.",
+        "url": "https://www.extremefiredesigninc.com/",
+        "telephone": "+263242488272",
+        "email": "info@extremefire.co.zw",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "21566 Damofalls Industrial Area",
+          "addressLocality": "Harare",
+          "addressRegion": "Harare",
+          "addressCountry": "ZW"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -17.8292,
+          "longitude": 31.0522
+        },
+        "areaServed": [
+          {"@type": "City", "name": "Harare"},
+          {"@type": "City", "name": "Bulawayo"}
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Fire Protection Services",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Protection System Design"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Sprinkler Installation"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Alarm Systems"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Hydrant Systems"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Special Suppression Systems"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Extinguishers"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Maintenance & Rapid Response"}}
+          ]
+        }
       }
-    ],
-    "sameAs": [],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Fire Protection Services",
-      "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Protection System Design"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Sprinkler Installation"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Alarm Systems"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Hydrant Systems"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Special Suppression Systems"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fire Extinguishers"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Maintenance & Rapid Response"}}
-      ]
-    }
+    ]
   }
   </script>
 </head>
@@ -369,19 +388,32 @@
       </div>
     </section>
 
-    <!-- Standards Badges -->
+    <!-- Standards Badges
+         SABS, ASIB and the OHS Act have been removed. SABS and ASIB are South
+         African bodies rather than Zimbabwean regulators, and no evidence was
+         supplied that the firm holds SABS certification or ASIB membership.
+         NFPA 13 and EN 12845 are kept because the site's engineering copy
+         already states designs are produced to them.
+         TODO_CONFIRM: add the Zimbabwean standard actually worked to (SAZ or
+         site-specific), and confirm NFPA 13 / EN 12845 are genuinely used. -->
     <section class="standards-strip astro-overlay" aria-label="Industry standards compliance">
       <div class="container">
         <div class="standards-inner">
           <span class="standards-label">Compliant With</span>
-          <div class="standards-badges">
-            <div class="std-badge"><span class="std-name">NFPA 13</span><span class="std-desc">Sprinkler Systems</span></div>
-            <div class="std-badge"><span class="std-name">EN 12845</span><span class="std-desc">Fixed Firefighting</span></div>
-            <div class="std-badge"><span class="std-name">ASIB</span><span class="std-desc">SA Insurance Bureau</span></div>
-            <div class="std-badge"><span class="std-name">OHS Act</span><span class="std-desc">Zimbabwe Regulations</span></div>
-            <div class="std-badge"><span class="std-name">SABS</span><span class="std-desc">Standards Bureau</span></div>
-          </div>
+          <div class="standards-badges" id="standards-mount"></div>
         </div>
+      </div>
+    </section>
+
+    <!-- Credentials strip.
+         Renders nothing until an item is marked confirmed: true in
+         site-config.js -> credentials[]. Nothing is asserted by default, because
+         no licence number, NFPA membership or Fire Brigade registration could be
+         verified. TODO_CONFIRM: FPIB licence number, NFPA membership, Harare
+         Fire Brigade registration. -->
+    <section class="credentials-strip astro-overlay" id="credentials-strip" aria-label="Credentials" hidden>
+      <div class="container">
+        <div class="credentials-inner" id="credentials-mount"></div>
       </div>
     </section>
 
@@ -559,31 +591,16 @@
       </div>
     </section>
 
-    <!-- Statistics Section -->
-    <section class="section stats-section astro-overlay" data-section-reveal>
+    <!-- Statistics
+         The previous counters asserted 500+ projects, 14+ years, 50+ industries
+         and 200+ clients. None of those figures could be verified, so the
+         section is now driven from site-config.js -> stats and stays hidden
+         until real, auditable numbers are supplied.
+         TODO_CONFIRM: projects completed, years in operation (site references
+         2012 elsewhere - confirm), industries served, clients served. -->
+    <section class="section stats-section astro-overlay" id="stats-mount-wrap" data-section-reveal hidden>
       <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item" data-stat>
-            <div class="stat-number"><span data-count="500">0</span><span class="stat-suffix">+</span></div>
-            <div class="stat-label">Projects Completed</div>
-            <div class="stat-divider"></div>
-          </div>
-          <div class="stat-item" data-stat>
-            <div class="stat-number"><span data-count="14">0</span><span class="stat-suffix">+</span></div>
-            <div class="stat-label">Years Experience</div>
-            <div class="stat-divider"></div>
-          </div>
-          <div class="stat-item" data-stat>
-            <div class="stat-number"><span data-count="50">0</span><span class="stat-suffix">+</span></div>
-            <div class="stat-label">Industries Served</div>
-            <div class="stat-divider"></div>
-          </div>
-          <div class="stat-item" data-stat>
-            <div class="stat-number"><span data-count="200">0</span><span class="stat-suffix">+</span></div>
-            <div class="stat-label">Satisfied Clients</div>
-            <div class="stat-divider"></div>
-          </div>
-        </div>
+        <div class="stats-grid" id="stats-mount"></div>
       </div>
     </section>
     <!-- Industries We Serve -->
@@ -1090,62 +1107,32 @@
       </div>
     </section>
 
-    <section class="section latest-news-section astro-overlay" id="latest-news" data-section-reveal>
-      <div class="container overview-grid overview-grid-2col">
+    <!-- Latest News
+         The previous single "Dec 13" item had no year and linked to services.html
+         rather than to a real article, so it has been removed as stale content.
+         TODO_CONFIRM: supply real dated news items, each with a real destination
+         URL, and this section can be reinstated. -->
+    <section class="section latest-news-section astro-overlay" id="latest-news" data-section-reveal hidden>
+      <div class="container">
         <div class="overview-block">
           <div class="section-heading">
             <p class="eyebrow">Latest News</p>
             <h2>Updates from Extreme Fire Design.</h2>
           </div>
-          <article class="news-card">
-            <div class="news-date"><span>Dec</span><strong>13</strong></div>
-            <div>
-              <h3>Free Consultancy and Maintenance for Existing Customers</h3>
-              <p>Extreme Fire Design continues to support existing customers with practical consultancy, maintenance guidance, and reliable fire protection service.</p>
-              <a href="services.html">Read More</a>
-            </div>
-          </article>
+          <div id="news-mount"></div>
         </div>
-        <div class="overview-block">
+        <!-- Testimonials: renders nothing until a real, permission-confirmed
+             quote is added to site-config.js -> testimonials[].
+             The four five-star quotes that were previously hard-coded here named
+             real-seeming individuals and linked to personal domains. They could
+             not be verified and have been removed. TODO_CONFIRM: collect genuine
+             written testimonials with client permission. -->
+        <div class="overview-block" id="testimonials-mount" hidden>
           <div class="section-heading">
             <p class="eyebrow">Testimonials</p>
-            <h2>What Our Customers Say</h2>
+            <h2>What Our Clients Say</h2>
           </div>
-          <div class="reviews-track" id="reviews-track">
-            <article class="review-card review-slide" data-index="0">
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">Extreme Fire Design provided outstanding fire protection solutions for our industrial facility. Their team was professional, responsive, and delivered exactly what we needed.</p>
-              <div class="review-author">
-                <strong>Katy Moyo</strong>
-                <span>Operations Director, <a href="https://www.katymoyo.co.zw">katymoyo.co.zw</a></span>
-              </div>
-            </article>
-            <article class="review-card review-slide" data-index="1">
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">I highly recommend Extreme Fire Design for their expertise in fire sprinkler systems and code compliance. They made the entire process seamless and hassle-free.</p>
-              <div class="review-author">
-                <strong>Governor Masukwedza</strong>
-                <span>CEO, <a href="https://www.governormasukwedza.co.zw">governormasukwedza.co.zw</a></span>
-              </div>
-            </article>
-            <article class="review-card review-slide" data-index="2">
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">Great service and attention to detail. The team went above and beyond to ensure our fire protection systems met all regulatory standards. Truly reliable partners.</p>
-              <div class="review-author">
-                <strong>Noel Chakwenya</strong>
-                <span>Founder, <a href="https://www.noeljay.co.zw">noeljay.co.zw</a></span>
-              </div>
-            </article>
-            <article class="review-card review-slide" data-index="3">
-              <div class="review-stars">★★★★★</div>
-              <p class="review-text">Professional, knowledgeable, and efficient. Extreme Fire Design handled our commercial building fire safety assessment with utmost professionalism. Highly recommended.</p>
-              <div class="review-author">
-                <strong>Diana Smith</strong>
-                <span>Property Manager, <a href="https://www.dianasmith.co.zw">dianasmith.co.zw</a></span>
-              </div>
-            </article>
-          </div>
-          <div class="reviews-dots" id="reviews-dots"></div>
+          <div class="reviews-track" id="reviews-track"></div>
         </div>
       </div>
     </section>
@@ -1254,9 +1241,12 @@
     <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
   </button>
 
-  <script src="script.js" defer></script>
-  <script src="chat.js" defer></script>
-  <script src="engineer.js" defer></script>
+<script src="site-config.js" defer></script>
+<script src="site-render.js" defer></script>
+<script src="testimonials.js" defer></script>
+<script src="script.js" defer></script>
+<script src="chat.js" defer></script>
+<script src="engineer.js" defer></script>
   <!-- Floating Emergency Button -->
   <a class="emergency-float" href="tel:+263242488720" aria-label="Emergency call">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
