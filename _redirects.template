@@ -1,0 +1,43 @@
+# Redirect rules — Cloudflare Workers / Netlify / Vercel / Apache
+#
+# TODO_CONFIRM: the final production domain (see site-config.js -> canonicalOrigin).
+# Targets are absolute here because these platforms redirect at the edge, where a
+# relative path is not enough. Replace PROD below once the domain is confirmed.
+#
+# NOTE: GitHub Pages cannot serve redirects. These rules only take effect once the
+# site is moved behind Cloudflare, Netlify, Vercel, or a normal web host.
+
+PROD = "https://www.extremefiredesigninc.com"
+
+### Netlify _redirects format
+### (paste into a `_redirects` file at the repo root when moving off GitHub Pages)
+
+/fire%20hydrant.html             %{PROD}/fire-hydrant-hose-reel-systems.html   301
+/fire%20hydrant.html             %{PROD}/fire-hydrant-hose-reel-systems.html   301
+/hydrant.html                    %{PROD}/fire-hydrant-hose-reel-systems.html   301
+/auto%20sprinkler.html           %{PROD}/fire-sprinkler-installation-harare.html  301
+/auto%20sprinkler.html           %{PROD}/fire-sprinkler-installation-harare.html  301
+/auto-sprinkler.html             %{PROD}/fire-sprinkler-installation-harare.html  301
+/sprinkler.html                  %{PROD}/fire-sprinkler-installation-harare.html  301
+/fire-sprinkler.html             %{PROD}/fire-sprinkler-installation-harare.html  301
+/fire%20detection.html           %{PROD}/fire-alarm-detection-systems-harare.html  301
+/fire%20detection.html           %{PROD}/fire-alarm-detection-systems-harare.html  301
+/fire-detection.html             %{PROD}/fire-alarm-detection-systems-harare.html  301
+/detection.html                  %{PROD}/fire-alarm-detection-systems-harare.html  301
+/fire-alarm.html                 %{PROD}/fire-alarm-detection-systems-harare.html  301
+/gas%20fire.html                 %{PROD}/gas-fire-suppression-fm200.html         301
+/gas%20fire.html                 %{PROD}/gas-fire-suppression-fm200.html         301
+/gas-fire.html                   %{PROD}/gas-fire-suppression-fm200.html         301
+/fm200.html                      %{PROD}/gas-fire-suppression-fm200.html         301
+/deluge%20water%20spray.html     %{PROD}/systems.html                          301
+/deluge%20water%20spray.html     %{PROD}/systems.html                          301
+/deluge-water-spray.html         %{PROD}/systems.html                          301
+/water-spray.html                %{PROD}/systems.html                          301
+
+### Apache .htaccess equivalent
+
+# RewriteEngine On
+# RewriteCond %{THE_REQUEST} \s/+(.*\.(?:htm|html))\s [NC]
+# RewriteRule ^ /%1 [R=301,L]
+# RewriteCond %{THE_REQUEST} \s/+((?:fire hydrant|auto sprinkler|fire detection|gas fire|deluge water spray))\.html\s [NC]
+# RewriteRule ^ /%1.html$ /index.html [R=301,L]
