@@ -1256,12 +1256,13 @@ textarea:focus-visible,
 /* --------------------------------------------------------------------------
    17. KILL THE HEAVY COLOUR-CYCLING ANIMATIONS
    These repaint large areas continuously, which costs battery and reads as
-   visual noise. Small accents (pulse, blink, marquees) are kept.
+   visual noise. Small accents (pulse, blink) and every marquee/slider are deliberately kept.
+   The brand and trust logo tracks are translateX loops, not colour cycles;
+   .brand-track was wrongly caught by this list and has been removed from it.
    -------------------------------------------------------------------------- */
 .services-list h2, .service-scope h2, .scope-grid span,
 .featured-service-item, .featured-service-item h3,
-.faq-item, .company-profile-section, .brand-track,
-.systems-page .feature-card,
+.faq-item, .company-profile-section, .systems-page .feature-card,
 .systems-page .feature-card h2,
 .systems-page .feature-card img,
 .systems-page .system-pdf-link a,
@@ -3435,4 +3436,123 @@ form.lead-form .lead-form-submit:focus-visible {
 @media (max-width: 560px) {
   form.lead-form { padding: 25px 18px 22px; border-radius: 16px; }
   form.lead-form .form-row { gap: 7px; }
+}
+
+/* --------------------------------------------------------------------------
+   47. PRODUCTS CAROUSEL - RESTORED
+   The products section was removed while the homepage was being shortened.
+   Its markup came back but its CSS went with it: products-section,
+   products-track-wrap, product-slide and product-label had no rules left, and
+   no keyframes existed for it, so it would have rendered as a plain stack.
+
+   Rebuilt on the same proven pattern as .brand-track and .trust-logos:
+   an overflow-hidden viewport with a wide track inside, translating -50% over
+   30s so the duplicated set loops seamlessly. Pauses on hover and on focus,
+   and stops entirely for prefers-reduced-motion.
+
+   Note .products-track also shares a rule with .hero-bg__slide, so the
+   animation is scoped to .products-track-wrap .products-track to avoid
+   touching the hero slides.
+   -------------------------------------------------------------------------- */
+.products-section { padding: 64px 0; }
+
+.products-track-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 4px 0;
+  /* fade the edges so cards enter and leave cleanly instead of being clipped */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.products-track-wrap .products-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: productScroll 38s linear infinite;
+}
+.products-track-wrap .products-track:hover,
+.products-track-wrap .products-track:focus-within {
+  animation-play-state: paused;
+}
+
+.product-slide {
+  flex: 0 0 auto;
+  width: 190px;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  text-align: center;
+  padding: 14px 12px 16px;
+  border: 1px solid rgba(255 255 255, 0.12);
+  border-radius: 14px;
+  background: linear-gradient(165deg, rgba(255 255 255, 0.06), rgba(255 255 255, 0.02));
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.product-slide:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255 103 0, 0.45);
+}
+.product-slide img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+}
+.product-slide .product-label,
+.product-label {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #dbe8f7;
+  text-align: center;
+}
+
+@keyframes productScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Short screens: fewer, larger cards so the row still reads at a glance. */
+@media (max-width: 560px) {
+  .product-slide { width: 150px; }
+  .product-slide img { height: 96px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .products-track-wrap .products-track { animation: none; }
+  .products-track-wrap { -webkit-mask-image: none; mask-image: none; }
+}
+
+/* --------------------------------------------------------------------------
+   48. 'Talk to us today' BAND REMOVED
+   That band repeated the same three channels that already appear in the
+   quote-split contact panel (service pages), the contact facts list, the
+   quote band, the footer contact list and the sticky mobile bar - five copies
+   of WhatsApp / Call / Email on a single page. Removed for that reason.
+
+   The rules are left in place but scoped out, so if the band is ever wanted
+   back it only needs its markup restored.
+   -------------------------------------------------------------------------- */
+.contact-actions { display: none; }
+
+/* The product caption is a <span> wrapping <strong> (the name) and <em> (the
+   service), so it needs to stack rather than run inline. */
+.product-slide .product-label {
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  text-align: center;
+  width: 100%;
+}
+.product-slide .product-label strong {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+.product-slide .product-label em {
+  font-style: normal;
+  font-size: 0.7rem;
+  color: var(--text-soft);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
