@@ -1,7 +1,18 @@
 (function(){
 const faq = [
   { q: ["hello","hi","hey","good morning","good afternoon","good evening"], a: "Hello! Welcome to Extreme Fire Design Inc., a professional fire protection engineering company. How can we help you today?" },
-  { q: ["contact","phone","call","email","address","location","where","whatsapp","reach"], a: "Phone: 0242488270/1/2/3 | Cell: +263 773 688 904 / 0719 148 295 | WhatsApp: 0776 400 176 | Email: info@extremefire.co.zw | Address: 21566 Damofalls Industrial Area, Harare, Zimbabwe | Hours: Mon-Sun 8AM-5PM" },
+  { q: ["contact","phone","call","email","address","location","where","whatsapp","reach"], a: (function () {
+      var C = window.EFD_CONFIG || {};
+      var wa = C.whatsappDisplay || "0776 400 176";
+      var ph = C.phoneDisplay || "0242 488 720";
+      var em = C.email || "info@extremefire.co.zw";
+      var ad = C.address || {};
+      var adLine = [ad.line1, ad.city, ad.country].filter(Boolean).join(", ");
+      return "WhatsApp: " + wa + " (this is the only WhatsApp number)\n"
+           + "Phone: " + ph + "\n"
+           + "Email: " + em + "\n"
+           + "Address: " + (adLine || "Harare, Zimbabwe");
+    })() },
   { q: ["company","about","who are you","tell me about","extreme fire"], a: "Extreme Fire Design Inc. is a professional fire protection engineering company specializing in the design, supply, installation, testing, commissioning, and maintenance of fire protection systems. We provide reliable fire safety solutions designed to protect lives, property, assets, and business operations. We deliver customized solutions for commercial, industrial, residential, and high-risk environments." },
   { q: ["service","what do you do","offer","provide","solutions"], a: "Extreme Fire Design provides complete fire protection solutions:\n\n1. Fire Protection System Design - engineering design, hydraulic calculations, fire risk assessment, system layout, technical drawings, project consultation, compliance guidance\n2. Fire Sprinkler Systems - automatic sprinkler system design, supply, installation, pipework, sprinkler head installation, testing, commissioning, inspection, maintenance\n3. Fire Alarm Systems - conventional and addressable systems, smoke/heat detection, manual call points, control panels, programming, testing, maintenance\n4. Fire Pumps - electric and diesel fire pump design, installation, testing, maintenance, jockey pumps\n5. Fire Extinguishers - supply, installation, inspection, refilling, servicing (DCP, CO2, foam, water, wet chemical)\n6. Hydrant Systems & Hose Reels - design, installation, maintenance\n7. Special Suppression Systems - clean agent (FM-200, Novec, inert gases), CO2 suppression, foam systems, lithium-ion battery protection\n8. Inspection, Testing & Maintenance - preventive, corrective, and emergency maintenance" },
   { q: ["sprinkler","sprinklers","fire sprinkler"], a: "Extreme Fire Design specializes in automatic fire sprinkler systems designed to detect and control fires at an early stage. Systems include:\n\nTypes: Wet Pipe (most common, fast response), Dry Pipe (for freezing areas), Deluge (high-risk areas, large water volume), Pre-Action (data centres, museums), Foam Water (flammable liquids)\n\nComponents: Sprinkler heads (upright, pendant, sidewall, concealed), pipes and fittings (steel, galvanized, CPVC), control valves, alarm valves, water supply, fire pumps\n\nApplications: warehouses, factories, shopping centres, offices, hotels, mining facilities, industrial plants\n\nDesign Process: site assessment, hazard classification (light/ordinary/extra hazard), hydraulic calculations, installation, testing and commissioning\n\nWill all sprinklers activate? No. Each sprinkler operates individually when exposed to enough heat." },

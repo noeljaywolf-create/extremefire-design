@@ -188,3 +188,18 @@ If you only have time for a few, these give the most:
 4. Real statistics (#8)
 5. The Zimbabwean standard for the badges (#10)
 6. Form destination (#14)
+
+## PPC landing pages - number confirmation (added during landing page design)
+
+- The six service pages were landing pages for paid traffic, so the phone number matters
+  more than usual. Two different landline numbers were published on the same pages:
+  `0242 488 720` in the hero and `0242 488 272` in the footer contact block.
+- `site-config.js` declares the canonical office number as **0242 488 720**
+  (`phoneDisplay` / `phoneDial` = +263242488720), so the footer was normalised to
+  0242 488 720 across all six service pages.
+- **CONFIRM: is 0242 488 720 the correct, currently-live office number?** If the
+  0242 488 272 number is a second real line, it should be added to site-config.js
+  as the secondary number and shown deliberately rather than silently dropped.
+- Secondary mobile 0773 688 904 and WhatsApp 0776 400 176 were left untouched.
+- Also confirm: `info@extremefire.co.zw` is on the page but the site domain is
+  `extremefiredesigninc.com` - if one is wrong it should be corrected before launch.

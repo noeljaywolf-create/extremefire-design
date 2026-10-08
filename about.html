@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
   <title>About Extreme Fire Design Inc | Fire Protection Company Zimbabwe</title>
-  <meta name="description" content="About Extreme Fire Design Inc — fire protection engineers in Harare designing, installing and maintaining sprinkler, alarm and suppression systems across Zimbabwe." />
+  <meta name="description" content="About Extreme Fire Design Inc — fire protection engineers in Zimbabwe designing, installing and maintaining sprinkler, alarm and suppression systems across Zimbabwe." />
   <meta name="keywords" content="Fire Protection Company Zimbabwe, Fire Engineering Zimbabwe, Fire Sprinkler Design, Fire Alarm Installation, Fire Safety Compliance, Fire Protection Zimbabwe, Fire Safety Services Zimbabwe, Fire Risk Assessment Zimbabwe, Fire Protection Design, Fire Protection Harare, Fire Safety Company Harare, Fire Protection Services Zimbabwe" />
   <link rel="canonical" href="https://www.extremefiredesigninc.com/about.html" />
   <meta name="robots" content="index, follow" />
   <meta property="og:title" content="About Extreme Fire Design Inc | Fire Protection Company Zimbabwe" />
-  <meta property="og:description" content="About Extreme Fire Design Inc — fire engineers in Harare with 30+ years’ experience delivering sprinkler, alarm & suppression systems across Zimbabwe." />
+  <meta property="og:description" content="About Extreme Fire Design Inc — fire engineers in Zimbabwe with 30+ years’ experience delivering sprinkler, alarm & suppression systems across Zimbabwe." />
   <meta property="og:url" content="https://www.extremefiredesigninc.com/about.html" />
   <meta property="og:image" content="https://www.extremefiredesigninc.com/images/logo.png" />
   <meta property="og:image:width" content="1200" />
@@ -19,14 +19,18 @@
   <meta property="og:site_name" content="Extreme Fire Design Inc" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About Extreme Fire Design Inc | Fire Protection Company Zimbabwe" />
-  <meta name="twitter:description" content="About Extreme Fire Design Inc — fire engineers in Harare with 30+ years’ experience delivering sprinkler, alarm & suppression systems across Zimbabwe." />
+  <meta name="twitter:description" content="About Extreme Fire Design Inc — fire engineers in Zimbabwe with 30+ years’ experience delivering sprinkler, alarm & suppression systems across Zimbabwe." />
   <link rel="icon" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
   <link rel="preload" as="image" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
+  <link rel="stylesheet" href="pages.css" />
   <style>
     .util-strip{background:#ffffff!important;color:#1a1a1a!important;border-bottom:1px solid #e0e0e0!important}
     .util-strip a{color:#333!important}
@@ -59,14 +63,25 @@
     .team-avatar{width:100px;height:100px;border-radius:50%;overflow:hidden;margin:0 auto 16px;border:3px solid rgba(255,61,0,0.3);transition:border-color 0.3s,transform 0.3s}
     .team-card:hover .team-avatar{border-color:var(--accent);transform:scale(1.05)}
     .team-avatar img{width:100%;height:100%;object-fit:cover}
+
+    /* .client-section is a WHITE section with color:#111827 in styles.css, but
+       the parallax-bg (z-index 0) paints over that white and the 0.65 dark
+       overlay (z-index 1) sits under the copy (z-index 2) - so the heading
+       rendered as dark text on a dark scrim. This band is now a photo, so make
+       the copy light like every other band. The logo tiles keep their white
+       background so the marks stay readable. */
+    body.about-page .client-section { background: transparent; color: var(--text); }
+    body.about-page .client-section h2 { color: #fff; }
+    body.about-page .client-section .eyebrow { color: var(--accent); }
   </style>
 </head>
-<body class="about-page">
+<body class="about-page" style="--page-bg: url('images/about-bg/sharp/bg-02.jpg')">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="util-strip">
     <div class="util-inner">
       <div class="util-contact">
-        <a data-efd="phone-link" href="tel:+263242488720">0242488270/1/2/3</a>
-        <a data-efd="phone2-link" href="tel:+263773688904">+263 773 688 904 / 0719 148 295</a>
+        <a data-efd="phone-link" href="tel:+263242488720">0242 488 720</a>
+        <a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a>
         <a data-efd="email-link" href="mailto:info@extremefire.co.zw">info@extremefire.co.zw</a>
       </div>
       <div class="util-tagline">Safety Through Technology</div>
@@ -90,22 +105,21 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <main>
-    <section class="section page-hero slideshow-hero parallax-section">
-      <div class="parallax-bg" data-speed="0.5" style="background-image: url('images/about-background.jpeg')"></div>
-      <div class="parallax-overlay"></div>
-      <div class="hero-slide-bg" style="background-image: url('Background/WhatsApp Image 2026-07-07 at 12.34.29.jpeg')"></div>
-      <div class="hero-slide-bg" style="background-image: url('Background/WhatsApp Image 2026-07-07 at 12.34.30.jpeg')"></div>
-      <div class="hero-slide-bg" style="background-image: url('Background/slide4.jpg')"></div>
-      <div class="container section-content">
+  <main id="main">
+    <section class="page-hero" data-parallax>
+      <div class="hero-grid" aria-hidden="true"></div><div class="container section-content">
         <p class="eyebrow">About us</p>
-        <h1>Preventing the loss of life and preserving property.</h1>
-        <p>Extreme Fire Design designs, installs, maintains, services, and supports effective fire detection and suppression systems for the places people live, work, shop, learn, and gather.</p>
+        <h1>Fire protection engineering for buildings across Zimbabwe</h1>
+        <p>We design, install, commission and maintain fire detection and suppression systems for commercial, industrial and public buildings nationwide.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="systems.html">Explore our systems</a>
+          <a class="button outline" href="contact.html#quote">Discuss a project</a>
+        </div>
       </div>
     </section>
 
     <section class="section about-details parallax-section">
-      <div class="parallax-bg" data-speed="0.4" style="background-image: url('images/our-work/project-07.jpeg')"></div>
+      <div class="parallax-bg" data-speed="0.4" style="background-image: url('images/about/installation-01.jpg')"></div>
       <div class="parallax-overlay overlay-medium"></div>
       <div class="container split-layout section-content">
         <div>
@@ -127,7 +141,7 @@
     </section>
 
     <section class="section mission-section parallax-section">
-      <div class="parallax-bg" data-speed="0.3" style="background-image: url('images/our-work/project-19.jpeg')"></div>
+      <div class="parallax-bg" data-speed="0.3" style="background-image: url('images/about/design-01.jpg')"></div>
       <div class="parallax-overlay overlay-dark"></div>
       <div class="container section-content">
         <div class="section-heading">
@@ -143,7 +157,7 @@
     </section>
 
     <section class="section team-section parallax-section">
-      <div class="parallax-bg" data-speed="0.35" style="background-image: url('images/our-work/project-12.jpeg')"></div>
+      <div class="parallax-bg" data-speed="0.35" style="background-image: url('images/about/workshop-01.jpg')"></div>
       <div class="parallax-overlay"></div>
       <div class="container section-content">
         <div class="section-heading">
@@ -161,7 +175,7 @@
                  years" figure the homepage previously showed. Confirm the
                  certificate type/number and the correct number of years before
                  this is relied on, especially next to the Credentials strip. -->
-            <p>A results-driven NFPA Certified Fire Protection Specialist with over 30+ years of experience designing fire safety systems for commercial and public buildings.</p>
+            <p>Technical support for fire protection design, site assessments and project delivery.</p>
           </article>
           <article class="team-card" data-reveal data-reveal-delay="2">
             <div class="team-avatar"><img src="images/team/ncebisi-ndlovu.jpeg" alt="Ncebisi Ndlovu"></div>
@@ -197,13 +211,13 @@
       </div>
     </section>
 
-    <section class="section client-section parallax-section">
-      <div class="parallax-bg" data-speed="0.25" style="background-image: url('images/our-work/project-20.jpeg')"></div>
+    <section class="section client-section parallax-section" hidden>
+      <div class="parallax-bg" data-speed="0.25" style="background-image: url('images/about/installation-02.jpg')"></div>
       <div class="parallax-overlay overlay-dark"></div>
       <div class="container section-content">
         <div class="section-heading">
           <p class="eyebrow">Clients</p>
-          <h2>People and organizations we are proud to have worked with.</h2>
+          <h2>Client references will appear here once publication permission is confirmed.</h2>
         </div>
         <div class="client-brand-grid">
           <img src="CLIENT BRANDS/OLDMUTUAL.png" alt="Old Mutual" loading="lazy">
@@ -226,41 +240,84 @@
         <a href="contact.html" style="display:inline-block;padding:14px 36px;background:var(--accent);color:#fff;border-radius:var(--radius-sm);font-weight:700;text-decoration:none;transition:all 0.3s">Get a Free Quote</a>
       </div>
     </section>
+
+    <!-- Get a quote -->
+    <section class="quote-band" aria-label="Request a quotation">
+      <div class="container quote-band-inner">
+        <div class="quote-band-text">
+          <h2>Need a fire protection quotation?</h2>
+          <p>Share a drawing or site description so we can understand the project and guide the next step.</p>
+        </div>
+        <div class="quote-band-actions">
+          <a href="contact.html#quote" class="quote-btn quote-btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Get a quote</a>
+          <a href="tel:+263242488720" class="quote-btn quote-btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Call 024 248 8720</a>
+        </div>
+      </div>
+    </section>
+
   </main>
+    <section class="contact-actions" aria-label="Contact us">
+      <div class="container">
+        <div class="contact-actions-inner">
+          <h2>Talk to us today</h2>
+          <p>Choose phone, WhatsApp or email to discuss your site and fire protection needs.</p>
+          <div class="contact-actions-row">
+            <a class="contact-btn contact-btn-wa" href="https://wa.me/263776400176" target="_blank" rel="noopener" data-efd-track="click_whatsapp">
+              <span class="contact-btn-label">WhatsApp</span>
+              <span class="contact-btn-value">0776 400 176</span>
+            </a>
+            <a class="contact-btn contact-btn-call" href="tel:+263242488720" data-efd="phone-link" data-efd-track="click_call">
+              <span class="contact-btn-label">Call</span>
+              <span class="contact-btn-value">0242 488 720</span>
+            </a>
+            <a class="contact-btn contact-btn-email" href="mailto:info@extremefire.co.zw" data-efd="email-link">
+              <span class="contact-btn-label">Email</span>
+              <span class="contact-btn-value">info@extremefire.co.zw</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="live-footer-map" style="margin:0 auto;max-width:1120px;padding:0 24px 28px">
-     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0;border-radius:12px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Extreme Fire Design location"></iframe>
+     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&bbox=30.975,-17.905,31.125,-17.755&z=14&hl=en&ie=UTF8&output=embed"
+              width="100%" height="189" style="border:0;display:block;border-radius:12px"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Extreme Fire Design location, Harare, Zimbabwe"></iframe>
    </div>
-  <footer class="site-footer live-footer">
+  
+
+    <footer class="site-footer live-footer">
     <div class="container live-footer-main">
       <div class="live-footer-brand">
         <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
-        <ul class="live-footer-contact">
-          <li data-efd="address">21566 Damofalls Industrial Area, Harare, Zimbabwe</li>
-          <li><a data-efd="phone-link" href="tel:+263242488272"><span data-efd="phone">0242 488 272</span></a></li>
-          <li><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></li>
-          <li><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></li>
-          <li><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></li>
-        </ul>
+        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488720"><span data-efd="phone">0242 488 720</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
       </div>
 
       <div class="live-footer-links">
-        <h3>Useful Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="portfolio.html">Our Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="index.html#home-faq">FAQ's</a></li>
-          <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
-          <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
-          <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
-          <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
-          <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
-          <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
-          <li><a href="privacy.html">Privacy Notice</a></li>
-        </ul>
-      </div>
+          <div class="footer-link-group">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Our Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#home-faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <h3>Service Pages</h3>
+            <ul>
+              <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
+              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
+              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
+              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
+              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
+              <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
+            </ul>
+          </div>
+        </div>
 
       <div class="live-footer-about">
         <h3>About Us</h3>
@@ -276,7 +333,7 @@
 
     <div class="live-footer-bottom">
       <div class="container live-footer-bottom-inner">
-        <p>Extreme Fire Design - Copyright &copy; 2012 - 2026. All Rights Reserved. <a href="index.html#home-faq">FAQ's</a> | Privacy Policy</p>
+        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="index.html#home-faq">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
         <p>Webcrafted By <a href="https://www.noeljay.co.zw">NOEL JAY DIGITAL SOLUTIONS</a></p>
       </div>
     </div>
@@ -286,6 +343,7 @@
   </a>
   <script src="site-config.js" defer></script>
 <script src="site-render.js" defer></script>
+<script src="parallax.js" defer></script>
 <script src="leads.js" defer></script>
 <script src="script.js" defer></script>
   <script src="chat.js" defer></script>
@@ -333,5 +391,5 @@
       });
     })();
   </script>
-</body>
+  <!-- Floating 24/7 service desk button --></body>
 </html>

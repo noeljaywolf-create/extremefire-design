@@ -64,7 +64,33 @@
   /* ---------------- WhatsApp fallback ---------------- */
   function sendToWhatsApp(lines) {
     var url = WA + '?text=' + encodeURIComponent(lines.join('\n'));
-    window.open(url, '_blank', 'noopener');
+    var tab = window.open(url, '_blank');
+    if (tab) tab.opener = null;
+    return { opened: !!tab, url: url };
+  }
+
+  function showHandoff(form, result) {
+    var status = form.querySelector('[data-lead-status]');
+    if (!status) {
+      status = document.createElement('p');
+      status.className = 'form-hint lead-submit-status';
+      status.setAttribute('data-lead-status', '');
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-live', 'polite');
+      var submit = form.querySelector('[type="submit"]');
+      form.insertBefore(status, submit || null);
+    }
+    status.textContent = result.opened
+      ? 'WhatsApp is ready with your enquiry. Press Send in WhatsApp to deliver it; it has not been sent yet.'
+      : 'Your enquiry is ready to send. Open WhatsApp and press Send to deliver it; it has not been sent yet.';
+    if (!result.opened) {
+      var link = document.createElement('a');
+      link.href = result.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = ' Continue to WhatsApp';
+      status.appendChild(link);
+    }
   }
 
   /* ---------------- Form handling ---------------- */
@@ -72,9 +98,6 @@
     // Honeypot: a real user never sees or fills this.
     var hp = form.querySelector('input[name="website"]');
     if (hp && hp.value) return true;
-    // Timing trap: a genuine submission takes more than 2 seconds.
-    var opened = Number(form.getAttribute('data-opened-at') || 0);
-    if (opened && (Date.now() - opened) < 2000) return true;
     return false;
   }
 
@@ -87,14 +110,17 @@
   }
 
   function bindForm(form) {
-    form.setAttribute('data-opened-at', String(Date.now()));
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (isSpam(form)) return;           // silently drop
+      if (isSpam(form)) return;           // honeypot only
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
       fillUtm(form);
 
       var subject = form.getAttribute('data-subject') || 'Website enquiry';
-      var lines = ['New enquiry from the website', 'Page: ' + location.pathname]
+      var lines = ['New enquiry from the website', 'Subject: ' + subject, 'Page: ' + location.pathname]
         .concat(serialise(form));
       var utm = storedParams();
       if (Object.keys(utm).length) {
@@ -102,13 +128,11 @@
         Object.keys(utm).forEach(function (k) { lines.push(k + ': ' + utm[k]); });
       }
 
-      track('form_submit', { form_id: form.id || 'lead-form' });
+      track('whatsapp_handoff', { form_id: form.id || 'lead-form' });
 
-      // TODO_CONFIRM: replace this with a real POST once a backend exists.
-      sendToWhatsApp(lines);
-
-      track('generate_lead', { form_id: form.id || 'lead-form' });
-      window.location.href = 'thank-you.html';
+      // Opening a draft is a handoff, not a completed enquiry. Let the visitor
+      // send it in WhatsApp before treating it as a lead.
+      showHandoff(form, sendToWhatsApp(lines));
     });
   }
 

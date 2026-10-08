@@ -6,3 +6,9 @@ node_modules/
 Thumbs.db
 
 _partials.json
+
+# Working backups kept on disk but never published. styles.css.bak-before-bracefix
+# is a 48KB snapshot taken while fixing a stray brace; it is not part of the site.
+*.bak
+*.bak-*
+*.bak-before-*

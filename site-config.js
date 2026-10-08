@@ -81,8 +81,8 @@ window.EFD_CONFIG = {
   // SABS and ASIB are South African bodies, not Zimbabwean regulators.
   // TODO_CONFIRM: replace with the Zimbabwean standard actually used (SAZ?).
   standards: [
-    { code: 'NFPA 13', desc: 'Sprinkler Systems', confirmed: true },
-    { code: 'EN 12845', desc: 'Fixed Firefighting Systems', confirmed: true }
+    { code: 'NFPA 13', desc: 'Sprinkler Systems', confirmed: false }, // TODO_CONFIRM
+    { code: 'EN 12845', desc: 'Fixed Firefighting Systems', confirmed: false } // TODO_CONFIRM
     // TODO_CONFIRM: add the Zimbabwean standard/site-specific standard used.
   ],
 

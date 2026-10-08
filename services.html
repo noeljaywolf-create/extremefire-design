@@ -24,10 +24,14 @@
   <link rel="icon" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
   <link rel="preload" as="image" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
+  <link rel="stylesheet" href="pages.css" />
   <style>
     .util-strip{background:#ffffff!important;color:#1a1a1a!important;border-bottom:1px solid #e0e0e0!important}
     .util-strip a{color:#333!important}
@@ -88,14 +92,15 @@
     @media(max-width:600px){.chameleon-grid{grid-template-columns:repeat(2,1fr)}.section-content{padding:60px 16px}}
   </style>
 </head>
-<body>
+<body style="--page-bg: url('Background/user-sprinkler/sprinkler-protected-space.webp')">
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Utility Strip -->
   <div class="util-strip">
     <div class="util-inner">
       <div class="util-contact">
-        <a data-efd="phone-link" href="tel:+263242488720">0242488270/1/2/3</a>
-        <a data-efd="phone2-link" href="tel:+263773688904">+263 773 688 904 / 0719 148 295</a>
+        <a data-efd="phone-link" href="tel:+263242488720">0242 488 720</a>
+        <a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a>
         <a data-efd="email-link" href="mailto:info@extremefire.co.zw">info@extremefire.co.zw</a>
       </div>
       <div class="util-tagline">Safety Through Technology</div>
@@ -121,43 +126,14 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <!-- Hero with Video Background -->
     <section class="services-hero">
-      <video class="services-hero__video" autoplay muted loop playsinline preload="metadata" poster="images/our-work/project-01.jpeg" src="Background/extreme-fire-video.mp4"></video>
-  <script>
-  /* Hero video policy, mobile-first.
-     The background video is ~2.8MB. On mobile, or when the browser reports
-     Save-Data, or on a slow connection, we do not fetch it at all: the poster
-     image is shown instead. The <source> is only attached once we decide the
-     video should actually play, so the file is never downloaded needlessly. */
-  (function () {
-    var v = document.getElementById('bg-video-fixed') || document.querySelector('video');
-    if (!v) return;
-    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    var saveData = !!(conn && conn.saveData);
-    var slow = !!(conn && /(^|-)2g$/.test(conn.effectiveType || ''));
-    var small = window.matchMedia('(max-width: 768px)').matches;
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (saveData || slow || small || reduced) {
-      v.removeAttribute('autoplay');
-      v.pause && v.pause();
-      // Leave the poster frame visible; never load the video file.
-      v.removeAttribute('preload');
-      Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
-        s.removeAttribute('src');
-      });
-      v.setAttribute('data-video-skipped', '1');
-      return;
-    }
-    v.setAttribute('preload', 'metadata');
-  })();
-  </script>
 
       <div class="services-hero__overlay"></div>
       <div class="container">
         <p class="eyebrow">Services</p>
-        <h1>OUR SERVICES</h1>
+        <h1>Fire protection services across Zimbabwe</h1>
         <p class="hero-sub">Full-service fire protection for every phase of the process &mdash; from design and engineering through installation, commissioning, inspection, and maintenance.</p>
         <div class="hero-actions">
           <a class="button primary" href="#design">Explore Services</a>
@@ -257,42 +233,85 @@
         <a href="contact.html" class="btn-scroll btn-accent">REQUEST SERVICE SUPPORT</a>
       </div>
     </section>
+
+    <!-- Get a quote -->
+    <section class="quote-band" aria-label="Request a quotation">
+      <div class="container quote-band-inner">
+        <div class="quote-band-text">
+          <h2>Need a fire protection quotation?</h2>
+          <p>Choose a service and share the site location to start a focused discussion.</p>
+        </div>
+        <div class="quote-band-actions">
+          <a href="contact.html#quote" class="quote-btn quote-btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Get a quote</a>
+          <a href="tel:+263242488720" class="quote-btn quote-btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Call 024 248 8720</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
+    <section class="contact-actions" aria-label="Contact us">
+      <div class="container">
+        <div class="contact-actions-inner">
+          <h2>Talk to us today</h2>
+          <p>Choose phone, WhatsApp or email to discuss your site and fire protection needs.</p>
+          <div class="contact-actions-row">
+            <a class="contact-btn contact-btn-wa" href="https://wa.me/263776400176" target="_blank" rel="noopener" data-efd-track="click_whatsapp">
+              <span class="contact-btn-label">WhatsApp</span>
+              <span class="contact-btn-value">0776 400 176</span>
+            </a>
+            <a class="contact-btn contact-btn-call" href="tel:+263242488720" data-efd="phone-link" data-efd-track="click_call">
+              <span class="contact-btn-label">Call</span>
+              <span class="contact-btn-value">0242 488 720</span>
+            </a>
+            <a class="contact-btn contact-btn-email" href="mailto:info@extremefire.co.zw" data-efd="email-link">
+              <span class="contact-btn-label">Email</span>
+              <span class="contact-btn-value">info@extremefire.co.zw</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="live-footer-map" style="margin:0 auto;max-width:1120px;padding:0 24px 28px">
-     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0;border-radius:12px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Extreme Fire Design location"></iframe>
+     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&bbox=30.975,-17.905,31.125,-17.755&z=14&hl=en&ie=UTF8&output=embed"
+              width="100%" height="189" style="border:0;display:block;border-radius:12px"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Extreme Fire Design location, Harare, Zimbabwe"></iframe>
    </div>
-  <footer class="site-footer live-footer">
+  
+
+    <footer class="site-footer live-footer">
     <div class="container live-footer-main">
       <div class="live-footer-brand">
         <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
-        <ul class="live-footer-contact">
-          <li data-efd="address">21566 Damofalls Industrial Area, Harare, Zimbabwe</li>
-          <li><a data-efd="phone-link" href="tel:+263242488272"><span data-efd="phone">0242 488 272</span></a></li>
-          <li><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></li>
-          <li><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></li>
-          <li><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></li>
-        </ul>
+        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488720"><span data-efd="phone">0242 488 720</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
       </div>
       <div class="live-footer-links">
-        <h3>Useful Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="portfolio.html">Our Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="faq.html">FAQ's</a></li>
-          <li><a href="fire-sprinkler-installation-harare.html">Fire Sprinkler Installation, Harare</a></li>
-          <li><a href="fire-alarm-detection-systems-harare.html">Fire Alarm &amp; Detection, Harare</a></li>
-          <li><a href="fire-hydrant-hose-reel-systems.html">Fire Hydrant &amp; Hose Reel Systems</a></li>
-          <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
-          <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
-          <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
-          <li><a href="privacy.html">Privacy Notice</a></li>
-        </ul>
-      </div>
+          <div class="footer-link-group">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Our Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#home-faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <h3>Service Pages</h3>
+            <ul>
+              <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
+              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
+              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
+              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
+              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
+              <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
+            </ul>
+          </div>
+        </div>
       <div class="live-footer-about">
         <h3>About Us</h3>
         <p>Extreme Fire is the place to go for all of your fire protection engineering, design and installation services.</p>
@@ -306,7 +325,7 @@
 
     <div class="live-footer-bottom">
       <div class="container live-footer-bottom-inner">
-        <p>Extreme Fire Design - Copyright &copy; 2012 - 2026. All Rights Reserved. | Privacy Policy</p>
+        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. | <a href="privacy.html">Privacy Notice</a></p>
         <p>Webcrafted By <a href="https://www.noeljay.co.zw">NOEL JAY DIGITAL SOLUTIONS</a></p>
       </div>
     </div>
@@ -362,5 +381,5 @@
     });
   })();
   </script>
-</body>
+  <!-- Floating 24/7 service desk button --></body>
 </html>

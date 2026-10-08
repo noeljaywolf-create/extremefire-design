@@ -82,15 +82,66 @@
   /* --------------------------------------------------------
      READ MORE TOGGLES (Why Choose + Welcome)
      -------------------------------------------------------- */
-  var whyBtn = $('#why-choose-read-more-btn');
-  var whyMore = $('#why-choose-more');
-  if (whyBtn && whyMore) {
-    on(whyBtn, 'click', function () {
-      var open = whyBtn.getAttribute('aria-expanded') === 'true';
-      whyMore.hidden = open;
-      whyBtn.innerHTML = '<span>' + (open ? 'Read more' : 'Read less') + '</span>';
-      whyBtn.setAttribute('aria-expanded', String(!open));
+  /* Combo rail: manual prev/next plus live auto-rotation. comboTrack must be
+     declared here - an undeclared reference throws a ReferenceError that
+     aborts the rest of this IIFE, which is what stopped the hero slideshow
+     and the page-loader dismissal from ever running. */
+  var comboTrack = $('.combo-rail');
+  var comboPrev = $('.combo-prev');
+  var comboNext = $('.combo-next');
+  var comboStep = function () {
+    if (!comboTrack) return 0;
+    var card = comboTrack.querySelector('.combo-card');
+    return card ? card.getBoundingClientRect().width + 18 : 358;
+  };
+  if (comboPrev) on(comboPrev, 'click', function () { comboTrack.scrollBy({ left: -comboStep(), behavior: 'smooth' }); });
+  if (comboNext) on(comboNext, 'click', function () { comboTrack.scrollBy({ left: comboStep(), behavior: 'smooth' }); });
+
+  /* Live rotation: the 6 cards advance one at a time on a timer, pause on
+     hover or keyboard focus, and stop entirely when the visitor has asked
+     for reduced motion. */
+  if (comboTrack) {
+    var comboReduce = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!comboReduce) {
+      comboTrack.classList.add('is-live');
+      var comboLiveTimer = setInterval(function () {
+        if (comboTrack.matches(':hover')) return;
+        var atEnd = comboTrack.scrollLeft + comboTrack.clientWidth >=
+                    comboTrack.scrollWidth - 4;
+        comboTrack.scrollTo({ left: atEnd ? 0 : comboTrack.scrollLeft + comboStep(),
+                              behavior: 'smooth' });
+      }, 3800);
+      comboTrack.addEventListener('focusin', function () { clearInterval(comboLiveTimer); });
+    }
+  }
+
+  /* Each Why Choose card owns its own Read more. The card body is clamped to
+     two lines in CSS (.why-clamp); clicking removes the clamp so the full
+     text is revealed in place, rather than jumping to another page. */
+  $$('.combo-card--why').forEach(function (card) {
+    var btn = card.querySelector('.why-more');
+    var body = card.querySelector('.why-clamp');
+    if (!btn || !body) return;
+    btn.setAttribute('aria-expanded', 'false');
+    on(btn, 'click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      card.classList[open ? 'remove' : 'add']('is-open');
+      btn.innerHTML = '<span>' + (open ? 'Read more' : 'Read less') + '</span>';
     });
+  });
+
+  var profileTrack = $('.profile-rail');
+  if (profileTrack) {
+    var profileStep = function () {
+      var card = profileTrack.querySelector('.profile-card');
+      return card ? card.getBoundingClientRect().width + 18 : 358;
+    };
+    var profilePrev = $('.profile-prev');
+    var profileNext = $('.profile-next');
+    if (profilePrev) on(profilePrev, 'click', function () { profileTrack.scrollBy({ left: -profileStep(), behavior: 'smooth' }); });
+    if (profileNext) on(profileNext, 'click', function () { profileTrack.scrollBy({ left: profileStep(), behavior: 'smooth' }); });
   }
 
   var readBtn = $('#read-more-btn');
@@ -128,21 +179,15 @@
     });
   }
   async function resolveSlideSources() {
-    try {
-      var r = await fetch('Background/slides.json');
-      if (!r.ok) throw 0;
-      var d = await r.json();
-      if (Array.isArray(d) && d.length) return d;
-    } catch (e) { /* fallback */ }
+    // Enhanced, unique local copies of the existing slide photographs.
     return [
-      'Background/slide4.jpg', 'Background/slide5.jpg',
-      'Background/WhatsApp Image 2026-07-07 at 11.28.57 (1).jpeg',
-      'Background/WhatsApp Image 2026-07-07 at 11.28.58 (1).jpeg',
-      'Background/WhatsApp Image 2026-07-07 at 11.28.58.jpeg',
-      'Background/WhatsApp Image 2026-07-07 at 11.28.59.jpeg',
-      'Background/WhatsApp Image 2026-07-07 at 12.34.27.jpeg',
-      'Background/WhatsApp Image 2026-07-07 at 12.34.29.jpeg',
-      'Background/WhatsApp Image 2026-07-07 at 12.34.30.jpeg'
+      'Background/enhanced/slide-bg-01.webp',
+      'Background/enhanced/slide-bg-02.webp',
+      'Background/enhanced/slide-bg-03.webp',
+      'Background/enhanced/slide-bg-04.webp',
+      'Background/enhanced/slide-bg-05.webp',
+      'Background/enhanced/slide-bg-06.webp',
+      'Background/enhanced/slide-bg-07.webp'
     ];
   }
   function cycleHeroSlides(slides, interval) {
@@ -164,30 +209,26 @@
     }
     return null;
   }
+  function startHeroSlides() {
+    if (!heroSlides.length) return;
+    resolveSlideSources().then(function (sources) {
+      slideSources = sources;
+      preloadImages(sources);
+      setSlideBackgrounds(heroSlides, sources);
+      cycleHeroSlides(heroSlides);
+    });
+  }
   if (heroBg && heroVideo) {
     findVideoSource().then(function (src) {
       if (src) {
         heroBg.classList.add('has-video');
         heroVideo.src = src;
         heroVideo.load();
-        return;
       }
-      if (heroSlides.length) {
-        resolveSlideSources().then(function (s) {
-          slideSources = s;
-          preloadImages(s);
-          setSlideBackgrounds(heroSlides, s);
-          cycleHeroSlides(heroSlides);
-        });
-      }
+      startHeroSlides();
     });
-  } else if (heroSlides.length) {
-    resolveSlideSources().then(function (s) {
-      slideSources = s;
-      preloadImages(s);
-      setSlideBackgrounds(heroSlides, s);
-      cycleHeroSlides(heroSlides);
-    });
+  } else {
+    startHeroSlides();
   }
 
   /* --------------------------------------------------------
@@ -448,15 +489,30 @@
      ENHANCED FEATURES - Premium Enterprise Experience
      ============================================================ */
 
-  /* 1. Page Loader - hide after content ready */
-  on(window, 'load', function () {
+  /* 1. Page Loader - hide after content is ready.
+     window.load is not reliable here: the webfont stylesheet and the Google
+     Maps iframe are external requests, and on a slow or offline connection
+     they never resolve, which would leave the opaque loader covering the page
+     forever. So dismissal is idempotent and runs on whichever comes first -
+     window.load, DOMContentLoaded, or a hard 3.5s failsafe. */
+  var loaderDone = false;
+  function dismissLoader() {
+    if (loaderDone) return;
+    loaderDone = true;
     var loader = $('#page-loader');
     if (loader) {
-      setTimeout(function () { loader.classList.add('hidden'); }, 800);
-      setTimeout(function () { loader.remove(); }, 1500);
+      setTimeout(function () { loader.classList.add('hidden'); }, 500);
+      setTimeout(function () { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 1200);
     }
     document.documentElement.classList.remove('loading');
-  });
+  }
+  on(window, 'load', dismissLoader);
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    setTimeout(dismissLoader, 250);
+  } else {
+    on(document, 'DOMContentLoaded', function () { setTimeout(dismissLoader, 400); });
+  }
+  setTimeout(dismissLoader, 3500);
 
   /* 2. Sticky Header - glass effect on scroll */
   var siteHeader = $('#site-header');
@@ -620,4 +676,12 @@
     });
   }
 
+})();
+
+/* Copyright year is generated rather than hardcoded, so it never goes stale. */
+(function () {
+  var y = String(new Date().getFullYear());
+  /* only the closing year is generated - the founding year stays 2012, so the
+     range can never collapse into "2026-2026" */
+  document.querySelectorAll("[data-efd-year-now]").forEach(function (el) { el.textContent = y; });
 })();

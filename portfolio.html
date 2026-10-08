@@ -23,10 +23,14 @@
   <link rel="icon" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
   <link rel="preload" as="image" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
+  <link rel="stylesheet" href="pages.css" />
   <style>
     .util-strip{background:#ffffff!important;color:#1a1a1a!important;border-bottom:1px solid #e0e0e0!important}
     .util-strip a{color:#333!important}
@@ -42,12 +46,13 @@
     .page-hero .container{text-align:center}
   </style>
 </head>
-<body>
+<body style="--page-bg: url('images/about/hero-02.jpg')">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="util-strip">
     <div class="util-inner">
       <div class="util-contact">
-        <a data-efd="phone-link" href="tel:+263242488720">0242488270/1/2/3</a>
-        <a data-efd="phone2-link" href="tel:+263773688904">+263 773 688 904 / 0719 148 295</a>
+        <a data-efd="phone-link" href="tel:+263242488720">0242 488 720</a>
+        <a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a>
         <a data-efd="email-link" href="mailto:info@extremefire.co.zw">info@extremefire.co.zw</a>
       </div>
       <div class="util-tagline">Safety Through Technology</div>
@@ -98,6 +103,7 @@
       Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
         s.removeAttribute('src');
       });
+      v.removeAttribute('src');
       v.setAttribute('data-video-skipped', '1');
       return;
     }
@@ -108,12 +114,12 @@
     <div class="page-video-overlay"></div>
   </div>
 
-  <main>
+  <main id="main">
     <section class="section page-hero" style="background:transparent">
       <div class="container">
         <p class="eyebrow">Featured work</p>
-        <h1><span class="tw" data-tw="Fire protection engineering projects that protect people and property."></span><span class="tw-cursor">|</span></h1>
-        <p><span class="tw" data-tw="See examples of our work in sprinkler design, hydraulic calculations, and compliance support."></span><span class="tw-cursor">|</span></p>
+        <h1><span class="tw" data-tw="Fire protection engineering projects that protect people and property.">Fire protection engineering projects that protect people and property.</span><span class="tw-cursor">|</span></h1>
+        <p><span class="tw" data-tw="See examples of our work in sprinkler design, hydraulic calculations, and compliance support.">See examples of our work in sprinkler design, hydraulic calculations, and compliance support.</span><span class="tw-cursor">|</span></p>
       </div>
     </section>
 
@@ -122,82 +128,82 @@
         <!-- 12 photos — Cutrag -->
         <article class="portfolio-card">
           <div class="card-number">01</div>
-          <img src="images/our-work/CUTRAG WOOLWICH WILLOWVALE/WhatsApp Image 2026-08-24 at 15.42.26.jpeg" alt="Cutrag Woolwich Willowvale fire protection project" loading="lazy">
-          <h2><span class="tw" data-tw="Cutrag — Woolwich &amp; Willowvale"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Comprehensive fire protection coverage across the Cutrag facilities at Woolwich and Willowvale industrial sites."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: multi-site fire protection, sprinkler systems, compliance"></span></p>
+          <img src="images/our-work/CUTRAG WOOLWICH WILLOWVALE/WhatsApp Image 2026-08-24 at 15.42.26.jpeg" alt="Multi-site industrial fire protection project" loading="lazy">
+          <h2><span class="tw" data-tw="Cutrag — Woolwich &amp; Willowvale">Cutrag — Woolwich &amp; Willowvale</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Fire protection work across industrial facilities, including sprinkler systems and compliance planning.">Fire protection work across industrial facilities, including sprinkler systems and compliance planning.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: multi-site fire protection, sprinkler systems, compliance">Focus: multi-site fire protection, sprinkler systems, compliance</span></p>
         </article>
 
         <!-- 10 photos — Workshop -->
         <article class="portfolio-card">
           <div class="card-number">02</div>
           <img src="images/our-work/WORKSHOP/489066816_122120376302769416_5279793137858336532_n.jpg" alt="Workshop fire protection system" loading="lazy">
-          <h2><span class="tw" data-tw="Workshop Fire Protection"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Fire suppression and alarm system installation for workshop and maintenance facilities."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: workshop safety, fire alarm systems, suppression design"></span></p>
+          <h2><span class="tw" data-tw="Workshop Fire Protection">Workshop Fire Protection</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Fire suppression and alarm system installation for workshop and maintenance facilities.">Fire suppression and alarm system installation for workshop and maintenance facilities.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: workshop safety, fire alarm systems, suppression design">Focus: workshop safety, fire alarm systems, suppression design</span></p>
         </article>
 
         <!-- Portfolio — Industrial -->
         <article class="portfolio-card">
           <div class="card-number">03</div>
           <img src="images/our-work/project-02.jpeg" alt="Industrial sprinkler system design" loading="lazy">
-          <h2><span class="tw" data-tw="Industrial Sprinkler System Design"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Engineered fire sprinkler layouts and hydraulic reports for a large manufacturing facility."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: hydraulic calculations, compliance, installation support"></span></p>
+          <h2><span class="tw" data-tw="Industrial Sprinkler System Design">Industrial Sprinkler System Design</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Engineered fire sprinkler layouts and hydraulic reports for a large manufacturing facility.">Engineered fire sprinkler layouts and hydraulic reports for a large manufacturing facility.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: hydraulic calculations, compliance, installation support">Focus: hydraulic calculations, compliance, installation support</span></p>
         </article>
 
         <!-- Portfolio — Commercial -->
         <article class="portfolio-card">
           <div class="card-number">04</div>
           <img src="images/our-work/project-08.jpeg" alt="Commercial building protection" loading="lazy">
-          <h2><span class="tw" data-tw="Commercial Building Protection"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Complete fire protection design and coordination for a multi-story office complex."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: sprinkler zoning, code documentation, system testing"></span></p>
+          <h2><span class="tw" data-tw="Commercial Building Protection">Commercial Building Protection</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Complete fire protection design and coordination for a multi-story office complex.">Complete fire protection design and coordination for a multi-story office complex.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: sprinkler zoning, code documentation, system testing">Focus: sprinkler zoning, code documentation, system testing</span></p>
         </article>
 
         <!-- Portfolio — High-risk -->
         <article class="portfolio-card">
           <div class="card-number">05</div>
           <img src="images/our-work/project-04.jpeg" alt="High-risk occupancy fire system" loading="lazy">
-          <h2><span class="tw" data-tw="High-Risk Occupancy Fire System"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Tailored fire suppression design for a facility with specialized safety requirements."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: risk assessment, suppression design, regulatory compliance"></span></p>
+          <h2><span class="tw" data-tw="High-Risk Occupancy Fire System">High-Risk Occupancy Fire System</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Tailored fire suppression design for a facility with specialized safety requirements.">Tailored fire suppression design for a facility with specialized safety requirements.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: risk assessment, suppression design, regulatory compliance">Focus: risk assessment, suppression design, regulatory compliance</span></p>
         </article>
 
         <!-- Portfolio — Maintenance -->
         <article class="portfolio-card">
           <div class="card-number">06</div>
           <img src="images/our-work/project-09.jpeg" alt="Maintenance and inspection program" loading="lazy">
-          <h2><span class="tw" data-tw="Maintenance &amp; Inspection Program"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Ongoing inspection, testing, and maintenance planning for a campus fire protection system."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: readiness, reliability, preventive maintenance"></span></p>
+          <h2><span class="tw" data-tw="Maintenance &amp; Inspection Program">Maintenance &amp; Inspection Program</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Ongoing inspection, testing, and maintenance planning for a campus fire protection system.">Ongoing inspection, testing, and maintenance planning for a campus fire protection system.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: readiness, reliability, preventive maintenance">Focus: readiness, reliability, preventive maintenance</span></p>
         </article>
 
         <!-- 2 photos — CHEP -->
         <article class="portfolio-card">
           <div class="card-number">07</div>
-          <img src="images/our-work/CHEP PALLET PRODUCTION PLANT/CHEP PALLET PRODUCTION PLANT PUMPHOUSE.jpeg" alt="CHEP Pallet Production Plant fire protection" loading="lazy">
-          <h2><span class="tw" data-tw="CHEP Pallet Production Plant"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Fire protection system design and installation for the CHEP pallet production facility."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: fire pump systems, suppression, production facility safety"></span></p>
+          <img src="images/our-work/CHEP PALLET PRODUCTION PLANT/CHEP PALLET PRODUCTION PLANT PUMPHOUSE.jpeg" alt="Pallet production facility fire protection" loading="lazy">
+          <h2><span class="tw" data-tw="Pallet production facility">Pallet production facility</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Fire protection system design and installation for a pallet production facility.">Fire protection system design and installation for a pallet production facility.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: fire pump systems, suppression, production facility safety">Focus: fire pump systems, suppression, production facility safety</span></p>
         </article>
 
         <!-- 1 photo — Zuva -->
         <article class="portfolio-card">
           <div class="card-number">08</div>
-          <img src="images/our-work/ZUVA/rr.jpg" alt="Zuva fire protection project" loading="lazy">
-          <h2><span class="tw" data-tw="Zuva Gas Station"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Fire protection engineering for a Zuva gas station facility including suppression and safety systems."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: gas station safety, fire suppression, compliance"></span></p>
+          <img src="images/our-work/ZUVA/rr.jpg" alt="Fuel retail fire protection project" loading="lazy">
+          <h2><span class="tw" data-tw="Fuel retail facility">Fuel retail facility</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Fire protection engineering for a fuel retail facility, including suppression and safety systems.">Fire protection engineering for a fuel retail facility, including suppression and safety systems.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: gas station safety, fire suppression, compliance">Focus: gas station safety, fire suppression, compliance</span></p>
         </article>
 
         <!-- Fire Detection & Alarm -->
         <article class="portfolio-card">
           <div class="card-number">09</div>
           <img src="images/our-work/project-10.jpeg" alt="Fire detection and alarm system" loading="lazy">
-          <h2><span class="tw" data-tw="Fire Detection &amp; Alarm System"></span><span class="tw-cursor">|</span></h2>
-          <p><span class="tw" data-tw="Design and installation of fire detection and alarm systems for industrial and commercial buildings."></span><span class="tw-cursor">|</span></p>
-          <p class="project-meta"><span class="tw" data-tw="Focus: detection, alarm control, zone planning, commissioning"></span></p>
+          <h2><span class="tw" data-tw="Fire Detection &amp; Alarm System">Fire Detection &amp; Alarm System</span><span class="tw-cursor">|</span></h2>
+          <p><span class="tw" data-tw="Design and installation of fire detection and alarm systems for industrial and commercial buildings.">Design and installation of fire detection and alarm systems for industrial and commercial buildings.</span><span class="tw-cursor">|</span></p>
+          <p class="project-meta"><span class="tw" data-tw="Focus: detection, alarm control, zone planning, commissioning">Focus: detection, alarm control, zone planning, commissioning</span></p>
         </article>
       </div>
     </section>
@@ -216,7 +222,7 @@
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Gallery</p>
-          <h2><span class="tw" data-tw="Our Project Gallery"></span><span class="tw-cursor">|</span></h2>
+          <h2><span class="tw" data-tw="Our Project Gallery">Our Project Gallery</span><span class="tw-cursor">|</span></h2>
         </div>
         <div class="gallery-wrap collapsed">
           <div class="recent-work-gallery">
@@ -315,11 +321,10 @@
 
 
 
-
     <section class="section contact-cta">
       <div class="container feature-box">
-        <h2><span class="tw" data-tw="Ready to protect your facility?"></span><span class="tw-cursor">|</span></h2>
-        <p><span class="tw" data-tw="Contact us to discuss your fire protection project and technical requirements."></span><span class="tw-cursor">|</span></p>
+        <h2><span class="tw" data-tw="Ready to protect your facility?">Ready to protect your facility?</span><span class="tw-cursor">|</span></h2>
+        <p><span class="tw" data-tw="Contact us to discuss your fire protection project and technical requirements.">Contact us to discuss your fire protection project and technical requirements.</span><span class="tw-cursor">|</span></p>
         <a class="button primary" href="contact.html">Send a brief</a>
       </div>
     </section>
@@ -330,41 +335,84 @@
         <a href="contact.html" style="display:inline-block;padding:14px 36px;background:var(--accent);color:#fff;border-radius:var(--radius-sm);font-weight:700;text-decoration:none;transition:all 0.3s">Request a Quote</a>
       </div>
     </section>
+
+    <!-- Get a quote -->
+    <section class="quote-band" aria-label="Request a quotation">
+      <div class="container quote-band-inner">
+        <div class="quote-band-text">
+          <h2>Need a fire protection quotation?</h2>
+          <p>Have a similar project? Share the building type and system you are planning.</p>
+        </div>
+        <div class="quote-band-actions">
+          <a href="contact.html#quote" class="quote-btn quote-btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Get a quote</a>
+          <a href="tel:+263242488720" class="quote-btn quote-btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Call 024 248 8720</a>
+        </div>
+      </div>
+    </section>
+
   </main>
+    <section class="contact-actions" aria-label="Contact us">
+      <div class="container">
+        <div class="contact-actions-inner">
+          <h2>Talk to us today</h2>
+          <p>Choose phone, WhatsApp or email to discuss your site and fire protection needs.</p>
+          <div class="contact-actions-row">
+            <a class="contact-btn contact-btn-wa" href="https://wa.me/263776400176" target="_blank" rel="noopener" data-efd-track="click_whatsapp">
+              <span class="contact-btn-label">WhatsApp</span>
+              <span class="contact-btn-value">0776 400 176</span>
+            </a>
+            <a class="contact-btn contact-btn-call" href="tel:+263242488720" data-efd="phone-link" data-efd-track="click_call">
+              <span class="contact-btn-label">Call</span>
+              <span class="contact-btn-value">0242 488 720</span>
+            </a>
+            <a class="contact-btn contact-btn-email" href="mailto:info@extremefire.co.zw" data-efd="email-link">
+              <span class="contact-btn-label">Email</span>
+              <span class="contact-btn-value">info@extremefire.co.zw</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="live-footer-map" style="margin:0 auto;max-width:1120px;padding:0 24px 28px">
-     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0;border-radius:12px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Extreme Fire Design location"></iframe>
+     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&bbox=30.975,-17.905,31.125,-17.755&z=14&hl=en&ie=UTF8&output=embed"
+              width="100%" height="189" style="border:0;display:block;border-radius:12px"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Extreme Fire Design location, Harare, Zimbabwe"></iframe>
    </div>
-  <footer class="site-footer live-footer">
+  
+
+    <footer class="site-footer live-footer">
     <div class="container live-footer-main">
       <div class="live-footer-brand">
         <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
-        <ul class="live-footer-contact">
-          <li data-efd="address">21566 Damofalls Industrial Area, Harare, Zimbabwe</li>
-          <li><a data-efd="phone-link" href="tel:+263242488272"><span data-efd="phone">0242 488 272</span></a></li>
-          <li><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></li>
-          <li><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></li>
-          <li><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></li>
-        </ul>
+        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488720"><span data-efd="phone">0242 488 720</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
       </div>
 
       <div class="live-footer-links">
-        <h3>Useful Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="portfolio.html">Our Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="index.html#home-faq">FAQ's</a></li>
-          <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
-          <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
-          <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
-          <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
-          <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
-          <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
-          <li><a href="privacy.html">Privacy Notice</a></li>
-        </ul>
-      </div>
+          <div class="footer-link-group">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Our Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#home-faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <h3>Service Pages</h3>
+            <ul>
+              <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
+              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
+              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
+              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
+              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
+              <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
+            </ul>
+          </div>
+        </div>
 
       <div class="live-footer-about">
         <h3>About Us</h3>
@@ -380,7 +428,7 @@
 
     <div class="live-footer-bottom">
       <div class="container live-footer-bottom-inner">
-        <p>Extreme Fire Design - Copyright &copy; 2012 - 2026. All Rights Reserved. <a href="index.html#home-faq">FAQ's</a> | Privacy Policy</p>
+        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="index.html#home-faq">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
         <p>Webcrafted By <a href="https://www.noeljay.co.zw">NOEL JAY DIGITAL SOLUTIONS</a></p>
       </div>
     </div>
@@ -400,7 +448,7 @@
     <img id="lightbox-img" src="" alt="Full view">
   </div>
   <style>
-    .tw-cursor{color:var(--accent);font-weight:300;animation:blink 0.7s step-end infinite;font-size:inherit}
+    .tw-cursor{display:none}
     @keyframes blink{50%{opacity:0}}
  .portfolio-card{position:relative;text-align:center;padding:28px 18px 22px;border:1px solid rgba(255,255,255,0.07);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,0.035),rgba(255,255,255,0.012));transition:border-color 0.35s ease,box-shadow 0.35s ease,transform 0.35s ease;overflow:hidden}
 .portfolio-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity 0.35s ease}
@@ -499,23 +547,7 @@
     .gallery-wrap.expanded .gallery-toggle button svg{transform:rotate(180deg)}
   </style>
   <script>
-    document.querySelectorAll('.tw').forEach(el=>{
-      const text=el.dataset.tw;
-      let i=0;
-      function type(){
-        if(i<text.length){
-          el.textContent+=text[i];
-          i++;
-          setTimeout(type,40+Math.random()*30);
-        }
-      }
-      const obs=new IntersectionObserver(entries=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){type();obs.unobserve(el)}
-        });
-      },{threshold:0.2});
-      obs.observe(el);
-    });
+    document.querySelectorAll('.tw').forEach(el=>{ el.textContent = el.dataset.tw || ''; });
 
     (function(){
       var lightbox=document.getElementById('lightbox');
@@ -604,5 +636,5 @@
       });
     })();
   </script>
-</body>
+  <!-- Floating 24/7 service desk button --></body>
 </html>

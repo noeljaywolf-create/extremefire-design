@@ -20,10 +20,14 @@
   <link rel="icon" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
   <link rel="preload" as="image" href="images/logo.png" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
+  <link rel="stylesheet" href="pages.css" />
   <style>
     .util-strip{background:#ffffff!important;color:#1a1a1a!important;border-bottom:1px solid #e0e0e0!important}
     .util-strip a{color:#333!important}
@@ -126,12 +130,13 @@
     }
   </style>
 </head>
-<body>
+<body style="--page-bg: url('images/about/installation-04.jpg')">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="util-strip">
     <div class="util-inner">
       <div class="util-contact">
-        <a data-efd="phone-link" href="tel:+263242488720">0242488270/1/2/3</a>
-        <a data-efd="phone2-link" href="tel:+263773688904">+263 773 688 904 / 0719 148 295</a>
+        <a data-efd="phone-link" href="tel:+263242488720">0242 488 720</a>
+        <a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a>
         <a data-efd="email-link" href="mailto:info@extremefire.co.zw">info@extremefire.co.zw</a>
       </div>
       <div class="util-tagline">Safety Through Technology</div>
@@ -156,7 +161,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="faq-hero">
       <div class="parallax-bg"></div>
       <div class="parallax-overlay"></div>
@@ -171,7 +176,7 @@
         <div class="hero-stats-row" data-reveal data-reveal-delay="4">
           <div class="hero-stat"><span class="num">20+</span><span class="lbl">Questions</span></div>
           <div class="hero-stat"><span class="num">30+</span><span class="lbl">Years Exp</span></div>
-          <div class="hero-stat"><span class="num">24/7</span><span class="lbl">Support</span></div>
+          <div class="hero-stat"><span class="num">Nationwide</span><span class="lbl">Support</span></div>
           <div class="hero-stat"><span class="num">100%</span><span class="lbl">Compliance</span></div>
         </div>
       </div>
@@ -198,7 +203,7 @@
 
         <details class="faq-item" data-reveal data-reveal-delay="1">
           <summary>What fire protection standards do you design to?</summary>
-          <div class="faq-answer"><p>We design all systems in accordance with <strong>NFPA 13</strong> (Sprinkler Systems), <strong>NFPA 72</strong> (Fire Alarm Code), <strong>EN 12845</strong> (Fixed Firefighting Systems), <strong>ASIB</strong> guidelines, and local Zimbabwean authority requirements. Our designs meet international and local code compliance for commercial, industrial, and mining facilities.</p></div>
+          <div class="faq-answer"><p>Applicable requirements depend on the building, system and local authority. We review the project scope and confirm which standards and approvals apply before work begins.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="2">
@@ -218,7 +223,7 @@
 
         <details class="faq-item" data-reveal>
           <summary>What is a fire pump and when is one required?</summary>
-          <div class="faq-answer"><p>A fire pump boosts water pressure to meet sprinkler/standpipe demand when municipal supply is insufficient. Required when hydraulic calculations show pressure deficit, building height exceeds municipal capability, or for high-hazard storage. We design, supply, install, and commission electric and diesel fire pump sets per <strong>NFPA 20</strong>.</p></div>
+          <div class="faq-answer"><p>A fire pump boosts water pressure to meet sprinkler/standpipe demand when municipal supply is insufficient. Required when hydraulic calculations show pressure deficit, building height exceeds municipal capability, or for high-hazard storage. We can discuss fire pump requirements based on the building, water supply and applicable project requirements.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
@@ -240,7 +245,7 @@
 
         <details class="faq-item" data-reveal data-reveal-delay="1">
           <summary>How often should fire protection systems be inspected?</summary>
-          <div class="faq-answer"><p>Per <strong>NFPA 25</strong> and local regulations: sprinkler systems require quarterly, semi-annual, and annual inspections; fire pumps need weekly/monthly/annual testing; fire alarm systems require annual testing per NFPA 72; extinguishers need monthly visual checks and annual professional maintenance. We provide scheduled maintenance contracts.</p></div>
+          <div class="faq-answer"><p>Inspection and testing intervals vary by equipment, manufacturer guidance, system requirements and local rules. Check the site maintenance plan and applicable requirements; we can discuss inspection and servicing needs.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="2">
@@ -250,12 +255,12 @@
 
         <details class="faq-item" data-reveal data-reveal-delay="3">
           <summary>Can you help with fire safety compliance for insurance?</summary>
-          <div class="faq-answer"><p>Yes. We work with insurers and brokers to ensure fire protection meets policy conditions: risk surveys, COPE reports, sprinkler impairment management, pump testing certificates, alarm certification, and extinguisher compliance. Our documentation is accepted by major insurers in Zimbabwe and the region.</p></div>
+          <div class="faq-answer"><p>Yes. We work with insurers and brokers to ensure fire protection meets policy conditions: risk surveys, COPE reports, sprinkler impairment management, pump testing certificates, alarm certification, and extinguisher compliance. Documentation needs vary by insurer and site; confirm the requested records with your insurer.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="4">
           <summary>What is the process for getting a system approved?</summary>
-          <div class="faq-answer"><p>1) Engage us for design. 2) We prepare drawings & calculations per NFPA/ASIB/local codes. 3) Submit to local authority for plan approval. 4) Install per approved plans. 5) Coordinate testing & commissioning with authority witness. 6) Obtain compliance/occupancy certificate. <strong>We manage the full process end-to-end.</strong></p></div>
+          <div class="faq-answer"><p>1) Engage us for design. 2) We prepare drawings and calculations against the requirements confirmed for the project. 3) Submit to local authority for plan approval. 4) Install per approved plans. 5) Coordinate testing & commissioning with authority witness. 6) Obtain compliance/occupancy certificate. <strong>We can discuss the documentation and approvals within the agreed project scope.</strong></p></div>
         </details>
 
         <details class="faq-item" data-reveal>
@@ -265,7 +270,7 @@
 
         <details class="faq-item" data-reveal>
           <summary>How do you handle system impairments (shutdowns)?</summary>
-          <div class="faq-answer"><p>We follow NFPA 25 impairment procedures: 1) Notify insurance, fire brigade, and building management. 2) Implement fire watch if required. 3) Isolate only affected zone. 4) Expedite repairs. 5) Restore, test, and document. 6) Notify all parties. Our impairment management reduces downtime and maintains insurance coverage.</p></div>
+          <div class="faq-answer"><p>When a system is impaired, coordinate promptly with building management and the relevant authorities. Site procedures should cover notification, temporary precautions, repairs, testing and documented restoration.</p></div>
         </details>
       </div>
     </section>
@@ -276,7 +281,7 @@
           <div class="faq-section-icon">🛠️</div>
           <div>
             <h3 class="faq-section-title">Services & Support</h3>
-            <p class="faq-section-subtitle">Maintenance, training & emergency response</p>
+            <p class="faq-section-subtitle">Maintenance, training &amp; round-the-clock support</p>
           </div>
         </div>
 
@@ -292,7 +297,7 @@
 
         <details class="faq-item" data-reveal data-reveal-delay="3">
           <summary>Are your technicians certified?</summary>
-          <div class="faq-answer"><p>Yes. Our team holds NFPA training, ASIB competency, manufacturer-specific certifications (Viking, Reliable, Tyco, Ansul, Fireclass, Technoswitch), and trade qualifications in pipefitting, electrical, and instrumentation. We maintain continuous professional development through industry associations.</p></div>
+          <div class="faq-answer"><p>Ask us about the experience and qualifications relevant to your project. We can confirm the personnel and documentation available for the work being considered.</p></div>
         </details>
 
         <details class="faq-item" data-reveal data-reveal-delay="4">
@@ -301,8 +306,8 @@
         </details>
 
         <details class="faq-item" data-reveal>
-          <summary>Do you offer emergency/after-hours support?</summary>
-          <div class="faq-answer"><p>Yes. We provide 24/7 emergency response for system impairments, sprinkler leaks, alarm activations, pump failures, and post-fire restoration. Our Harare-based team can mobilize quickly. Emergency call-out: <strong>+263 776 400 176</strong> (WhatsApp available).</p></div>
+          <summary>Do you offer after-hours or out-of-hours support?</summary>
+          <div class="faq-answer"><p>For system impairments, sprinkler leaks, alarm activations or pump faults, call or WhatsApp us. Our team will confirm the next step and service availability directly.</p></div>
         </details>
 
         <details class="faq-item" data-reveal>
@@ -338,41 +343,84 @@
         </div>
       </div>
     </section>
+
+    <!-- Get a quote -->
+    <section class="quote-band" aria-label="Request a quotation">
+      <div class="container quote-band-inner">
+        <div class="quote-band-text">
+          <h2>Need a fire protection quotation?</h2>
+          <p>Tell us which fire protection service you need and where the site is located.</p>
+        </div>
+        <div class="quote-band-actions">
+          <a href="contact.html#quote" class="quote-btn quote-btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Get a quote</a>
+          <a href="tel:+263242488720" class="quote-btn quote-btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Call 024 248 8720</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+    <section class="contact-actions" aria-label="Contact us">
+      <div class="container">
+        <div class="contact-actions-inner">
+          <h2>Talk to us today</h2>
+          <p>Choose phone, WhatsApp or email to discuss your site and fire protection needs.</p>
+          <div class="contact-actions-row">
+            <a class="contact-btn contact-btn-wa" href="https://wa.me/263776400176" target="_blank" rel="noopener" data-efd-track="click_whatsapp">
+              <span class="contact-btn-label">WhatsApp</span>
+              <span class="contact-btn-value">0776 400 176</span>
+            </a>
+            <a class="contact-btn contact-btn-call" href="tel:+263242488720" data-efd="phone-link" data-efd-track="click_call">
+              <span class="contact-btn-label">Call</span>
+              <span class="contact-btn-value">0242 488 720</span>
+            </a>
+            <a class="contact-btn contact-btn-email" href="mailto:info@extremefire.co.zw" data-efd="email-link">
+              <span class="contact-btn-label">Email</span>
+              <span class="contact-btn-value">info@extremefire.co.zw</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="live-footer-map" style="margin:0 auto;max-width:1120px;padding:0 24px 28px">
-     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0;border-radius:12px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Extreme Fire Design location"></iframe>
+     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&bbox=30.975,-17.905,31.125,-17.755&z=14&hl=en&ie=UTF8&output=embed"
+              width="100%" height="189" style="border:0;display:block;border-radius:12px"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Extreme Fire Design location, Harare, Zimbabwe"></iframe>
    </div>
-  <footer class="site-footer live-footer">
+  
+
+    <footer class="site-footer live-footer">
     <div class="container live-footer-main">
       <div class="live-footer-brand">
         <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
-        <ul class="live-footer-contact">
-          <li data-efd="address">21566 Damofalls Industrial Area, Harare, Zimbabwe</li>
-          <li><a data-efd="phone-link" href="tel:+263242488272"><span data-efd="phone">0242 488 272</span></a></li>
-          <li><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></li>
-          <li><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></li>
-          <li><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></li>
-        </ul>
+        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488720"><span data-efd="phone">0242 488 720</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
       </div>
       <div class="live-footer-links">
-        <h3>Useful Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="portfolio.html">Our Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="faq.html">FAQ's</a></li>
-          <li><a href="fire-sprinkler-installation-harare.html">Fire Sprinkler Installation, Harare</a></li>
-          <li><a href="fire-alarm-detection-systems-harare.html">Fire Alarm &amp; Detection, Harare</a></li>
-          <li><a href="fire-hydrant-hose-reel-systems.html">Fire Hydrant &amp; Hose Reel Systems</a></li>
-          <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
-          <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
-          <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
-          <li><a href="privacy.html">Privacy Notice</a></li>
-        </ul>
-      </div>
+          <div class="footer-link-group">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Our Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#home-faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <h3>Service Pages</h3>
+            <ul>
+              <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
+              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
+              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
+              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
+              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
+              <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
+            </ul>
+          </div>
+        </div>
       <div class="live-footer-about">
         <h3>About Us</h3>
         <p>Extreme Fire is the place to go for all of your fire protection engineering, design and installation services.</p>
@@ -386,7 +434,7 @@
 
     <div class="live-footer-bottom">
       <div class="container live-footer-bottom-inner">
-        <p>Extreme Fire Design - Copyright &copy; 2012 - 2026. All Rights Reserved. <a href="faq.html">FAQ's</a> | Privacy Policy</p>
+        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="faq.html">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
         <p>Webcrafted By <a href="https://www.noeljay.co.zw">NOEL JAY DIGITAL SOLUTIONS</a></p>
       </div>
     </div>
@@ -399,12 +447,7 @@
     (function(){
       var heading=document.getElementById('faq-typewriter');
       if(heading){
-        var fullText=heading.textContent;
-        heading.textContent='';
-        var i=0,started=false;
-        function typeStep(){if(i<fullText.length){heading.textContent+=fullText[i];i++;setTimeout(typeStep,i===1?300:35);}}
-        var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting&&!started){started=true;typeStep();obs.unobserve(e.target);}});},{threshold:0.1});
-        obs.observe(heading);
+        heading.setAttribute('aria-label', heading.textContent.trim());
       }
       var pb=document.querySelectorAll('.parallax-bg');
       function move(){
@@ -478,5 +521,5 @@
 <script src="leads.js" defer></script>
 <script src="script.js" defer></script>
   <script src="chat.js" defer></script>
-</body>
+  <!-- Floating 24/7 service desk button --></body>
 </html>

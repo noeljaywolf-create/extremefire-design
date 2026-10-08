@@ -1,9 +1,47 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
-  <rect width="200" height="200" rx="16" fill="rgba(255,61,0,0.08)"/>
-  <rect x="40" y="60" width="120" height="60" rx="8" stroke="#ff3d00" stroke-width="2.5" fill="none"/>
-  <line x1="55" y1="80" x2="145" y2="80" stroke="#ff3d00" stroke-width="1.5" opacity="0.5"/>
-  <line x1="55" y1="95" x2="145" y2="95" stroke="#ff3d00" stroke-width="1.5" opacity="0.5"/>
-  <line x1="55" y1="110" x2="145" y2="110" stroke="#ff3d00" stroke-width="1.5" opacity="0.5"/>
-  <circle cx="100" cy="155" r="20" stroke="#ff3d00" stroke-width="2" fill="none" opacity="0.6"/>
-  <path d="M92 155 L100 147 L108 155 M100 147 V163" stroke="#ff3d00" stroke-width="2" fill="none" opacity="0.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+<title id="title">Commercial split air-conditioning system</title>
+<desc id="desc">Three-dimensional product illustration of a wall-mounted indoor air conditioner connected to an outdoor compressor unit.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101827"/><stop offset="1" stop-color="#080c14"/></linearGradient>
+ <linearGradient id="front" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7f9fc"/><stop offset=".55" stop-color="#dce3ec"/><stop offset="1" stop-color="#aeb9c7"/></linearGradient>
+ <linearGradient id="side" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8b5c4"/><stop offset="1" stop-color="#697789"/></linearGradient>
+ <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dce4ec"/><stop offset="1" stop-color="#78889a"/></linearGradient>
+ <linearGradient id="air" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#45d7ff" stop-opacity=".85"/><stop offset="1" stop-color="#287bff" stop-opacity=".08"/></linearGradient>
+ <filter id="shadow" x="-.2" y="-.3" width="1.4" height="1.7"><feGaussianBlur stdDeviation="18"/></filter>
+ <filter id="glow"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1200" height="720" rx="28" fill="url(#bg)"/>
+<g opacity=".12" stroke="#96a8bd"><path d="M0 590H1200M0 640H1200M120 0V720M240 0V720M960 0V720M1080 0V720"/></g>
+<ellipse cx="550" cy="585" rx="405" ry="45" fill="#000" opacity=".5" filter="url(#shadow)"/>
+<ellipse cx="930" cy="605" rx="170" ry="34" fill="#000" opacity=".5" filter="url(#shadow)"/>
+<!-- Cool air ribbons -->
+<path d="M280 365c48 82 28 112 65 168m57-165c45 89 23 112 62 178m54-171c40 73 17 116 52 170" fill="none" stroke="url(#air)" stroke-width="11" stroke-linecap="round" opacity=".62" filter="url(#glow)"/>
+<!-- Indoor wall unit: clear front face with visible side depth -->
+<path d="M165 248 660 190l78 35-502 71z" fill="#fff" opacity=".12"/>
+<path d="m656 206 68 28v132l-68-29z" fill="url(#side)" stroke="#8897a7" stroke-width="2"/>
+<path d="m205 248 451-42v131l-451 45z" fill="url(#front)" stroke="#fff" stroke-opacity=".8" stroke-width="3"/>
+<path d="m205 353 451-44v26l-451 51z" fill="#607184"/>
+<path d="m223 357 412-43" stroke="#36485b" stroke-width="5" stroke-linecap="round"/>
+<path d="m229 367 396-41" stroke="#d9e3ed" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+<rect x="590" y="244" width="28" height="8" rx="4" fill="#42d8ff" filter="url(#glow)"/>
+<path d="M235 264c85-8 204-22 302-29" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+<text x="247" y="316" font-family="Arial,sans-serif" font-size="15" letter-spacing="5" fill="#718096">INVERTER SPLIT SYSTEM</text>
+<!-- Installed service line -->
+<path d="M724 351c112 14 149 3 188-23 28-18 35-23 55-23" fill="none" stroke="#6edcff" stroke-width="5" stroke-dasharray="7 10" opacity=".72"/>
+<!-- Outdoor condenser: dimensional cabinet and fan -->
+<path d="m815 355 222-28 93 45-228 36z" fill="#bac5d0"/>
+<path d="m815 355 222-28v189l-222 30z" fill="url(#front)" stroke="#edf3f7" stroke-width="3"/>
+<path d="m1037 327 93 45v185l-93-41z" fill="url(#side)" stroke="#97a5b4" stroke-width="3"/>
+<circle cx="925" cy="433" r="59" fill="#d8e0e8" stroke="#8696a7" stroke-width="4"/>
+<circle cx="925" cy="433" r="12" fill="#7b8b9d"/>
+<g fill="#91a0ae" opacity=".86">
+<path d="M925 421c-10-31-7-55 2-64 12 12 17 33 10 66z"/><path d="M937 433c31-10 55-7 64 2-12 12-33 17-66 10z"/><path d="M925 445c10 31 7 55-2 64-12-12-17-33-10-66z"/><path d="M913 433c-31 10-55 7-64-2 12-12 33-17 66-10z"/>
+</g>
+<circle cx="925" cy="433" r="59" fill="none" stroke="#8d9cad" stroke-width="2"/>
+<path d="M846 511v18m157-38v19" stroke="#6e7e90" stroke-width="9" stroke-linecap="round"/>
+<path d="M1072 373v130m18-121v128" stroke="#56687b" stroke-width="3" opacity=".7"/>
+<text x="848" y="550" font-family="Arial,sans-serif" font-size="13" letter-spacing="3" fill="#94a6ba">OUTDOOR CONDENSER</text>
+<!-- small technical accents -->
+<circle cx="112" cy="124" r="5" fill="#ff5c2b"/><path d="M130 124h100" stroke="#ff5c2b" stroke-width="2" opacity=".7"/>
+<text x="130" y="112" font-family="Arial,sans-serif" font-size="13" letter-spacing="4" fill="#d4deea">CLIMATE CONTROL</text>
 </svg>

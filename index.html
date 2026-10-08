@@ -19,15 +19,16 @@
   <link rel="icon" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
   <link rel="preload" as="image" href="images/logo.png" />
   <link rel="preload" as="image" href="images/our-work/project-03.jpeg" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
+  <link rel="stylesheet" href="pages.css" />
   <style>
-    /* Astro Motion: fixed video background (copied from TemplateMo 560) */
-    #bg-video-fixed{position:fixed;left:50%;top:50%;bottom:auto;right:auto;min-width:100%;min-height:100%;transform:translateX(-50%) translateY(-50%);z-index:-100;object-fit:cover;background-image:url('images/our-work/project-03.jpeg');background-position:center;background-size:cover;background-repeat:no-repeat}
-    @media(max-width:640px){#bg-video-fixed{display:block!important;width:100vw!important;height:100vh!important;object-fit:cover!important}}
     /* Semi-transparent overlays for sections below hero */
     .astro-overlay{background:rgba(6,7,13,0.72)!important}
     .astro-overlay-light{background:rgba(6,7,13,0.55)!important}
@@ -92,7 +93,7 @@
         "contactPoint": [{
           "@type": "ContactPoint",
           "contactType": "sales",
-          "telephone": "+263242488272",
+          "telephone": "+263242488720",
           "email": "info@extremefire.co.zw",
           "areaServed": ["Harare", "Bulawayo"],
           "availableLanguage": ["en"]
@@ -104,7 +105,7 @@
         "name": "Extreme Fire Design Inc",
         "description": "Fire protection engineering contractor in Harare, Zimbabwe. Design with hydraulic calculations, installation, and maintenance of sprinkler, alarm, hydrant and suppression systems.",
         "url": "https://www.extremefiredesigninc.com/",
-        "telephone": "+263242488272",
+        "telephone": "+263242488720",
         "email": "info@extremefire.co.zw",
         "address": {
           "@type": "PostalAddress",
@@ -121,14 +122,6 @@
         "areaServed": [
           {"@type": "City", "name": "Harare"},
           {"@type": "City", "name": "Bulawayo"}
-        ],
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-            "opens": "08:00",
-            "closes": "17:00"
-          }
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -148,40 +141,11 @@
   }
   </script>
 </head>
-<body>
-  <!-- Astro Motion: fixed fullscreen video background (TemplateMo 560) -->
-  <video autoplay muted loop playsinline id="bg-video-fixed" poster="images/our-work/project-03.jpeg" preload="metadata">
+<body class="home-page" style="--page-bg: url('images/about/hero-01.jpg')">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <video class="page-bg-video" autoplay muted loop playsinline id="bg-video-fixed" poster="images/our-work/project-03.jpeg" preload="auto">
     <source src="Background/extreme-fire-video.mp4" type="video/mp4">
   </video>
-  <script>
-  /* Hero video policy, mobile-first.
-     The background video is ~2.8MB. On mobile, or when the browser reports
-     Save-Data, or on a slow connection, we do not fetch it at all: the poster
-     image is shown instead. The <source> is only attached once we decide the
-     video should actually play, so the file is never downloaded needlessly. */
-  (function () {
-    var v = document.getElementById('bg-video-fixed') || document.querySelector('video');
-    if (!v) return;
-    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    var saveData = !!(conn && conn.saveData);
-    var slow = !!(conn && /(^|-)2g$/.test(conn.effectiveType || ''));
-    var small = window.matchMedia('(max-width: 768px)').matches;
-    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (saveData || slow || small || reduced) {
-      v.removeAttribute('autoplay');
-      v.pause && v.pause();
-      // Leave the poster frame visible; never load the video file.
-      v.removeAttribute('preload');
-      Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
-        s.removeAttribute('src');
-      });
-      v.setAttribute('data-video-skipped', '1');
-      return;
-    }
-    v.setAttribute('preload', 'metadata');
-  })();
-  </script>
-
 
   <!-- Page Loader -->
   <div class="page-loader" id="page-loader">
@@ -192,7 +156,7 @@
   <div class="util-strip">
     <div class="util-inner">
       <div class="util-contact">
-        <a data-efd="phone-link" href="tel:+263242488720">0242488270/1/2/3</a>
+        <a data-efd="phone-link" href="tel:+263242488720">0242 488 720</a>
         <a data-efd="email-link" href="mailto:info@extremefire.co.zw">info@extremefire.co.zw</a>
       </div>
       <div class="util-tagline">Safety Through Technology</div>
@@ -217,7 +181,7 @@
     </nav>
   </header>
 
-<main>
+<main id="main">
     <section class="hero-section home-hero" style="background:transparent">
       <div class="hero-bg" aria-hidden="true">
         <div class="hero-bg__slide slide-1 active"></div>
@@ -227,18 +191,15 @@
         <div class="hero-bg__slide slide-5"></div>
       </div>
       <div class="container hero-content home-hero-copy">
-        <p class="eyebrow">Fire protection engineering &middot; Harare, Zimbabwe</p>
+        <p class="eyebrow">Fire protection engineering &middot; Zimbabwe</p>
         <!-- The H1 previously held no text at all: it was filled in by a
              JavaScript typewriter, so search engines and screen readers saw an
              empty heading. The real heading is now static HTML. The typewriter
              runs on the supporting line below it instead. -->
-        <h1>Engineered fire protection for Harare and Bulawayo buildings</h1>
-        <p class="hero-sub">Sprinkler, alarm, hydrant and suppression systems designed
-           with hydraulic calculations to NFPA 13 and EN 12845 &mdash; then installed,
-           commissioned and maintained by the same team.</p>
-        <p class="service-area">We work across Harare and Bulawayo, and on request
-           elsewhere in Zimbabwe.</p>
-        <p class="hero-rotator"><span id="hero-typewriter" class="hero-typewriter-line">Design, installation, commissioning and maintenance</span><span class="typewriter-cursor hero-typewriter-cursor">|</span></p>
+        <h1>Engineered fire protection for buildings across Zimbabwe</h1>
+        <p class="hero-sub">Sprinkler, alarm, hydrant and suppression systems planned around each the needs of each building,
+           site conditions and applicable requirements, with installation and maintenance support.</p>
+<p class="hero-rotator"><span id="hero-typewriter" class="hero-typewriter-line">Design, installation, commissioning and maintenance</span><span class="typewriter-cursor hero-typewriter-cursor">|</span></p>
         <div class="hero-actions">
           <a class="button primary" data-efd="phone-link" href="tel:+263242488720" data-efd-track="click_call">Call for a quote</a>
           <a data-efd="whatsapp-link" class="button secondary" href="https://wa.me/263776400176" target="_blank" rel="noopener" data-efd-track="click_whatsapp">WhatsApp us</a>
@@ -253,7 +214,7 @@
     </section>
 
     <!-- Trust Strip — Client Logos -->
-    <section class="trust-strip" aria-label="Trusted by leading companies">
+    <section class="trust-strip" aria-label="Trusted by leading companies" hidden>
       <div class="container">
         <p class="trust-label">Trusted by Industry Leaders Across Zimbabwe</p>
         <div class="trust-logos-track">
@@ -278,7 +239,68 @@
         </div>
       </div>
     </section>
-
+    <!-- Case study highlights: slim sliding strip -->
+    <section class="case-strip" aria-label="Case study highlights">
+      <div class="container">
+        <p class="case-strip-label">What good fire protection actually changes</p>
+      </div>
+      <div class="case-strip-track">
+        <div class="case-strip-rail">
+          <article class="case-strip-card">
+            <span class="case-strip-tag">High-hazard storage</span>
+            <h3>Pallet &amp; racked storage</h3>
+            <p>Water density at the ceiling, not sprinkler count, decides the outcome.</p>
+          </article>
+          <article class="case-strip-card">
+            <span class="case-strip-tag">Multi-storey industrial</span>
+            <h3>Industrial &amp; manufacturing</h3>
+            <p>Zoned detection and a signed cause-and-effect matrix turn an alarm into an instruction.</p>
+          </article>
+          <article class="case-strip-card">
+            <span class="case-strip-tag">Critical equipment</span>
+            <h3>Server rooms &amp; enclosures</h3>
+            <p>Clean-agent and pre-action systems suppress without the water damage.</p>
+          </article>
+          <article class="case-strip-card">
+            <span class="case-strip-tag">Compliance</span>
+            <h3>Keeping the record straight</h3>
+            <p>Impairment logs and service certificates are what an auditor actually asks for.</p>
+          </article>
+          <article class="case-strip-card">
+            <span class="case-strip-tag">Whole-site cover</span>
+            <h3>The edges, not the centre</h3>
+            <p>Workshop, pump house and yard are usually where protection is missing.</p>
+          </article>
+          <!-- duplicated for a seamless loop -->
+          <article class="case-strip-card" aria-hidden="true">
+            <span class="case-strip-tag">High-hazard storage</span>
+            <h3>Pallet &amp; racked storage</h3>
+            <p>Water density at the ceiling, not sprinkler count, decides the outcome.</p>
+          </article>
+          <article class="case-strip-card" aria-hidden="true">
+            <span class="case-strip-tag">Multi-storey industrial</span>
+            <h3>Industrial &amp; manufacturing</h3>
+            <p>Zoned detection and a signed cause-and-effect matrix turn an alarm into an instruction.</p>
+          </article>
+          <article class="case-strip-card" aria-hidden="true">
+            <span class="case-strip-tag">Critical equipment</span>
+            <h3>Server rooms &amp; enclosures</h3>
+            <p>Clean-agent and pre-action systems suppress without the water damage.</p>
+          </article>
+          <article class="case-strip-card" aria-hidden="true">
+            <span class="case-strip-tag">Compliance</span>
+            <h3>Keeping the record straight</h3>
+            <p>Impairment logs and service certificates are what an auditor actually asks for.</p>
+          </article>
+          <article class="case-strip-card" aria-hidden="true">
+            <span class="case-strip-tag">Whole-site cover</span>
+            <h3>The edges, not the centre</h3>
+            <p>Workshop, pump house and yard are usually where protection is missing.</p>
+          </article>
+        </div>
+      </div>
+      <p class="case-strip-foot">General industry scenarios - not accounts of specific client sites. <a href="services.html">Read the full case studies</a></p>
+    </section>
 
     <section class="section welcome-banner astro-overlay" data-section-reveal>
       <div class="container">
@@ -425,7 +447,7 @@
               <svg viewBox="0 0 64 64" fill="none" stroke="#ff3d00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 48V28a14 14 0 0128 0v20"/><path d="M26 48V34h12v14"/><circle cx="32" cy="24" r="4" fill="#ff3d00" opacity="0.3"/></svg>
             </div>
             <h3>6. Maintenance</h3>
-            <p>Ongoing inspection, servicing and rapid response</p>
+            <p>Planned inspection and servicing based on site needs</p>
           </div>
         </div>
       </div>
@@ -460,109 +482,10 @@
       </div>
     </section>
 
-
     <div class="zigzag-divider"><span class="zigzag-text">Protecting Lives & Property</span></div>
 
     <!-- Premium Service Slider -->
-    <section class="services-slider-section astro-overlay" data-section-reveal>
-      <div class="container">
-        <div class="section-heading services-slider-heading">
-          <p class="eyebrow">Our Solutions</p>
-          <h2>Our Fire Protection Solutions</h2>
-          <p>Complete professional fire protection services for commercial, industrial, and mining facilities across Zimbabwe.</p>
-        </div>
-      </div>
-      <div class="services-slider-viewport" role="region" aria-label="Fire protection services carousel">
-        <div class="services-slider-track">
-          <article class="service-slide-card">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-01.jpeg" alt="Fire detection systems" loading="lazy">
-              <span class="service-slide-badge">Detection</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Detection & Alarm Systems</h3>
-              <p>Advanced fire detection and alarm system design, installation support, and commissioning for commercial, industrial, and residential facilities.</p>
-              <a href="fire-alarm-detection-systems-harare.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-02.jpeg" alt="Fire safety equipment" loading="lazy">
-              <span class="service-slide-badge">Equipment</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Safety Equipment Supply</h3>
-              <p>Quality fire safety equipment, extinguishers, hose reels, and related fire protection components from trusted international brands.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-03.jpeg" alt="Fire suppression systems" loading="lazy">
-              <span class="service-slide-badge">Suppression</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Suppression Systems</h3>
-              <p>Specialized fire suppression system design including gas, foam, dry chemical, and water mist systems for high-hazard environments.</p>
-              <a href="gas-fire-suppression-fm200.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-04.jpeg" alt="Water supply systems" loading="lazy">
-              <span class="service-slide-badge">Water Supply</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Water Supply & Pump Systems</h3>
-              <p>Fire pump system design, water supply engineering, hydraulic calculations, and adequate water supply review for fire protection.</p>
-              <a href="systems.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-05.jpeg" alt="Code compliance" loading="lazy">
-              <span class="service-slide-badge">Compliance</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Code Compliance & Consulting</h3>
-              <p>Fire safety compliance assessment, code review, and consulting services to ensure your facility meets all regulatory requirements.</p>
-              <a href="fire-safety-compliance-zimbabwe.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-06.jpeg" alt="Fire engineering" loading="lazy">
-              <span class="service-slide-badge">Engineering</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Fire Engineering Design</h3>
-              <p>Complete fire protection engineering design including AutoCAD layouts, hydraulic calculations, and fully dimensioned construction drawings.</p>
-              <a href="fire-sprinkler-installation-harare.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-          <article class="service-slide-card">
-            <div class="service-slide-img">
-              <img src="images/our-work/project-07.jpeg" alt="Maintenance services" loading="lazy">
-              <span class="service-slide-badge">Training</span>
-            </div>
-            <div class="service-slide-body">
-              <h3>Maintenance & Training</h3>
-              <p>Preventive maintenance programs, system inspections, staff training, and ongoing support to keep your fire protection systems operational.</p>
-              <a href="services.html" class="service-slide-btn">Learn More</a>
-            </div>
-          </article>
-
-          <!-- Duplicates for infinite loop -->
-          
-          
-          
-          
-          
-          
-          
-        </div>
-      </div>
-    </section>
+    <!-- services-slider-section: removed, content now lives on services.html / systems.html -->
 
     <!-- Statistics
          The previous counters asserted 500+ projects, 14+ years, 50+ industries
@@ -645,97 +568,41 @@
       </div>
     </section>
 
-
-    <section class="section recent-work-section astro-overlay" data-section-reveal>
-      <div class="container recent-work-shell">
-        <header class="recent-work-header">
-          <p class="eyebrow recent-work-eyebrow">Portfolio</p>
-          <h2 class="recent-work-title">Recent Work</h2>
-          <p class="recent-work-tagline">
-            <span id="recent-work-typewriter" class="typewriter-text" aria-label="It's What We Do"></span><span class="typewriter-cursor" aria-hidden="true">|</span>
-          </p>
-        </header>
-        <div class="recent-work-gallery">
-          <figure class="recent-work-item"><img src="images/our-work/project-01.jpeg" alt="Extreme Fire Design project installation" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-02.jpeg" alt="Extreme Fire Design fire protection system" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-03.jpeg" alt="Extreme Fire Design sprinkler installation" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-04.jpeg" alt="Extreme Fire Design site work" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-05.jpeg" alt="Extreme Fire Design project completion" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-06.jpeg" alt="Extreme Fire Design fire system setup" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-07.jpeg" alt="Extreme Fire Design engineering project" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-08.jpeg" alt="Extreme Fire Design installation support" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-09.jpeg" alt="Extreme Fire Design fire protection work" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-10.jpeg" alt="Extreme Fire Design commercial project" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-11.jpeg" alt="Extreme Fire Design industrial fire system" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-12.jpeg" alt="Extreme Fire Design sprinkler system work" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-13.jpeg" alt="Extreme Fire Design maintenance project" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-14.jpeg" alt="Extreme Fire Design field installation" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-15.jpeg" alt="Extreme Fire Design fire safety project" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-16.jpeg" alt="Extreme Fire Design system commissioning" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-17.jpeg" alt="Extreme Fire Design project site" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-18.jpeg" alt="Extreme Fire Design fire protection installation" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-19.jpeg" alt="Extreme Fire Design completed project" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/project-20.jpeg" alt="Extreme Fire Design recent work" loading="lazy"></figure>
+    <section class="section highlights-section astro-overlay" id="project-highlights" data-section-reveal>
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Project Highlights</p>
+          <h2>Recent work, briefly</h2>
+          <p>A snapshot of installations across Zimbabwe. The full gallery covers every project.</p>
         </div>
-        <div class="recent-work-mobile-btn">
-          <a href="portfolio.html">View All Recent Work &rarr;</a>
+        <div class="nine-grid">
+          <article class="nine-card">
+            <div class="nine-card-img"><img src="images/our-work/project-07.jpeg" alt="High-bay sprinkler installation" loading="lazy" width="800" height="800"></div>
+            <span class="nine-tag">High-hazard storage</span>
+            <h3>Pallet and racked storage</h3>
+            <p class="nine-clamp">Water density at the ceiling decides the outcome, not sprinkler count. Layouts are classified against the real storage height and commodity, then hydraulically calculated so the supply actually meets the demand at the most remote head.</p>
+            <a class="nine-more" href="portfolio.html">Read more<span aria-hidden="true"> &rarr;</span></a>
+          </article>
+          <article class="nine-card">
+            <div class="nine-card-img"><img src="images/our-work/project-04.jpeg" alt="Addressable fire detection panel installation" loading="lazy" width="1000" height="750"></div>
+            <span class="nine-tag">Multi-storey industrial</span>
+            <h3>Zoned detection and alarm</h3>
+            <p class="nine-clamp">Detection only protects people when the information is usable. Zones are mapped to the way the building is actually occupied, and the cause-and-effect matrix documents exactly what the system will do on alarm.</p>
+            <a class="nine-more" href="portfolio.html">Read more<span aria-hidden="true"> &rarr;</span></a>
+          </article>
+          <article class="nine-card">
+            <div class="nine-card-img"><img src="images/our-work/project-12.jpeg" alt="Gas suppression system for a critical equipment room" loading="lazy" width="800" height="800"></div>
+            <span class="nine-tag">Critical equipment</span>
+            <h3>Suppression without water damage</h3>
+            <p class="nine-clamp">Where the equipment is the asset, water is the wrong tool. Clean-agent and pre-action systems are engineered around enclosure integrity, hold-off and discharge verification so the room stays re-enterable.</p>
+            <a class="nine-more" href="portfolio.html">Read more<span aria-hidden="true"> &rarr;</span></a>
+          </article>
         </div>
-        <div class="recent-work-actions">
-          <a class="button primary recent-work-cta" href="portfolio.html">View Full Gallery</a>
+        <div class="nine-actions">
+          <a class="button primary" href="portfolio.html">View the full gallery</a>
         </div>
       </div>
     </section>
-
-    <!-- ── Our Products — auto-sliding carousel ── -->
-    <section class="section products-section" style="padding:60px 0;background:#fff;overflow:hidden">
-      <div class="container" style="text-align:center;margin-bottom:32px">
-        <p style="margin:0 0 8px;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:700">What We Supply</p>
-        <h2 style="margin:0 0 10px;font-size:clamp(1.8rem,3.5vw,2.6rem);color:#0a0f1c;letter-spacing:-0.02em">Our Products</h2>
-        <p style="margin:0 auto;max-width:560px;color:#64748b;font-size:0.95rem;line-height:1.6">Premium fire protection equipment — tested, certified, and trusted on every project we deliver.</p>
-      </div>
-      <div class="products-track-wrap" style="overflow:hidden">
-        <div class="products-track" id="products-track">
-          <div class="product-slide"><img src="images/products/images.jfif" alt="Tyco alarm valve" loading="lazy"><span class="product-label"><strong>Alarm Valve System</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (1).jfif" alt="Fire hose reel" loading="lazy"><span class="product-label"><strong>Fire Hose Reels</strong><em>New · Servicing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (2).jfif" alt="Mobile hose reel" loading="lazy"><span class="product-label"><strong>Mobile Hose Reels</strong><em>Supply &amp; Refill</em></span></div>
-          <div class="product-slide"><img src="images/products/images (3).jfif" alt="Hose reel cabinet" loading="lazy"><span class="product-label"><strong>Hose Reel Cabinets</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (4).jfif" alt="Industrial hose reel" loading="lazy"><span class="product-label"><strong>Industrial Hose Reels</strong><em>Supply &amp; Servicing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (5).jfif" alt="Pressure washer hose reel" loading="lazy"><span class="product-label"><strong>Pressure Washer Reels</strong><em>Supply &amp; Servicing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (6).jfif" alt="Dual hose reel" loading="lazy"><span class="product-label"><strong>Dual Hose Reel Systems</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (7).jfif" alt="Smoke detector" loading="lazy"><span class="product-label"><strong>Smoke Detectors</strong><em>Supply · Testing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (8).jfif" alt="Fire alarm sounder" loading="lazy"><span class="product-label"><strong>Fire Alarm Sounders</strong><em>Supply &amp; Servicing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (9).jfif" alt="Fire alarm system kit" loading="lazy"><span class="product-label"><strong>Fire Detection Systems</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (10).jfif" alt="Heat detector" loading="lazy"><span class="product-label"><strong>Heat Detectors</strong><em>Supply · Testing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (11).jfif" alt="Fire point sign" loading="lazy"><span class="product-label"><strong>Fire Point Signage</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (12).jfif" alt="Emergency assembly point sign" loading="lazy"><span class="product-label"><strong>Assembly Point Signs</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images.png" alt="Fire assembly point sign" loading="lazy"><span class="product-label"><strong>Fire Assembly Signs</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/download.webp" alt="Fire exit signs" loading="lazy"><span class="product-label"><strong>Fire Exit Signage</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/672683314_122177998670769416_5549259663154448307_n.jpg" alt="Fire extinguishers" loading="lazy"><span class="product-label"><strong>Fire Extinguishers</strong><em>New · Servicing &amp; Refill</em></span></div>
-          <!-- duplicate for seamless loop -->
-          <div class="product-slide"><img src="images/products/images.jfif" alt="" loading="lazy"><span class="product-label"><strong>Alarm Valve System</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (1).jfif" alt="" loading="lazy"><span class="product-label"><strong>Fire Hose Reels</strong><em>New · Servicing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (2).jfif" alt="" loading="lazy"><span class="product-label"><strong>Mobile Hose Reels</strong><em>Supply &amp; Refill</em></span></div>
-          <div class="product-slide"><img src="images/products/images (3).jfif" alt="" loading="lazy"><span class="product-label"><strong>Hose Reel Cabinets</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (4).jfif" alt="" loading="lazy"><span class="product-label"><strong>Industrial Hose Reels</strong><em>Supply &amp; Servicing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (5).jfif" alt="" loading="lazy"><span class="product-label"><strong>Pressure Washer Reels</strong><em>Supply &amp; Servicing</em></span></div>
-          <div class="product-slide"><img src="images/products/images (6).jfif" alt="" loading="lazy"><span class="product-label"><strong>Dual Hose Reel Systems</strong><em>Supply &amp; Installation</em></span></div>
-          <div class="product-slide"><img src="images/products/images (7).jfif" alt="" loading="lazy"><span class="product-label"><strong>Smoke Detectors</strong><em>Supply · Testing</em></span></div>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:28px"><a href="contact.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:24px;background:var(--accent);color:#fff;font-weight:700;font-size:0.85rem;text-decoration:none;transition:all 0.3s">Enquire About Products &rarr;</a></div>
-    </section>
-    <style>
-      .products-track{display:flex;gap:18px;width:max-content;animation:productsScroll 30s linear infinite}
-      .products-track:hover{animation-play-state:paused}
-      .product-slide{flex-shrink:0;width:180px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #e2e8f0;box-shadow:0 4px 16px rgba(0,0,0,0.06);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;transition:transform 0.3s,box-shadow 0.3s}
-      .product-slide img{width:100%;height:140px;object-fit:contain;display:block;padding:10px 10px 0}
-      .product-label{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 8px 12px;gap:2px;width:100%}
-      .product-label strong{font-size:0.72rem;font-weight:700;color:#0f172a;letter-spacing:0.02em;line-height:1.2}
-      .product-label em{font-style:normal;font-size:0.62rem;color:var(--accent);font-weight:600;letter-spacing:0.05em;text-transform:uppercase}
-      .product-slide:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,0.12)}
-      @keyframes productsScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-      @media(max-width:640px){.product-slide{width:150px;height:150px}}
-    </style>
 
     <div class="live-rotator">
       <div class="live-rotator-track">
@@ -758,17 +625,6 @@
             </div>
           </div>
         </section>
-
-        <section class="section passion-cta live-slide astro-overlay" data-index="1">
-          <div class="container passion-cta-inner">
-            <div>
-              <p class="eyebrow"><span class="live-dot"></span> Get ready</p>
-              <h2><span id="typewriter-text" class="typewriter-line"></span><span class="typewriter-cursor">|</span></h2>
-              <p>Cutting-edge technology, detailed processes, trained technicians and practical engineering support for every project phase.</p>
-            </div>
-            <a class="button primary" href="contact.html">Get Started</a>
-          </div>
-        </section>
       </div>
       <div class="live-rotator-controls">
         <button class="live-rotator-dot active" aria-label="Slide 1"></button>
@@ -777,112 +633,62 @@
       </div>
     </div>
 
-    <section class="section overview-section astro-overlay" data-section-reveal>
-      <div class="container overview-grid">
-        <div class="overview-block">
-          <h2 class="why-choose-heading">WHY CHOOSE EXTREME FIRE DESIGN</h2>
-          <p>We combine practical engineering, reliable system design, and efficient project support to help protect people and property with modern fire protection solutions.</p>
-          <div class="why-choose-points">
-            <article class="why-choose-item" data-reveal data-reveal-delay="1">
-              <h3>Fast Response and Engineering Support</h3>
-              <p>Our experienced fire protection engineers provide rapid technical support, site assessments, and project assistance to ensure your fire safety requirements are addressed quickly and efficiently.</p>
-            </article>
-            <div id="why-choose-more" hidden>
-              <article class="why-choose-item" data-reveal data-reveal-delay="2">
-                <h3>Code-Compliant Fire Protection Design</h3>
-                <p>We design fire protection systems that meet local and international fire safety codes and standards, helping your project achieve regulatory compliance and approval with confidence.</p>
-              </article>
-              <article class="why-choose-item" data-reveal data-reveal-delay="3">
-                <h3>Reliable Maintenance &amp; Inspection Services</h3>
-                <p>We offer professional inspection, testing, and maintenance services for fire alarm systems, fire sprinkler systems, fire pumps, and fire safety equipment to ensure continuous protection and optimal performance.</p>
-              </article>
-            </div>
+        <!-- Why Choose: 10cm section, 9cm sliding cards -->
+    <section class="section combo-section astro-overlay" data-section-reveal>
+      <div class="container combo-shell">
+        <div class="combo-head">
+          <h2 class="combo-heading">Why Choose Extreme Fire Design</h2>
+          <p>Practical support for fire protection planning, installation and maintenance.</p>
+          <div class="combo-nav">
+            <button class="combo-prev" type="button" aria-label="Previous card">&#x2039;</button>
+            <button class="combo-next" type="button" aria-label="Next card">&#x203A;</button>
           </div>
-          <button id="why-choose-read-more-btn" class="button secondary" aria-expanded="false">
-            <span>Read more</span>
-          </button>
         </div>
-        <div class="overview-block feature-box">
-          <h3>Our approach</h3>
-          <p>At Extreme Fire Design Inc., we deliver comprehensive fire protection solutions tailored to your facility's unique requirements. Our team conducts detailed fire risk assessments, designs compliant fire protection systems, and provides expert support for installation of fire alarm systems, fire sprinkler systems, fire pumps, and other fire safety equipment.</p>
-          <p>We ensure every project meets local and international fire safety standards, helping your facility achieve regulatory approval, enhanced protection, and long-term safety. This end-to-end approach ensures your project is safe, compliant, efficient, and ready for inspection and approval.</p>
-        </div>
-        <div class="overview-block overview-img-block" id="why-choose-rotator">
-          <div class="rotating-message active"><img src="images/our-work/project-10.jpeg" alt="" loading="lazy"><div class="rotating-message-text"><h3>Fast Response</h3><p>We respond within 24 hours to any fire protection emergency or inquiry.</p></div></div>
-          <div class="rotating-message"><img src="images/our-work/project-14.jpeg" alt="" loading="lazy"><div class="rotating-message-text"><h3>Code Compliance</h3><p>Every design meets NFPA, EN, ASIB and local regulatory fire safety standards.</p></div></div>
-          <div class="rotating-message"><img src="images/our-work/project-08.jpeg" alt="" loading="lazy"><div class="rotating-message-text"><h3>Reliable Maintenance</h3><p>Ongoing inspections and servicing keep your systems ready when you need them.</p></div></div>
+        <div class="combo-rail" role="region" aria-label="Why choose Extreme Fire Design">
+          <article class="combo-card combo-card--why" data-reveal>
+            <h3>Fast Response and Engineering Support</h3>
+            <p class="why-clamp">Our experienced fire protection engineers provide rapid technical support, site assessments, and project assistance so that your fire safety requirements are addressed quickly and efficiently, without waiting days for a callback.</p>
+            <button class="why-more" type="button" aria-expanded="false"><span>Read more</span></button>
+          </article>
+          <article class="combo-card combo-card--why" data-reveal>
+            <h3>Code-Compliant Fire Protection Design</h3>
+            <p class="why-clamp">We design fire protection systems that meet local and international fire safety codes and standards, helping your project achieve regulatory compliance and approval with confidence before construction begins.</p>
+            <button class="why-more" type="button" aria-expanded="false"><span>Read more</span></button>
+          </article>
+          <article class="combo-card combo-card--why" data-reveal>
+            <h3>Reliable Maintenance &amp; Inspection Services</h3>
+            <p class="why-clamp">We inspect, test and maintain fire alarm systems, sprinkler systems, fire pumps and fire safety equipment so that protection stays continuous and your compliance record stays intact across the year.</p>
+            <button class="why-more" type="button" aria-expanded="false"><span>Read more</span></button>
+          </article>
+          <article class="combo-card combo-card--media" data-reveal>
+            <div class="combo-card-img"><img src="images/our-work/project-10.jpeg" alt="" loading="lazy"></div>
+            <div class="combo-card-body">
+              <h3>Service support</h3>
+              <p>Contact us about system faults, alarm activations, leaks or planned servicing.</p>
+            </div>
+          </article>
+          <article class="combo-card combo-card--media" data-reveal>
+            <div class="combo-card-img"><img src="images/our-work/project-14.jpeg" alt="" loading="lazy"></div>
+            <div class="combo-card-body">
+              <h3>Code Compliance</h3>
+              <p>We review the building and confirm which technical and local requirements apply to the project.</p>
+            </div>
+          </article>
+          <article class="combo-card combo-card--media" data-reveal>
+            <div class="combo-card-img"><img src="images/our-work/project-08.jpeg" alt="" loading="lazy"></div>
+            <div class="combo-card-body">
+              <h3>Reliable Maintenance</h3>
+              <p>Ongoing inspections and servicing keep your systems ready when you need them.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section portfolio-preview astro-overlay" data-section-reveal>
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Project highlights</p>
-          <h2>Fire protection projects that support safety and compliance.</h2>
-        </div>
-        <div class="cta-row" style="justify-content: center; margin-top: 24px;">
-          <a class="portfolio-wheel-btn" href="portfolio.html">
-            <span class="wheel-ring"></span>
-            <span class="wheel-text">See our portfolio</span>
-          </a>
-        </div>
-      </div>
-    </section>
+    
+
     <!-- Case Studies -->
-    <section class="section case-studies-section astro-overlay" data-section-reveal>
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Case Studies</p>
-          <h2>Project Spotlight</h2>
-          <p>Detailed breakdowns of recent fire protection projects.</p>
-        </div>
-        <div class="case-studies-grid">
-          <article class="case-card">
-            <div class="case-img" style="background-image:url('images/our-work/CHEP PALLET PRODUCTION PLANT/CHEP PALLET PRODUCTION PLANT PUMPHOUSE.jpeg')"></div>
-            <div class="case-body">
-              <span class="case-tag">Sprinkler System</span>
-              <h3>CHEP Pallet Plant</h3>
-              <p>Complete fire sprinkler system design and installation for a high-hazard pallet production facility. Included hydraulic calculations, pump selection, and full commissioning.</p>
-              <ul class="case-specs">
-                <li><strong>Scope:</strong> Design, Install, Commission</li>
-                <li><strong>System:</strong> Wet Sprinkler, ESFR</li>
-                <li><strong>Area:</strong> 4,200 m&#178; production floor</li>
-                <li><strong>Standard:</strong> NFPA 13</li>
-              </ul>
-            </div>
-          </article>
-          <article class="case-card">
-            <div class="case-img" style="background-image:url('images/our-work/CUTRAG WOOLWICH WILLOWVALE/WhatsApp Image 2026-08-24 at 15.42.31.jpeg')"></div>
-            <div class="case-body">
-              <span class="case-tag">Fire Detection &amp; Alarm</span>
-              <h3>Cutrag Woolwich</h3>
-              <p>Full fire detection and alarm system for a multi-storey industrial complex. Addressable system with zone planning, smoke detectors, and fire panel integration.</p>
-              <ul class="case-specs">
-                <li><strong>Scope:</strong> Design, Install, Commission</li>
-                <li><strong>System:</strong> Addressable Detection</li>
-                <li><strong>Detectors:</strong> 180+ devices</li>
-                <li><strong>Standard:</strong> EN 54 / BS 5839</li>
-              </ul>
-            </div>
-          </article>
-          <article class="case-card">
-            <div class="case-img" style="background-image:url('images/our-work/project-07.jpeg')"></div>
-            <div class="case-body">
-              <span class="case-tag">Fire Suppression</span>
-              <h3>Warehouse Complex</h3>
-              <p>Special suppression system for a high-value storage facility. Foam-water deluge system with automatic activation and manual override capabilities.</p>
-              <ul class="case-specs">
-                <li><strong>Scope:</strong> Design, Install</li>
-                <li><strong>System:</strong> Foam-Water Deluge</li>
-                <li><strong>Area:</strong> 2,800 m&#178; storage</li>
-                <li><strong>Standard:</strong> EN 12845</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+    <!-- case-studies-section: moved off the homepage. The slim .case-strip carries the summary; full write-ups stay on the six service pages. -->
 
     <!-- Interactive Fire Safety Checklist -->
     <section class="section checklist-section astro-overlay" data-section-reveal>
@@ -932,55 +738,30 @@
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">Resources</p>
-          <h2>Free Fire Safety Guides</h2>
-          <p>Download expert guides to keep your property compliant.</p>
+          <h2>Practical fire safety guidance</h2>
+          <p>Short, usable references you can download now &mdash; no form, no gate.</p>
         </div>
-        <div class="resources-grid">
-          <div class="res-card" data-res="checklist">
-            <div class="res-icon">
-              <svg viewBox="0 0 64 64" fill="none" stroke="#ff3d00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="8" width="40" height="48" rx="3"/><path d="M22 22h20M22 32h20M22 42h12"/></svg>
-            </div>
-            <h3>Fire Safety Checklist</h3>
-            <p>Complete 20-point checklist for commercial buildings</p>
-            <div class="res-gate" data-gate>
-              <input type="email" placeholder="Your email address" class="res-email" aria-label="Email for download">
-              <button class="button primary small res-dl-btn">Download PDF</button>
-            </div>
-            <p class="res-note">Free, no spam ever.</p>
-          </div>
-          <div class="res-card" data-res="maintenance">
-            <div class="res-icon">
-              <svg viewBox="0 0 64 64" fill="none" stroke="#ff3d00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l10 6"/></svg>
-            </div>
-            <h3>Maintenance Schedule</h3>
-            <p>12-month fire system maintenance calendar</p>
-            <div class="res-gate" data-gate>
-              <input type="email" placeholder="Your email address" class="res-email" aria-label="Email for download">
-              <button class="button primary small res-dl-btn">Download PDF</button>
-            </div>
-            <p class="res-note">Free, no spam ever.</p>
-          </div>
-          <div class="res-card" data-res="evacuation">
-            <div class="res-icon">
-              <svg viewBox="0 0 64 64" fill="none" stroke="#ff3d00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 56h48M8 40h48M22 56V28l20-4v32M22 24l4-16 20-4-4 16"/><path d="M8 40l14-12M48 36h8"/></svg>
-            </div>
-            <h3>Evacuation Plan Template</h3>
-            <p>Customisable evacuation plan for your facility</p>
-            <div class="res-gate" data-gate>
-              <input type="email" placeholder="Your email address" class="res-email" aria-label="Email for download">
-              <button class="button primary small res-dl-btn">Download PDF</button>
-            </div>
-            <p class="res-note">Free, no spam ever.</p>
-          </div>
+        <div class="nine-grid nine-grid--two">
+          <article class="nine-card nine-card--plain">
+            <span class="nine-tag">Maintenance</span>
+            <h3>Twelve-month servicing calendar</h3>
+            <p class="nine-clamp">Which tasks fall monthly, six-monthly and annually across sprinkler, alarm, hydrant and suppression systems, and which ones need a signed certificate afterwards. Keep this next to the maintenance contract.</p>
+            <a class="nine-more" href="documents/fire-maintenance-schedule.pdf" download>Download schedule<span aria-hidden="true"> &rarr;</span></a>
+          </article>
+          <article class="nine-card nine-card--plain">
+            <span class="nine-tag">Evacuation</span>
+            <h3>Evacuation planning basics</h3>
+            <p class="nine-clamp">How to work out escape travel distances, what the assembly point arrangements should cover, and where most plans go wrong. Written for building managers rather than fire engineers.</p>
+            <a class="nine-more" href="documents/evacuation-plan-template.pdf" download>Download template<span aria-hidden="true"> &rarr;</span></a>
+          </article>
         </div>
       </div>
     </section>
 
-
     <section class="section ac-refrigeration-section astro-overlay" id="air-conditioning-refrigeration" data-section-reveal>
       <div class="container overview-grid overview-grid-2col">
         <div class="overview-block overview-img-block">
-          <img src="images/air-conditioning-refrigeration.svg" alt="Commercial air conditioning and refrigeration service by Extreme Fire Design" loading="lazy">
+          <img src="images/air-conditioning-refrigeration.svg" alt="Three-dimensional illustration of a wall-mounted air conditioner and outdoor condenser" loading="lazy">
         </div>
         <div class="overview-block">
           <p class="eyebrow">Air Conditioning &amp; Refrigeration</p>
@@ -991,56 +772,47 @@
       </div>
     </section>
 
-    <section class="section company-profile-section astro-overlay" id="company-profile" data-section-reveal>
+    <section class="section about-band astro-overlay" id="company-profile" data-section-reveal>
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">Company profile</p>
-          <h2>Who we are, what we do, and why clients choose us.</h2>
+          <p class="eyebrow">Who we are</p>
+          <h2>Company profile</h2>
+          <p>What we do, how we work, and the standard we hold ourselves to.</p>
         </div>
-        <div class="profile-grid">
-          <article class="profile-card" data-reveal data-reveal-delay="1">
+        <div class="profile-rail" role="region" aria-label="Company profile">
+          <article class="profile-card" data-reveal>
             <h3>Who We Are</h3>
             <p>Salvis Trading (Pvt) Ltd t/a Extreme Fire Design Inc. is a fire sprinkler protection installer and maintenance company serving industries with fire detection, suppression, and extinguishing systems.</p>
           </article>
-          <article class="profile-card" data-reveal data-reveal-delay="2">
+          <article class="profile-card" data-reveal>
             <h3>What We Do</h3>
             <p>We provide reliable, cost-effective fire protection and water systems, tailor-made for each project and supported by the knowledge and experience of our technical team.</p>
           </article>
-          <article class="profile-card" data-reveal data-reveal-delay="3">
+          <article class="profile-card" data-reveal>
             <h3>Why Us</h3>
             <p>Extreme Fire Design provides high-quality services and products. Customers and vendors rely on us as fire protection specialists who are practical, responsive, and easy to work with.</p>
           </article>
-        </div>
-        <div class="profile-download">
-          <a class="button primary" href="documents/extreme-fire-company-profile.pdf" download>Download Company Profile</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section philosophy-section astro-overlay" id="vision-mission-ethics" data-section-reveal>
-      <div class="container philosophy-shell">
-        <div class="section-heading">
-          <p class="eyebrow">Our foundation</p>
-          <h2>Vision, mission, ethics, and our goal.</h2>
-          <p>Click each plus to open the full message.</p>
-        </div>
-        <div class="accordion-grid">
-          <details>
-            <summary>Vision</summary>
+          <article class="profile-card" data-reveal>
+            <h3>Vision</h3>
             <p>To provide clients with reliable, cost-effective fire protection and water systems, tailor-made for each specific project and linked to our ability to effectively utilise the latest available technology.</p>
-          </details>
-          <details>
-            <summary>Mission</summary>
+          </article>
+          <article class="profile-card" data-reveal>
+            <h3>Mission</h3>
             <p>To protect lives and property and exceed the quality and service standards expected by customers in today's competitive business environment.</p>
-          </details>
-          <details>
-            <summary>Ethics</summary>
-            <p>We demonstrate integrity and can be trusted. We honor our word and maintain professional conduct in every project relationship.</p>
-          </details>
-          <details>
-            <summary>Our Goal</summary>
-            <p>Our goal is to be acknowledged as the best provider of fire protection services while striving for sound growth and profitability, quality assurance, budget efficiency, and customer service.</p>
-          </details>
+          </article>
+          <article class="profile-card" data-reveal>
+            <h3>Ethics</h3>
+            <p>We demonstrate integrity and can be trusted. We honour our word and maintain professional conduct in every project relationship.</p>
+          </article>
+        </div>
+        <div class="profile-goal">
+          <strong>Our goal:</strong> to be acknowledged as the best provider of fire protection services while
+          striving for sound growth and profitability, quality assurance, budget efficiency, and customer service.
+        </div>
+        <div class="profile-nav">
+          <button class="profile-prev" type="button" aria-label="Previous profile card">&#x2039;</button>
+          <button class="profile-next" type="button" aria-label="Next profile card">&#x203A;</button>
+          <a class="button primary small" href="documents/extreme-fire-company-profile.pdf" download>Download Company Profile</a>
         </div>
       </div>
     </section>
@@ -1123,7 +895,7 @@
           </div>
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">What fire safety standards do you follow?</button>
-            <div class="faq-answer"><p>We design to NFPA 13, EN 12845, ASIB standards, and local regulatory requirements to ensure full code compliance.</p></div>
+            <div class="faq-answer"><p>Requirements depend on the building, system and local authority. We review the project scope and confirm the applicable standards before design begins.</p></div>
           </div>
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">Do you provide fire protection maintenance services?</button>
@@ -1131,7 +903,7 @@
           </div>
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">How can I get a quote for fire protection services?</button>
-            <div class="faq-answer"><p>Contact us via phone at 0242488270/1/2/3, email info@extremefire.co.zw, or use the contact form — our team will respond promptly.</p></div>
+            <div class="faq-answer"><p>Contact us by phone, email or the enquiry form to discuss your building and project requirements.</p></div>
           </div>
         </div>
         <div class="cta-row" style="margin-top:32px">
@@ -1140,58 +912,88 @@
       </div>
     </section>
 
-
-    <!-- Emergency Response Banner -->
-    <section class="emergency-banner" aria-label="Emergency contact">
-      <div class="container emergency-inner">
-        <div class="emergency-pulse" aria-hidden="true"></div>
-        <div class="emergency-text">
-          <h2>Fire Emergency? We Respond 24/7</h2>
-          <p>Immediate assistance for fire emergencies across Zimbabwe</p>
+    <!-- Round-the-clock technical service -->
+    <section class="section final-cta astro-overlay" aria-label="Request a quotation">
+      <div class="container final-cta-inner">
+        <div class="final-cta-text">
+          <span class="support-badge">Service Support</span>
+          <h2>Need a fire protection quotation?</h2>
+          <p>Share the site location, building use and service required so our team can help scope the next step.</p>
         </div>
-        <div class="emergency-actions">
-          <a data-efd="phone-link" href="tel:+263242488720" class="emergency-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>Call Now</a>
-          <a data-efd="whatsapp-link" href="https://wa.me/263776400176" class="emergency-btn emergency-wa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+        <div class="final-cta-actions">
+          <a href="contact.html#quote" class="quote-btn quote-btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Get a quote</a>
+          <a data-efd="phone-link" href="tel:+263242488720" class="quote-btn quote-btn-ghost">Call 024 248 720</a>
+          <a data-efd="whatsapp-link" href="https://wa.me/263776400176" class="quote-btn quote-btn-ghost" target="_blank" rel="noopener">WhatsApp us</a>
         </div>
       </div>
     </section>
 
+    <!-- Get a quote -->
+
 </main>
 
+    <section class="contact-actions" aria-label="Contact us">
+      <div class="container">
+        <div class="contact-actions-inner">
+          <h2>Talk to us today</h2>
+          <p>Choose phone, WhatsApp or email to discuss your site and fire protection needs.</p>
+          <div class="contact-actions-row">
+            <a class="contact-btn contact-btn-wa" href="https://wa.me/263776400176" target="_blank" rel="noopener" data-efd-track="click_whatsapp">
+              <span class="contact-btn-label">WhatsApp</span>
+              <span class="contact-btn-value">0776 400 176</span>
+            </a>
+            <a class="contact-btn contact-btn-call" href="tel:+263242488720" data-efd="phone-link" data-efd-track="click_call">
+              <span class="contact-btn-label">Call</span>
+              <span class="contact-btn-value">0242 488 720</span>
+            </a>
+            <a class="contact-btn contact-btn-email" href="mailto:info@extremefire.co.zw" data-efd="email-link">
+              <span class="contact-btn-label">Email</span>
+              <span class="contact-btn-value">info@extremefire.co.zw</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="live-footer-map" style="margin:0 auto;max-width:1120px;padding:0 24px 28px">
-     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0;border-radius:12px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Extreme Fire Design location"></iframe>
+     <iframe src="https://maps.google.com/maps?q=Damofalls%20Industrial%20Area%20Harare%20Zimbabwe&bbox=30.975,-17.905,31.125,-17.755&z=14&hl=en&ie=UTF8&output=embed"
+              width="100%" height="189" style="border:0;display:block;border-radius:12px"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Extreme Fire Design location, Harare, Zimbabwe"></iframe>
    </div>
-  <footer class="site-footer live-footer" id="contact">
+  
+
+    <footer class="site-footer live-footer" id="contact">
     <div class="container live-footer-main">
       <div class="live-footer-brand">
         <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
-        <ul class="live-footer-contact">
-          <li data-efd="address">21566 Damofalls Industrial Area, Harare, Zimbabwe</li>
-          <li><a data-efd="phone-link" href="tel:+263242488272"><span data-efd="phone">0242 488 272</span></a></li>
-          <li><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></li>
-          <li><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></li>
-          <li><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></li>
-        </ul>
+        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773688904"><span data-efd="phone2">0773 688 904</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263776400176" target="_blank" rel="noopener"><span data-efd="whatsapp">0776 400 176</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488720"><span data-efd="phone">0242 488 720</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
       </div>
 
       <div class="live-footer-links">
-        <h3>Useful Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="portfolio.html">Our Portfolio</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="#home-faq">FAQ's</a></li>
-          <li><a href="fire-sprinkler-installation-harare.html">Fire Sprinkler Installation, Harare</a></li>
-          <li><a href="fire-alarm-detection-systems-harare.html">Fire Alarm &amp; Detection, Harare</a></li>
-          <li><a href="fire-hydrant-hose-reel-systems.html">Fire Hydrant &amp; Hose Reel Systems</a></li>
-          <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
-          <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
-          <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
-          <li><a href="privacy.html">Privacy Notice</a></li>
-        </ul>
-      </div>
+          <div class="footer-link-group">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Our Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#home-faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <h3>Service Pages</h3>
+            <ul>
+              <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
+              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
+              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
+              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
+              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li>
+              <li><a href="fire-protection-bulawayo.html">Fire Protection, Bulawayo</a></li>
+            </ul>
+          </div>
+        </div>
 
       <div class="live-footer-about">
         <h3>About Us</h3>
@@ -1207,7 +1009,7 @@
 
     <div class="live-footer-bottom">
       <div class="container live-footer-bottom-inner">
-        <p>Extreme Fire Design - Copyright &copy; 2012 - 2026. All Rights Reserved. <a href="#home-faq">FAQ's</a> | Privacy Policy</p>
+        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="#home-faq">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
         <p>Webcrafted By <a href="https://www.noeljay.co.zw">NOEL JAY DIGITAL SOLUTIONS</a></p>
       </div>
     </div>
@@ -1228,9 +1030,33 @@
 <script src="script.js" defer></script>
 <script src="chat.js" defer></script>
 <script src="engineer.js" defer></script>
-  <!-- Floating Emergency Button -->
-  <a data-efd="phone-link" class="emergency-float" href="tel:+263242488720" aria-label="Emergency call">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-  </a>
-</body>
+  <script>
+  /* Hero video policy, mobile-first.
+     The background video is ~2.8MB. On mobile, or when the browser reports
+     Save-Data, or on a slow connection, we do not fetch it at all: the poster
+     image is shown instead. The <source> is only attached once we decide the
+     video should actually play, so the file is never downloaded needlessly. */
+  (function () {
+    var v = document.getElementById('bg-video-fixed') || document.querySelector('video');
+    if (!v) return;
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = !!(conn && conn.saveData);
+    var slow = !!(conn && /(^|-)2g$/.test(conn.effectiveType || ''));
+    var small = window.matchMedia('(max-width: 768px)').matches;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (saveData || slow || small || reduced) {
+      v.removeAttribute('autoplay');
+      v.pause && v.pause();
+      v.removeAttribute('preload');
+      Array.prototype.slice.call(v.querySelectorAll('source')).forEach(function (s) {
+        s.removeAttribute('src');
+      });
+      v.removeAttribute('src');
+      v.setAttribute('data-video-skipped', '1');
+      return;
+    }
+    v.setAttribute('preload', 'auto');
+  })();
+  </script>
+  <!-- Floating 24/7 service desk button --></body>
 </html>

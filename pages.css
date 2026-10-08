@@ -1,0 +1,3438 @@
+/* ==========================================================================
+   pages.css — design layer for the landing / utility pages and the footer
+   --------------------------------------------------------------------------
+   Loaded last so it wins over styles.css and enhanced.css without needing
+   !important everywhere.
+
+   Fixes three pre-existing problems found during the audit:
+   1. .page-hero pointed at a background image in a folder that does not
+      exist ("services image Fire extinguishers/") so every landing-page hero
+      rendered as a flat translucent gradient over nothing.
+   2. .live-footer-links had no rule at all so the footer link list stacked
+      one item per row. With the new landing pages added it became 13 rows.
+   3. .button.outline was never defined so "outline" buttons fell back to
+      unstyled link defaults.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. BUTTONS
+   -------------------------------------------------------------------------- */
+.button.outline {
+  color: #fff;
+  background: rgba(255 255 255 0.06);
+  border: 2px solid rgba(255 255 255 0.28);
+  backdrop-filter: blur(8px);
+}
+
+.button.outline:hover {
+  border-color: var(--accent #ff3d00);
+  background: rgba(255 61 0 0.12);
+  color: #fff;
+}
+
+.button.small { padding: 10px 18px; font-size: 0.9rem; }
+
+/* --------------------------------------------------------------------------
+   2. SKIP LINK
+   -------------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  background: var(--accent #ff3d00);
+  color: #fff;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+
+.skip-link:focus { left: 0; }
+
+/* --------------------------------------------------------------------------
+   1b. HEADINGS — HARDENED CENTRING
+   enhanced.css section 32 already sets text-align:center !important on every
+   h1-h6. That is necessary but not sufficient: when a heading is a child of a
+   flex ROW container it becomes a content-sized flex item and text-align has
+   no visible effect on it so it still renders hard against the left edge.
+   The auto inline margins centre the heading as a BLOCK which is what
+   actually moves it in both flex and block contexts.
+   -------------------------------------------------------------------------- */
+h1 h2 h3 h4 h5 h6
+.section-heading
+.faq-section-title .project-section-header
+.welcome-heading .recent-work-title .section-title
+.featured-services-subheading .error-title .faq-typewriter
+.systems-main-heading {
+  text-align: center;
+  margin-inline: auto;
+}
+
+/* Paragraphs that introduce a heading follow it so the block sits on the
+   same axis rather than hanging off the left. */
+.section-heading p
+.section-heading .eyebrow {
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   2b. PAGE-WIDE BACKGROUND
+   The photo used to stop at the hero. Every page now declares --page-bg on
+   <body> and the image covers the WHOLE page as a fixed layer.
+
+   The veil is the tightest constraint: body copy is only 16px so it needs
+   4.5:1 against an unknown photo. Measured against a fully blown-out white
+   photo:
+       veil 0.55 -> 4.23:1  FAIL
+       veil 0.60 -> 5.06:1  PASS  <- chosen photo 40% visible
+   That is about as bright as this can safely go. Going lighter means the copy
+   has to move onto solid cards.
+   -------------------------------------------------------------------------- */
+body {
+  isolation: isolate;
+  /* replaces the opaque gradient in styles.css which would hide the photo */
+  background: #06070d;
+}
+
+body::before {
+   content: "";
+   position: fixed;
+   inset: 0;
+   z-index: -2;
+   background-image: var(--page-bg none);
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+    filter: brightness(1.4) saturate(1.15) contrast(1.05);
+  }
+
+  /* Home page: the video replaces the photo so hide the body photo layer */
+  body.home-page::before { background-image: none; }
+
+  /* Home page video: fixed full-page background layer. Sits above the body
+     background (z-index -1) but behind all page content. */
+  .page-bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+body::after {
+   content: "";
+   position: fixed;
+   inset: 0;
+   z-index: -1;
+   background: linear-gradient(180deg
+               rgba(6 7 13 0.66) 0%
+               rgba(6 7 13 0.58) 45%
+               rgba(6 7 13 0.68) 100%);
+ }
+
+/* Opaque in enhanced.css so it would punch a solid band across the new page
+   background. Make it translucent instead. */
+.faq-section {
+  background: linear-gradient(180deg rgba(6 7 13 0.88) rgba(10 15 28 0.88));
+}
+
+/* --------------------------------------------------------------------------
+   3. PAGE HERO
+   The hero reuses the page-wide --page-bg (same photo as the rest of the page)
+   and layers a radial scrim on top of it tuned to match the page veil so the
+   two blend instead of stepping.
+   --parallax-y is written by parallax.js; it inherits into ::before so the
+   background layer can move without a real child element.
+   -------------------------------------------------------------------------- */
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  padding: 88px 0 76px;
+  min-height: 62vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #06070d;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--page-bg var(--hero-img none));
+  background-size: cover;
+  background-position: center;
+  /* Overscan gives the layer room to travel without exposing an edge. */
+  transform: translate3d(0 var(--parallax-y 0px) 0) scale(1.22);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Scrim. Deliberately NOT stacked: two full-area layers multiply their
+   alphas and an earlier 2-layer version stacked to 0.87-0.99 everywhere
+   which made the photo invisible.
+
+   The hero text is now CENTRED so a left-to-right wash is the wrong shape -
+   it would leave the right half of the heading sitting on a 0.30 wash (1.9:1
+   fails AA). A single radial protects the centred text and opens up at the
+   edges so the photo is still visible around it.
+
+   Measured against a blown-out white photo worst case:
+     centre 0.78 -> 10.1:1     edge 0.62 -> 5.5:1   (AA needs 4.5:1)
+   The edge value deliberately matches the page veil (0.58-0.62) so the hero
+   does not step darker than the page it scrolls into. */
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    /* seat the hero into the section below; sits far from the text */
+    linear-gradient(180deg rgba(4, 7, 14, 0) 60% rgba(4, 7, 14, 0.45) 100%)
+    radial-gradient(ellipse 75% 66% at 50% 46%
+                    rgba(4, 7, 14, 0.78) 0%
+                    rgba(4, 7, 14, 0.72) 52%
+                    rgba(4, 7, 14, 0.62) 100%);
+}
+
+/* Faint technical grid so the hero reads as engineered rather than decorative.
+   Sits above the scrim (z-index 0) and below the text (z-index 1). */
+.page-hero .hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255 61 0 0.07) 1px transparent 1px)
+    linear-gradient(90deg rgba(255 61 0 0.07) 1px transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 30% 40% #000 20% transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 40% #000 20% transparent 78%);
+}
+
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 20px;
+  /* .page-hero is a row flexbox so the container is a content-sized flex item
+     and lands at flex-start (left) by default. auto inline margins centre it
+     which puts the hero copy on the same axis as the page headings. */
+  margin-inline: auto;
+  width: 100%;
+  max-width: 820px;
+  text-align: center;
+}
+
+.page-hero h1 {
+  margin: 0;
+  font-size: clamp(2.1rem 4.4vw 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.page-hero-sub {
+  margin: 0;
+  max-width: 62ch;
+  color: #c8d6ec;
+  font-size: clamp(1.02rem 1.5vw 1.18rem);
+  line-height: 1.7;
+}
+
+.service-area {
+  margin: 0 auto;          /* was width:fit-content at flex-start */
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255 61 0 0.3);
+  border-radius: 999px;
+  background: rgba(255 61 0 0.09);
+  color: #ffd0bd;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Hero buttons follow the centred heading. */
+.page-hero .hero-actions
+.page-hero .cta-row {
+  justify-content: center;
+  margin-inline: auto;
+}
+
+/* Rotating factual line under the hero. Kept small so it reads as a subtitle
+   not as the headline (the H1 above it is the real static heading). */
+.hero-rotator {
+  margin: 0;
+  min-height: 1.6em;
+  color: var(--accent #ff3d00);
+  font-size: clamp(0.95rem 1.6vw 1.08rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.hero-rotator .hero-typewriter-line { white-space: pre-wrap; }
+.hero-rotator .typewriter-cursor { font-size: 1em; color: var(--accent #ff3d00); }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero::before { transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   3b. PHOTO-LESS HERO VARIANT
+   Used on pages where no image with a *known* subject is available. Guessing
+   that "Project 12" is a gas-suppression install would be an invented claim
+   so these pages get a designed gradient/pattern instead of a photo.
+   Setting --hero-img later on the element upgrades it to the photo variant
+   with no other change.
+   -------------------------------------------------------------------------- */
+.page-hero--graphic .page-hero::before {
+  /* Fallback first: browsers without color-mix() reject only the second
+     declaration and keep this plain-rgba version. */
+  background-image:
+    radial-gradient(ellipse 70% 60% at 78% 22% rgba(255 61 0 0.30) 0% transparent 70%)
+    radial-gradient(ellipse 60% 70% at 12% 85% rgba(255 61 0 0.16) 0% transparent 72%)
+    linear-gradient(135deg #0a0e1a 0% #06070d 55% #0d0a14 100%);
+  background-image:
+    radial-gradient(ellipse 70% 60% at 78% 22% color-mix(in srgb var(--hero-accent #ff3d00) 34% transparent) 0% transparent 70%)
+    radial-gradient(ellipse 60% 70% at 12% 85% color-mix(in srgb var(--hero-accent #ff3d00) 18% transparent) 0% transparent 72%)
+    linear-gradient(135deg #0a0e1a 0% #06070d 55% #0d0a14 100%);
+}
+
+/* Graphic heroes have no photo to move so drop the compositor hint. */
+.page-hero--graphic::before { will-change: auto; }
+
+/* Diagonal engineering hatch distinct from the square grid. */
+.page-hero--graphic .hero-grid {
+  background-image:
+    repeating-linear-gradient(45deg rgba(255 61 0 0.06) 0 1px transparent 1px 14px);
+  mask-image: linear-gradient(100deg #000 0% transparent 72%);
+  -webkit-mask-image: linear-gradient(100deg #000 0% transparent 72%);
+}
+
+/* Thin accent rule that runs under the eyebrow so the graphic heroes still
+   read as deliberately branded rather than as a missing image. */
+.page-hero--graphic .container::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 0;
+  width: 84px;
+  height: 3px;
+  background: linear-gradient(90deg #d62828 #ff6700);
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   4. SERVICE CARDS (landing pages)
+   -------------------------------------------------------------------------- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit minmax(260px 1fr));
+  gap: 20px;
+}
+
+.service-item {
+  position: relative;
+  padding: 28px 26px 30px;
+  border: 1px solid rgba(255 255 255 0.1);
+  border-radius: 18px;
+  background: linear-gradient(160deg rgba(255 255 255 0.06) rgba(255 255 255 0.015));
+  transition: transform 0.3s ease border-color 0.3s ease box-shadow 0.3s ease;
+}
+
+.service-item::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 3px;
+  height: 42px;
+  border-radius: 3px;
+  background: linear-gradient(180deg #d62828 #ff6700);
+}
+
+.service-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255 103 0 0.4);
+  box-shadow: 0 18px 40px rgba(0 0 0 0.4);
+}
+
+.service-item h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.service-item p {
+  margin: 0;
+  color: var(--muted #8b9cc3);
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   5. CASE STUDY BLOCK
+   Deliberately muted: this block is a placeholder awaiting confirmed data so
+   it must not look like a finished case study.
+   -------------------------------------------------------------------------- */
+.case-study-card {
+  padding: 28px;
+  border: 1px dashed rgba(255 255 255 0.18);
+  border-radius: 18px;
+  background: rgba(255 255 255 0.02);
+}
+
+.case-study-card h3 {
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  color: #ffb38f;
+}
+
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit minmax(150px 1fr));
+  gap: 14px 20px;
+  margin: 18px 0 0;
+}
+
+.case-meta dt {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted #8b9cc3);
+}
+
+.case-meta dd {
+  margin: 4px 0 0;
+  min-height: 1.2em;
+  border-bottom: 1px dashed rgba(255 255 255 0.14);
+  color: #e8f1ff;
+}
+
+/* --------------------------------------------------------------------------
+   6. FORMS
+   enhanced.css section 32 forces every heading to text-align:center so a
+   left-aligned form underneath a centred heading looked broken. Forms are
+   centred on the same axis as their heading and their non-input text follows
+   the heading treatment. Inputs stay full width and left-aligned inside
+   because centring typed text is a usability problem.
+   -------------------------------------------------------------------------- */
+.lead-form
+.quiz-form {
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Standalone forms: centre the block itself. */
+.lead-form { max-width: 560px; }
+.quiz-form { max-width: 720px; }
+
+/* contact.html has no form class and enhanced.css:811 makes .contact-card a
+   two-column grid (1.05fr 1fr). That left the form centred inside the RIGHT
+   COLUMN only which is not "centred strictly the same as the headings" - it
+   sat off the page axis. Collapse the card to one column so the form is
+   centred on the page like every other heading and form. */
+.contact-card {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 860px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.contact-card > div
+#contact-form {
+  max-width: 560px;
+  width: 100%;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.lead-form
+.quiz-form
+#contact-form {
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid rgba(255 255 255 0.1);
+  border-radius: 18px;
+  background: linear-gradient(160deg rgba(255 255 255 0.05) rgba(255 255 255 0.015));
+}
+
+/* Headings are centred so the form's own copy is too. */
+.lead-form .form-row label
+.quiz-form .quiz-q legend
+#contact-form label {
+  text-align: center;
+}
+
+.form-row { display: grid; gap: 8px; }
+
+.form-row label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #c8d6ec;
+}
+
+.form-row input
+.form-row textarea
+.form-row select {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255 255 255 0.14);
+  background: rgba(255 255 255 0.05);
+  color: var(--text #f5f8ff);
+}
+
+.form-row input:focus
+.form-row textarea:focus
+.form-row select:focus {
+  outline: 2px solid var(--accent #ff3d00);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.form-consent {
+  margin: 0 auto;
+  max-width: 46ch;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #c8d6ec;
+  text-align: center;
+}
+
+.form-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Checkboxes must not inherit the full-width text input rule. */
+.form-consent input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin: 2px 0 0;
+  accent-color: var(--accent #ff3d00);
+}
+
+.form-consent a { color: #ffb38f; }
+
+.form-note {
+  margin: 0 auto;
+  max-width: 46ch;
+  font-size: 0.9rem;
+  color: var(--muted #8b9cc3);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.form-note a { color: #ffb38f; font-weight: 600; }
+
+/* Submit button centred matching the centred copy above it. */
+.lead-form > .button
+.quiz-form > .button
+#contact-form > button
+#contact-form > .button {
+  justify-self: center;
+  min-width: 200px;
+}
+
+/* --------------------------------------------------------------------------
+   7. PROSE (privacy / thank-you)
+   -------------------------------------------------------------------------- */
+.prose { max-width: 72ch; }
+
+.prose h2 {
+  margin: 44px 0 14px;
+  font-size: clamp(1.3rem 2.2vw 1.7rem);
+  color: #fff;
+}
+
+.prose h2:first-child { margin-top: 0; }
+
+.prose h3 {
+  margin: 26px 0 8px;
+  font-size: 1.05rem;
+  color: #ffb38f;
+}
+
+.prose p
+.prose li {
+  color: #c8d6ec;
+  line-height: 1.8;
+}
+
+.prose ul
+.prose ol { padding-left: 22px; display: grid; gap: 8px; }
+
+.prose a { color: #ffb38f; }
+
+.prose li::marker { color: var(--accent #ff3d00); }
+
+/* --------------------------------------------------------------------------
+   /* --------------------------------------------------------------------------
+   6b. HARDENED HEADINGS
+   Headings sit centred on the page axis (matching the forms) and are kept
+   legible against the dark background. text-wrap:balance stops a long
+   heading breaking into ragged two-word lines at desktop widths.
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.hero-content h1,
+.hero-content h2,
+.page-hero h1,
+.page-hero h2,
+.section-heading h2,
+.section-title,
+.combo-heading,
+.nine-card h3,
+.case-card h3 {
+  text-align: center;
+  margin-inline: auto;
+  max-width: 30ch;
+  color: var(--text);
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+8. RELATED LINKS
+   -------------------------------------------------------------------------- */
+.related-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit minmax(220px 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 100%;
+  padding: 16px 18px;
+  border: 1px solid rgba(255 255 255 0.1);
+  border-radius: 12px;
+  background: rgba(255 255 255 0.03);
+  color: #e8f1ff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: border-color 0.25s ease background 0.25s ease transform 0.25s ease;
+}
+
+.related-links a::after { content: "\2192"; color: var(--accent #ff3d00); }
+
+.related-links a:hover {
+  border-color: rgba(255 103 0 0.45);
+  background: rgba(255 61 0 0.08);
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------------
+   9. COMPLIANCE QUIZ
+   -------------------------------------------------------------------------- */
+.quiz-form { display: grid; gap: 20px; max-width: 720px; }
+
+.quiz-q {
+  margin: 0;
+  padding: 20px 22px;
+  border: 1px solid rgba(255 255 255 0.1);
+  border-radius: 14px;
+  background: rgba(255 255 255 0.03);
+}
+
+.quiz-q legend {
+  padding: 0 8px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;   /* question is a heading so it follows the heading rule */
+  width: 100%;
+}
+
+/* Options keep their radio on the left: centring a radio button makes it
+   ambiguous which row is selected. The row itself is centred as a block. */
+.quiz-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 46ch;
+  margin-inline: auto;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #c8d6ec;
+  transition: background 0.2s ease;
+}
+
+.quiz-opt:hover { background: rgba(255 255 255 0.05); }
+
+.quiz-opt input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  margin: 1px 0 0;
+  accent-color: var(--accent #ff3d00);
+}
+
+.quiz-result {
+  max-width: 720px;
+  margin-inline: auto;   /* keep the result on the same axis as the quiz */
+  margin-top: 28px;
+  padding: 30px;
+  border: 1px solid rgba(255 103 0 0.32);
+  border-radius: 18px;
+  background: linear-gradient(160deg rgba(255 61 0 0.1) rgba(255 61 0 0.02));
+  text-align: center;
+}
+
+.quiz-result h3 {
+  margin: 0 0 10px;
+  font-size: clamp(1.3rem 2.4vw 1.7rem);
+  color: #fff;
+}
+
+.quiz-result p { margin: 0 0 22px; color: #c8d6ec; line-height: 1.75; }
+
+/* --------------------------------------------------------------------------
+   10. CREDENTIALS STRIP
+   -------------------------------------------------------------------------- */
+.credentials-strip {
+  padding: 26px 0;
+  border-block: 1px solid rgba(255 255 255 0.07);
+  background: linear-gradient(90deg rgba(255 61 0 0.07) transparent 55% rgba(255 61 0 0.07));
+}
+
+.credentials-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 28px;
+}
+
+.cred-item { display: grid; gap: 3px; text-align: center; }
+
+.cred-label {
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.98rem;
+}
+
+.cred-detail { color: var(--muted #8b9cc3); font-size: 0.84rem; }
+
+/* --------------------------------------------------------------------------
+   11. FOOTER — COMPACT LINK ARRANGEMENT
+   The link list was a single vertical stack with no rule of its own so every
+   added link added a full row and stretched the footer. Now the link list is a
+   multi-column flow which keeps the footer's height roughly constant as pages
+   are added.
+   -------------------------------------------------------------------------- */
+.live-footer-main {
+  grid-template-columns: 1.05fr 1.5fr 1.15fr 0.9fr;
+  gap: 28px;
+  padding: 34px 0 26px;
+  align-items: start;
+}
+
+.live-footer h3 {
+  margin: 0 0 12px;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+/* Link area is two labelled groups side by side so adding a service page costs
+   width instead of height. Previously this was a single 13-row stack. */
+.live-footer-links {
+  display: grid;
+  grid-template-columns: repeat(2 minmax(0 1fr));
+  gap: 18px 24px;
+  align-content: start;
+}
+
+.footer-link-group { min-width: 0; }
+
+.live-footer .footer-link-group h3 {
+  margin: 0 0 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(255 255 255 0.1);
+  font-size: 0.74rem;
+}
+
+.live-footer-links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.live-footer-links li {
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.live-footer-links a {
+  display: inline-block;
+  font-size: 0.88rem;
+  color: #d6e2f2;
+}
+
+.live-footer-links a::before {
+  content: "\203A";
+  margin-right: 6px;
+  color: #ff6700;
+  font-weight: 900;
+}
+
+.live-footer-links a:hover { color: #fff; }
+
+/* Contact block: tighter and the long "Useful Links" labels are shortened in
+   markup so they do not force the column wider. */
+.live-footer-contact li {
+  margin-bottom: 7px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.live-footer-about p {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.live-footer-logo { width: 128px; margin-bottom: 14px; }
+
+.live-footer-bottom-inner { min-height: 48px; font-size: 0.88rem; }
+
+/* Tablet: 2 columns of footer blocks; the link groups stay side by side so the
+   footer does not grow taller here. */
+@media (max-width: 980px) {
+  .live-footer-main { grid-template-columns: repeat(2 minmax(0 1fr)); }
+  .live-footer-links { grid-column: 1 / -1; order: 3; }
+}
+
+/* Phone: everything stacks and the two link groups stack in turn. */
+@media (max-width: 640px) {
+  .live-footer-main { grid-template-columns: 1fr; gap: 22px; padding: 28px 0 22px; }
+  .live-footer-links { grid-template-columns: 1fr; }
+  .live-footer-links li { margin-bottom: 7px; }
+}
+
+/* --------------------------------------------------------------------------
+   12. SHARED SECTION SPACING FOR THE NEW PAGES
+   -------------------------------------------------------------------------- */
+.section-heading h2 { margin: 0 0 8px; }
+
+.section > .container > .section-heading { margin-bottom: 30px; }
+
+.faq-grid { display: grid; gap: 12px; }
+
+/* --------------------------------------------------------------------------
+   14. HOME HERO COPY ALIGNMENT
+   styles.css builds the hero as a grid but each line carried its own width
+   and alignment: the h1 ran the full 1120px column and sat left .hero-sub was
+   capped at 760px and also left while .service-area and .hero-rotator were
+   centred. Stacked that read as scattered text rather than one hero. These
+   rules give the hero a single centred measure and one alignment.
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) {
+  .hero-section.home-hero .home-hero-copy {
+    max-width: 960px;
+    margin-inline: auto;
+    justify-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .hero-section.home-hero .home-hero-copy h1 {
+    max-width: 20ch;
+    margin-inline: auto;
+  }
+  .hero-section.home-hero .home-hero-copy .hero-sub
+  .hero-section.home-hero .home-hero-copy .service-area {
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+  .hero-section.home-hero .hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .hero-section.home-hero .hero-actions .button { width: auto !important; }
+}
+
+@media (max-width: 768px) {
+  .hero-section.home-hero .home-hero-copy {
+    justify-items: center;
+    text-align: center;
+  }
+  .hero-section.home-hero .home-hero-copy .hero-sub
+  .hero-section.home-hero .home-hero-copy .service-area { margin-inline: auto; }
+}
+
+/* --------------------------------------------------------------------------
+   15. MOTION / PRINT
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .service-item
+  .related-links a
+  .button
+  .button:hover { transition: none; transform: none; }
+}
+
+@media print {
+  .page-hero { min-height: 0; color: #000; }
+  .page-hero::before .page-hero::after .hero-grid { display: none; }
+  .live-footer .site-header .whatsapp-float #chat-widget { display: none; }
+}
+
+/* ==========================================================================
+   16. DESIGN SYSTEM 2026
+   Desktop type scale slim trust band 24/7 support modules quote CTA.
+   Loaded last so this wins over styles.css / enhanced.css on ties.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   16a. DESKTOP TYPE SCALE
+   Headings were running to 57.6px with no intermediate steps which is why
+   long service headings wrapped into ragged two-word lines. This sets a
+   1.25-ratio scale with real intermediate sizes and caps h1 at 40px.
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) {
+  h1
+  .hero-content h1
+  .page-hero h1
+  .home-hero-copy h1
+  .hero-typewriter-line {
+    font-size: clamp(1.75rem 1.2rem + 1.5vw 2.5rem) !important;
+    line-height: 1.18 !important;
+    letter-spacing: -0.01em;
+  }
+
+  h2
+  .hero-content h2
+  .page-hero h2
+  .section-heading h2
+  .section-title
+  .services-slider-heading h2
+  .passion-cta h2
+  .emergency-text h2
+  .support-text h2
+  .cta-strip h2 {
+    font-size: clamp(1.3rem 1.08rem + 0.8vw 1.8rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  h3
+  .hero-content h3
+  .section-heading h3
+  .service-slide-card h3
+  .svc-card h3
+  .card h3
+  .trust-logo-text {
+    font-size: clamp(1.02rem 0.98rem + 0.22vw 1.22rem) !important;
+    line-height: 1.35 !important;
+  }
+
+  h4
+  .svc-card h4
+  .card h4 {
+    font-size: clamp(0.98rem 0.96rem + 0.14vw 1.1rem) !important;
+  }
+
+  /* Body copy: hold at a comfortable 17px desktop measure */
+  .hero-content p
+  .page-hero p
+  .section-heading p
+  .home-hero-copy p
+  .hero-sub
+  .service-area
+  .service-slide-card p
+  .svc-card p
+  .card p
+  p {
+    font-size: clamp(0.95rem 0.93rem + 0.14vw 1.0625rem) !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Hero copy keeps a slightly larger lead-in than body text */
+  .home-hero-copy .hero-sub
+  .hero-content .hero-sub {
+    font-size: clamp(1rem 0.97rem + 0.2vw 1.125rem) !important;
+  }
+
+  .eyebrow
+  .trust-label
+  .section-subtitle
+  .card-label {
+    font-size: 0.7rem !important;
+    letter-spacing: 0.16em !important;
+  }
+
+  /* Long headings get a real measure so they wrap on word boundaries.
+     The welcome heading is two lines split by <br> and the second is 54
+     characters, so it needs a wider measure than the others - at 24ch it
+     wrapped again into three ragged lines and read as not centred. */
+  .section-heading
+  .section-heading h2
+  .services-slider-heading h2
+  .passion-cta h2 {
+    max-width: 30ch;
+    margin-inline: auto;
+  }
+  .welcome-heading {
+    max-width: 58ch;
+    margin-inline: auto;
+    text-align: center;
+    text-wrap: balance;
+    line-height: 1.3;
+  }
+  .section-heading p { max-width: 68ch; margin-inline: auto; }
+}
+
+/* Tablet: nudge the scale down before the 480px breakpoint */
+@media (min-width: 481px) and (max-width: 768px) {
+  h1 .hero-content h1 .page-hero h1 .home-hero-copy h1 {
+    font-size: clamp(1.6rem 1.1rem + 2.2vw 2.1rem) !important;
+  }
+  h2 .section-heading h2 .section-title {
+    font-size: clamp(1.2rem 1.05rem + 0.7vw 1.5rem) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16b. SLIM TRUST BAND  (post-hero logo marquee hard cap 3cm / 113px)
+   Was ~174px: 40px top padding a 24px-margin label and 12px-padded cards.
+   -------------------------------------------------------------------------- */
+.trust-strip {
+  padding: 12px 0 !important;
+}
+.trust-label {
+  margin-bottom: 8px !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.18em !important;
+}
+.trust-logos-track { padding: 2px 0; }
+.trust-logos { gap: 14px !important; }
+.trust-logo-item {
+  padding: 6px 14px !important;
+  gap: 1px !important;
+  border-radius: 6px;
+}
+.trust-logo-text {
+  font-size: 0.86rem !important;
+  letter-spacing: 0.04em;
+}
+.trust-logo-sub {
+  font-size: 0.56rem !important;
+  letter-spacing: 0.08em;
+}
+/* Hard ceiling: the whole band can never exceed 3cm (113px) tall */
+.trust-strip .container { max-width: 100%; }
+@media (min-width: 769px) {
+  .trust-strip { max-height: 113px; overflow: hidden; }
+}
+
+/* --------------------------------------------------------------------------
+   16c. 24/7 SERVICES MODULES
+   Replaces the old "Fire Emergency? We Respond 24/7" banner. We do not
+   provide firefighting or emergency response - we provide round-the-clock
+   technical service so the copy and the modules are reframed.
+   -------------------------------------------------------------------------- */
+.support-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 0;
+  border-top: 1px solid rgba(255 61 0 0.22);
+  border-bottom: 1px solid rgba(255 61 0 0.22);
+  background:
+    linear-gradient(120deg rgba(255 61 0 0.10) rgba(6 7 13 0.55) 55% rgba(255 61 0 0.08));
+}
+.support-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px 20px;
+  align-items: center;
+}
+.support-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255 61 0 0.35);
+  background: rgba(255 61 0 0.1);
+  color: #ffd0bd;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.support-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 3px rgba(52 211 153 0.2);
+}
+.support-text h2 { margin: 0 0 6px; }
+.support-text p { margin: 0; max-width: 62ch; color: var(--muted); }
+.support-actions {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.support-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease background 0.2s ease border-color 0.2s ease;
+}
+.support-btn svg { width: 17px; height: 17px; flex: none; }
+.support-btn-primary { background: var(--accent); color: #fff; }
+.support-btn-primary:hover { background: #e63600; transform: translateY(-1px); }
+.support-btn-wa { background: rgba(37 211 102 0.14); color: #7ff0ab; border-color: rgba(37 211 102 0.4); }
+.support-btn-wa:hover { background: rgba(37 211 102 0.24); transform: translateY(-1px); }
+
+/* Floating round-the-clock contact button (replaces the emergency float) */
+.support-float {
+  position: fixed;
+  left: 16px;
+  bottom: 20px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px 11px 13px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 28px rgba(0 0 0 0.45);
+  transition: transform 0.2s ease background 0.2s ease;
+}
+.support-float svg { width: 19px; height: 19px; flex: none; }
+.support-float:hover { background: #e63600; transform: translateY(-2px); }
+@media (max-width: 768px) {
+  .support-inner { grid-template-columns: 1fr; }
+  .support-actions { grid-column: 1; }
+  .support-float { bottom: 76px; left: 12px; padding: 10px 14px 10px 11px; font-size: 0.74rem; }
+}
+
+/* --------------------------------------------------------------------------
+   16d. GET-QUOTE CTA
+   Every page carries a quote CTA. Primary hero-style band + compact inline
+   variant that can drop into any section.
+   -------------------------------------------------------------------------- */
+.quote-band {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0;
+  border-top: 1px solid rgba(255 255 255 0.08);
+  border-bottom: 1px solid rgba(255 255 255 0.08);
+  background:
+    linear-gradient(115deg rgba(255 61 0 0.14) rgba(6 7 13 0.6) 52% rgba(6 7 13 0.5));
+}
+.quote-band-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px 28px;
+}
+.quote-band-text { max-width: 60ch; }
+.quote-band-text h2 { margin: 0 0 6px; }
+.quote-band-text p { margin: 0; color: var(--muted); }
+.quote-band-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  flex: none;
+}
+.quote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: transform 0.2s ease background 0.2s ease border-color 0.2s ease box-shadow 0.2s ease;
+}
+.quote-btn svg { width: 18px; height: 18px; flex: none; }
+.quote-btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(255 61 0 0.28);
+}
+.quote-btn-primary:hover { background: #e63600; transform: translateY(-2px); }
+.quote-btn-ghost {
+  background: rgba(255 255 255 0.05);
+  color: var(--text);
+  border-color: rgba(255 255 255 0.18);
+}
+.quote-btn-ghost:hover {
+  background: rgba(255 255 255 0.1);
+  border-color: rgba(255 61 0 0.45);
+  transform: translateY(-2px);
+}
+
+/* Compact inline quote prompt for pages that already have a dense footer */
+.quote-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 20px;
+  margin: 0 auto 34px;
+  max-width: 940px;
+  border: 1px solid rgba(255 61 0 0.24);
+  border-radius: 14px;
+  background: linear-gradient(115deg rgba(255 61 0 0.1) rgba(6 7 13 0.5));
+  text-align: center;
+}
+.quote-inline p { margin: 0; color: var(--text-soft); }
+.quote-inline .quote-btn { padding: 11px 22px; font-size: 0.88rem; }
+
+/* --------------------------------------------------------------------------
+
+   16e. GENERAL POLISH
+   -------------------------------------------------------------------------- */
+/* Stop long URLs / long single words blowing out narrow columns */
+h1, h2, h3, h4, p, li, td, .hero-sub, .service-slide-card p { overflow-wrap: break-word; }
+
+/* Keyboard focus must always be visible - several buttons reset outline */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.button:focus-visible,
+.quote-btn:focus-visible,
+.support-btn:focus-visible {
+  outline: 3px solid #ff8a4c;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect reduced motion for the marquees */
+@media (prefers-reduced-motion: reduce) {
+  .trust-logos,
+  .services-slider-track,
+  .products-track,
+  .hero-bg__slide {
+    animation: none !important;
+  }
+  .trust-logos { transform: none !important; }
+}
+
+/* Pause the logo marquee on hover */
+.trust-strip:hover .trust-logos,
+.trust-logos.is-paused { animation-play-state: paused; }
+
+/* --------------------------------------------------------------------------
+   17. KILL THE HEAVY COLOUR-CYCLING ANIMATIONS
+   These repaint large areas continuously, which costs battery and reads as
+   visual noise. Small accents (pulse, blink, marquees) are kept.
+   -------------------------------------------------------------------------- */
+.services-list h2, .service-scope h2, .scope-grid span,
+.featured-service-item, .featured-service-item h3,
+.faq-item, .company-profile-section, .brand-track,
+.systems-page .feature-card,
+.systems-page .feature-card h2,
+.systems-page .feature-card img,
+.systems-page .system-pdf-link a,
+.systems-page .pdf-read-more-btn,
+.zigzag-divider::before, .zigzag-divider::after {
+  animation: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   18. SLIDING CASE-STUDY STRIP
+   Slim horizontal marquee on the same pattern as the trust band.
+   -------------------------------------------------------------------------- */
+.case-strip {
+  position: relative;
+  padding: 14px 0 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+.case-strip-label {
+  margin: 0 0 9px;
+  text-align: center;
+  font-size: 0.68rem !important;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.case-strip-track {
+  overflow: hidden;
+  padding: 2px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.case-strip-rail {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: trustScroll 46s linear infinite;
+}
+.case-strip:hover .case-strip-rail { animation-play-state: paused; }
+.case-strip-card {
+  flex: none;
+  width: 268px;
+  padding: 9px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.case-strip-card:hover {
+  border-color: rgba(255, 61, 0, 0.4);
+  background: rgba(255, 61, 0, 0.07);
+}
+.case-strip-tag {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.case-strip-card h3 { margin: 0 0 3px; font-size: 0.9rem !important; line-height: 1.25; }
+.case-strip-card p {
+  margin: 0;
+  font-size: 0.75rem !important;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+}
+.case-strip-foot {
+  margin: 9px 0 0;
+  text-align: center;
+  font-size: 0.68rem !important;
+  color: rgba(255, 255, 255, 0.4);
+}
+.case-strip-foot a { color: var(--accent); text-decoration: none; }
+.case-strip-foot a:hover { text-decoration: underline; }
+@media (min-width: 769px) { .case-strip { max-height: 150px; overflow: hidden; } }
+@media (max-width: 768px) {
+  .case-strip-card { width: 232px; }
+  .case-strip-rail { animation-duration: 60s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-strip-rail { animation: none !important; flex-wrap: wrap; width: 100%; }
+}
+
+/* --------------------------------------------------------------------------
+   19. 9CM CARD GRID  (Project Highlights + Resources)
+   9cm = 340px. Three across: 3 x 340 + 2 x 24 = 1068px. Text clamps to
+   three lines with a Read more / Download affordance.
+   -------------------------------------------------------------------------- */
+.highlights-section > .container,
+.resources-section > .container {
+  width: 1068px;
+  max-width: 100%;
+}
+.nine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 340px);
+  gap: 24px;
+  justify-content: center;
+  align-items: start;
+}
+.nine-grid--two { grid-template-columns: repeat(2, 340px); }
+.nine-card {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+.nine-card:hover {
+  border-color: rgba(255, 61, 0, 0.32);
+  background: rgba(255, 61, 0, 0.05);
+  transform: translateY(-3px);
+}
+.nine-card-img { aspect-ratio: 16 / 10; overflow: hidden; background: rgba(0, 0, 0, 0.3); }
+.nine-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.nine-card:hover .nine-card-img img { transform: scale(1.05); }
+.nine-card--plain { padding: 20px 20px 18px; }
+.nine-tag {
+  display: inline-block;
+  align-self: flex-start;
+  margin: 14px 20px 0;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 61, 0, 0.3);
+  background: rgba(255, 61, 0, 0.08);
+  color: #ffb38a;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.nine-card--plain .nine-tag { margin: 0 0 10px; }
+.nine-card h3 { margin: 9px 20px 6px; font-size: 1.02rem !important; line-height: 1.3; }
+.nine-card--plain h3 { margin: 0 0 8px; }
+.nine-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0 20px 14px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.86rem !important;
+  line-height: 1.6 !important;
+}
+.nine-card--plain .nine-clamp { margin: 0 0 14px; }
+.nine-more {
+  align-self: flex-start;
+  margin: auto 20px 18px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 61, 0, 0.35);
+  background: rgba(255, 61, 0, 0.1);
+  color: #ffb38a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nine-card--plain .nine-more { margin: 0 0 2px; }
+.nine-more:hover { background: var(--accent); color: #fff; }
+.nine-actions { display: flex; justify-content: center; margin-top: 28px; }
+/* superseded by section 30: highlights stay 3-up, no 2-column step */
+@media (max-width: 760px) {
+  .nine-grid, .nine-grid--two { grid-template-columns: minmax(0, 340px); }
+  .nine-card { width: 100%; max-width: 340px; }
+}
+@media (max-width: 380px) {
+  .nine-grid, .nine-grid--two { grid-template-columns: minmax(0, 1fr); }
+  .nine-card { width: 100%; }
+}
+
+/* case studies: general-impact framing */
+.case-card .case-impact {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: rgba(255, 61, 0, 0.07);
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+.case-card .case-impact strong { color: var(--text); }
+.case-disclaimer {
+  max-width: 78ch;
+  margin: 26px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   20. HOMEPAGE LENGTH + CLEAR BOUNDARIES
+   Card grids that do not need to be seen all at once became horizontal
+   slide rails; related blocks merged into single bands with alternating
+   backgrounds so each band reads as a distinct unit.
+   -------------------------------------------------------------------------- */
+.slide-rail {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 4px 2px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 61, 0, 0.5) rgba(255, 255, 255, 0.08);
+}
+.slide-rail > * { flex: 0 0 318px; scroll-snap-align: start; }
+.slide-rail::-webkit-scrollbar { height: 6px; }
+.slide-rail::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.07); border-radius: 3px; }
+.slide-rail::-webkit-scrollbar-thumb { background: rgba(255, 61, 0, 0.5); border-radius: 3px; }
+
+.hiw-grid,
+.industries-grid,
+.featured-services-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 2px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 61, 0, 0.5) rgba(255, 255, 255, 0.08);
+}
+.hiw-grid > *,
+.industries-grid > *,
+.featured-services-grid > * { flex: 0 0 318px; scroll-snap-align: start; }
+@media (max-width: 640px) {
+  .hiw-grid > *, .industries-grid > *, .featured-services-grid > *, .slide-rail > * {
+    flex-basis: 84vw;
+  }
+}
+
+.about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+.about-left { display: flex; flex-direction: column; gap: 16px; }
+.about-left .slide-rail { overflow-x: visible; flex-wrap: wrap; }
+.about-left .slide-rail > * { flex: 1 1 100%; }
+.about-ethics {
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.about-ethics h3 { margin: 0 0 14px; }
+.about-ethics .accordion-grid { display: grid; gap: 8px; }
+.profile-download { display: flex; justify-content: flex-start; }
+@media (max-width: 900px) { .about-split { grid-template-columns: 1fr; } }
+
+.final-cta {
+  padding: 44px 0;
+  border-top: 1px solid rgba(255, 61, 0, 0.24);
+  background: linear-gradient(120deg, rgba(255, 61, 0, 0.13), rgba(6, 7, 13, 0.6) 55%, rgba(6, 7, 13, 0.5));
+}
+.final-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px 32px;
+  align-items: center;
+}
+.final-cta-text h2 { margin: 10px 0 8px; }
+.final-cta-text p { margin: 0; max-width: 66ch; color: var(--muted); }
+.final-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 860px) { .final-cta-inner { grid-template-columns: 1fr; } }
+
+main > section + main > section,
+main > section:nth-of-type(even) { border-top: 1px solid rgba(255, 255, 255, 0.055); }
+main > section:nth-of-type(even) { background: rgba(255, 255, 255, 0.016); }
+.trust-strip, .case-strip, .standards-strip, .credentials-strip {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.highlights-section, .resources-section, .final-cta { background: rgba(6, 7, 13, 0.55); }
+.section { padding: 46px 0; }
+.welcome-banner, .how-it-works-section, .industries-section { padding: 40px 0; }
+
+/* --------------------------------------------------------------------------
+   21. WHY CHOOSE: CLAMP + PER-CARD READ MORE
+   -------------------------------------------------------------------------- */
+.why-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
+}
+.why-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 61, 0, 0.35);
+  background: rgba(255, 61, 0, 0.1);
+  color: #ffb38a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.why-more:hover { background: var(--accent); color: #fff; }
+
+/* --------------------------------------------------------------------------
+   24. WHY CHOOSE + APPROACH: ONE ROW, SIX COLUMNS
+   Columns 1-3 are the reasons (2-line clamp + Read more). Columns 4-6 are
+   the picture cards that used to auto-rotate; now static and visible in the
+   same row, so nothing is hidden behind a timer. Cards stay 9cm (340px).
+   -------------------------------------------------------------------------- */
+.combo-section { padding: 44px 0; }
+.combo-shell { max-width: 1120px; }
+.combo-head { text-align: center; margin-bottom: 18px; }
+.combo-heading {
+  margin: 0 0 6px;
+  font-size: 1.3rem !important;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.combo-head p { margin: 0; font-size: 0.86rem !important; color: rgba(255, 255, 255, 0.6); }
+.combo-nav { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
+.combo-nav button {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 61, 0, 0.34);
+  background: rgba(255, 61, 0, 0.1);
+  color: #ffb38a;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.combo-nav button:hover { background: var(--accent); color: #fff; }
+
+.combo-rail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  align-items: stretch;
+  padding: 4px 2px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 61, 0, 0.5) rgba(255, 255, 255, 0.08);
+}
+.combo-rail::-webkit-scrollbar { height: 6px; }
+.combo-rail::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.07); border-radius: 3px; }
+.combo-rail::-webkit-scrollbar-thumb { background: rgba(255, 61, 0, 0.5); border-radius: 3px; }
+
+.combo-card {
+  flex: 0 0 340px;
+  width: 340px;
+  height: 151px;
+  max-height: 151px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.combo-card:hover {
+  border-color: rgba(255, 61, 0, 0.34);
+  background: rgba(255, 61, 0, 0.05);
+  transform: translateY(-3px);
+}
+.combo-card--why { padding: 12px 16px; border-left: 3px solid var(--accent); }
+.combo-card--why h3 { margin: 0 0 5px; font-size: 0.9rem !important; line-height: 1.25; }
+.combo-card--why .why-clamp { font-size: 0.82rem !important; line-height: 1.5 !important; }
+.combo-card--why.is-open .why-clamp {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+  overflow-y: auto;
+  max-height: 88px;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 61, 0, 0.5) transparent;
+}
+.combo-card--why.is-open .why-clamp::-webkit-scrollbar { width: 5px; }
+.combo-card--why.is-open .why-clamp::-webkit-scrollbar-thumb {
+  background: rgba(255, 61, 0, 0.5);
+  border-radius: 3px;
+}
+.combo-card--why .why-more { margin-top: 8px; padding: 5px 12px; font-size: 0.72rem; }
+.combo-card--media { flex-direction: row; border-left: 3px solid rgba(255, 61, 0, 0.55); }
+.combo-card--media .combo-card-img {
+  flex: 0 0 96px;
+  width: 96px;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+}
+.combo-card--media .combo-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.combo-card:hover .combo-card--media .combo-card-img img,
+.combo-card--media:hover .combo-card-img img { transform: scale(1.05); }
+.combo-card--media .combo-card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 11px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.combo-card--media h3 { margin: 0 0 4px; font-size: 0.88rem !important; line-height: 1.25; }
+.combo-card--media p {
+  margin: 0;
+  font-size: 0.78rem !important;
+  line-height: 1.45 !important;
+  color: rgba(255, 255, 255, 0.68);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 760px) { .combo-card { flex-basis: 84vw; width: 84vw; } }
+
+/* --------------------------------------------------------------------------
+   26. LOADER CSS FAILSAFE
+   The dismissal handler in script.js removes the overlay, but if that file is
+   cached, blocked, or throws before it registers, the opaque loader covers the
+   page forever. This animation retires the loader on its own, with no
+   JavaScript involved, so the page always becomes visible.
+   -------------------------------------------------------------------------- */
+@keyframes loaderFailsafe {
+  0%, 84% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+.page-loader {
+  animation: loaderFailsafe 4.5s ease-out forwards !important;
+}
+
+/* --------------------------------------------------------------------------
+   27. COMPANY PROFILE: ONE ROW, SIX COLUMNS
+   Six 9cm cards on a horizontal rail. The copy is the same text that was
+   already on the page (three profile cards plus Vision, Mission, Ethics);
+   "Our goal" is kept as a line beneath so no copy was dropped.
+   -------------------------------------------------------------------------- */
+.profile-rail {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  align-items: stretch;
+  padding: 4px 2px 14px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 61, 0, 0.5) rgba(255, 255, 255, 0.08);
+}
+.profile-rail::-webkit-scrollbar { height: 6px; }
+.profile-rail::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.07); border-radius: 3px; }
+.profile-rail::-webkit-scrollbar-thumb { background: rgba(255, 61, 0, 0.5); border-radius: 3px; }
+.profile-rail .profile-card {
+  flex: 0 0 340px;
+  width: 340px;
+  scroll-snap-align: start;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--accent);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.profile-rail .profile-card:hover {
+  border-color: rgba(255, 61, 0, 0.34);
+  background: rgba(255, 61, 0, 0.05);
+  transform: translateY(-3px);
+}
+.profile-rail .profile-card h3 { margin: 0 0 7px; font-size: 0.98rem !important; }
+.profile-rail .profile-card p {
+  margin: 0;
+  font-size: 0.84rem !important;
+  line-height: 1.55 !important;
+  color: rgba(255, 255, 255, 0.68);
+}
+.profile-goal {
+  max-width: 86ch;
+  margin: 4px auto 0;
+  text-align: center;
+  font-size: 0.84rem !important;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+.profile-goal strong { color: var(--accent); }
+.profile-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.profile-nav button {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 61, 0, 0.34);
+  background: rgba(255, 61, 0, 0.1);
+  color: #ffb38a;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.profile-nav button:hover { background: var(--accent); color: #fff; }
+@media (max-width: 760px) { .profile-rail .profile-card { flex-basis: 84vw; width: 84vw; } }
+
+/* --------------------------------------------------------------------------
+   28. FOOTER: 7CM TOTAL HEIGHT
+   7cm = 265px. The footer is capped hard so it can never grow past that, and
+   the internals are compacted to fit: tighter padding, smaller type, and the
+   long link list split into two sub-columns so 13 links become 7 rows.
+   -------------------------------------------------------------------------- */
+/* 10cm cap, but overflow stays VISIBLE on purpose: a max-height with
+   overflow:hidden would silently crop links and make them unclickable.
+   The internals below are sized so all 20 footer links genuinely fit. */
+.live-footer {
+  max-height: 378px;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+.live-footer > .container { flex: 1 1 auto; min-height: 0; }
+.live-footer-main {
+  padding: 16px 0 12px !important;
+  gap: 20px !important;
+  align-content: start;
+}
+.live-footer-logo { width: 88px; height: auto; margin-bottom: 8px; }
+.live-footer-contact li,
+.live-footer-links li { font-size: 0.76rem; line-height: 1.5; }
+.live-footer-links h3,
+.footer-link-group h3 {
+  margin: 0 0 6px;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.footer-link-group ul { margin: 0; padding: 0; list-style: none; }
+.footer-link-group li { margin-bottom: 2px; }
+.footer-link-group a { font-size: 0.76rem; }
+.live-footer-about p { margin: 0; font-size: 0.76rem; line-height: 1.5; }
+/* The social block holds a text link, not icons, so it is styled as a
+   normal inline link. An earlier rule made it a 30px circle, which squashed
+   the label and made the Facebook link look half-cut. */
+.live-footer-social h3 { margin: 0 0 6px; }
+.live-footer-social .facebook-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.live-footer-social .facebook-link:hover {
+  border-color: rgba(255, 61, 0, 0.45);
+  background: rgba(255, 61, 0, 0.1);
+}
+.live-footer-bottom { flex: none; }
+.live-footer-bottom-inner {
+  min-height: 34px;
+  padding: 6px 0;
+  font-size: 0.74rem;
+}
+@media (max-width: 900px) {
+  .live-footer { max-height: none; overflow: visible; }
+}
+
+/* The About copy is allowed to run its full length at 10cm. Nothing in the
+   footer is clamped, because clamping a link would hide it. */
+.live-footer-about p { margin: 0 0 6px; }
+.live-footer-about h3,
+.footer-link-group h3,
+.live-footer-social h3 { margin: 0 0 5px; }
+.live-footer-main { padding: 20px 0 16px !important; gap: 22px !important; }
+.live-footer-contact li { line-height: 1.45; }
+.live-footer-logo { margin-bottom: 6px; }
+.live-footer-bottom-inner { min-height: 38px; padding: 7px 0; }
+
+/* Company profile heading sits dead centre */
+.about-band .section-heading { text-align: center; }
+.about-band .section-heading h2 {
+  margin-inline: auto;
+  text-align: center;
+}
+.about-band .section-heading p { margin-inline: auto; text-align: center; }
+
+/* --------------------------------------------------------------------------
+   29. FOOTER LINKS COLUMN: FIT EVERY LINK
+   The column sits between the brand block and About Us and carries 12 links
+   in two sub-columns. Two things were fighting it:
+     - .live-footer-links a { font-size: 0.88rem } was the rule that actually
+       applied (the li size is only inherited, and the a rule overrides it),
+       so the links rendered at 14px, not 12px.
+     - the column was 1.5fr (~300px), leaving ~140px per sub-column, so the
+       longer service-page labels wrapped and overflowed the 10cm footer.
+   The column is widened, the link size is forced down, and each label is
+   kept on a single line so all 12 are visible at once.
+   -------------------------------------------------------------------------- */
+@media (min-width: 901px) {
+  .live-footer-main {
+    grid-template-columns: 1fr 2.4fr 1.15fr 0.85fr !important;
+    gap: 22px !important;
+  }
+  .live-footer-links {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 24px;
+    align-content: start;
+  }
+  .live-footer-links .footer-link-group { min-width: 0; }
+  .live-footer-links .footer-link-group h3 { margin: 0 0 6px; }
+  .live-footer-links li { margin: 0 0 3px; }
+  .live-footer-links a {
+    display: inline-block;
+    font-size: 0.76rem !important;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   30. PROJECT HIGHLIGHTS: ONE ROW, THREE COLUMNS
+   .nine-grid collapsed to two columns at 1120px, so on a ~1150px window the
+   third card wrapped onto a second row and wasted a full row of height. The
+   grid now holds three columns down to 820px - the cards shrink instead of
+   wrapping - and then goes to a single column. There is no two-column step,
+   because that is the layout that wasted the space.
+   -------------------------------------------------------------------------- */
+@media (min-width: 821px) {
+  .highlights-section .nine-grid,
+  .nine-grid:not(.nine-grid--two) {
+    grid-template-columns: repeat(3, minmax(0, 340px)) !important;
+    justify-content: center;
+  }
+  .highlights-section .nine-card { width: 100%; max-width: 340px; }
+}
+@media (max-width: 820px) {
+  .highlights-section .nine-grid,
+  .nine-grid:not(.nine-grid--two) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .highlights-section .nine-card { width: 100%; max-width: 420px; margin-inline: auto; }
+}
+
+/* --------------------------------------------------------------------------
+   31. HEADINGS CENTRED ON EVERY HOMEPAGE SECTION
+   The hardened rule covers h1-h6. This extends the same treatment to the
+   eyebrow kicker, the lead line under the heading, and the section shells, so
+   every section header reads as one centred block.
+   -------------------------------------------------------------------------- */
+main section .section-heading,
+main section .combo-head,
+main section .case-strip-label,
+main section .final-cta-text,
+main section .quote-band-text,
+main section .about-band .section-heading {
+  text-align: center;
+}
+main section .section-heading .eyebrow,
+main section .section-heading h1,
+main section .section-heading h2,
+main section .section-heading h3,
+main section .section-heading > p,
+main section .combo-head h2,
+main section .combo-head p {
+  text-align: center;
+  margin-inline: auto;
+}
+/* card headings inside rails keep their own alignment, the page chrome does not */
+main section .section-heading p:not(.eyebrow) { max-width: 68ch; }
+
+/* --------------------------------------------------------------------------
+   32. HERO TYPEWRITER MUST NOT MOVE THE BUTTONS
+   The rotator only reserved 1.6em, but the longest string is 64 characters
+   and wraps to two lines, so every cycle shoved the three hero buttons down
+   the page. Two lines are reserved permanently, which is the most the
+   longest string ever needs, so the buttons stay put.
+   -------------------------------------------------------------------------- */
+.hero-rotator {
+  min-height: 3.4em !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.hero-rotator .hero-typewriter-line {
+  display: inline;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+@media (max-width: 768px) {
+  .hero-rotator { min-height: 5em !important; }
+}
+
+/* Belt and braces: nothing may pull this heading off the page axis. */
+.welcome-banner .welcome-heading,
+.welcome-banner .welcome-heading * {
+  text-align: center !important;
+}
+
+/* --------------------------------------------------------------------------
+   33. HERO MUST NEVER CLIP ITS OWN BUTTONS
+   styles.css sets .hero-section { overflow: hidden } and pinned the home
+   hero to a FIXED height:100vh. With narrow measures on the h1 and sub, the
+   copy could grow past the viewport, and overflow:hidden then cropped
+   everything below the fold - the three hero buttons included - with no way
+   to scroll to them. The hero now has a minimum height instead of a fixed
+   one, and does not clip itself; the sliding pictures are still clipped by
+   .hero-bg, which has its own overflow:hidden.
+   -------------------------------------------------------------------------- */
+.hero-section.home-hero {
+  /* 15cm = 567px at 96dpi. A min-height (not a fixed height) is used on
+     purpose: the hero is exactly 567px whenever the copy fits, and grows
+     rather than crops if it ever does not, so the buttons can never vanish. */
+  min-height: 567px;
+  height: auto;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wider measures: 20ch forced the heading and sub to wrap into extra lines,
+   which is what pushed the buttons out of view in the first place. */
+@media (min-width: 769px) {
+  .hero-section.home-hero .home-hero-copy h1 { max-width: 26ch; }
+  .hero-section.home-hero .home-hero-copy .hero-sub,
+  .hero-section.home-hero .home-hero-copy .service-area { max-width: 64ch; }
+  .hero-section.home-hero .home-hero-copy { max-width: 880px; }
+}
+
+/* Slightly tighter stack so the whole hero sits inside one screen. */
+@media (min-width: 769px) {
+  .hero-section.home-hero .home-hero-copy { gap: 12px; padding: 54px 0 38px; }
+  .hero-section.home-hero .home-hero-copy p { margin: 0; }
+  .hero-section.home-hero .home-hero-copy .eyebrow { margin-bottom: 2px; }
+  .hero-section.home-hero .home-hero-copy h1 { max-width: 24ch; }
+  .hero-section.home-hero .hero-sub { line-height: 1.6 !important; }
+  .hero-section.home-hero .service-area { font-size: 0.92rem !important; }
+  .hero-section.home-hero .hero-actions { margin-top: 6px; }
+}
+/* Two lines is the most the longest typewriter string ever needs. */
+@media (min-width: 769px) {
+  .hero-section.home-hero .hero-rotator { min-height: 2.6em !important; }
+}
+
+/* --------------------------------------------------------------------------
+   34. SERVICE PAGE DESIGN PASS
+   Breadcrumbs (previously absent on every service page) plus the same 9cm
+   three-up card treatment the homepage uses, so service pages read as part
+   of the same design system instead of a separate template.
+   -------------------------------------------------------------------------- */
+.breadcrumbs {
+  position: relative;
+  z-index: 2;
+  padding: 14px 0;
+  font-size: 0.875rem;
+  color: var(--text-soft);
+  border-bottom: 1px solid rgba(255 255 255  0.08);
+  background: rgba(8  12 24, 0.35);
+  backdrop-filter: blur(6px);
+}
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.breadcrumbs li { display: flex; align-items: center; gap: 8px; }
+.breadcrumbs li + li::before { content: "/"; color: rgba(255 255 255, 0.35); }
+.breadcrumbs a { color: var(--text-soft); text-decoration: none; }
+.breadcrumbs a:hover { color: var(--accent, #ff6700); text-decoration: underline; }
+.breadcrumbs [aria-current="page"] { color: #fff; font-weight: 600; }
+
+/* Same 9cm / three-up rhythm as the homepage cards. */
+.services-grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.service-item {
+  display: flex;
+  flex-direction: column;
+  min-height: 9cm;
+  padding: 24px 22px;
+  border-radius: 14px;
+}
+.service-item p { line-height: 1.65; }
+
+@media (max-width: 820px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   35. HEADINGS ARE STRICTLY CENTRED - NON-NEGOTIABLE
+   The centring rules were previously scattered across 14 separate places in
+   three stylesheets, and card headings (.service-item h3, .case-study-card h3)
+   carried no text-align at all, so they silently rendered left-aligned.
+   This block is the single authoritative source, placed last in the cascade
+   and marked !important so nothing later can pull a heading off centre.
+   Everything here is viewport-independent: desktop, tablet and mobile are
+   all centred by the same declaration, not by media queries.
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.section-heading h1, .section-heading h2, .section-heading h3, .section-heading h4,
+.page-hero h1, .page-hero h2, .page-hero h3,
+.service-item h3, .case-study-card h3, .case-card h3, .nine-card h3, .card h3,
+.combo-heading, .welcome-heading, .featured-services-subheading, .section-title,
+.faq-section-title, .error-title, .quote-band h2, .quote-band-text h2,
+.ppc-benefits h3, .ppc-steps h3, .ppc-step h3, .ppc-scope h3,
+.trust-logo-text, .related-links h3 {
+  text-align: center !important;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+/* The heading's supporting line stays optically centred under it. */
+.section-heading > p,
+.section-heading > .eyebrow,
+.page-hero .eyebrow,
+.page-hero .page-hero-sub,
+.page-hero .service-area,
+.quote-band-text p,
+.faq-section > .section-heading p {
+  text-align: center !important;
+  margin-inline: auto;
+}
+
+/* The heading BLOCK itself is centred, so it stays optically centred even if
+   an ancestor turns out to be a flex or grid row. */
+.section-heading,
+.page-hero .container,
+.combo-head,
+.case-strip-label,
+.quote-band-text,
+.about-band .section-heading {
+  text-align: center !important;
+  margin-inline: auto;
+  justify-items: center;
+  justify-self: center;
+}
+
+/* Grid/flex contexts centre their items so the heading cannot sit left. */
+.page-hero .container,
+.home-hero-copy,
+.section-heading {
+  justify-items: center;
+  justify-self: center;
+}
+
+/* Card headings are centred, so the supporting copy beneath them is centred
+   too - a centred heading over left-aligned body reads as a mistake. */
+.services-grid,
+.service-item,
+.case-study-card,
+.related-links,
+.nine-card,
+.ppc-benefits,
+.ppc-steps {
+  text-align: center;
+}
+.service-item,
+.case-study-card,
+.nine-card,
+.ppc-benefits > *,
+.ppc-steps > * {
+  align-items: center;
+}
+.service-item p,
+.case-study-card p,
+.related-links a {
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   36. PPC LANDING PAGE DESIGN
+   The six service pages are paid-traffic landing pages. Most PPC traffic is
+   mobile and most of it is click-to-call intent, so the page needs a
+   conversion path that is always reachable: a fixed bottom bar on mobile,
+   three CTAs above the fold, trust moved up, and the enquiry explained in
+   steps so the perceived effort of making contact drops.
+   -------------------------------------------------------------------------- */
+
+/* --- sticky mobile conversion bar --- */
+.ppc-cta-bar { display: none; }
+
+@media (max-width: 768px) {
+  .ppc-cta-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 9998;
+    background: rgba(8 12 24, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255 255 255, 0.14);
+    box-shadow: 0 -8px 30px rgba(0 0 0, 0.45);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  /* the fixed bar must never cover the footer's last line of text */
+  body { padding-bottom: 72px; }
+
+  .ppc-bar-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 9px 4px;
+    text-decoration: none;
+    min-height: 56px;
+    color: #fff;
+    text-align: center;
+  }
+  .ppc-bar-btn span { font-weight: 700; font-size: 0.94rem; line-height: 1.15; }
+  .ppc-bar-btn small { font-size: 0.68rem; opacity: 0.82; line-height: 1.15; }
+  .ppc-bar-call { background: rgba(255 255 255, 0.05); }
+  .ppc-bar-wa  { background: rgba(37  211 102, 0.16); }
+  .ppc-bar-quote {
+    background: linear-gradient(135deg, #d62828, #ff6700);
+    color: #fff;
+  }
+  .ppc-bar-btn:hover { filter: brightness(1.12); }
+}
+
+/* --- benefits: why choose us --- */
+.ppc-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.ppc-benefit {
+  padding: 26px 24px;
+  text-align: center;
+  border: 1px solid rgba(255 255 255, 0.1);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(255 255 255, 0.06), rgba(255 255 255, 0.02));
+}
+.ppc-benefit h3 { margin: 0 0 10px; color: #fff; font-size: 1.05rem; }
+.ppc-benefit p  { margin: 0; color: var(--muted, #8b9cc3); line-height: 1.65; }
+.ppc-benefit::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  margin: 0 auto 14px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #d62828, #ff6700);
+}
+
+/* --- steps: how we work --- */
+.ppc-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+.ppc-step {
+  position: relative;
+  padding: 26px 20px;
+  text-align: center;
+  border: 1px solid rgba(255 255 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255 255 255, 0.03);
+}
+.ppc-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d62828, #ff6700);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+}
+.ppc-step h3 { margin: 0 0 8px; color: #fff; font-size: 1rem; }
+.ppc-step p  { margin: 0; color: var(--muted, #8b9cc3); line-height: 1.6; }
+
+/* --- mid-page conversion band --- */
+.ppc-inline-cta {
+  padding: 44px 0;
+  border-top: 1px solid rgba(255 255 255, 0.08);
+  border-bottom: 1px solid rgba(255 255 255, 0.08);
+  background: linear-gradient(135deg, rgba(214 40 40, 0.14), rgba(255 103 0, 0.1));
+}
+.ppc-inline-cta-inner {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  max-width: 840px;
+  margin-inline: auto;
+  text-align: center;
+}
+.ppc-inline-cta-inner h2 { margin: 0; text-align: center !important; }
+.ppc-inline-cta-inner p {
+  margin: 0;
+  max-width: 64ch;
+  color: #dbe8f7;
+  text-align: center;
+}
+.ppc-inline-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* --- the hero quote button must look like the primary action --- */
+.ppc-hero-quote {
+  background: linear-gradient(135deg, #d62828, #ff6700);
+  color: #fff !important;
+  border-color: transparent;
+}
+
+/* --- responsive --- */
+@media (max-width: 980px) {
+  .ppc-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 820px) {
+  .ppc-benefits { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .ppc-steps { grid-template-columns: 1fr; }
+  .ppc-inline-cta { padding: 34px 0; }
+}
+
+/* Small interaction refinements; page photography and background treatments stay intact. */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid #ff8a54;
+  outline-offset: 3px;
+}
+
+.page-hero .container > :is(h1, p) {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .72);
+}
+
+.lead-submit-status {
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 115, 65, .4);
+  border-radius: 12px;
+  background: rgba(255, 61, 0, .08);
+  color: var(--text, #f5f8ff);
+}
+
+@media (max-width: 640px) {
+  .util-inner { justify-content: center; padding: 6px 12px; }
+  .util-contact { justify-content: center; flex-wrap: wrap; gap: 4px 14px; font-size: .74rem; }
+  .util-tagline { display: none; }
+}
+
+@media (max-width: 768px) {
+  #chat-widget { right: 12px !important; bottom: 14px !important; }
+  .whatsapp-float { left: 12px !important; right: auto !important; bottom: 14px !important; }
+  .back-to-top { right: 12px !important; bottom: 72px !important; }
+}
+
+/* --------------------------------------------------------------------------
+   37. QUOTE FORM - CENTRED AND EASY TO COMPLETE
+   The brief: we are solving a problem for the visitor, so filling the form
+   must not feel like work. The form block is centred on the page at a
+   comfortable reading measure, every field carries a visible label and a
+   short hint saying why it is being asked, anything optional is labelled as
+   optional rather than left to guesswork, and there is an obvious way to skip
+   the form entirely and just call or WhatsApp someone.
+   -------------------------------------------------------------------------- */
+
+/* --- the centred shell --- */
+.lead-form-shell {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  display: grid;
+  justify-items: center;
+}
+
+form.lead-form {
+  width: 100%;
+  display: grid;
+  gap: 18px;
+  padding: 28px 28px 30px;
+  text-align: center;
+  border: 1px solid rgba(255 255 255, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(165deg, rgba(255 255 255, 0.06), rgba(255 255 255, 0.02));
+  box-shadow: 0 18px 44px rgba(0 0 0, 0.28);
+}
+
+/* --- intro line: sets expectations before the visitor starts --- */
+.lead-form-intro {
+  margin: 0;
+  text-align: center;
+  color: #dbe8f7;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+/* --- fields --- */
+form.lead-form .form-row {
+  display: grid;
+  gap: 7px;
+  width: 100%;
+  text-align: center;
+}
+form.lead-form .form-row label {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  margin: 0;
+}
+.form-optional {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255 255 255, 0.22);
+  background: rgba(255 255 255, 0.06);
+  color: var(--text-soft);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+/* Big, obvious inputs. 52px tall so they are comfortable to tap on a phone. */
+form.lead-form input[type="text"],
+form.lead-form input[type="tel"],
+form.lead-form input[type="email"],
+form.lead-form textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #fff;
+  background: rgba(6 10 20, 0.55);
+  border: 1px solid rgba(255 255 255, 0.18);
+  border-radius: 12px;
+  /* 16px prevents iOS zooming the page when a field is focused */
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+form.lead-form textarea { min-height: 128px; resize: vertical; }
+form.lead-form input::placeholder,
+form.lead-form textarea::placeholder { color: rgba(219 232 247, 0.45); }
+
+form.lead-form input:focus,
+form.lead-form textarea:focus {
+  outline: none;
+  border-color: var(--accent, #ff6700);
+  background: rgba(6 10 20, 0.75);
+  box-shadow: 0 0 0 3px rgba(255 103 0, 0.25);
+}
+
+/* --- hints: say why we are asking, so the question feels worth answering --- */
+.form-hint {
+  margin: 0;
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+/* --- consent --- */
+form.lead-form .form-consent {
+  margin: 0;
+  text-align: center;
+}
+form.lead-form .form-consent label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 9px;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  font-weight: 400;
+}
+form.lead-form .form-consent input[type="checkbox"] {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--accent, #ff6700);
+}
+form.lead-form .form-consent a { color: var(--accent, #ff6700); }
+
+/* --- submit: full width, unmissable --- */
+form.lead-form .lead-form-submit {
+  width: 100%;
+  min-height: 54px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d62828, #ff6700);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+form.lead-form .lead-form-submit:hover { filter: brightness(1.08); }
+form.lead-form .lead-form-submit:active { transform: translateY(1px); }
+
+/* --- the "or just call us" escape hatch, which is the whole point --- */
+.lead-form-alt {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  width: 100%;
+  margin-top: 4px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255 255 255, 0.1);
+}
+.lead-form-alt-title {
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+}
+.lead-form-alt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.lead-form-alt-actions .button {
+  min-height: 50px;
+  padding: 12px 22px;
+  border-radius: 12px;
+}
+
+/* --- validation feedback --- */
+form.lead-form input:user-invalid,
+form.lead-form textarea:user-invalid {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255 107 107, 0.2);
+}
+
+/* --- narrow screens: lose the card frame, keep the centring --- */
+@media (max-width: 560px) {
+  .lead-form-shell { max-width: 100%; }
+  form.lead-form {
+    padding: 22px 18px 24px;
+    border-radius: 14px;
+  }
+  .lead-form-alt-actions { flex-direction: column; width: 100%; }
+  .lead-form-alt-actions .button { width: 100%; }
+}
+
+/* --------------------------------------------------------------------------
+   38. FOOTER LINKS CENTRED + ONE-TAP CONTACT
+   (a) The footer column headings were centred but the links underneath them
+       were not, so "Home", "Services" and "Hydrant & Hose Reel Systems" all
+       sat hard against the left edge of their column. The whole footer text
+       block is centred now, and the guillemet marker is dropped because a
+       leading chevron on centred text reads as a misalignment.
+   (b) A visitor must never have to hunt for a way to make contact, so
+       WhatsApp, Call and Email are given equal, equally prominent placement
+       as a dedicated band above the footer, on every page.
+   -------------------------------------------------------------------------- */
+
+/* ---- (a) centred footer ---- */
+.live-footer,
+.live-footer-links,
+.footer-link-group,
+.live-footer-about,
+.live-footer-contact,
+.live-footer-social,
+.live-footer-meta {
+  text-align: center !important;
+}
+.footer-link-group h3,
+.live-footer-about h3,
+.live-footer-contact h3,
+.live-footer-social h3 {
+  text-align: center !important;
+  margin-inline: auto;
+}
+.footer-link-group ul,
+.footer-link-group li,
+.live-footer-about p,
+.live-footer-contact li,
+.live-footer-contact ul,
+.live-footer-social ul,
+.live-footer-meta p {
+  text-align: center !important;
+  margin-inline: auto;
+}
+/* no leading chevron on centred links */
+.live-footer-links a::before,
+.footer-link-group a::before { content: none !important; }
+.live-footer-links a,
+.footer-link-group a {
+  text-align: center !important;
+  display: inline-block;
+  text-decoration: none;
+}
+.live-footer-links a:hover,
+.footer-link-group a:hover { text-decoration: underline; }
+
+/* ---- (b) one-tap contact band ---- */
+.contact-actions {
+  position: relative;
+  padding: 46px 0;
+  border-top: 1px solid rgba(255 255 255, 0.1);
+  background: linear-gradient(160deg, rgba(255 255 255, 0.05), rgba(255 255 255, 0.015));
+}
+.contact-actions-inner {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  max-width: 940px;
+  margin-inline: auto;
+  text-align: center;
+}
+.contact-actions-inner h2 { margin: 0; text-align: center !important; }
+.contact-actions-inner > p {
+  margin: 0;
+  max-width: 58ch;
+  color: #dbe8f7;
+  text-align: center;
+}
+.contact-actions-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+  margin-top: 10px;
+}
+.contact-btn {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  text-align: center;
+  min-height: 84px;
+  padding: 16px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255 255 255, 0.16);
+  background: rgba(255 255 255, 0.05);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.contact-btn-label { font-weight: 700; font-size: 1.05rem; color: #fff; line-height: 1.2; }
+.contact-btn-value { font-size: 0.88rem; color: #dbe8f7; line-height: 1.3; word-break: break-word; }
+.contact-btn:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255 103 0, 0.5);
+  box-shadow: 0 14px 32px rgba(0 0 0, 0.35);
+}
+.contact-btn-wa   { background: rgba(37 211 102, 0.14); border-color: rgba(37 211 102, 0.34); }
+.contact-btn-call { background: rgba(214 40 40, 0.16);  border-color: rgba(255 103 0, 0.34); }
+.contact-btn-email{ background: rgba(255 255 255, 0.06); }
+
+@media (max-width: 700px) {
+  .contact-actions { padding: 34px 0; }
+  .contact-actions-row { grid-template-columns: 1fr; }
+  .contact-btn { min-height: 66px; }
+}
+
+/* ---- sticky bar: four actions on small screens ---- */
+@media (max-width: 768px) {
+  .ppc-cta-bar { grid-template-columns: repeat(4, 1fr); }
+  .ppc-bar-btn span { font-size: 0.86rem; }
+  .ppc-bar-btn small { font-size: 0.62rem; }
+  .ppc-bar-email { background: rgba(255 255 255, 0.05); }
+  body { padding-bottom: 72px; }
+}
+@media (min-width: 769px) {
+  .ppc-cta-bar { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   39. CONTACT LEFT / FORM RIGHT, AND SHARP BACKGROUNDS
+   (a) contact.html already had the correct markup order - contact details
+       then form - but no rule ever turned .contact-card into two columns,
+       so the two halves were stacking vertically. It is a grid now.
+       The six service pages had no contact panel at all, so one was added
+       on the left of the form.
+   (b) The page background is now a sharp photograph rather than a blurred
+       upscale of a 206x206 thumbnail, so the brightness boost that was
+       compensating for the blur is turned down. At brightness(1.4) a sharp
+       photo looked hazy, which is exactly the artefact we were removing.
+   -------------------------------------------------------------------------- */
+
+/* ---------- (a) the two-column quote layout ---------- */
+.quote-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 28px;
+  align-items: start;
+  width: 100%;
+}
+.quote-split > * { min-width: 0; }
+
+/* left column: contact details */
+.quote-split-contact {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  height: 100%;
+  padding: 26px 24px 28px;
+  text-align: center;
+  border: 1px solid rgba(255 255 255, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(165deg, rgba(255 255 255, 0.07), rgba(255 255 255, 0.02));
+}
+.quote-split-contact h3 { margin: 0; text-align: center !important; }
+.quote-split-lead {
+  margin: 0;
+  text-align: center;
+  color: #dbe8f7;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.quote-split-list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.quote-split-list li {
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  padding: 11px 6px;
+  border-radius: 10px;
+  text-align: center;
+}
+.quote-split-list li + li { border-top: 1px solid rgba(255 255 255, 0.08); }
+.quote-split-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.quote-split-list a,
+.quote-split-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  word-break: break-word;
+}
+.quote-split-list a:hover { color: var(--accent, #ff6700); text-decoration: underline; }
+.quote-split-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 6px;
+}
+.quote-split-actions .button { min-height: 46px; padding: 11px 20px; border-radius: 12px; }
+
+/* contact.html keeps its own <dl> markup - align it to the same rhythm */
+.contact-card > div:first-child > h2 { text-align: center !important; }
+.contact-card > div:first-child > p { text-align: center; }
+.contact-card dl { text-align: center; }
+.contact-card dt { text-align: center; }
+.contact-card dd { text-align: center; }
+
+/* one column on narrow screens, and the form comes FIRST because that is
+   the conversion goal - a phone visitor should not scroll past a wall of
+   contact details to reach it */
+@media (max-width: 920px) {
+  .quote-split { grid-template-columns: 1fr; }
+  .quote-split-form,
+  .lead-form-shell { order: -1; }
+  .quote-split-contact { order: 2; }
+}
+
+/* ---------- (b) sharp backgrounds ---------- */
+body::before {
+  filter: brightness(1.06) saturate(1.08) contrast(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   40. CONTACT DETAILS IN ONE CONSISTENT FORMAT
+   Required format: Cell - number, Address - company address.
+
+   Applied in two densities, because the same information has to work in a
+   roomy column and in a 10cm footer:
+     - Full stacked treatment (icon, label above value, large value) in the
+       quote-split panel and on the contact page.
+     - Compact inline treatment (small label, value on the same line) in the
+       footer, so labelling every row does not push the footer past its
+       10cm / 378px budget.
+
+   Order is deliberate: the two things someone can act on immediately (Cell,
+   WhatsApp) come first, and the Address comes last because it is reference
+   information rather than an action.
+   -------------------------------------------------------------------------- */
+
+/* --- shared icon treatment --- */
+.ci {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  fill: none;
+  stroke: var(--accent, #ff6700);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- full stacked rows (service page panel) --- */
+.quote-split-list li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  justify-items: start;
+  gap: 0 12px;
+  width: 100%;
+  padding: 12px 8px;
+  text-align: left;
+}
+.quote-split-list li .ci { grid-row: 1 / span 2; }
+.quote-split-list .qsd-label {
+  grid-column: 2;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  text-align: left;
+  line-height: 1.3;
+}
+.quote-split-list .qsd-value {
+  grid-column: 2;
+  text-align: left;
+  line-height: 1.35;
+}
+.quote-split-list .qsd-value a,
+.quote-split-list .qsd-plain {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  text-align: left;
+  word-break: break-word;
+}
+.quote-split-list .qsd-value a:hover { color: var(--accent, #ff6700); }
+/* Cell and WhatsApp are the two instant-action numbers - give them weight */
+.quote-split-list li.is-primary .qsd-value a,
+.quote-split-list li.is-primary .qsd-plain { font-size: 1.18rem; font-weight: 700; }
+.quote-split-list li.is-primary { background: rgba(255 255 255, 0.035); }
+
+/* --- contact page definition list, same format --- */
+.contact-facts {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  text-align: left;
+}
+.cf-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 0 12px;
+  padding: 12px 8px;
+}
+.cf-row + .cf-row { border-top: 1px solid rgba(255 255 255, 0.08); }
+.cf-row .ci { grid-row: 1 / span 2; }
+.cf-row dt {
+  grid-column: 2;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  line-height: 1.3;
+}
+.cf-row dd {
+  grid-column: 2;
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+.cf-row dd a,
+.cf-row .cf-plain {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  word-break: break-word;
+}
+.cf-row dd a:hover { color: var(--accent, #ff6700); text-decoration: underline; }
+.cf-row.is-primary dd a { font-size: 1.18rem; font-weight: 700; }
+.cf-note {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  font-weight: 400;
+}
+
+/* --- compact inline rows (footer, height-sensitive) --- */
+.live-footer-contact { display: grid; gap: 7px; }
+.live-footer-contact li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 8px;
+  margin: 0 !important;
+  text-align: center;
+}
+.fc-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  min-width: 5.1em;
+  text-align: right;
+}
+.fc-value a,
+.fc-plain {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  word-break: break-word;
+}
+.fc-value a:hover { color: var(--accent, #ff6700); text-decoration: underline; }
+
+/* --- narrow screens: labels sit above the value again --- */
+@media (max-width: 560px) {
+  .fc-label { min-width: 0; width: 100%; text-align: center; }
+}
+
+/* --------------------------------------------------------------------------
+   41. FOOTER MAP - ZIMBABWE FRAMED, 7cm TALL
+   The embed queried a free-text address at z=14. When Google could not
+   geocode that string it fell back to a wide regional view, which read as
+   "the African map". The viewport is now bounded to central Harare
+   (inside Zimbabwe) with an explicit bbox, so the frame can never fall
+   back to a continental zoom. The marker still comes from geocoding the
+   real address in q=, so no location has been invented.
+
+   Height is pinned to 7cm (265 css px at 96dpi) with an explicit
+   min-height/max-height so the map cannot be resized by its own
+   aspect-ratio handling or by the 200px mobile rule in enhanced.css.
+   -------------------------------------------------------------------------- */
+.live-footer-map { padding-bottom: 24px; }
+.live-footer-map iframe,
+.live-footer-map > iframe {
+  display: block;
+  width: 100%;
+  height: 265px !important;
+  min-height: 265px;
+  max-height: 265px;
+  border-radius: 12px;
+  border: 0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 820px) {
+  .live-footer-map iframe,
+  .live-footer-map > iframe {
+    height: 265px !important;
+    min-height: 265px;
+    max-height: 265px;
+    border-radius: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   42. BREADCRUMBS CENTRED
+   The breadcrumb bar was left-aligned while every other heading block on the
+   site is centred, which made it read as an oversight. Centred now, with the
+   separator slashes included in the centred run so the whole trail sits as
+   one optically centred line.
+   -------------------------------------------------------------------------- */
+.breadcrumbs {
+  text-align: center !important;
+}
+.breadcrumbs > .container {
+  display: flex;
+  justify-content: center;
+}
+.breadcrumbs ol {
+  justify-content: center;
+  text-align: center;
+}
+.breadcrumbs li {
+  justify-content: center;
+  text-align: center;
+}
+.breadcrumbs a,
+.breadcrumbs [aria-current="page"] {
+  text-align: center;
+}
+@media (max-width: 560px) {
+  .breadcrumbs ol { justify-content: center; }
+}
+
+/* --------------------------------------------------------------------------
+   43. TYPE SCALE REDUCED
+   Every role in the design system is re-declared about 10% smaller, with the
+   same !important the originals carry so it wins, placed last in the cascade.
+   Desktop body copy goes from 17px to about 15.6px and h1 from 40px to 36px,
+   which is the single biggest contributor to the page feeling long.
+
+   --------------------------------------------------------------------------
+   44. HERO COMPACTED
+   The hero was rendering six stacked lines and was pinned to 567px (15cm),
+   which is why it ate the screen. Three changes:
+     - the redundant service-area line is gone (see index.html)
+     - the h1 measure is widened so it sets in fewer lines
+     - min-height drops from 567px to 460px (about 12.2cm)
+
+   The two safety properties from the original clipping fix are kept: the
+   height is a min-height, not a fixed height, and the hero still does not
+   clip itself. So the three buttons can never disappear again.
+   -------------------------------------------------------------------------- */
+
+/* ---------- 43. reduced type scale ---------- */
+.hero-content h1, .hero-section.home-hero .home-hero-copy h1,
+.page-hero h1, .home-hero-copy h1, .hero-typewriter-line,
+main h1, main .hero-typewriter-line {
+  font-size: clamp(1.6rem, 1.1rem + 1.35vw, 2.25rem) !important;
+}
+h2, .hero-content h2, .page-hero h2, .section-heading h2, .section-title,
+.services-slider-heading h2, .passion-cta h2, .cta-strip h2,
+.combo-heading, .welcome-heading, .featured-services-subheading,
+.quote-band h2, .quote-band-text h2, .contact-actions-inner h2,
+.ppc-inline-cta-inner h2, .quote-split-contact h3 {
+  font-size: clamp(1.18rem, 1rem + 0.72vw, 1.62rem) !important;
+}
+h3, .hero-content h3, .page-hero h3, .section-heading h3,
+.service-slide-card h3, .svc-card h3, .card h3, .service-item h3,
+.case-study-card h3, .nine-card h3, .case-card h3,
+.ppc-benefit h3, .ppc-step h3, .contact-facts dt {
+  font-size: clamp(0.95rem, 0.91rem + 0.2vw, 1.1rem) !important;
+}
+h4, .svc-card h4, .card h4, .service-item h4 {
+  font-size: clamp(0.9rem, 0.88rem + 0.12vw, 1rem) !important;
+}
+p, .section-heading p, .home-hero-copy p, .hero-sub, .service-area,
+.service-slide-card p, .svc-card p, .card p, .service-item p,
+.case-study-card p, .nine-clamp, .combo-head p, .contact-btn span,
+.quote-split-lead, .quote-split-list .qsd-value a, .contact-facts dd a,
+.contact-actions-inner > p, .lead-form-intro {
+  font-size: clamp(0.875rem, 0.86rem + 0.12vw, 0.975rem) !important;
+}
+.hero-sub, .hero-content .hero-sub, .home-hero-copy .hero-sub {
+  font-size: clamp(0.92rem, 0.9rem + 0.18vw, 1.03rem) !important;
+}
+.eyebrow, .trust-label, .section-subtitle, .card-label,
+.qsd-label, .fc-label, .cf-row dt {
+  font-size: 0.66rem !important;
+}
+.service-area { font-size: 0.85rem !important; }
+
+/* ---------- 44. compact hero ---------- */
+.hero-section.home-hero {
+  min-height: 460px;
+  height: auto;
+  overflow: visible;
+}
+@media (min-width: 769px) {
+  .hero-section.home-hero .home-hero-copy {
+    gap: 10px;
+    padding: 38px 0 26px;
+  }
+  /* wider measure -> the heading sets in fewer lines */
+  .hero-section.home-hero .home-hero-copy h1 { max-width: 28ch; }
+  .hero-section.home-hero .home-hero-copy .hero-sub { max-width: 72ch; }
+  /* the longest rotating string is one line, so 1.9em is enough */
+  .hero-section.home-hero .hero-rotator { min-height: 1.9em !important; }
+  .hero-section.home-hero .hero-actions { margin-top: 4px; }
+  .hero-section.home-hero .hero-actions .button {
+    min-height: 46px;
+    padding: 12px 24px;
+  }
+}
+/* page heroes on the service pages get the same treatment */
+@media (min-width: 769px) {
+  .page-hero { padding: 46px 0 34px !important; }
+  .page-hero .container { gap: 12px !important; }
+}
+
+/* the float button is gone: reclaim the corner it occupied */
+.chat-fab, .efd-chat-fab { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   45. SERVICES + ABOUT BACKGROUNDS FROM THE NAMED SOURCE FOLDER
+   images/about-bg/sharp/* are the files from "EXTREME SITE ABOUT BACKGROUND
+   IMAGES", centre-cropped to 16:10 and Lanczos-upscaled, with an unsharp mask
+   applied to recover edge definition lost to upscaling. The upscaling is a
+   sharpening step, not a blur: the old about-bg/soft/* files were blurred to
+   hide a 206x206 source, and these deliberately do not do that.
+
+   The originals are only 206x206, so at a 1920px viewport these are upscaled
+   roughly 9x and will read as soft. That is a limit of the source files, not
+   of the pipeline - the underlying detail simply is not present to recover.
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   46. MAP AT 5cm, AND MODERN UI CORRECTIONS
+   Research-backed changes applied here:
+
+   - Map height pinned to 5cm (189 css px). Both the footer map and the map
+     on the contact page were showing a wide regional view when Google's
+     geocoder missed the free-text address; both are now bounded to central
+     Harare with an explicit bbox so the frame can never fall back to a
+     continental zoom.
+
+   - The map now sits immediately above the footer with nothing in between.
+     Placing it flush to the footer exposes more of the frame, which is what
+     lets a visitor orient themselves - the reason it is there at all.
+
+   - Footer micro-labels raised from 0.62rem (about 10px) to 0.75rem (12px).
+     Below 12px, footer text is flagged as hostile on mobile, so the reduced
+     type scale does not extend to these. Tap targets are held at 44px for
+     the same accessibility reason.
+
+   - Footer link lists given line-height 1.7; tighter lists read as cluttered.
+   -------------------------------------------------------------------------- */
+.live-footer-map iframe,
+.live-footer-map > iframe {
+  height: 189px !important;
+  min-height: 189px;
+  max-height: 189px;
+}
+.live-footer-map { padding-bottom: 0; }
+
+/* the map hugs the footer: no gap, no rule, it reads as the footer's top edge */
+.live-footer-map + .live-footer,
+.live-footer-map + footer {
+  margin-top: 0;
+}
+
+/* --- accessibility floors the type-scale reduction must not cross --- */
+.fc-label,
+.qsd-label,
+.cf-row dt,
+.footer-link-group h3,
+.live-footer-about h3,
+.live-footer-contact h3,
+.live-footer-social h3 {
+  font-size: 0.75rem !important;   /* 12px floor */
+  line-height: 1.5;
+}
+.live-footer-links a,
+.footer-link-group a,
+.fc-value a,
+.fc-plain,
+.live-footer-about p,
+.live-footer-contact li {
+  font-size: 0.875rem !important;  /* 14px floor */
+  line-height: 1.7;
+}
+.live-footer-links a,
+.footer-link-group a,
+.fc-value a {
+  padding-block: 5px;               /* ~44px tap target with line-height */
+  display: inline-block;
+}
+@media (max-width: 560px) {
+  .live-footer-links a,
+  .footer-link-group a,
+  .fc-value a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Keep permission-gated content hidden even when component styles set display. */
+[hidden] { display: none !important; }
+
+/* Keep the animated hero line readable on narrow screens and clear of floating actions. */
+@media (max-width: 640px) {
+  .hero-section.home-hero .hero-rotator { min-height: 2.8em !important; margin-block: 8px 14px; }
+  .hero-section.home-hero .hero-typewriter-line { font-size: clamp(1rem, 4.2vw, 1.3rem); line-height: 1.35; }
+}
+
+/* Add restrained depth to the existing photo slideshow without changing its images. */
+.hero-bg { perspective: 1400px; transform-style: preserve-3d; }
+.hero-bg__slide { transform: scale(1.07) rotateY(2.2deg); transform-origin: center; transition: opacity 1.2s ease, transform 1.8s cubic-bezier(.2,.7,.2,1); }
+.hero-bg__slide.active { transform: scale(1.015) rotateY(0deg); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg__slide, .hero-bg__slide.active { transform: none; transition: opacity .2s linear; }
+}
+
+@keyframes hero-video-depth {
+  from { transform: scale(1.04) perspective(1500px) rotateY(-.35deg); }
+  to { transform: scale(1.10) perspective(1500px) rotateY(.35deg); }
+}
+.hero-bg__video { animation: hero-video-depth 28s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .hero-bg__video { animation: none; transform: none; } }
+
+/* Service landing page hero repair: valid CSS image fallbacks, centered copy and a clear visual hierarchy. */
+body::before {
+  background-image: var(--page-bg, none);
+}
+body::after {
+  background: linear-gradient(180deg, rgba(6, 7, 13, .64) 0%, rgba(6, 7, 13, .52) 46%, rgba(6, 7, 13, .68) 100%);
+}
+.page-hero {
+  min-height: clamp(440px, 64vh, 720px);
+  padding: clamp(72px, 9vh, 112px) 0 clamp(64px, 8vh, 96px);
+  background: linear-gradient(135deg, rgba(6, 7, 13, .36), rgba(6, 7, 13, .22));
+}
+.page-hero::before {
+  background-image: var(--page-bg, var(--hero-img, none));
+  background-size: cover;
+  background-position: center;
+  transform: translate3d(0, var(--parallax-y, 0px), 0) scale(1.08);
+  filter: saturate(1.12) contrast(1.06);
+}
+.page-hero::after {
+  background: linear-gradient(180deg, rgba(4, 7, 14, .22) 0%, rgba(4, 7, 14, .38) 58%, rgba(4, 7, 14, .64) 100%),
+              radial-gradient(ellipse 76% 72% at 50% 44%, rgba(4, 7, 14, .52) 0%, rgba(4, 7, 14, .68) 65%, rgba(4, 7, 14, .54) 100%);
+}
+.page-hero .container {
+  width: min(100% - 40px, 900px);
+  max-width: 900px;
+  margin-inline: auto;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: clamp(16px, 2.4vh, 24px);
+  text-align: center;
+}
+.page-hero h1 {
+  max-width: 18ch;
+  margin: 0 auto;
+  font-size: clamp(2.35rem, 5.2vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  text-align: center;
+  text-wrap: balance;
+  text-shadow: 0 3px 26px rgba(0, 0, 0, .62);
+}
+.page-hero .eyebrow {
+  margin: 0 auto;
+  color: #ff855d;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.page-hero .page-hero-sub {
+  max-width: 64ch;
+  margin: 0 auto;
+  color: #eef3fb;
+  font-size: clamp(1.04rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
+  text-align: center;
+  text-wrap: pretty;
+}
+.page-hero .service-area { margin-inline: auto; }
+.page-hero .hero-actions,
+.page-hero .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 4px auto 0;
+}
+@media (max-width: 640px) {
+  .page-hero { min-height: 470px; padding: 64px 0 56px; }
+  .page-hero .container { width: min(100% - 32px, 900px); gap: 16px; }
+  .page-hero h1 { max-width: 15ch; font-size: clamp(2.1rem, 10vw, 3.15rem); }
+  .page-hero .page-hero-sub { font-size: 1rem; line-height: 1.6; }
+}
+
+/* Each service landing page currently has one introductory benefit card.
+   Keep the card directly under its heading instead of leaving it in column 1
+   of the three-column grid, and align its copy as a deliberate text block. */
+.ppc-benefits > .ppc-benefit:only-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 680px);
+  padding: clamp(24px, 3vw, 34px);
+  text-align: center !important;
+}
+.ppc-benefits > .ppc-benefit:only-child h3,
+.ppc-benefits > .ppc-benefit:only-child p {
+  width: 100%;
+  max-width: 54ch;
+  margin-inline: auto;
+  text-align: center !important;
+}
+.ppc-benefits > .ppc-benefit:only-child h3 {
+  margin-bottom: 10px;
+  text-wrap: balance;
+}
+
+/* Keep the fixed page image/video inside the body's stacking context. Without
+   isolation, negative z-index backgrounds can fall behind the opaque body and
+   disappear even though the image URL itself loads successfully. */
+body {
+  isolation: isolate;
+  background: transparent !important;
+}
+body::before {
+  z-index: -2;
+  background-color: #06070d;
+  background-image: var(--page-bg, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+body::after {
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(6, 7, 13, .40) 0%, rgba(6, 7, 13, .30) 46%, rgba(6, 7, 13, .52) 100%);
+}
+.page-hero {
+  background: transparent !important;
+}
+
+/* Final service-page render order: photo first, scrim second, copy on top. */
+.page-hero {
+  display: flex !important;
+  position: relative;
+  isolation: isolate;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(480px, 66vh, 720px) !important;
+}
+.page-hero::before { z-index: 0; }
+.page-hero::after { z-index: 1; }
+.page-hero .hero-grid { z-index: 2; }
+.page-hero .container { position: relative; z-index: 3; }
+
+/* The service landing pages each have one intro card; use a single centered
+   column so it cannot remain stranded in the first cell of a 3-column grid. */
+.ppc-benefits {
+  grid-template-columns: minmax(0, 1fr) !important;
+  justify-items: center;
+}
+.ppc-benefits > .ppc-benefit {
+  width: min(100%, 680px);
+  margin-inline: auto;
+  text-align: center !important;
+}
+.ppc-benefits > .ppc-benefit h3,
+.ppc-benefits > .ppc-benefit p {
+  margin-inline: auto;
+  text-align: center !important;
+}
+
+/* Shared, polished enquiry form for contact and all service landing pages. */
+.quote-split { align-items: stretch; }
+.lead-form-shell { max-width: 720px; }
+form.lead-form {
+  position: relative;
+  overflow: hidden;
+  gap: 17px;
+  padding: clamp(24px, 3vw, 34px);
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 20px;
+  background: linear-gradient(150deg, rgba(19, 27, 43, .97), rgba(8, 12, 22, .96));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .36), inset 0 1px rgba(255, 255, 255, .04);
+}
+form.lead-form::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, #d62828, #ff6700 55%, #ff9a52);
+}
+form.lead-form .lead-form-intro {
+  max-width: 58ch;
+  color: #f2f5fb;
+  font-size: 1.04rem;
+  font-weight: 600;
+  line-height: 1.65;
+  text-align: left;
+}
+form.lead-form > .form-hint,
+form.lead-form .form-row > .form-hint {
+  text-align: left;
+}
+form.lead-form .form-row { gap: 8px; text-align: left; }
+form.lead-form .form-row label {
+  display: block;
+  text-align: left;
+  font-size: .94rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+form.lead-form .form-row:focus-within label { color: #ff9a70; }
+form.lead-form input[type="text"],
+form.lead-form input[type="tel"],
+form.lead-form input[type="email"],
+form.lead-form textarea {
+  min-height: 54px;
+  padding: 14px 16px;
+  border-color: rgba(199, 213, 234, .24);
+  border-radius: 12px;
+  background: rgba(4, 8, 17, .72);
+  color: #fff;
+}
+form.lead-form textarea { min-height: 148px; }
+form.lead-form input::placeholder,
+form.lead-form textarea::placeholder { color: rgba(205, 218, 237, .56); }
+form.lead-form .form-consent { text-align: left; }
+form.lead-form .form-consent label { max-width: 62ch; }
+form.lead-form .lead-form-submit {
+  min-height: 56px;
+  border-radius: 13px;
+  box-shadow: 0 8px 24px rgba(214, 40, 40, .22);
+}
+form.lead-form .lead-form-submit:focus-visible {
+  outline: 3px solid #ffb08b;
+  outline-offset: 3px;
+}
+@media (max-width: 560px) {
+  form.lead-form { padding: 25px 18px 22px; border-radius: 16px; }
+  form.lead-form .form-row { gap: 7px; }
+}
