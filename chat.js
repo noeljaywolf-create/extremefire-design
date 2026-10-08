@@ -4,7 +4,7 @@ const faq = [
   { q: ["contact","phone","call","email","address","location","where","whatsapp","reach"], a: (function () {
       var C = window.EFD_CONFIG || {};
       var wa = C.whatsappDisplay || "0776 400 176";
-      var ph = C.phoneDisplay || "0242 488 720";
+      var ph = C.phoneDisplay || "0242 488 270/1/2/3";
       var em = C.email || "info@extremefire.co.zw";
       var ad = C.address || {};
       var adLine = [ad.line1, ad.city, ad.country].filter(Boolean).join(", ");

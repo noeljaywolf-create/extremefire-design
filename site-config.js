@@ -9,14 +9,14 @@ window.EFD_CONFIG = {
   // ---- CONTACT ----------------------------------------------------------
   // TODO_CONFIRM: main landline. Three variants are in circulation:
   //   visible landing text ......... 0242488270/1/2/3   (488 270)
-  //   every tel: link ............. +263242488720      (488 720)
-  //   contact.html meta desc ...... 0242 488 720       (488 720)
+  //   every tel: link ............. +263242488270      (488 720)
+  //   contact.html meta desc ...... 0242 488 270/1/2/3       (488 720)
   //   LocalBusiness schema ........ +263-24-2488270    (488 270)
   // The provisional value below is the one already present in every tel: link,
   // so tap-to-call behaviour is unchanged until you confirm. The visible text
   // 0242488270/1/2/3 looks like a digit transposition and is the likely typo.
-  phoneDisplay: '0242 488 720',           // TODO_CONFIRM
-  phoneDial: '+263242488720',             // TODO_CONFIRM
+  phoneDisplay: '0242 488 270/1/2/3',           // CONFIRMED by client: switchboard
+  phoneDial: '+263242488270',             // CONFIRMED: base line of the switchboard
   phoneSecondaryDisplay: '0773 688 904',  // mobile shown in header/footer today
   phoneSecondaryDial: '+263773688904',    // TODO_CONFIRM - confirm still current
   // A fourth number, 0719 148 295, appeared in the old footer beside the
@@ -28,9 +28,9 @@ window.EFD_CONFIG = {
   whatsappDial: '263776400176',
   whatsappUrl: 'https://wa.me/263776400176',
 
-  // TODO_CONFIRM: email. info@extremefire.co.zw is domain-matched and is what
+  // Email confirmed by the client.
   // the site uses today, but needs confirming as a monitored inbox.
-  email: 'info@extremefire.co.zw',        // TODO_CONFIRM
+  email: 'info@extremefire.co.zw',        // CONFIRMED by client
 
   // TODO_CONFIRM: which Facebook page is the official one.
   facebookUrl: 'https://www.facebook.com/Extreme-Fire-Design-Inc-100063570455758/', // TODO_CONFIRM
@@ -51,14 +51,10 @@ window.EFD_CONFIG = {
   //   faq.html     -> "24/7 Support"
   // Pick ONE response promise and ONE set of hours, then use it everywhere.
   hours: {
-    // TODO_CONFIRM
-    opens: null,
-    closes: null,
-    days: null,
-    // TODO_CONFIRM: e.g. "We reply to enquiries within one business day."
-    responsePromise: null,
-    emergency24_7: null
-  },
+    weekday: 'Monday - Friday',
+    opens: '07:30',
+    closes: '16:30',
+    display: 'Monday - Friday | 7:30AM - 4:30PM',},
 
   // ---- DOMAIN -----------------------------------------------------------
   // Canonicals currently point at https://www.extremefiredesigninc.com/ but the

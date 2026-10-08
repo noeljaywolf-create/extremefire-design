@@ -7,19 +7,17 @@ stopping something from being shown. Ordered by how much it affects the site.
 
 ## Blocking — the site is inconsistent or wrong until these are answered
 
-### 1. What is the correct main landline?
-Four variants are in circulation:
+### 1. ~~What is the correct main landline?~~ RESOLVED
+**Confirmed by the client: the office line is a switchboard.**
 
-| Where | Value |
+| Where | Value now |
 |---|---|
-| Visible landing text | `0242488270/1/2/3` (488 270) |
-| Every `tel:` link | `+263242488720` (488 720) |
-| `contact.html` meta description | `0242 488 720` (488 720) |
-| `LocalBusiness` schema | `+263-24-2488270` (488 270) |
+| Visible landing text | `0242 488 270/1/2/3` |
+| Every `tel:` link | `+263242488270` (base line of the switchboard) |
+| `LocalBusiness` / `ContactPoint` schema | `+263242488270` |
 
-`488 720` appears more often, and the visible `...488270` looks like a digit
-transposition — but I have not changed the live `tel:` behaviour. **Which is correct?**
-Also: are the `/1/2/3` extensions real, and should they be published?
+The previously published `0242 488 720` was wrong and has been removed site-wide.
+`site-config.js` now records `phoneDisplay` / `phoneDial` as CONFIRMED.
 
 ### 2. What is the final production domain?
 Canonicals, `og:url` and the sitemap all say `https://www.extremefiredesigninc.com`.
@@ -29,20 +27,29 @@ The site is served from **GitHub Pages**, and the contact email is
 **Which domain is canonical?** Once answered, I fix the canonical tags, `og:url`,
 absolute `og:image` URLs, `sitemap.xml`, `robots.txt` and the redirect map in one pass.
 
-### 3. Trading hours and response promise — pick ONE of each
-The site currently says all three of these:
+### 3. ~~Trading hours and response promise~~ RESOLVED — hours only
+**Confirmed by the client: office hours are Monday to Friday, 7:30am – 4:30pm.**
 
-- `contact.html`: "Monday – Sunday | 8AM – 5PM"
-- `index.html`: "Fire Emergency? We Respond 24/7"
-- `faq.html`: "24/7 Support" and a 24/7 emergency response claim
-- `thank-you.html` (new): "usually within one business day"
+Applied to:
+- `contact.html` → "Trading hours: Monday - Friday | 7:30AM - 4:30PM"
+- `index.html` JSON-LD → `OpeningHoursSpecification`, Mo–Fr 07:30–16:30
+- `site-config.js` → `hours.weekday / opens / closes`
 
-**What are your real hours, and what is your real response promise?** 24/7 emergency
-response is a significant commitment — I will not print it unless it is true.
+**Still open — the response promise.** The 24/7 claims have been removed because
+they contradicted the office hours above, and I will not print an out-of-hours
+service that has not been confirmed. So the remaining question is narrow:
 
-### 4. Is the email `info@extremefire.co.zw`, and is it monitored?
-It is domain-matched and used everywhere, but I need to know someone actually reads it,
-because every fallback path and the new pages depend on it.
+> Is there an out-of-hours number or on-call arrangement for genuine fire
+> emergencies? If yes, give me the wording and the number and I will print it
+> clearly distinguished from the office hours. If no, the site now correctly
+> promises a reply during office hours only.
+
+### 4. ~~Is the email `info@extremefire.co.zw`?~~ CONFIRMED — one question remains
+**Confirmed by the client: `info@extremefire.co.zw` is the correct address.**
+It is the only address on the site and is marked CONFIRMED in `site-config.js`.
+
+Remaining: **is it actively monitored, and how often?** Every fallback path — the
+lead forms, the quote flow and the contact band — depends on someone reading it.
 
 ### 5. Is `0719 148 295` still a live number?
 It appeared beside `0773 688 904` in the old footer. I dropped it rather than guess.
@@ -189,17 +196,23 @@ If you only have time for a few, these give the most:
 5. The Zimbabwean standard for the badges (#10)
 6. Form destination (#14)
 
-## PPC landing pages - number confirmation (added during landing page design)
+## PPC landing pages - number confirmation — RESOLVED
 
-- The six service pages were landing pages for paid traffic, so the phone number matters
-  more than usual. Two different landline numbers were published on the same pages:
-  `0242 488 720` in the hero and `0242 488 272` in the footer contact block.
-- `site-config.js` declares the canonical office number as **0242 488 720**
-  (`phoneDisplay` / `phoneDial` = +263242488720), so the footer was normalised to
-  0242 488 720 across all six service pages.
-- **CONFIRM: is 0242 488 720 the correct, currently-live office number?** If the
-  0242 488 272 number is a second real line, it should be added to site-config.js
-  as the secondary number and shown deliberately rather than silently dropped.
-- Secondary mobile 0773 688 904 and WhatsApp 0776 400 176 were left untouched.
-- Also confirm: `info@extremefire.co.zw` is on the page but the site domain is
-  `extremefiredesigninc.com` - if one is wrong it should be corrected before launch.
+Raised during the landing page redesign because a wrong number on a paid page
+costs leads. The client has since confirmed all three facts:
+
+- **Office line: switchboard `0242 488 270/1/2/3`.** The three conflicting values
+  found earlier — `...488720` in the hero and footer, and `...488272` in the footer
+  contact block — were all wrong. All are gone. `tel:` links now dial
+  `+263242488270`, the base line of the switchboard. 76 display and 85 dial
+  references updated across all 16 pages, plus `site-config.js`, `chat.js`,
+  `server.js` and the JSON-LD.
+- **Office hours: Monday to Friday, 7:30am – 4:30pm.** The contradictory
+  "24 hours a day" / "available every day" wording has been removed rather than
+  left to disagree with the hours. The narrower out-of-hours question is tracked
+  at #3.
+- **Email `info@extremefire.co.zw` confirmed** as the correct address.
+
+Unchanged and still correct: mobile `0773 688 904`, WhatsApp `0776 400 176`.
+Still open from this section: the canonical domain (#2), since the contact email
+is on `extremefire.co.zw` while the site is served from `extremefiredesigninc.com`.

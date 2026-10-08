@@ -28,7 +28,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const KNOWLEDGE = `
 COMPANY: Extreme Fire Design Inc (Salvis Trading Pvt Ltd t/a Extreme Fire Design Inc). Fire protection engineering, installation, and maintenance company in Zimbabwe. Located at 21566 Damofalls Industrial Area, Harare, Zimbabwe.
 
-CONTACT: WhatsApp 0776 400 176 (this is the ONLY WhatsApp number for the business), Phone 0242 488 720, Cell 0773 688 904, Email info@extremefire.co.zw. Address: 21566 Damofalls Industrial Area, Harare, Zimbabwe. Trading hours: TODO_CONFIRM.
+CONTACT: WhatsApp 0776 400 176 (this is the ONLY WhatsApp number for the business), Phone 0242 488 270/1/2/3, Cell 0773 688 904, Email info@extremefire.co.zw. Address: 21566 Damofalls Industrial Area, Harare, Zimbabwe. Trading hours: TODO_CONFIRM.
 
 TAGLINE: "Safety Through Technology"
 
@@ -76,7 +76,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
-        { role: 'system', content: `You are the official chatbot for Extreme Fire Design Inc, a fire protection company in Zimbabwe. Use ONLY the knowledge below to answer questions. If you don't know something, say "Please contact us directly at info@extremefire.co.zw or call 0242 488 720 for more details." Keep responses concise, professional, and helpful.\n\n${KNOWLEDGE}` },
+        { role: 'system', content: `You are the official chatbot for Extreme Fire Design Inc, a fire protection company in Zimbabwe. Use ONLY the knowledge below to answer questions. If you don't know something, say "Please contact us directly at info@extremefire.co.zw or call 0242 488 270/1/2/3 for more details." Keep responses concise, professional, and helpful.\n\n${KNOWLEDGE}` },
         { role: 'user', content: message }
       ],
       max_tokens: 400,
