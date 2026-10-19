@@ -12,3 +12,24 @@ _partials.json
 *.bak
 *.bak-*
 *.bak-before-*
+
+# Unrelated HUWA / table-charm build files that keep landing in this folder.
+# They belong to a different project and must never be committed here.
+table-charm-source.html
+tc-product.html
+tc-release.css
+tc-release.test.ts
+shop-models.js
+table-charm-source.html
+*-charm*.mjs
+*-charm*.cjs
+*huwa*.mjs
+*huwa*.cjs
+huwa-*.css
+*kitchen-expansion*
+*tc-release*
+*tc-smoke*
+*tc-catalog*
+*tc-models*
+*shop-models*
+*.pptx
