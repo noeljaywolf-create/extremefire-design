@@ -1,13 +1,17 @@
-# TODO_CONFIRM: the Sitemap URL below assumes the final production domain is
-# https://www.extremefiredesigninc.com. The site is currently served from GitHub
-# Pages while the contact email uses @extremefire.co.zw. Confirm the final
-# domain and update this line, the canonical tags and the sitemap together.
+# robots.txt - Extreme Fire Design Inc
+# Fire protection engineering, design, installation and maintenance, Zimbabwe.
+
 User-agent: *
 Allow: /
+
+# Source maps, build artefacts and anything that must never be indexed.
 Disallow: /node_modules/
 Disallow: /.env
+Disallow: /.git/
+Disallow: /*.bak
+Disallow: /*.map
 
-# Post-conversion and duplicate-tracking pages: not for indexing.
+# Post-conversion and error pages: useful to visitors, not to search engines.
 Disallow: /thank-you.html
 Disallow: /404.html
 

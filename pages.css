@@ -3556,3 +3556,46 @@ form.lead-form .lead-form-submit:focus-visible {
   letter-spacing: 0.02em;
   line-height: 1.3;
 }
+
+/* --------------------------------------------------------------------------
+   49. HEADING HIERARCHY FIXES (SEO + AEO, no visual change)
+   Four pages had a skipped heading level, which breaks the document outline
+   that search engines and answer engines read. Fixed without altering any
+   visible typography:
+
+   - faq.html: the three category titles are the first heading under the h1,
+     so they are promoted h3 -> h2. An explicit size rule keeps them exactly
+     the size they were as h3s.
+   - index.html: the case-scenario strip had card headings as the first
+     heading after the h1. Its existing strip label is promoted to h2.
+   - 404.html: the footer column headings were h3 straight after the h1, so a
+     visually hidden h2 was added above them.
+
+   .sr-only keeps the added headings available to assistive tech and crawlers
+   while taking them out of the visual flow.
+   -------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* promoted from h3 to h2 - hold the original h3 scale */
+h2.faq-section-title {
+  font-size: clamp(0.95rem, 0.91rem + 0.2vw, 1.1rem) !important;
+  line-height: 1.35 !important;
+}
+
+/* systems.html process steps: promoted h4 -> h3 to remove the level skip,
+   so the original h4 scale is pinned here to keep them looking identical. */
+h3.systems-step {
+  font-size: clamp(0.9rem, 0.88rem + 0.12vw, 1rem) !important;
+  line-height: 1.35 !important;
+}
