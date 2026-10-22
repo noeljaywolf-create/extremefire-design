@@ -11,6 +11,15 @@ Disallow: /.git/
 Disallow: /*.bak
 Disallow: /*.map
 
+# Stray third-party files that must never be indexed if they end up in the web root.
+Disallow: /table-charm-source.html
+Disallow: /tc-*.html
+Disallow: /huwa-*
+Disallow: /shop-models.js
+
+# Plain-text company summary for answer engines.
+# See https://www.extremefiredesigninc.com/llms.txt
+
 # Post-conversion and error pages: useful to visitors, not to search engines.
 Disallow: /thank-you.html
 Disallow: /404.html
