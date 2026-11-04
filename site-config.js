@@ -57,11 +57,8 @@ window.EFD_CONFIG = {
     display: 'Monday - Friday | 7:30AM - 4:30PM',},
 
   // ---- DOMAIN -----------------------------------------------------------
-  // Canonicals currently point at https://www.extremefiredesigninc.com/ but the
-  // site is served from GitHub Pages and email is @extremefire.co.zw.
-  // TODO_CONFIRM: the final production domain before canonicals, og:url,
-  // sitemap.xml and the 301 map are locked.
-  canonicalOrigin: 'https://www.extremefiredesigninc.com', // TODO_CONFIRM
+  // The production domain confirmed by the site owner.
+  canonicalOrigin: 'https://extremefire.co.zw',
 
   // ---- CREDENTIALS ------------------------------------------------------
   // Rendered only when `confirmed: true`. Nothing here is confirmed yet, so the

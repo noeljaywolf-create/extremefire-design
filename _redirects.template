@@ -1,13 +1,12 @@
 # Redirect rules — Cloudflare Workers / Netlify / Vercel / Apache
 #
-# TODO_CONFIRM: the final production domain (see site-config.js -> canonicalOrigin).
-# Targets are absolute here because these platforms redirect at the edge, where a
-# relative path is not enough. Replace PROD below once the domain is confirmed.
+# Production domain: see site-config.js -> canonicalOrigin.
+# Targets are absolute here because these platforms redirect at the edge.
 #
 # NOTE: GitHub Pages cannot serve redirects. These rules only take effect once the
 # site is moved behind Cloudflare, Netlify, Vercel, or a normal web host.
 
-PROD = "https://www.extremefiredesigninc.com"
+PROD = "https://extremefire.co.zw"
 
 ### Netlify _redirects format
 ### (paste into a `_redirects` file at the repo root when moving off GitHub Pages)

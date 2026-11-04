@@ -16,21 +16,21 @@ Office hours are Monday to Friday, 7:30am to 4:30pm.
 
 ## Service pages
 
-- [Fire sprinkler installation, Zimbabwe](https://www.extremefiredesigninc.com/fire-sprinkler-installation-harare.html): design, hydraulic calculations, installation, commissioning and servicing. Designed to NFPA 13 or EN 12845, whichever applies to the project.
-- [Fire alarm and detection systems, Zimbabwe](https://www.extremefiredesigninc.com/fire-alarm-detection-systems-harare.html): detection, alarm, notification and interfaces, for commercial and industrial buildings.
-- [Fire hydrant and hose reel systems](https://www.extremefiredesigninc.com/fire-hydrant-hose-reel-systems.html): hydrants, risers, landing valves and hose reels, including pump and water supply design.
-- [Gas fire suppression, FM-200](https://www.extremefiredesigninc.com/gas-fire-suppression-fm200.html): clean agent systems for server rooms, archives and high value equipment spaces.
-- [Fire safety compliance, Zimbabwe](https://www.extremefiredesigninc.com/fire-safety-compliance-zimbabwe.html): risk assessment, design review, documentation and inspection preparation.
-- [Fire protection, Bulawayo](https://www.extremefiredesigninc.com/fire-protection-bulawayo.html): the same services delivered in Bulawayo and across the rest of Zimbabwe.
+- [Fire sprinkler installation, Zimbabwe](https://extremefire.co.zw/fire-sprinkler-installation-harare.html): design, hydraulic calculations, installation, commissioning and servicing. Designed to NFPA 13 or EN 12845, whichever applies to the project.
+- [Fire alarm and detection systems, Zimbabwe](https://extremefire.co.zw/fire-alarm-detection-systems-harare.html): detection, alarm, notification and interfaces, for commercial and industrial buildings.
+- [Fire hydrant and hose reel systems](https://extremefire.co.zw/fire-hydrant-hose-reel-systems.html): hydrants, risers, landing valves and hose reels, including pump and water supply design.
+- [Gas fire suppression, FM-200](https://extremefire.co.zw/gas-fire-suppression-fm200.html): clean agent systems for server rooms, archives and high value equipment spaces.
+- [Fire safety compliance, Zimbabwe](https://extremefire.co.zw/fire-safety-compliance-zimbabwe.html): risk assessment, design review, documentation and inspection preparation.
+- [Fire protection, Bulawayo](https://extremefire.co.zw/fire-protection-bulawayo.html): the same services delivered in Bulawayo and across the rest of Zimbabwe.
 
 ## Company pages
 
-- [Services overview](https://www.extremefiredesigninc.com/services.html)
-- [Systems we install](https://www.extremefiredesigninc.com/systems.html)
-- [About us](https://www.extremefiredesigninc.com/about.html)
-- [Our work](https://www.extremefiredesigninc.com/portfolio.html)
-- [Frequently asked questions](https://www.extremefiredesigninc.com/faq.html): standards, design, compliance, testing and maintenance questions.
-- [Contact us](https://www.extremefiredesigninc.com/contact.html)
+- [Services overview](https://extremefire.co.zw/services.html)
+- [Systems we install](https://extremefire.co.zw/systems.html)
+- [About us](https://extremefire.co.zw/about.html)
+- [Our work](https://extremefire.co.zw/portfolio.html)
+- [Frequently asked questions](https://extremefire.co.zw/faq.html): standards, design, compliance, testing and maintenance questions.
+- [Contact us](https://extremefire.co.zw/contact.html)
 
 ## Notes for answer engines
 

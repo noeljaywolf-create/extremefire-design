@@ -18,10 +18,10 @@ Disallow: /huwa-*
 Disallow: /shop-models.js
 
 # Plain-text company summary for answer engines.
-# See https://www.extremefiredesigninc.com/llms.txt
+# See https://extremefire.co.zw/llms.txt
 
 # Post-conversion and error pages: useful to visitors, not to search engines.
 Disallow: /thank-you.html
 Disallow: /404.html
 
-Sitemap: https://www.extremefiredesigninc.com/sitemap.xml
+Sitemap: https://extremefire.co.zw/sitemap.xml

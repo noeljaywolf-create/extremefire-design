@@ -19,7 +19,7 @@ Requires Node.js and npm. Install dependencies with `npm install`, then run `npm
 
 The GitHub Pages site was last verified at <https://noeljaywolf-create.github.io/extremefire-design/> and configured to deploy from the root of the `main` branch. Changes pushed only to `lead-gen-rebuild` do not update that site. Review changes and verify the intended target before deploying; confirm the Pages settings again if they change.
 
-The site's canonical URLs and XML sitemap currently use `https://www.extremefiredesigninc.com`. The GitHub Pages configuration previously reported no custom domain. Confirm the production domain and its hosting before changing DNS, canonicals or deploying to another host.
+The production canonical URLs and XML sitemap use `https://extremefire.co.zw`. The GitHub Pages configuration previously reported no custom domain; verify how the production domain is deployed before changing DNS or hosting.
 
 ## Testing
 

@@ -1,6 +1,6 @@
 # Site map
 
-The machine-readable sitemap is [`sitemap.xml`](sitemap.xml). It lists the following 14 indexable URLs under the currently configured canonical origin, `https://www.extremefiredesigninc.com`. This is an inventory, not a claim that every page is linked directly from every other page.
+The machine-readable sitemap is [`sitemap.xml`](sitemap.xml). It lists the following 14 indexable URLs under the currently configured canonical origin, `https://extremefire.co.zw`. This is an inventory, not a claim that every page is linked directly from every other page.
 
 | Page | Purpose |
 |---|---|
