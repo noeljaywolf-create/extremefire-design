@@ -1,5 +1,9 @@
 # Test checklist
 
+> Historical checklist: some expectations below no longer match the current site,
+> including the WhatsApp handoff, thank-you redirect and time-based spam trap.
+> Use [VERIFICATION.md](VERIFICATION.md) for the current verification plan.
+
 Run this after previewing the branch, before going live. Items marked **BLOCKED** cannot
 be completed until the corresponding `[CONFIRM]` answer arrives.
 
