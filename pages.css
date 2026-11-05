@@ -2932,15 +2932,48 @@ body::before {
 }
 
 /* --- compact inline rows (footer, height-sensitive) --- */
-.live-footer-contact { display: grid; gap: 7px; }
+.live-footer-contact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3px;
+}
+.live-footer-contact.is-rotating {
+  min-height: 52px;
+  align-content: center;
+  gap: 0;
+}
+.live-footer-contact.is-rotating li[hidden] { display: none !important; }
+.live-footer-contact.is-rotating li:not([hidden]) {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.live-footer-contact.is-rotating .fc-label {
+  flex: 0 0 auto;
+  min-width: 0;
+}
 .live-footer-contact li {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   align-items: baseline;
-  justify-content: center;
-  gap: 4px 8px;
+  justify-content: flex-start;
+  gap: 6px;
   margin: 0 !important;
-  text-align: center;
+  text-align: left;
+}
+.live-footer-contact .fc-label {
+  flex: 0 0 70px;
+  min-width: 70px;
+  text-align: left;
+}
+.live-footer-contact .fc-value { min-width: 0; }
+.live-footer-contact .fc-value a {
+  font-size: 0.74rem !important;
+  line-height: 1.35;
+  padding-block: 0;
+}
+.agency-phone-link {
+  white-space: nowrap;
 }
 .fc-label {
   font-size: 0.62rem;

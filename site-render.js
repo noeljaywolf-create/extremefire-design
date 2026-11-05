@@ -144,8 +144,52 @@
       list.insertBefore(item, officeItem);
     });
   }
-  addFooterContact('Secondary mobile', cfg.mobileSecondaryDisplay, 'tel:' + cfg.mobileSecondaryDial);
-  addFooterContact('Secondary WhatsApp', cfg.whatsappSecondaryDisplay, cfg.whatsappSecondaryUrl);
+  addFooterContact('Mobile 2', cfg.mobileSecondaryDisplay, 'tel:' + cfg.mobileSecondaryDial);
+  addFooterContact('WhatsApp 2', cfg.whatsappSecondaryDisplay, cfg.whatsappSecondaryUrl);
+  document.querySelectorAll('.live-footer-contact').forEach(function (list) {
+    var contacts = Array.prototype.slice.call(list.children);
+    if (contacts.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var activeIndex = 0;
+    list.classList.add('is-rotating');
+    list.setAttribute('aria-label', 'Contact details rotate; click or focus to pause');
+    contacts.forEach(function (contact, index) { contact.hidden = index !== activeIndex; });
+
+    var timer = window.setInterval(function () {
+      contacts[activeIndex].hidden = true;
+      activeIndex = (activeIndex + 1) % contacts.length;
+      contacts[activeIndex].hidden = false;
+    }, 3000);
+
+    function stopRotation() {
+      window.clearInterval(timer);
+      list.classList.add('is-paused');
+      list.setAttribute('aria-label', 'Contact details rotation paused');
+    }
+
+    list.addEventListener('click', stopRotation, { once: true });
+    list.addEventListener('focusin', stopRotation, { once: true });
+  });
+  var agencyLink = document.querySelector('.live-footer-bottom-inner a[href="https://www.noeljay.co.zw"]');
+  if (agencyLink && !agencyLink.parentNode.querySelector('.agency-phone-link')) {
+    var agencyPhone = document.createElement('a');
+    var agencySeparator = document.createElement('span');
+    agencyPhone.className = 'agency-phone-link';
+    agencyPhone.href = 'tel:+263771273169';
+    agencyPhone.textContent = '+263 771 273 169';
+    agencyPhone.setAttribute('aria-label', 'Call Noel Digital Agency at +263 771 273 169');
+    agencyPhone.hidden = true;
+    agencySeparator.textContent = ' · ';
+    agencySeparator.hidden = true;
+    agencyLink.target = '_blank';
+    agencyLink.rel = 'noopener';
+    agencyLink.addEventListener('click', function () {
+      agencyPhone.hidden = false;
+      agencySeparator.hidden = false;
+    });
+    agencyLink.parentNode.appendChild(agencySeparator);
+    agencyLink.parentNode.appendChild(agencyPhone);
+  }
   if (cfg.email) {
     apply('[data-efd="email"]', cfg.email);
     apply('[data-efd="email-link"]', 'mailto:' + cfg.email, 'href');
