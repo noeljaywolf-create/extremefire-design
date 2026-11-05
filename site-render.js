@@ -115,6 +115,37 @@
   applyWhatsApp('[data-efd="whatsapp-link"]', cfg.whatsappUrl);
   if (cfg.whatsappSecondaryDisplay) apply('[data-efd="whatsapp-secondary"]', cfg.whatsappSecondaryDisplay);
   applyWhatsApp('[data-efd="whatsapp-secondary-link"]', cfg.whatsappSecondaryUrl);
+  function addFooterContact(label, number, href) {
+    if (!number || !href) return;
+    document.querySelectorAll('.live-footer-contact').forEach(function (list) {
+      var item = document.createElement('li');
+      var itemLabel = document.createElement('span');
+      var value = document.createElement('span');
+      var link = document.createElement('a');
+      var officeItem = null;
+
+      itemLabel.className = 'fc-label';
+      itemLabel.textContent = label;
+      value.className = 'fc-value';
+      link.href = href;
+      link.textContent = number;
+      value.appendChild(link);
+      item.appendChild(itemLabel);
+      item.appendChild(value);
+
+      Array.prototype.some.call(list.children, function (child) {
+        var existingLabel = child.querySelector('.fc-label');
+        if (existingLabel && existingLabel.textContent.trim() === 'Office') {
+          officeItem = child;
+          return true;
+        }
+        return false;
+      });
+      list.insertBefore(item, officeItem);
+    });
+  }
+  addFooterContact('Secondary mobile', cfg.mobileSecondaryDisplay, 'tel:' + cfg.mobileSecondaryDial);
+  addFooterContact('Secondary WhatsApp', cfg.whatsappSecondaryDisplay, cfg.whatsappSecondaryUrl);
   if (cfg.email) {
     apply('[data-efd="email"]', cfg.email);
     apply('[data-efd="email-link"]', 'mailto:' + cfg.email, 'href');
