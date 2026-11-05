@@ -29,7 +29,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 // client names, technical advice or standards without verification.
 const KNOWLEDGE = `
 COMPANY: Extreme Fire Design Inc provides fire protection design, installation, inspection and maintenance services in Zimbabwe.
-CONTACT: WhatsApp 0776 400 176, Phone 0242 488 270/1/2/3, Cell 0773 688 904, Email info@extremefire.co.zw. Address: 21566 Damofalls Industrial Area, Harare, Zimbabwe.
+CONTACT: Primary mobile and WhatsApp 0773 148 295, secondary mobile and WhatsApp 0719 148 295, office switchboard 0242 488270 / 1 / 2 / 3, Email info@extremefire.co.zw. Address: 21566 Damofalls Industrial Area, Harare, Zimbabwe.
 For staff qualifications, clients, standards, or project-specific fire safety requirements, ask the visitor to contact the company directly.
 `;
 
@@ -39,7 +39,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
-        { role: 'system', content: `You are the official chatbot for Extreme Fire Design Inc, a fire protection company in Zimbabwe. Use ONLY the knowledge below. Do not infer or invent staff credentials, clients, standards, technical advice, or legal requirements. Refer project-specific fire safety and compliance questions to the company. If you don't know something, say "Please contact us directly at info@extremefire.co.zw or call 0242 488 270/1/2/3 for more details." Keep responses concise and professional.\n\n${KNOWLEDGE}` },
+        { role: 'system', content: `You are the official chatbot for Extreme Fire Design Inc, a fire protection company in Zimbabwe. Use ONLY the knowledge below. Do not infer or invent staff credentials, clients, standards, technical advice, or legal requirements. Refer project-specific fire safety and compliance questions to the company. If you don't know something, say "Please contact us directly at info@extremefire.co.zw or call 0242 488270 / 1 / 2 / 3 for more details." Keep responses concise and professional.\n\n${KNOWLEDGE}` },
         { role: 'user', content: message }
       ],
       max_tokens: 400,

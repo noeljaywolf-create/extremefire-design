@@ -21,29 +21,11 @@ until a genuine, permission-confirmed quote is supplied (item 2).
 
 ## 1. Contact details
 
-- Found the site was carrying **four different phone numbers** and **two different
-  WhatsApp numbers** in different places:
-
-  | Where | Value |
-  |---|---|
-  | Visible landing text | `0242488270/1/2/3` (488 270) |
-  | Every `tel:` link | `+263242488720` (488 720) |
-  | `contact.html` meta description | `0242 488 720` (488 720) |
-  | `Organization` schema | `+263-242-488-720` (488 720) |
-  | `LocalBusiness` schema | `+263-24-2488270` (488 270) |
-  | Header/footer mobile | `+263 773 688 904` |
-  | Old footer, extra mobile | `0719 148 295` (dropped) |
-  | WhatsApp (header/footer/floats) | `+263 773 688 904` |
-  | WhatsApp (FAQ) | `+263 776 400 176` |
-
-- Created **`site-config.js`** as a single source of truth. 39 contact anchors across
-  all 16 pages now carry `data-efd` attributes and are rewritten from that one file,
-  so a number can only ever be changed in one place.
-- The provisional landline is the value already present in every `tel:` link, so
-  tap-to-call behaviour is unchanged. The visible `0242488270/1/2/3` looks like a
-  digit transposition and is the likely typo. **Awaiting confirmation.**
-- Address, email, Facebook page and WhatsApp all centralised. WhatsApp set to
-  `+263 776 400 176` as supplied.
+- Current confirmed contact details: primary mobile and WhatsApp `0773 148 295`,
+  secondary mobile and WhatsApp `0719 148 295`, and office switchboard
+  `0242 488270 / 1 / 2 / 3` (call the base line `+263242488270`).
+- Shared contact values are maintained in **`site-config.js`**, with matching
+  HTML fallbacks, structured data and enquiry links.
 - Trading hours contradicted themselves three ways: `contact.html` said
   "Monday–Sunday 8AM–5PM", `index.html` said "Respond 24/7", `faq.html` said "24/7
   Support". Left as `TODO_CONFIRM` rather than picking one.

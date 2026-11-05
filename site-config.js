@@ -7,26 +7,22 @@
 
 window.EFD_CONFIG = {
   // ---- CONTACT ----------------------------------------------------------
-  // TODO_CONFIRM: main landline. Three variants are in circulation:
-  //   visible landing text ......... 0242488270/1/2/3   (488 270)
-  //   every tel: link ............. +263242488270      (488 720)
-  //   contact.html meta desc ...... 0242 488 270/1/2/3       (488 720)
-  //   LocalBusiness schema ........ +263-24-2488270    (488 270)
-  // The provisional value below is the one already present in every tel: link,
-  // so tap-to-call behaviour is unchanged until you confirm. The visible text
-  // 0242488270/1/2/3 looks like a digit transposition and is the likely typo.
-  phoneDisplay: '0242 488 270/1/2/3',           // CONFIRMED by client: switchboard
-  phoneDial: '+263242488270',             // CONFIRMED: base line of the switchboard
-  phoneSecondaryDisplay: '0773 688 904',  // mobile shown in header/footer today
-  phoneSecondaryDial: '+263773688904',    // TODO_CONFIRM - confirm still current
-  // A fourth number, 0719 148 295, appeared in the old footer beside the
-  // 0773 mobile. It has been dropped rather than guessed at.
-  // TODO_CONFIRM: is 0719 148 295 still a live line?
-
-  // WhatsApp: supplied directly by the client as the single number.
-  whatsappDisplay: '0776 400 176',
-  whatsappDial: '263776400176',
-  whatsappUrl: 'https://wa.me/263776400176',
+  // Office switchboard lines end in 270, 271, 272 and 273; dial the base line.
+  phoneDisplay: '0242 488270 / 1 / 2 / 3',
+  phoneDial: '+263242488270',
+  // Legacy phone2 selectors refer to the primary mobile throughout the pages.
+  phoneSecondaryDisplay: '0773 148 295',
+  phoneSecondaryDial: '+263773148295',
+  mobilePrimaryDisplay: '0773 148 295',
+  mobilePrimaryDial: '+263773148295',
+  mobileSecondaryDisplay: '0719 148 295',
+  mobileSecondaryDial: '+263719148295',
+  whatsappDisplay: '0773 148 295',
+  whatsappDial: '263773148295',
+  whatsappUrl: 'https://wa.me/263773148295',
+  whatsappSecondaryDisplay: '0719 148 295',
+  whatsappSecondaryDial: '263719148295',
+  whatsappSecondaryUrl: 'https://wa.me/263719148295',
 
   // Email confirmed by the client.
   // the site uses today, but needs confirming as a monitored inbox.

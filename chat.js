@@ -4,8 +4,9 @@
 function getReply(msg) {
   const m = msg.toLowerCase();
   const c = window.EFD_CONFIG || {};
-  const contact = 'WhatsApp: ' + (c.whatsappDisplay || '0776 400 176') +
-    '\nPhone: ' + (c.phoneDisplay || '0242 488 270/1/2/3') +
+  const contact = 'Mobile / WhatsApp: ' + (c.whatsappDisplay || '0773 148 295') +
+    '\nSecondary mobile / WhatsApp: ' + (c.whatsappSecondaryDisplay || '0719 148 295') +
+    '\nOffice: ' + (c.phoneDisplay || '0242 488270 / 1 / 2 / 3') +
     '\nEmail: ' + (c.email || 'info@extremefire.co.zw');
   if (/\b(hello|hi|hey)\b/.test(m)) return 'Hello! How can we help with your fire protection enquiry?';
   if (/\b(contact|phone|call|email|address|location|whatsapp|quote|price|cost)\b/.test(m)) return contact + '\nAddress: 21566 Damofalls Industrial Area, Harare, Zimbabwe.';

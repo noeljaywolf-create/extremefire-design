@@ -101,8 +101,20 @@
   if (cfg.phoneDial) apply('[data-efd="phone-link"]', 'tel:' + cfg.phoneDial, 'href');
   if (cfg.phoneSecondaryDisplay) apply('[data-efd="phone2"]', cfg.phoneSecondaryDisplay);
   if (cfg.phoneSecondaryDial) apply('[data-efd="phone2-link"]', 'tel:' + cfg.phoneSecondaryDial, 'href');
+  if (cfg.mobileSecondaryDisplay) apply('[data-efd="mobile-secondary"]', cfg.mobileSecondaryDisplay);
+  if (cfg.mobileSecondaryDial) apply('[data-efd="mobile-secondary-link"]', 'tel:' + cfg.mobileSecondaryDial, 'href');
   if (cfg.whatsappDisplay) apply('[data-efd="whatsapp"]', cfg.whatsappDisplay);
-  if (cfg.whatsappUrl) apply('[data-efd="whatsapp-link"]', cfg.whatsappUrl, 'href');
+  function applyWhatsApp(sel, url) {
+    if (!url) return;
+    document.querySelectorAll(sel).forEach(function (el) {
+      var oldHref = el.getAttribute('href') || '';
+      var queryIndex = oldHref.indexOf('?');
+      el.setAttribute('href', url + (queryIndex < 0 ? '' : oldHref.slice(queryIndex)));
+    });
+  }
+  applyWhatsApp('[data-efd="whatsapp-link"]', cfg.whatsappUrl);
+  if (cfg.whatsappSecondaryDisplay) apply('[data-efd="whatsapp-secondary"]', cfg.whatsappSecondaryDisplay);
+  applyWhatsApp('[data-efd="whatsapp-secondary-link"]', cfg.whatsappSecondaryUrl);
   if (cfg.email) {
     apply('[data-efd="email"]', cfg.email);
     apply('[data-efd="email-link"]', 'mailto:' + cfg.email, 'href');

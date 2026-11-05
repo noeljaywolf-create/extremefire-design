@@ -12,12 +12,11 @@ stopping something from being shown. Ordered by how much it affects the site.
 
 | Where | Value now |
 |---|---|
-| Visible landing text | `0242 488 270/1/2/3` |
+| Visible landing text | `0242 488270 / 1 / 2 / 3` |
 | Every `tel:` link | `+263242488270` (base line of the switchboard) |
 | `LocalBusiness` / `ContactPoint` schema | `+263242488270` |
 
-The previously published `0242 488 720` was wrong and has been removed site-wide.
-`site-config.js` now records `phoneDisplay` / `phoneDial` as CONFIRMED.
+`site-config.js` records `phoneDisplay` / `phoneDial` as confirmed.
 
 ### 2. What is the final production domain?
 Canonicals, `og:url` and the sitemap all say `https://www.extremefiredesigninc.com`.
@@ -51,8 +50,8 @@ It is the only address on the site and is marked CONFIRMED in `site-config.js`.
 Remaining: **is it actively monitored, and how often?** Every fallback path — the
 lead forms, the quote flow and the contact band — depends on someone reading it.
 
-### 5. Is `0719 148 295` still a live number?
-It appeared beside `0773 688 904` in the old footer. I dropped it rather than guess.
+### 5. ~~Mobile and WhatsApp numbers~~ RESOLVED
+Primary: `0773 148 295` (`+263773148295`). Secondary: `0719 148 295` (`+263719148295`). Both support calls and WhatsApp.
 
 ### 6. Which Facebook page is the official one?
 The footer links to
@@ -201,7 +200,7 @@ If you only have time for a few, these give the most:
 Raised during the landing page redesign because a wrong number on a paid page
 costs leads. The client has since confirmed all three facts:
 
-- **Office line: switchboard `0242 488 270/1/2/3`.** The three conflicting values
+- **Office line: switchboard `0242 488270 / 1 / 2 / 3`.** The three conflicting values
   found earlier — `...488720` in the hero and footer, and `...488272` in the footer
   contact block — were all wrong. All are gone. `tel:` links now dial
   `+263242488270`, the base line of the switchboard. 76 display and 85 dial
@@ -213,6 +212,6 @@ costs leads. The client has since confirmed all three facts:
   at #3.
 - **Email `info@extremefire.co.zw` confirmed** as the correct address.
 
-Unchanged and still correct: mobile `0773 688 904`, WhatsApp `0776 400 176`.
+Current mobile and WhatsApp contacts: primary `0773 148 295`; secondary `0719 148 295`.
 Still open from this section: the canonical domain (#2), since the contact email
 is on `extremefire.co.zw` while the site is served from `extremefiredesigninc.com`.

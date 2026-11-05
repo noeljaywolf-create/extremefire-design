@@ -18,10 +18,9 @@ be completed until the corresponding `[CONFIRM]` answer arrives.
 | 1.5 | Address identical on all pages | Compare footer, contact page, privacy page, schema | ☐ |
 | 1.6 | Facebook link points at the official page | Click in footer | ☐ |
 | 1.7 | Changing `site-config.js` updates every page | Edit one number, hard-reload | ☐ |
-| 1.8 | Dropped number `0719 148 295` appears nowhere | Search the codebase | ☐ |
+| 1.8 | Primary and secondary mobile/WhatsApp numbers match the confirmed values | Check contact page and link destinations | ☐ |
 
-**BLOCKED on #1–#3 in `CONFIRM-REQUIRED.md`** — four landline variants are still in the
-source; the config centralises them but the correct value is not confirmed.
+The confirmed switchboard display is `0242 488270 / 1 / 2 / 3`; its call link uses the base line ending in 270.
 
 ## 2. WhatsApp and lead capture
 

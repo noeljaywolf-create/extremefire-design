@@ -14,6 +14,14 @@ Run against a local preview first and repeat the production checks after an appr
 
 ## Verification record — 4 November 2026
 
+### Contact update follow-up
+
+The downloadable `documents/extreme-fire-company-profile.pdf` is a separate 36-page
+document. Text extraction found an older office number in its page headers. It also
+contains phone numbers belonging to external references and a third party; those
+must not be replaced with company contact details. The original profile needs a
+corrected export and visual review before the PDF can be considered updated.
+
 - Automated local source inspection: 16 tracked HTML pages, 17 JSON-LD blocks and 14 sitemap entries. JSON-LD and XML parsed; sitemap files existed; each page had one H1 and a unique title. These checks do not validate schema semantics, page rendering or all links.
 - All 16 tracked HTML pages and `robots.txt`, `sitemap.xml` and `llms.txt` returned HTTP 200 on GitHub Pages; a nonexistent path returned 404. Source inspection found 137 distinct relative `href`/`src` paths and no missing local targets (not an external-link or CSS-asset crawl).
 - The homepage FAQ expanded and the statistics and credentials sections were hidden. On the sprinkler landing page, a simulated submission intercepted `window.open`: the WhatsApp draft contained the test fields and UTM values, the blocked-popup fallback appeared, and the honeypot blocked a submission. No message was sent; this does not verify delivery or other forms.

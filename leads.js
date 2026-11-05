@@ -12,7 +12,7 @@
   'use strict';
 
   var cfg = window.EFD_CONFIG || {};
-  var WA = (cfg.whatsappUrl || 'https://wa.me/263776400176').replace(/\/+$/, '');
+  var WA = (cfg.whatsappUrl || 'https://wa.me/263773148295').replace(/\/+$/, '');
 
   /* ---------------- UTM capture ---------------- */
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'];
