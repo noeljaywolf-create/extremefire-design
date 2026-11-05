@@ -1830,7 +1830,7 @@ main > section:nth-of-type(even) { background: rgba(255, 255, 255, 0.016); }
    overflow:hidden would silently crop links and make them unclickable.
    The internals below are sized so all 20 footer links genuinely fit. */
 .live-footer {
-  max-height: 378px;
+  max-height: none;
   overflow: visible;
   display: flex;
   flex-direction: column;
