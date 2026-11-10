@@ -13,6 +13,7 @@ Requires Node.js and npm. Install dependencies with `npm install`, then run `npm
 - `leads.js` opens a WhatsApp draft for forms marked `data-lead-form`. The visitor must press Send in WhatsApp; opening the draft is not a completed enquiry. The contact page has a separate email-draft form. There is no form-submission backend.
 - `server.js` serves the static files and provides `POST /api/chat` using OpenAI. GitHub Pages does not run Node.js or provide this API. Its knowledge text is restricted to general information; review and test any independently deployed AI service before enabling it.
 - `chat.js` is a separate browser-side chat widget. Its replies are limited to general information and direct visitors to the company for staff credentials, clients and technical advice.
+- Google Tag Manager container `GTM-KT2WWMKV` is installed in the `<head>` and with a `<noscript>` fallback immediately after `<body>` on all tracked HTML pages. Configure measurement tags and consent settings in the GTM workspace.
 - `sitemap.xml`, `robots.txt`, `llms.txt` and page metadata support discovery. `_redirects.template` is a reference, not an active GitHub Pages redirect configuration.
 
 ## Deployment

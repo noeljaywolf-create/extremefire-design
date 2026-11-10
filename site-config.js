@@ -8,19 +8,19 @@
 window.EFD_CONFIG = {
   // ---- CONTACT ----------------------------------------------------------
   // Office switchboard lines end in 270, 271, 272 and 273; dial the base line.
-  phoneDisplay: '+263 242 488270 / 1 / 2 / 3',
+  phoneDisplay: '0242 488270 / 1 / 2 / 3',
   phoneDial: '+263242488270',
   // Legacy phone2 selectors refer to the primary mobile throughout the pages.
-  phoneSecondaryDisplay: '+263 773 148 295',
+  phoneSecondaryDisplay: '0773 148 295',
   phoneSecondaryDial: '+263773148295',
-  mobilePrimaryDisplay: '+263 773 148 295',
+  mobilePrimaryDisplay: '0773 148 295',
   mobilePrimaryDial: '+263773148295',
-  mobileSecondaryDisplay: '+263 719 148 295',
+  mobileSecondaryDisplay: '0719 148 295',
   mobileSecondaryDial: '+263719148295',
-  whatsappDisplay: '+263 773 148 295',
+  whatsappDisplay: '0773 148 295',
   whatsappDial: '263773148295',
   whatsappUrl: 'https://wa.me/263773148295',
-  whatsappSecondaryDisplay: '+263 719 148 295',
+  whatsappSecondaryDisplay: '0719 148 295',
   whatsappSecondaryDial: '263719148295',
   whatsappSecondaryUrl: 'https://wa.me/263719148295',
 
