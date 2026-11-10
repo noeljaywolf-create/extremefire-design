@@ -1,6 +1,6 @@
 # Site map
 
-The machine-readable sitemap is [`sitemap.xml`](sitemap.xml). It lists the following 14 indexable URLs under the currently configured canonical origin, `https://extremefire.co.zw`. This is an inventory, not a claim that every page is linked directly from every other page.
+The machine-readable sitemap is [`sitemap.xml`](sitemap.xml). It lists the following 15 indexable URLs under the currently configured canonical origin, `https://extremefire.co.zw`. This is an inventory, not a claim that every page is linked directly from every other page.
 
 | Page | Purpose |
 |---|---|
@@ -14,6 +14,7 @@ The machine-readable sitemap is [`sitemap.xml`](sitemap.xml). It lists the follo
 | `/privacy.html` | Privacy notice |
 | `/fire-sprinkler-installation-harare.html` | Sprinkler installation |
 | `/fire-alarm-detection-systems-harare.html` | Fire alarms and detection |
+| `/fire-extinguisher-services-zimbabwe.html` | Portable extinguisher supply, servicing and refill support |
 | `/fire-hydrant-hose-reel-systems.html` | Hydrants and hose reels |
 | `/gas-fire-suppression-fm200.html` | Gas fire suppression |
 | `/fire-safety-compliance-zimbabwe.html` | Fire safety compliance |
