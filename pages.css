@@ -3648,3 +3648,100 @@ h3.systems-step {
   font-size: clamp(0.9rem, 0.88rem + 0.12vw, 1rem) !important;
   line-height: 1.35 !important;
 }
+
+/* ==========================================================================
+   40. STRICT HEADING CENTRING (site-wide, final layer)
+   --------------------------------------------------------------------------
+   Every heading and every heading container is centred, including headings
+   inside cards, accordions, the educational read-more block, checklists and
+   FAQ answers. This is the last stylesheet, so it wins over earlier layers.
+   Body paragraphs stay left-aligned for readability; only the heading text
+   and its kicker/lead lines are centred.
+   ========================================================================== */
+
+/* 1. Every heading level, everywhere. */
+h1, h2, h3, h4, h5, h6,
+.section-heading h1, .section-heading h2, .section-heading h3, .section-heading h4,
+.page-hero h1, .page-hero h2, .page-hero h3,
+.service-item h3, .case-study-card h3, .case-card h3, .nine-card h3, .card h3,
+.combo-heading, .welcome-heading, .featured-services-subheading, .section-title,
+.faq-section-title, .error-title, .quote-band h2, .quote-band-text h2,
+.ppc-benefits h3, .ppc-steps h3, .ppc-step h3, .ppc-scope h3,
+.related-links h3, .profile-card h3, .news-card h3,
+.welcome-rich-content h2, .welcome-rich-content h3,
+.accordion-grid summary,
+.svc-card h3, .svc-card h4, .service-card h2, .feature-card h2, .feature-card h3,
+.why-choose-item h3, .stat-label,
+.cred-item .cred-label, .std-badge .std-name {
+  text-align: center !important;
+  margin-inline: auto;
+}
+
+/* 2. The heading block itself is centred, so it cannot sit left even when its
+      parent is a flex row or grid track. */
+.section-heading,
+.page-hero .container,
+.combo-head,
+.quote-band-text,
+.about-band .section-heading,
+.featured-services-header,
+.recent-work-header {
+  text-align: center !important;
+  margin-inline: auto;
+  justify-items: center;
+  justify-self: center;
+}
+
+/* 3. The kicker (eyebrow) and the lead line under a heading follow the heading
+      onto the same centre axis. */
+.section-heading > p,
+.section-heading > .eyebrow,
+.page-hero .eyebrow,
+.page-hero .page-hero-sub,
+.page-hero .service-area,
+.quote-band-text p,
+.faq-section > .section-heading p {
+  text-align: center !important;
+  margin-inline: auto;
+}
+
+/* 4. Card and panel headings centre; their body copy stays left-aligned so it
+      remains readable. */
+.service-item h3, .nine-card h3, .svc-card h3, .svc-card h4,
+.case-card h3, .case-study-card h3, .profile-card h3, .news-card h3,
+.featured-service-item h3, .service-item h2, .nine-card h2,
+.card h2, .card h3, .card h4 {
+  text-align: center !important;
+  margin-inline: auto;
+}
+
+/* 5. FAQ answer headings (rare) stay centred; the question rows keep their
+      own interactive alignment so the +/- marker stays put. */
+.faq-answer h2, .faq-answer h3, .faq-answer h4 { text-align: center !important; }
+
+/* 6. Remaining card/panel headings and their kickers. */
+.ppc-benefit, .ppc-step, .ppc-scope, .std-badge, .cred-item,
+.case-strip-label, .trust-label {
+  text-align: center;
+}
+.ppc-benefit h3, .ppc-step h3, .ppc-scope h3 {
+  text-align: center !important;
+  margin-inline: auto;
+}
+
+/* 9. Educational long-form block: a centred block with centred headings and
+      readable, left-aligned body copy. */
+.welcome-rich-content { max-width: 900px; margin-inline: auto; }
+.welcome-rich-content h2,
+.welcome-rich-content h3 { text-align: center !important; margin-inline: auto; }
+.welcome-rich-content .welcome-lead { font-size: 1.05rem; line-height: 1.8; }
+
+/* 10. Safety net for the heading measure. A global rule caps headings at
+       30ch, so a heading that is a shrink-to-fit box (block child of a plain
+       container, or a flex item) sits on the left edge unless its horizontal
+       margins are auto. Auto margins are a no-op on a full-width block, so
+       this only ever re-centres a heading that would otherwise sit left. */
+h1, h2, h3, h4, h5, h6 {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}

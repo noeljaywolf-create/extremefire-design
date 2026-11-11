@@ -97,6 +97,63 @@ Repointed 5 "Learn More" links to the matching page instead of `services.html`. 
 that still point to `services.html` (Equipment Supply, Maintenance & Training) have no
 dedicated landing page.
 
+### 7a. Follow-up: training page and every-seat extinguisher keywords
+
+Added a dedicated training landing page and strengthened the extinguisher ("every seat")
+coverage, with no change to any existing URL, canonical or the Google Tag Manager block.
+
+- **New page** `fire-safety-training-zimbabwe.html` — fire safety and fire fighting
+  training for staff, fire marshals, wardens and response teams: awareness, hands-on
+  extinguisher use on a controlled fire, marshal/warden duties, evacuation drill support
+  and site-specific refreshers. Built from the compliance-page template; own
+  `Service` + `BreadcrumbList` + `FAQPage` JSON-LD, unique title and meta description,
+  and a hero background image.
+- **Footer "Service Pages" link** to the training page added on every page (43).
+- **Cross-links:** related-links entry on all service pages and all 25 city pages, plus a
+  training service item on each city page. `services.html` gained a training card and an
+  intro link.
+- **FAQ:** `faq.html` now answers training directly (schema and visible text identical);
+  the homepage FAQ gained a combined "extinguishers and training" question (schema and
+  visible text identical).
+- **Homepage schema:** added a "Fire Safety and Fire Fighting Training" offer to the
+  `hasOfferCatalog`.
+- **Refilling:** confirmed already prominent on the extinguisher page (supply, servicing,
+  refilling and inspection for cars, homes, schools, offices and industry) and reflected
+  in the homepage schema.
+- **Docs and discovery:** `sitemap.xml` (41 URLs), `SITEMAP.md`, `SEO-KEYWORD-MAP.md`
+  (training row, training keyword cluster, starting list) and `llms.txt` (training
+  service entry and a training section) all updated.
+
+Verification: 43 pages — 0 JSON-LD errors, GTM head and body blocks byte-identical
+(1 variant each), 0 broken internal links, 0 canonical mismatches, 0 off-centre
+headings, no horizontal overflow and no console errors in a headless Chromium sweep.
+
+## 7b. Fire sprinkler systems page (main nav)
+
+Added a dedicated fire sprinkler systems page and put it in the main navigation,
+without touching `systems.html`, any existing URL or the Google Tag Manager block.
+
+- **New page** `fire-sprinkler-systems-zimbabwe.html` — automatic fire sprinkler
+  systems: hydraulic design and calculations, installation, pumps/tanks and water
+  supply, commissioning and testing, inspection and maintenance, and alterations
+  to existing systems. Built from the service-page template; own `Service` +
+  `BreadcrumbList` + `FAQPage` JSON-LD, unique title and meta description, and a
+  five-image "Recent work" gallery.
+- **Images** — five sprinkler photos uploaded to the repository root were moved to
+  `images/our-work/sprinklers/sprinkler-system-01..05.jpeg` and shown in a 3+2
+  gallery on the new page.
+- **Main nav** — added a "Sprinkler Systems" item to the header nav on all pages.
+- **Footer and cross-links** — "Fire Sprinkler Systems" added to the footer
+  "Service Pages" list on every page, plus related-links entries on the other
+  service pages and all 25 city pages, and a link from the `services.html` intro.
+- **Discovery** — `sitemap.xml` (42 URLs), `SITEMAP.md`, `SEO-KEYWORD-MAP.md` and
+  `llms.txt` updated.
+
+Verification: 44 pages — 0 JSON-LD errors, GTM head and body blocks byte-identical
+(1 variant each), 0 broken internal links, 0 canonical mismatches, 0 off-centre
+headings, no horizontal overflow and no console errors in a headless Chromium sweep.
+`systems.html` was left unchanged.
+
 ## 8. Lead capture
 
 - Added `leads.js`: UTM capture into hidden fields (persisted to session then local

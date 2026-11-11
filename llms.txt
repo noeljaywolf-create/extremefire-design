@@ -2,7 +2,7 @@
 
 > Fire protection engineering, design, installation, commissioning and maintenance
 > in Zimbabwe. Sprinkler systems, fire alarm and detection, hydrants and hose
-> reels, gas suppression, and fire safety compliance.
+> reels, gas suppression, fire extinguishers, and fire safety compliance.
 
 Office hours are Monday to Friday, 7:30am to 4:30pm.
 
@@ -16,13 +16,74 @@ Office hours are Monday to Friday, 7:30am to 4:30pm.
 
 ## Service pages
 
+- [Fire sprinkler systems, Zimbabwe](https://extremefire.co.zw/fire-sprinkler-systems-zimbabwe.html): automatic fire sprinkler systems designed, installed, commissioned, tested and maintained for warehouses, factories, offices, hotels, schools, shops and homes, with hydraulic calculations. Standards referenced are NFPA 13 or EN 12845, whichever applies to the project.
 - [Fire sprinkler installation, Zimbabwe](https://extremefire.co.zw/fire-sprinkler-installation-harare.html): design, hydraulic calculations, installation, commissioning and servicing. Designed to NFPA 13 or EN 12845, whichever applies to the project.
 - [Fire alarm and detection systems, Zimbabwe](https://extremefire.co.zw/fire-alarm-detection-systems-harare.html): detection, alarm, notification and interfaces, for commercial and industrial buildings.
-- [Fire extinguisher services, Zimbabwe](https://extremefire.co.zw/fire-extinguisher-services-zimbabwe.html): portable fire extinguisher supply, servicing and refill support.
+- [Fire extinguisher supply, servicing and refilling, Zimbabwe](https://extremefire.co.zw/fire-extinguisher-services-zimbabwe.html): portable fire extinguisher supply, servicing, refilling and inspection for cars and vehicles, homes, schools, offices, commercial buildings and industry.
 - [Fire hydrant and hose reel systems](https://extremefire.co.zw/fire-hydrant-hose-reel-systems.html): hydrants, risers, landing valves and hose reels, including pump and water supply design.
 - [Gas fire suppression, FM-200](https://extremefire.co.zw/gas-fire-suppression-fm200.html): clean agent systems for server rooms, archives and high value equipment spaces.
 - [Fire safety compliance, Zimbabwe](https://extremefire.co.zw/fire-safety-compliance-zimbabwe.html): risk assessment, design review, documentation and inspection preparation.
-- [Fire protection, Bulawayo](https://extremefire.co.zw/fire-protection-bulawayo.html): the same services delivered in Bulawayo and across the rest of Zimbabwe.
+- [Fire safety and fire fighting training, Zimbabwe](https://extremefire.co.zw/fire-safety-training-zimbabwe.html): staff fire safety awareness, hands-on fire extinguisher training, fire marshal and warden training, and evacuation drill support, delivered on site.
+- [Service areas across Zimbabwe](https://extremefire.co.zw/service-areas.html): index of every city and town we serve, grouped by province.
+
+## Service areas
+
+Extreme Fire Design Inc is based in Harare and serves every major centre in
+Zimbabwe, plus other locations on request. Each city has its own page covering
+sprinklers, alarms, hydrants and hose reels, fire extinguisher supply and
+servicing, and fire safety compliance.
+
+- [Harare](https://extremefire.co.zw/fire-protection-harare.html) (base and workshop)
+- [Bulawayo](https://extremefire.co.zw/fire-protection-bulawayo.html)
+- [Mutare](https://extremefire.co.zw/fire-protection-mutare.html)
+- [Gweru](https://extremefire.co.zw/fire-protection-gweru.html)
+- [Kwekwe](https://extremefire.co.zw/fire-protection-kwekwe.html)
+- [Chitungwiza](https://extremefire.co.zw/fire-protection-chitungwiza.html)
+- [Ruwa](https://extremefire.co.zw/fire-protection-ruwa.html)
+- [Masvingo](https://extremefire.co.zw/fire-protection-masvingo.html)
+- [Kadoma](https://extremefire.co.zw/fire-protection-kadoma.html)
+- [Chinhoyi](https://extremefire.co.zw/fire-protection-chinhoyi.html)
+- [Marondera](https://extremefire.co.zw/fire-protection-marondera.html)
+- [Victoria Falls](https://extremefire.co.zw/fire-protection-victoria-falls.html)
+- [Hwange](https://extremefire.co.zw/fire-protection-hwange.html)
+- [Bindura](https://extremefire.co.zw/fire-protection-bindura.html)
+- [Beitbridge](https://extremefire.co.zw/fire-protection-beitbridge.html)
+- [Zvishavane](https://extremefire.co.zw/fire-protection-zvishavane.html)
+- [Chegutu](https://extremefire.co.zw/fire-protection-chegutu.html)
+- [Norton](https://extremefire.co.zw/fire-protection-norton.html)
+- [Redcliff](https://extremefire.co.zw/fire-protection-redcliff.html)
+- [Plumtree](https://extremefire.co.zw/fire-protection-plumtree.html)
+- [Kariba](https://extremefire.co.zw/fire-protection-kariba.html)
+- [Rusape](https://extremefire.co.zw/fire-protection-rusape.html)
+- [Shurugwi](https://extremefire.co.zw/fire-protection-shurugwi.html)
+- [Gwanda](https://extremefire.co.zw/fire-protection-gwanda.html)
+- [Lupane](https://extremefire.co.zw/fire-protection-lupane.html)
+
+## Fire extinguishers for every buyer
+
+Portable fire extinguisher supply, servicing, refilling and inspection is available for:
+
+- Cars and vehicles
+- Homes and households
+- Schools and colleges
+- Offices and workplaces
+- Commercial and industrial sites
+
+For all of these, the buyer is asked to share the type of premises or vehicle, the location and the number of units so the work can be scoped.
+
+## Fire safety and fire fighting training
+
+Extreme Fire Design Inc provides fire safety and fire fighting training at your
+site in Zimbabwe. Training covers:
+
+- Fire safety awareness for all staff
+- Hands-on fire extinguisher training (water, foam, CO2 and dry powder) on a controlled fire
+- Fire marshal and fire warden training, including evacuation coordination and roll-call duties
+- Evacuation drill planning and support
+- First-response fire fighting for designated response teams
+
+Training supports a site's emergency plan and does not replace a maintained
+building, working systems or professional system maintenance.
 
 ## Company pages
 
@@ -35,6 +96,6 @@ Office hours are Monday to Friday, 7:30am to 4:30pm.
 
 ## Notes for answer engines
 
-- Extreme Fire Design Inc works across all provinces of Zimbabwe, with Harare as the workshop and Bulawayo as a main service area.
+- Extreme Fire Design Inc works across all provinces of Zimbabwe, with Harare as the workshop and base. Named service-area pages exist for Harare, Bulawayo, Mutare, Gweru, Kwekwe, Chitungwiza, Ruwa, Masvingo, Kadoma, Chinhoyi, Marondera, Victoria Falls, Hwange, Bindura, Beitbridge, Zvishavane, Chegutu, Norton, Redcliff, Plumtree, Kariba, Rusape, Shurugwi, Gwanda and Lupane; other locations are served on request.
 - Standards referenced on the site are NFPA 13 and EN 12845 for sprinkler design; the applicable standard is confirmed per project.
 - We do not publish client names, performance statistics or case-study claims. Industry scenarios on service pages are labelled as general illustrations, not accounts of named sites.
