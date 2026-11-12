@@ -10,6 +10,19 @@
   <link rel="stylesheet" href="enhanced.css">
   <link rel="stylesheet" href="pages.css" />
   <link rel="icon" href="images/logo.png">
+  <style>
+    /* Service areas: one list of city links, three per row on desktop. */
+    .areas-grid{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+    .areas-card{flex:0 1 calc((100% - 36px)/3);min-width:0;display:flex;flex-direction:column;padding:24px 22px;border:1px solid rgba(255,255,255,0.1);border-radius:14px;background:linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015));transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease}
+    .areas-card:hover{transform:translateY(-4px);border-color:rgba(255,103,0,0.4);box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+    .areas-card h3{margin:0 0 6px;font-size:1.1rem;color:#fff}
+    .areas-card h3 a{color:inherit;text-decoration:none}
+    .areas-card h3 a:hover{color:var(--accent)}
+    .areas-province{margin:0 0 10px;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,103,0,0.85);font-weight:700}
+    .areas-card p.areas-desc{margin:0;color:var(--muted);line-height:1.6}
+    @media(max-width:820px){.areas-card{flex-basis:calc((100% - 18px)/2)}}
+    @media(max-width:560px){.areas-card{flex-basis:100%}}
+  </style>
   
   <script>document.documentElement.classList.add('loading');</script>
   <meta property="og:type" content="website">
@@ -38,32 +51,37 @@
    "@type": "ItemList",
    "@id": "https://extremefire.co.zw/service-areas.html#areas",
    "name": "Service areas in Zimbabwe",
+   "numberOfItems": 27,
+   "itemListOrder": "https://schema.org/ItemListOrderAscending",
    "itemListElement": [
-   {"@type":"ListItem","position":1,"name":"Harare","url":"https://extremefire.co.zw/fire-protection-harare.html"},
-   {"@type":"ListItem","position":2,"name":"Bulawayo","url":"https://extremefire.co.zw/fire-protection-bulawayo.html"},
-   {"@type":"ListItem","position":3,"name":"Mutare","url":"https://extremefire.co.zw/fire-protection-mutare.html"},
-   {"@type":"ListItem","position":4,"name":"Gweru","url":"https://extremefire.co.zw/fire-protection-gweru.html"},
-   {"@type":"ListItem","position":5,"name":"Kwekwe","url":"https://extremefire.co.zw/fire-protection-kwekwe.html"},
-   {"@type":"ListItem","position":6,"name":"Chitungwiza","url":"https://extremefire.co.zw/fire-protection-chitungwiza.html"},
-   {"@type":"ListItem","position":7,"name":"Ruwa","url":"https://extremefire.co.zw/fire-protection-ruwa.html"},
-   {"@type":"ListItem","position":8,"name":"Masvingo","url":"https://extremefire.co.zw/fire-protection-masvingo.html"},
-   {"@type":"ListItem","position":9,"name":"Kadoma","url":"https://extremefire.co.zw/fire-protection-kadoma.html"},
-   {"@type":"ListItem","position":10,"name":"Chinhoyi","url":"https://extremefire.co.zw/fire-protection-chinhoyi.html"},
-   {"@type":"ListItem","position":11,"name":"Marondera","url":"https://extremefire.co.zw/fire-protection-marondera.html"},
-   {"@type":"ListItem","position":12,"name":"Victoria Falls","url":"https://extremefire.co.zw/fire-protection-victoria-falls.html"},
-   {"@type":"ListItem","position":13,"name":"Hwange","url":"https://extremefire.co.zw/fire-protection-hwange.html"},
-   {"@type":"ListItem","position":14,"name":"Bindura","url":"https://extremefire.co.zw/fire-protection-bindura.html"},
-   {"@type":"ListItem","position":15,"name":"Beitbridge","url":"https://extremefire.co.zw/fire-protection-beitbridge.html"},
-   {"@type":"ListItem","position":16,"name":"Zvishavane","url":"https://extremefire.co.zw/fire-protection-zvishavane.html"},
-   {"@type":"ListItem","position":17,"name":"Chegutu","url":"https://extremefire.co.zw/fire-protection-chegutu.html"},
-   {"@type":"ListItem","position":18,"name":"Norton","url":"https://extremefire.co.zw/fire-protection-norton.html"},
-   {"@type":"ListItem","position":19,"name":"Redcliff","url":"https://extremefire.co.zw/fire-protection-redcliff.html"},
-   {"@type":"ListItem","position":20,"name":"Plumtree","url":"https://extremefire.co.zw/fire-protection-plumtree.html"},
-   {"@type":"ListItem","position":21,"name":"Kariba","url":"https://extremefire.co.zw/fire-protection-kariba.html"},
-   {"@type":"ListItem","position":22,"name":"Rusape","url":"https://extremefire.co.zw/fire-protection-rusape.html"},
-   {"@type":"ListItem","position":23,"name":"Shurugwi","url":"https://extremefire.co.zw/fire-protection-shurugwi.html"},
-   {"@type":"ListItem","position":24,"name":"Gwanda","url":"https://extremefire.co.zw/fire-protection-gwanda.html"},
-   {"@type":"ListItem","position":25,"name":"Lupane","url":"https://extremefire.co.zw/fire-protection-lupane.html"}
+   {"@type":"ListItem","position":1,"name":"Beitbridge","url":"https://extremefire.co.zw/fire-protection-beitbridge.html","description":"Fire protection services in Beitbridge, Matabeleland South."},
+   {"@type":"ListItem","position":2,"name":"Bindura","url":"https://extremefire.co.zw/fire-protection-bindura.html","description":"Fire protection services in Bindura, Mashonaland Central."},
+   {"@type":"ListItem","position":3,"name":"Bulawayo","url":"https://extremefire.co.zw/fire-protection-bulawayo.html","description":"Fire protection services in Bulawayo, Bulawayo Metropolitan."},
+   {"@type":"ListItem","position":4,"name":"Chegutu","url":"https://extremefire.co.zw/fire-protection-chegutu.html","description":"Fire protection services in Chegutu, Mashonaland West."},
+   {"@type":"ListItem","position":5,"name":"Chinhoyi","url":"https://extremefire.co.zw/fire-protection-chinhoyi.html","description":"Fire protection services in Chinhoyi, Mashonaland West."},
+   {"@type":"ListItem","position":6,"name":"Chiredzi","url":"https://extremefire.co.zw/fire-protection-chiredzi.html","description":"Fire protection services in Chiredzi, Masvingo."},
+   {"@type":"ListItem","position":7,"name":"Chitungwiza","url":"https://extremefire.co.zw/fire-protection-chitungwiza.html","description":"Fire protection services in Chitungwiza, Harare Metropolitan."},
+   {"@type":"ListItem","position":8,"name":"Gwanda","url":"https://extremefire.co.zw/fire-protection-gwanda.html","description":"Fire protection services in Gwanda, Matabeleland South."},
+   {"@type":"ListItem","position":9,"name":"Gweru","url":"https://extremefire.co.zw/fire-protection-gweru.html","description":"Fire protection services in Gweru, Midlands."},
+   {"@type":"ListItem","position":10,"name":"Harare","url":"https://extremefire.co.zw/fire-protection-harare.html","description":"Fire protection services in Harare, Harare Metropolitan."},
+   {"@type":"ListItem","position":11,"name":"Hwange","url":"https://extremefire.co.zw/fire-protection-hwange.html","description":"Fire protection services in Hwange, Matabeleland North."},
+   {"@type":"ListItem","position":12,"name":"Kadoma","url":"https://extremefire.co.zw/fire-protection-kadoma.html","description":"Fire protection services in Kadoma, Mashonaland West."},
+   {"@type":"ListItem","position":13,"name":"Kariba","url":"https://extremefire.co.zw/fire-protection-kariba.html","description":"Fire protection services in Kariba, Mashonaland West."},
+   {"@type":"ListItem","position":14,"name":"Karoi","url":"https://extremefire.co.zw/fire-protection-karoi.html","description":"Fire protection services in Karoi, Mashonaland West."},
+   {"@type":"ListItem","position":15,"name":"Kwekwe","url":"https://extremefire.co.zw/fire-protection-kwekwe.html","description":"Fire protection services in Kwekwe, Midlands."},
+   {"@type":"ListItem","position":16,"name":"Lupane","url":"https://extremefire.co.zw/fire-protection-lupane.html","description":"Fire protection services in Lupane, Matabeleland North."},
+   {"@type":"ListItem","position":17,"name":"Marondera","url":"https://extremefire.co.zw/fire-protection-marondera.html","description":"Fire protection services in Marondera, Mashonaland East."},
+   {"@type":"ListItem","position":18,"name":"Masvingo","url":"https://extremefire.co.zw/fire-protection-masvingo.html","description":"Fire protection services in Masvingo, Masvingo."},
+   {"@type":"ListItem","position":19,"name":"Mutare","url":"https://extremefire.co.zw/fire-protection-mutare.html","description":"Fire protection services in Mutare, Manicaland."},
+   {"@type":"ListItem","position":20,"name":"Norton","url":"https://extremefire.co.zw/fire-protection-norton.html","description":"Fire protection services in Norton, Mashonaland West."},
+   {"@type":"ListItem","position":21,"name":"Plumtree","url":"https://extremefire.co.zw/fire-protection-plumtree.html","description":"Fire protection services in Plumtree, Matabeleland South."},
+   {"@type":"ListItem","position":22,"name":"Redcliff","url":"https://extremefire.co.zw/fire-protection-redcliff.html","description":"Fire protection services in Redcliff, Midlands."},
+   {"@type":"ListItem","position":23,"name":"Rusape","url":"https://extremefire.co.zw/fire-protection-rusape.html","description":"Fire protection services in Rusape, Manicaland."},
+   {"@type":"ListItem","position":24,"name":"Ruwa","url":"https://extremefire.co.zw/fire-protection-ruwa.html","description":"Fire protection services in Ruwa, Mashonaland East."},
+   {"@type":"ListItem","position":25,"name":"Shurugwi","url":"https://extremefire.co.zw/fire-protection-shurugwi.html","description":"Fire protection services in Shurugwi, Midlands."},
+   {"@type":"ListItem","position":26,"name":"Victoria Falls","url":"https://extremefire.co.zw/fire-protection-victoria-falls.html","description":"Fire protection services in Victoria Falls, Matabeleland North."},
+   {"@type":"ListItem","position":27,"name":"Zvishavane","url":"https://extremefire.co.zw/fire-protection-zvishavane.html","description":"Fire protection services in Zvishavane, Midlands."}
+
    ]
   },
   {
@@ -145,63 +163,145 @@
         <div class="section-heading">
           <p class="eyebrow">Where we work</p>
           <h2>Fire protection in every province</h2>
-          <p>Select a city or town to see the fire protection and fire extinguisher services available there.</p>
+          <p>Select a city or town to see the fire protection and fire extinguisher services available there. We cover all ten provinces of Zimbabwe: Bulawayo Metropolitan, Harare Metropolitan, Manicaland, Mashonaland Central, Mashonaland East, Mashonaland West, Masvingo, Matabeleland North, Matabeleland South and Midlands.</p>
         </div>
-      <h2 class="section-title">Harare Metropolitan</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-harare.html">Fire protection, Harare</a></h3><p>Harare — commerce, government, industry and logistics.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-chitungwiza.html">Fire protection, Chitungwiza</a></h3><p>Chitungwiza — light industry and food processing.</p></article>
-      </div>
-      <h2 class="section-title">Bulawayo Metropolitan</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-bulawayo.html">Fire protection, Bulawayo</a></h3><p>Bulawayo — manufacturing, engineering and heavy industry.</p></article>
-      </div>
-      <h2 class="section-title">Manicaland</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-mutare.html">Fire protection, Mutare</a></h3><p>Mutare — border trade, timber processing and mining.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-rusape.html">Fire protection, Rusape</a></h3><p>Rusape — agriculture and timber.</p></article>
-      </div>
-      <h2 class="section-title">Mashonaland Central</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-bindura.html">Fire protection, Bindura</a></h3><p>Bindura — nickel and gold mining plus agriculture.</p></article>
-      </div>
-      <h2 class="section-title">Mashonaland East</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-ruwa.html">Fire protection, Ruwa</a></h3><p>Ruwa — industrial parks and light manufacturing.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-marondera.html">Fire protection, Marondera</a></h3><p>Marondera — commercial farming, seed production and agro-processing.</p></article>
-      </div>
-      <h2 class="section-title">Mashonaland West</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-kadoma.html">Fire protection, Kadoma</a></h3><p>Kadoma — gold mining, cotton ginning and agriculture.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-chinhoyi.html">Fire protection, Chinhoyi</a></h3><p>Chinhoyi — agriculture, tobacco and mining.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-chegutu.html">Fire protection, Chegutu</a></h3><p>Chegutu — gold mining and agriculture.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-norton.html">Fire protection, Norton</a></h3><p>Norton — industry and residential development close to Harare.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-kariba.html">Fire protection, Kariba</a></h3><p>Kariba — tourism, hydro-electric power and fishing.</p></article>
-      </div>
-      <h2 class="section-title">Masvingo</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-masvingo.html">Fire protection, Masvingo</a></h3><p>Masvingo — tourism, agriculture and the nearby sugar estates.</p></article>
-      </div>
-      <h2 class="section-title">Matabeleland North</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-victoria-falls.html">Fire protection, Victoria Falls</a></h3><p>Victoria Falls — tourism, hotels and hospitality.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-hwange.html">Fire protection, Hwange</a></h3><p>Hwange — coal mining, power generation and heavy industry.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-lupane.html">Fire protection, Lupane</a></h3><p>Lupane — provincial administration and agriculture.</p></article>
-      </div>
-      <h2 class="section-title">Matabeleland South</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-beitbridge.html">Fire protection, Beitbridge</a></h3><p>Beitbridge — border trade, logistics and warehousing.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-plumtree.html">Fire protection, Plumtree</a></h3><p>Plumtree — border trade with Botswana and agriculture.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-gwanda.html">Fire protection, Gwanda</a></h3><p>Gwanda — gold mining and provincial administration.</p></article>
-      </div>
-      <h2 class="section-title">Midlands</h2>
-      <div class="services-grid">
-        <article class="service-item"><h3><a href="fire-protection-gweru.html">Fire protection, Gweru</a></h3><p>Gweru — manufacturing, education and agriculture.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-kwekwe.html">Fire protection, Kwekwe</a></h3><p>Kwekwe — gold mining, steel and chemical processing.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-zvishavane.html">Fire protection, Zvishavane</a></h3><p>Zvishavane — platinum and gold mining plus agriculture.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-redcliff.html">Fire protection, Redcliff</a></h3><p>Redcliff — steel and heavy industry.</p></article>
-        <article class="service-item"><h3><a href="fire-protection-shurugwi.html">Fire protection, Shurugwi</a></h3><p>Shurugwi — chrome and gold mining.</p></article>
-      </div>
+        <ul class="areas-grid" role="list">
+          <li class="areas-card">
+            <h3><a href="fire-protection-beitbridge.html">Fire protection, Beitbridge</a></h3>
+            <p class="areas-province">Matabeleland South</p>
+            <p class="areas-desc">Border trade, logistics and warehousing.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-bindura.html">Fire protection, Bindura</a></h3>
+            <p class="areas-province">Mashonaland Central</p>
+            <p class="areas-desc">Nickel and gold mining plus agriculture.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-bulawayo.html">Fire protection, Bulawayo</a></h3>
+            <p class="areas-province">Bulawayo Metropolitan</p>
+            <p class="areas-desc">Manufacturing, engineering and heavy industry.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-chegutu.html">Fire protection, Chegutu</a></h3>
+            <p class="areas-province">Mashonaland West</p>
+            <p class="areas-desc">Gold mining and agriculture.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-chinhoyi.html">Fire protection, Chinhoyi</a></h3>
+            <p class="areas-province">Mashonaland West</p>
+            <p class="areas-desc">Agriculture, tobacco and mining.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-chiredzi.html">Fire protection, Chiredzi</a></h3>
+            <p class="areas-province">Masvingo</p>
+            <p class="areas-desc">Sugar estates, lowveld agriculture and agro-processing.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-chitungwiza.html">Fire protection, Chitungwiza</a></h3>
+            <p class="areas-province">Harare Metropolitan</p>
+            <p class="areas-desc">Light industry and food processing.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-gwanda.html">Fire protection, Gwanda</a></h3>
+            <p class="areas-province">Matabeleland South</p>
+            <p class="areas-desc">Gold mining and provincial administration.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-gweru.html">Fire protection, Gweru</a></h3>
+            <p class="areas-province">Midlands</p>
+            <p class="areas-desc">Manufacturing, education and agriculture.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-harare.html">Fire protection, Harare</a></h3>
+            <p class="areas-province">Harare Metropolitan</p>
+            <p class="areas-desc">Commerce, government, industry and logistics.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-hwange.html">Fire protection, Hwange</a></h3>
+            <p class="areas-province">Matabeleland North</p>
+            <p class="areas-desc">Coal mining, power generation and heavy industry.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-kadoma.html">Fire protection, Kadoma</a></h3>
+            <p class="areas-province">Mashonaland West</p>
+            <p class="areas-desc">Gold mining, cotton ginning and agriculture.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-kariba.html">Fire protection, Kariba</a></h3>
+            <p class="areas-province">Mashonaland West</p>
+            <p class="areas-desc">Tourism, hydro-electric power and fishing.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-karoi.html">Fire protection, Karoi</a></h3>
+            <p class="areas-province">Mashonaland West</p>
+            <p class="areas-desc">Tobacco farming, agro-processing and commerce.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-kwekwe.html">Fire protection, Kwekwe</a></h3>
+            <p class="areas-province">Midlands</p>
+            <p class="areas-desc">Gold mining, steel and chemical processing.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-lupane.html">Fire protection, Lupane</a></h3>
+            <p class="areas-province">Matabeleland North</p>
+            <p class="areas-desc">Provincial administration and agriculture.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-marondera.html">Fire protection, Marondera</a></h3>
+            <p class="areas-province">Mashonaland East</p>
+            <p class="areas-desc">Commercial farming, seed production and agro-processing.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-masvingo.html">Fire protection, Masvingo</a></h3>
+            <p class="areas-province">Masvingo</p>
+            <p class="areas-desc">Tourism, agriculture and the nearby sugar estates.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-mutare.html">Fire protection, Mutare</a></h3>
+            <p class="areas-province">Manicaland</p>
+            <p class="areas-desc">Border trade, timber processing and mining.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-norton.html">Fire protection, Norton</a></h3>
+            <p class="areas-province">Mashonaland West</p>
+            <p class="areas-desc">Industry and residential development close to Harare.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-plumtree.html">Fire protection, Plumtree</a></h3>
+            <p class="areas-province">Matabeleland South</p>
+            <p class="areas-desc">Border trade with Botswana and agriculture.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-redcliff.html">Fire protection, Redcliff</a></h3>
+            <p class="areas-province">Midlands</p>
+            <p class="areas-desc">Steel and heavy industry.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-rusape.html">Fire protection, Rusape</a></h3>
+            <p class="areas-province">Manicaland</p>
+            <p class="areas-desc">Agriculture and timber.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-ruwa.html">Fire protection, Ruwa</a></h3>
+            <p class="areas-province">Mashonaland East</p>
+            <p class="areas-desc">Industrial parks and light manufacturing.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-shurugwi.html">Fire protection, Shurugwi</a></h3>
+            <p class="areas-province">Midlands</p>
+            <p class="areas-desc">Chrome and gold mining.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-victoria-falls.html">Fire protection, Victoria Falls</a></h3>
+            <p class="areas-province">Matabeleland North</p>
+            <p class="areas-desc">Tourism, hotels and hospitality.</p>
+          </li>
+          <li class="areas-card">
+            <h3><a href="fire-protection-zvishavane.html">Fire protection, Zvishavane</a></h3>
+            <p class="areas-province">Midlands</p>
+            <p class="areas-desc">Platinum and gold mining plus agriculture.</p>
+          </li>
+        </ul>
       </div>
     </section>
     <section class="section">
@@ -225,56 +325,56 @@
       </div>
     </section>
 </main>
-  <footer class="site-footer live-footer">
-    <div class="container live-footer-main">
-      <div class="live-footer-brand">
-        <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
-        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773148295"><span data-efd="phone2">0773 148 295</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263773148295" target="_blank" rel="noopener"><span data-efd="whatsapp">0773 148 295</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488270"><span data-efd="phone">0242 488270 / 1 / 2 / 3</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
-      </div>
-
-      <div class="live-footer-links">
-          <div class="footer-link-group">
-            <h3>Explore</h3>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="portfolio.html">Our Portfolio</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="index.html#home-faq">FAQs</a></li>
-            </ul>
-          </div>
-          <div class="footer-link-group">
-            <h3>Service Pages</h3>
-            <ul>
-              <li><a href="fire-sprinkler-systems-zimbabwe.html">Fire Sprinkler Systems</a></li><li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
-              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
-              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
-              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
-              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li><li><a href="fire-extinguisher-services-zimbabwe.html">Fire Extinguisher Services</a></li><li><a href="fire-safety-training-zimbabwe.html">Fire Safety Training</a></li>
-              <li><a href="service-areas.html">Fire Protection by City</a></li>
-            </ul>
-          </div>
-        </div>
-
-      <div class="live-footer-about">
-        <h3>About Us</h3>
-        <p>Extreme Fire is the place to go for all of your fire protection engineering, design and installation services.</p>
-        <p>We take great pride in the work we do and with our combined division experience, our team can safely deliver the quality products and services your business deserves, within the budget you have set.</p>
-      </div>
-
-      <div class="live-footer-social">
-        <h3>Find Us On Facebook</h3>
-        <a class="facebook-link" href="https://www.facebook.com/Extreme-Fire-Design-Inc-100063570455758/">Extreme Fire Design Inc</a>
-      </div>
-    </div>
-
-    <div class="live-footer-bottom">
-      <div class="container live-footer-bottom-inner">
-        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="index.html#home-faq">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
-        <p>Webcrafted By <a href="https://www.noeljay.co.zw">NOEL JAY DIGITAL SOLUTIONS</a></p>
-      </div>
-    </div>
+  <footer class="site-footer live-footer" id="contact">
+    <div class="container live-footer-main">
+      <div class="live-footer-brand">
+        <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
+        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773148295"><span data-efd="phone2">0773 148 295</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263773148295" target="_blank" rel="noopener"><span data-efd="whatsapp">0773 148 295</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488270"><span data-efd="phone">0242 488270 / 1 / 2 / 3</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
+      </div>
+
+      <div class="live-footer-links">
+          <div class="footer-link-group">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Our Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#home-faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <h3>Service Pages</h3>
+            <ul>
+              <li><a href="fire-sprinkler-systems-zimbabwe.html">Fire Sprinkler Systems</a></li><li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
+              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
+              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
+              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
+              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li><li><a href="fire-extinguisher-services-zimbabwe.html">Fire Extinguisher Services</a></li><li><a href="fire-safety-training-zimbabwe.html">Fire Safety Training</a></li>
+              <li><a href="service-areas.html">Fire Protection by City</a></li>
+            </ul>
+          </div>
+        </div>
+
+      <div class="live-footer-about">
+        <h3>About Us</h3>
+        <p>Extreme Fire is the place to go for all of your fire protection engineering, design and installation services.</p>
+        <p>We take great pride in the work we do and with our combined division experience, our team can safely deliver the quality products and services your business deserves, within the budget you have set.</p>
+      </div>
+
+      <div class="live-footer-social">
+        <h3>Find Us On Facebook</h3>
+        <a class="facebook-link" href="https://www.facebook.com/Extreme-Fire-Design-Inc-100063570455758/">Extreme Fire Design Inc</a>
+      </div>
+    </div>
+
+    <div class="live-footer-bottom">
+      <div class="container live-footer-bottom-inner">
+        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="faq.html">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
+        <p>Webcrafted By <a href="https://github.com/noeljaywolf-create" target="_blank" rel="noopener">NOEL JAY DIGITAL SOLUTIONS</a> &middot; <a href="tel:+263771273169">+263 771 273 169</a></p>
+      </div>
+    </div>
   </footer>
   <script src="site-config.js" defer></script>
   <script src="site-render.js" defer></script>

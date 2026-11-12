@@ -11,10 +11,24 @@
   <link rel="stylesheet" href="pages.css" />
   <link rel="icon" href="images/logo.png">
   <style>
-    /* Five-image work gallery reads better as a 3+2 block than 4+1. */
-    .recent-work-section .recent-work-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
-    @media(max-width:720px){.recent-work-section .recent-work-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:480px){.recent-work-section .recent-work-gallery{grid-template-columns:1fr}}
+    /* Recent work: five photos as image cards, matching the cards on systems.html.
+       Flex instead of grid so the two cards on the last row sit centred. */
+    .sys-grid{display:flex;flex-wrap:wrap;gap:28px;justify-content:center}
+    .sys-card{flex:0 1 calc((100% - 56px)/3);min-width:0;background:linear-gradient(145deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);overflow:hidden;transition:all 0.4s cubic-bezier(0.22,1,0.36,1);position:relative}
+    .sys-card:hover{border-color:rgba(255,61,0,0.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(255,61,0,0.08)}
+    .sys-card-img{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s ease}
+    .sys-card:hover .sys-card-img{transform:scale(1.04)}
+    .sys-card-img-wrap{overflow:hidden;position:relative}
+    .sys-card-img-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,rgba(6,7,13,0.8))}
+    .sys-card-body{padding:24px}
+    .sys-card h3{font-size:1.05rem;color:#fff;margin:0 0 8px;font-weight:700}
+    .sys-card p{color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.7;margin:0 0 16px}
+    .sys-card-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:0.85rem;font-weight:600;text-decoration:none;transition:gap 0.3s}
+    .sys-card-link:hover{gap:10px}
+    .sys-card-link svg{width:14px;height:14px;transition:transform 0.3s}
+    .sys-card-link:hover svg{transform:translateX(3px)}
+    @media(max-width:900px){.sys-card{flex-basis:calc((100% - 28px)/2)}}
+    @media(max-width:600px){.sys-card{flex-basis:100%}}
   </style>
 
   <script>document.documentElement.classList.add('loading');</script>
@@ -235,12 +249,57 @@
           <h2>Sprinkler systems we have worked on</h2>
           <p>A selection of sprinkler and fire protection installations across industrial and commercial sites in Zimbabwe.</p>
         </div>
-        <div class="recent-work-gallery">
-          <figure class="recent-work-item"><img src="images/our-work/sprinklers/sprinkler-system-01.jpeg" alt="Automatic fire sprinkler system installation on a commercial site in Zimbabwe" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/sprinklers/sprinkler-system-02.jpeg" alt="Fire sprinkler pipework and sprinkler heads installed at a Zimbabwean facility" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/sprinklers/sprinkler-system-03.jpeg" alt="Sprinkler system valves and control equipment" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/sprinklers/sprinkler-system-04.jpeg" alt="Fire sprinkler system protecting a large industrial building in Zimbabwe" loading="lazy"></figure>
-          <figure class="recent-work-item"><img src="images/our-work/sprinklers/sprinkler-system-05.jpeg" alt="Fire sprinkler installation and maintenance work by Extreme Fire Design Inc" loading="lazy"></figure>
+        <div class="sys-grid">
+          <article class="sys-card">
+            <div class="sys-card-img-wrap">
+              <img class="sys-card-img" src="images/our-work/sprinklers/sprinkler-system-01.jpeg" alt="Automatic fire sprinkler system installation on a commercial site in Zimbabwe" loading="lazy">
+            </div>
+            <div class="sys-card-body">
+              <h3>Commercial sprinkler installation</h3>
+              <p>Sprinkler heads and distribution pipework installed across a commercial site.</p>
+              <a class="sys-card-link" href="#quote">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="sys-card">
+            <div class="sys-card-img-wrap">
+              <img class="sys-card-img" src="images/our-work/sprinklers/sprinkler-system-02.jpeg" alt="Fire sprinkler pipework and sprinkler heads installed at a Zimbabwean facility" loading="lazy">
+            </div>
+            <div class="sys-card-body">
+              <h3>Pipework and sprinkler heads</h3>
+              <p>Range pipe and head layout on an installed sprinkler system.</p>
+              <a class="sys-card-link" href="#quote">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="sys-card">
+            <div class="sys-card-img-wrap">
+              <img class="sys-card-img" src="images/our-work/sprinklers/sprinkler-system-03.jpeg" alt="Sprinkler system valves and control equipment" loading="lazy">
+            </div>
+            <div class="sys-card-body">
+              <h3>Installation and maintenance</h3>
+              <p>Installation and maintenance work carried out by our team.</p>
+              <a class="sys-card-link" href="#quote">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="sys-card">
+            <div class="sys-card-img-wrap">
+              <img class="sys-card-img" src="images/our-work/sprinklers/sprinkler-system-04.jpeg" alt="Fire sprinkler system protecting a large industrial building in Zimbabwe" loading="lazy">
+            </div>
+            <div class="sys-card-body">
+              <h3>Industrial building protection</h3>
+              <p>Sprinkler protection for a large industrial building in Zimbabwe.</p>
+              <a class="sys-card-link" href="#quote">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </article>
+          <article class="sys-card">
+            <div class="sys-card-img-wrap">
+              <img class="sys-card-img" src="images/our-work/sprinklers/sprinkler-system-05.jpeg" alt="Fire sprinkler installation and maintenance work by Extreme Fire Design Inc" loading="lazy">
+            </div>
+            <div class="sys-card-body">
+              <h3>Valves and control equipment</h3>
+              <p>Valve sets and control equipment serving the sprinkler installation.</p>
+              <a class="sys-card-link" href="#quote">Request a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -406,57 +465,56 @@
 
 
   </main>
-  <footer class="site-footer live-footer">
-    <div class="container live-footer-main">
-      <div class="live-footer-brand">
-        <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
-        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773148295"><span data-efd="phone2">0773 148 295</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263773148295" target="_blank" rel="noopener"><span data-efd="whatsapp">0773 148 295</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488270"><span data-efd="phone">0242 488270 / 1 / 2 / 3</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
-      </div>
-
-      <div class="live-footer-links">
-          <div class="footer-link-group">
-            <h3>Explore</h3>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="portfolio.html">Our Portfolio</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="index.html#home-faq">FAQs</a></li>
-            </ul>
-          </div>
-          <div class="footer-link-group">
-            <h3>Service Pages</h3>
-            <ul>
-              <li><a href="fire-sprinkler-systems-zimbabwe.html">Fire Sprinkler Systems</a></li>
-              <li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
-              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
-              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
-              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
-              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li><li><a href="fire-extinguisher-services-zimbabwe.html">Fire Extinguisher Services</a></li><li><a href="fire-safety-training-zimbabwe.html">Fire Safety Training</a></li>
-              <li><a href="service-areas.html">Fire Protection by City</a></li>
-            </ul>
-          </div>
-        </div>
-
-      <div class="live-footer-about">
-        <h3>About Us</h3>
-        <p>Extreme Fire is the place to go for all of your fire protection engineering, design and installation services.</p>
-        <p>We take great pride in the work we do and with our combined division experience, our team can safely deliver the quality products and services your business deserves, within the budget you have set.</p>
-      </div>
-
-      <div class="live-footer-social">
-        <h3>Find Us On Facebook</h3>
-        <a class="facebook-link" href="https://www.facebook.com/Extreme-Fire-Design-Inc-100063570455758/">Extreme Fire Design Inc</a>
-      </div>
-    </div>
-
-    <div class="live-footer-bottom">
-      <div class="container live-footer-bottom-inner">
-        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="index.html#home-faq">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
-        <p>Webcrafted By <a href="https://www.noeljay.co.zw">NOEL JAY DIGITAL SOLUTIONS</a></p>
-      </div>
-    </div>
+  <footer class="site-footer live-footer" id="contact">
+    <div class="container live-footer-main">
+      <div class="live-footer-brand">
+        <img src="images/logo.png" alt="Extreme Fire Design Inc" class="live-footer-logo">
+        <ul class="live-footer-contact"><li><span class="fc-label">Cell</span><span class="fc-value"><a data-efd="phone2-link" href="tel:+263773148295"><span data-efd="phone2">0773 148 295</span></a></span></li><li><span class="fc-label">WhatsApp</span><span class="fc-value"><a data-efd="whatsapp-link" href="https://wa.me/263773148295" target="_blank" rel="noopener"><span data-efd="whatsapp">0773 148 295</span></a></span></li><li><span class="fc-label">Office</span><span class="fc-value"><a data-efd="phone-link" href="tel:+263242488270"><span data-efd="phone">0242 488270 / 1 / 2 / 3</span></a></span></li><li><span class="fc-label">Email</span><span class="fc-value"><a data-efd="email-link" href="mailto:info@extremefire.co.zw"><span data-efd="email">info@extremefire.co.zw</span></a></span></li><li><span class="fc-label">Address</span><span class="fc-value"><span class="fc-plain">21566 Damofalls Industrial Area, Harare, Zimbabwe</span></span></li></ul>
+      </div>
+
+      <div class="live-footer-links">
+          <div class="footer-link-group">
+            <h3>Explore</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="portfolio.html">Our Portfolio</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#home-faq">FAQs</a></li>
+            </ul>
+          </div>
+          <div class="footer-link-group">
+            <h3>Service Pages</h3>
+            <ul>
+              <li><a href="fire-sprinkler-systems-zimbabwe.html">Fire Sprinkler Systems</a></li><li><a href="fire-sprinkler-installation-harare.html">Sprinkler Installation, Harare</a></li>
+              <li><a href="fire-alarm-detection-systems-harare.html">Alarm &amp; Detection, Harare</a></li>
+              <li><a href="fire-hydrant-hose-reel-systems.html">Hydrant &amp; Hose Reel Systems</a></li>
+              <li><a href="gas-fire-suppression-fm200.html">Gas Fire Suppression</a></li>
+              <li><a href="fire-safety-compliance-zimbabwe.html">Fire Safety Compliance, Zimbabwe</a></li><li><a href="fire-extinguisher-services-zimbabwe.html">Fire Extinguisher Services</a></li><li><a href="fire-safety-training-zimbabwe.html">Fire Safety Training</a></li>
+              <li><a href="service-areas.html">Fire Protection by City</a></li>
+            </ul>
+          </div>
+        </div>
+
+      <div class="live-footer-about">
+        <h3>About Us</h3>
+        <p>Extreme Fire is the place to go for all of your fire protection engineering, design and installation services.</p>
+        <p>We take great pride in the work we do and with our combined division experience, our team can safely deliver the quality products and services your business deserves, within the budget you have set.</p>
+      </div>
+
+      <div class="live-footer-social">
+        <h3>Find Us On Facebook</h3>
+        <a class="facebook-link" href="https://www.facebook.com/Extreme-Fire-Design-Inc-100063570455758/">Extreme Fire Design Inc</a>
+      </div>
+    </div>
+
+    <div class="live-footer-bottom">
+      <div class="container live-footer-bottom-inner">
+        <p>Extreme Fire Design - Copyright &copy; <span data-efd-year>2012</span>&ndash;<span data-efd-year-now>2026</span>. All Rights Reserved. <a href="faq.html">FAQ's</a> | <a href="privacy.html">Privacy Notice</a></p>
+        <p>Webcrafted By <a href="https://github.com/noeljaywolf-create" target="_blank" rel="noopener">NOEL JAY DIGITAL SOLUTIONS</a> &middot; <a href="tel:+263771273169">+263 771 273 169</a></p>
+      </div>
+    </div>
   </footer>
   <script src="site-config.js" defer></script>
   <script src="site-render.js" defer></script>
