@@ -35,7 +35,10 @@ For staff qualifications, clients, standards, or project-specific fire safety re
 
 app.post('/api/chat', chatLimiter, async (req, res) => {
   try {
-    const { message } = req.body;
+    const message = req.body && req.body.message;
+    if (typeof message !== 'string' || !message.trim() || message.length > 2000) {
+      return res.status(400).json({ reply: 'Please enter a message of up to 2,000 characters.' });
+    }
     const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [

@@ -104,7 +104,7 @@
   function serialise(form) {
     return Array.prototype.slice
       .call(form.querySelectorAll('input,textarea,select'))
-      .filter(function (el) { return el.name && el.type !== 'hidden' && el.type !== 'checkbox'; })
+      .filter(function (el) { return el.name && (el.type !== 'hidden' || el.name === 'quiz_result') && el.type !== 'checkbox'; })
       .map(function (el) { return el.name + ': ' + (el.value || '').trim(); })
       .filter(function (s) { return s.indexOf(': ') < 0 || s.split(': ')[1]; });
   }

@@ -38,59 +38,14 @@
 
     function showResult() {
       var yes = answers.filter(function (a) { return a === 'yes'; }).length;
-      var percent = Math.round((yes / 5) * 100);
-      var score = percent;
-      var msg;
-      if (percent >= 80) {
-        msg = 'Excellent! Your building shows strong fire safety compliance. Regular maintenance will keep it that way — contact us for an audit.';
-      } else if (percent >= 50) {
-        msg = 'Reasonable compliance, but several areas need attention. Book a professional fire safety assessment to close the gaps.';
-      } else {
-        msg = 'Your building has significant fire safety gaps that could put lives and property at risk. Contact us today for an urgent compliance review.';
-      }
+      var msg = 'This brief checklist is a starting point only, not a compliance determination. Discuss your answers and site conditions with a qualified fire safety professional for an assessment.';
       if (resultBox) {
         resultBox.hidden = false;
-        if (resultScore) resultScore.textContent = score + '%';
+        if (resultScore) resultScore.textContent = yes + ' of ' + questions.length + ' answered yes';
         if (resultText) resultText.textContent = msg;
         questions.forEach(function (q) { q.classList.remove('active'); });
       }
     }
   }
 
-  /* ---------- Downloadable Resources (email gate) ---------- */
-  var resBtns = document.querySelectorAll('.res-dl-btn');
-  resBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var card = btn.closest('.res-card');
-      var email = card ? card.querySelector('.res-email').value.trim() : '';
-      var resType = card ? card.getAttribute('data-res') : '';
-      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!emailOk) {
-        var input = card.querySelector('.res-email');
-        input.style.borderColor = '#ef4444';
-        input.focus();
-        setTimeout(function () { input.style.borderColor = ''; }, 1500);
-        return;
-      }
-      /* Simulate a download + thank you. Replace with real email capture / PDF link. */
-      btn.textContent = 'Sending...';
-      var link = '';
-      if (resType === 'checklist') link = 'documents/fire-safety-checklist.pdf';
-      else if (resType === 'maintenance') link = 'documents/fire-maintenance-schedule.pdf';
-      else if (resType === 'evacuation') link = 'documents/evacuation-plan-template.pdf';
-      setTimeout(function () {
-        if (link) {
-          var a = document.createElement('a');
-          a.href = link;
-          a.download = '';
-          a.style.display = 'none';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        }
-        btn.textContent = 'Download PDF';
-        alert('Thank you! Your guide is downloading shortly.');
-      }, 1000);
-    });
-  });
 })();

@@ -469,10 +469,10 @@
 <script src="leads.js" defer></script>
 <script src="script.js" defer></script>
   <script src="chat.js" defer></script>
-  <div class="lightbox-overlay" id="lightbox">
-    <span class="lightbox-close" id="lightbox-close">&times;</span>
-    <span class="lightbox-nav lightbox-prev" id="lightbox-prev">&#8249;</span>
-    <span class="lightbox-nav lightbox-next" id="lightbox-next">&#8250;</span>
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close image viewer">&times;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+    <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
     <img id="lightbox-img" src="" alt="Full view">
   </div>
   <style>
@@ -546,6 +546,7 @@
     .lightbox-close:hover{color:var(--accent)}
     .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:3rem;cursor:pointer;z-index:10000;padding:20px;transition:color 0.2s;user-select:none}
     .lightbox-nav:hover{color:var(--accent)}
+    .lightbox-close,.lightbox-nav{background:transparent;border:0;font-family:inherit}
     .lightbox-prev{left:10px}
     .lightbox-next{right:10px}
     /* ── Uniform gallery — all photos same size ── */
@@ -585,6 +586,7 @@
       var nextBtn=document.getElementById('lightbox-next');
       var allImages=document.querySelectorAll('.recent-work-item img, .portfolio-card img, .project-single-card img, .project-dual-grid img');
       var currentIndex=0;
+      var opener=null;
 
       function fullSrc(src){
         var hi = src.replace('images/our-work/', 'images/full/');
@@ -615,6 +617,7 @@
       function closeLightbox(){
         lightbox.classList.remove('active');
         document.body.style.overflow='';
+        if(opener)opener.focus();
       }
 
       function nextImage(){
@@ -645,10 +648,15 @@
       });
 
       allImages.forEach(function(img,i){
+        img.tabIndex=0;
+        img.setAttribute('role','button');
+        img.setAttribute('aria-label','Enlarge image: '+(img.alt || 'gallery image'));
+        function open(){opener=img;showImage(i);closeBtn.focus()}
         img.addEventListener('click',function(e){
           e.stopPropagation();
-          showImage(i);
+          open();
         });
+        img.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
       });
 
       closeBtn.addEventListener('click',closeLightbox);
@@ -658,6 +666,12 @@
 
       document.addEventListener('keydown',function(e){
         if(!lightbox.classList.contains('active'))return;
+        if(e.key==='Tab'){
+          var controls=[closeBtn,prevBtn,nextBtn];
+          var i=controls.indexOf(document.activeElement);
+          if(e.shiftKey && i<=0){e.preventDefault();nextBtn.focus()}
+          else if(!e.shiftKey && (i===-1||i===controls.length-1)){e.preventDefault();closeBtn.focus()}
+        }
         if(e.key==='Escape')closeLightbox();
         if(e.key==='ArrowRight')nextImage();
         if(e.key==='ArrowLeft')prevImage();

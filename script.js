@@ -157,6 +157,45 @@
     });
   }
 
+  /* Educational copy and illustrative case studies share the welcome style.
+     Leave the full text available if JavaScript is disabled. */
+  var educationalCopy = $$('main .case-study-card, main .case-card, main .case-strip-card, main .ppc-benefit, main .ppc-step, main .services-grid .service-item');
+  $$('main section.section > .container').forEach(function (container) {
+    if (container.querySelectorAll(':scope > p').length >= 2) educationalCopy.push(container);
+  });
+  educationalCopy.forEach(function (block) {
+    if (block.closest('[aria-hidden="true"]')) return;
+    block.classList.add('educational-copy');
+    block.querySelectorAll('p').forEach(function (paragraph) {
+      if (paragraph.closest('.section-heading') || paragraph.querySelector('a, button, input')) return;
+      paragraph.classList.add('educational-paragraph');
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'educational-more button outline';
+      button.hidden = true;
+      button.textContent = 'Read more';
+      button.setAttribute('aria-expanded', 'false');
+      paragraph.insertAdjacentElement('afterend', button);
+      var expanded = false;
+      function update() {
+        if (!paragraph.getClientRects().length) return;
+        paragraph.classList.remove('educational-collapsed');
+        var lineHeight = parseFloat(getComputedStyle(paragraph).lineHeight);
+        var longText = lineHeight && paragraph.scrollHeight > lineHeight * 4 + 1;
+        button.hidden = !longText;
+        if (longText && !expanded) paragraph.classList.add('educational-collapsed');
+      }
+      on(button, 'click', function () {
+        expanded = !expanded;
+        paragraph.classList.toggle('educational-collapsed', !expanded);
+        button.textContent = expanded ? 'Read less' : 'Read more';
+        button.setAttribute('aria-expanded', String(expanded));
+      });
+      update();
+      on(window, 'resize', update);
+    });
+  });
+
   /* --------------------------------------------------------
      HERO BACKGROUND SLIDES / VIDEO
      -------------------------------------------------------- */

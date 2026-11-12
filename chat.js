@@ -24,9 +24,9 @@ document.head.appendChild(chatStyle);
 
 const chatHTML = `
 <div id="chat-widget">
-  <button id="chat-toggle" aria-label="Open chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
-  <div id="chat-panel">
-    <div id="chat-header"><span>Extreme Fire Design Assistant</span></div>
+  <button id="chat-toggle" aria-label="Open chat" aria-expanded="false" aria-controls="chat-panel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
+  <div id="chat-panel" role="dialog" aria-labelledby="chat-title">
+    <div id="chat-header"><span id="chat-title">Extreme Fire Design Assistant</span></div>
     <div id="chat-messages"><div class="chat-msg bot">Hi! Welcome to Extreme Fire Design Inc. How can I help you with fire protection today?</div></div>
     <form id="chat-form"><input id="chat-input" aria-label="Your message" placeholder="Type your message..." autocomplete="off"><button type="submit">Send</button></form>
     <button type="button" id="chat-close">&times; Close chat</button>
@@ -54,13 +54,24 @@ var mobileProps=[['position','fixed'],['top','0'],['left','0'],['right','0'],['b
 function applyMobileStyles(){if(!isMobile())return;mobileProps.forEach(function(p){panel.style.setProperty(p[0],p[1],'important')})}
 function clearMobileStyles(){mobileProps.forEach(function(p){panel.style.removeProperty(p[0])})}
 
-toggle.onclick=function(){panel.classList.toggle('open');panel.classList.contains('open')?applyMobileStyles():clearMobileStyles()};
-close.onclick=function(){panel.classList.remove('open');clearMobileStyles()};
+var opener = toggle;
+function openChat(source){opener=source || toggle;panel.classList.add('open');applyMobileStyles();toggle.setAttribute('aria-expanded','true');panel.setAttribute('aria-modal',isMobile()?'true':'false');input.focus()}
+function closeChat(){panel.classList.remove('open');clearMobileStyles();toggle.setAttribute('aria-expanded','false');panel.removeAttribute('aria-modal');opener.focus()}
+toggle.onclick=function(){panel.classList.contains('open')?closeChat():openChat(toggle)};
+close.onclick=closeChat;
 
 var heroBtn=document.getElementById('hero-chat-btn');
-if(heroBtn){heroBtn.addEventListener('click',function(){panel.classList.add('open');applyMobileStyles()})}
+if(heroBtn){heroBtn.addEventListener('click',function(){openChat(heroBtn)})}
 
-window.addEventListener('resize',function(){if(panel.classList.contains('open')){isMobile()?applyMobileStyles():clearMobileStyles()}});
+window.addEventListener('resize',function(){if(panel.classList.contains('open')){isMobile()?applyMobileStyles():clearMobileStyles();panel.setAttribute('aria-modal',isMobile()?'true':'false')}});
+panel.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){e.preventDefault();closeChat();return}
+  if(e.key!=='Tab'||!isMobile())return;
+  var controls=Array.from(panel.querySelectorAll('input, button')).filter(function(el){return !el.disabled});
+  if(!controls.length)return;
+  if(e.shiftKey&&document.activeElement===controls[0]){e.preventDefault();controls[controls.length-1].focus()}
+  else if(!e.shiftKey&&document.activeElement===controls[controls.length-1]){e.preventDefault();controls[0].focus()}
+});
 
 form.onsubmit = (e) => {
   e.preventDefault();

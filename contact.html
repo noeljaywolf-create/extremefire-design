@@ -246,8 +246,8 @@
             showStatus('Please enter a valid email address.', false);
             return;
           }
-          var body = 'Name: ' + name + '%0D%0AEmail: ' + email + '%0D%0APhone: ' + phone + '%0D%0ASubject: ' + subject + '%0D%0A%0D%0A' + encodeURIComponent(message);
-          var mailto = 'mailto:info@extremefire.co.zw?subject=' + encodeURIComponent(subject || 'Enquiry from ' + name) + '&body=' + body;
+          var body = 'Name: ' + name + '\r\nEmail: ' + email + '\r\nPhone: ' + phone + '\r\nSubject: ' + subject + '\r\n\r\n' + message;
+          var mailto = 'mailto:info@extremefire.co.zw?subject=' + encodeURIComponent(subject || 'Enquiry from ' + name) + '&body=' + encodeURIComponent(body);
           window.location.href = mailto;
           showStatus('Opening your email app — if nothing happens, please email info@extremefire.co.zw directly or WhatsApp 0773 148 295.', true);
         });
