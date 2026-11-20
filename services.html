@@ -87,6 +87,15 @@
     .chameleon-icon{font-size:20px;flex-shrink:0;margin-top:2px}
     .chameleon-card-inner span:last-child{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6}
     /* --- Responsive --- */
+    /* Give the final service a horizontal feature treatment. */
+    #scope .water-mist-card{grid-column:2 / -1;background:linear-gradient(120deg,#397d96,#24354e);min-width:0}
+    #scope .water-mist-card .chameleon-card-inner{height:100%;min-height:92px;align-items:center;padding:22px 26px;gap:20px;background:linear-gradient(110deg,rgba(13,27,43,.98),rgba(18,33,50,.94))}
+    #scope .water-mist-card .chameleon-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:rgba(99,196,226,.12);font-size:24px;margin:0}
+    #scope .water-mist-copy{min-width:0;text-align:left}
+    #scope .water-mist-copy strong{display:block;color:#fff;font-size:17px;line-height:1.4;letter-spacing:.01em;margin-bottom:5px}
+    #scope .water-mist-copy span{display:block;color:#d1deeb;font-size:14px;line-height:1.7;text-align:left}
+    @media(max-width:900px){#scope .water-mist-card{grid-column:1 / -1}}
+    @media(max-width:600px){#scope .water-mist-card .chameleon-card-inner{padding:20px 18px;gap:14px}#scope .water-mist-copy span{font-size:14px}}
     @media(max-width:900px){.svc-cards-grid{grid-template-columns:1fr}.chameleon-grid{grid-template-columns:repeat(3,1fr)}.section-content{padding:80px 20px}}
     @media(max-width:600px){.chameleon-grid{grid-template-columns:repeat(2,1fr)}.section-content{padding:60px 16px}}
   </style>
@@ -276,7 +285,7 @@
           <div class="chameleon-card" style="--hue:160"><div class="chameleon-card-inner"><span class="chameleon-icon">&#x1F4D0;</span><span>Existing pipe analysis</span></div></div>
           <div class="chameleon-card" style="--hue:190"><div class="chameleon-card-inner"><span class="chameleon-icon">&#x1F4A7;</span><span>Water supply adequacy reviews</span></div></div>
           <div class="chameleon-card" style="--hue:60"><div class="chameleon-card-inner"><span class="chameleon-icon">&#x1F4DD;</span><span>AutoCAD as-built drawings</span></div></div>
-          <div class="chameleon-card" style="--hue:90"><div class="chameleon-card-inner"><span class="chameleon-icon">&#x26A1;</span><span>Water mist systems for generators, transformers, conveyors, switchgear, tunnels, turbines, and boiler houses</span></div></div>
+          <div class="chameleon-card water-mist-card" style="--hue:90"><div class="chameleon-card-inner"><span class="chameleon-icon" aria-hidden="true">&#x26A1;</span><div class="water-mist-copy"><strong>Water mist systems</strong><span>For generators, transformers, conveyors, switchgear, tunnels, turbines and boiler houses.</span></div></div></div>
         </div>
       </div>
     </section>
