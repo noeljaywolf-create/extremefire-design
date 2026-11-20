@@ -32,7 +32,7 @@
     var button = event.target.closest('button[data-slide]');
     if (!button) return;
     var action = button.dataset.slide;
-    if (action === 'toggle') paused = !paused;
+    if (action === 'toggle') { paused = !paused; if (!paused) focusWithin = false; }
     else { paused = true; show(index + (action === 'next' ? 1 : -1), true); }
     schedule();
   });
