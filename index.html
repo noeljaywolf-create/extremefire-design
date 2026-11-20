@@ -27,7 +27,7 @@
   <link rel="preload" as="image" href="images/our-work/project-03.jpeg" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhanced.css" />
-  <link rel="stylesheet" href="pages.css?v=20261120-no-clamping-2" />
+  <link rel="stylesheet" href="pages.css?v=20261120-explanations-only" />
   <style>
     /* Semi-transparent overlays for sections below hero */
     .astro-overlay{background:rgba(6,7,13,0.72)!important}
@@ -1031,9 +1031,11 @@
     <section class="section astro-overlay">
       <div class="container">
         <div class="section-heading"><p class="eyebrow">Fire safety fundamentals</p><h2>Effective fire protection is a connected system</h2></div>
-        <p>Fire develops when heat, fuel and oxygen come together. Building fire safety reduces ignition and fire spread, detects warning signs, alerts occupants, supports escape and applies suitable suppression where designed. These measures work best when they are planned together and maintained after installation.</p>
+        <div class="explanation" data-explanation>
+          <div class="explanation-text"><p>Fire develops when heat, fuel and oxygen come together. Building fire safety reduces ignition and fire spread, detects warning signs, alerts occupants, supports escape and applies suitable suppression where designed. These measures work best when they are planned together and maintained after installation.</p>
         <p>A sprinkler head responds to heat at its location; alarm devices detect conditions and signal the control panel; portable extinguishers are limited first-response equipment. None replaces evacuation planning, safe exits or emergency services. The exact design and legal requirements vary with the building, use, hazards and approvals that apply.</p>
-        <p>Owners and facility managers can help by keeping exits and equipment accessible, recording faults and maintenance, communicating changes in occupancy or storage, and ensuring staff know the site emergency procedure. For a building-specific recommendation, arrange a qualified review rather than relying on a generic online checklist.</p>
+        <p>Owners and facility managers can help by keeping exits and equipment accessible, recording faults and maintenance, communicating changes in occupancy or storage, and ensuring staff know the site emergency procedure. For a building-specific recommendation, arrange a qualified review rather than relying on a generic online checklist.</p></div>
+        </div>
         <p><a href="faq.html">Browse fire protection questions</a> or explore our <a href="systems.html">fire protection systems</a> and <a href="fire-safety-compliance-zimbabwe.html">compliance review service</a>.</p>
       </div>
     </section>
@@ -1196,5 +1198,6 @@
     v.setAttribute('preload', 'auto');
   })();
   </script>
-  </body>
+  <script src="explanations.js?v=20261120-explanations-only" defer></script>
+</body>
 </html>

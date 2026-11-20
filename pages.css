@@ -3788,3 +3788,14 @@ main .combo-card--media p { display:block!important; -webkit-line-clamp:unset!im
 /* Also neutralise controls/classes left in an already-open cached page. */
 .educational-more,.copy-more,.why-more{display:none!important}
 main p.educational-collapsed,main p.copy-collapsed,main p.copy-managed.copy-collapsed,main p.why-clamp,main p.nine-clamp{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;max-height:none!important}
+
+/* Opt-in standalone explanations: the rest of the site, especially cards,
+   is outside this component. Full text remains available without JavaScript. */
+main .explanation{width:100%;max-width:760px;margin:24px auto 0;text-align:center}
+main .explanation .explanation-text p,main .explanation p.explanation-preview{font-size:1.05rem!important;line-height:1.75!important;text-align:center!important;margin:0 0 1em!important;max-width:none!important}
+main .explanation [hidden]{display:none!important}
+main .explanation p.explanation-preview-clamped{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;margin-bottom:0!important}
+main .explanation-toggle{display:block;width:fit-content;min-height:44px;margin:12px auto 0;padding:9px 20px;border:1px solid currentColor;border-radius:4px;background:transparent;color:inherit;font:600 .9rem/1.5 var(--font-sans,Arial,sans-serif);cursor:pointer}
+main .explanation-toggle:hover{background:rgba(128,128,128,.16)}
+main .explanation-toggle:focus-visible{outline:3px solid #418ada;outline-offset:4px}
+@media print{main .explanation .explanation-text[hidden]{display:block!important}main .explanation .explanation-preview,main .explanation .explanation-toggle{display:none!important}}
