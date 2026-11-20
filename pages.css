@@ -3774,3 +3774,10 @@ main .educational-more:not([hidden]) {
   margin: 14px auto 18px;
   padding: 10px 22px;
 }
+
+/* Nine main links, including Blog & News, fit the desktop header. At smaller
+   widths wrap the horizontal menu until the existing mobile drawer takes over. */
+@media (min-width: 769px) {
+  .header .nav { gap: clamp(10px, 1.4vw, 24px); flex-wrap: wrap; justify-content: flex-end; flex-direction: row; }
+  .header .nav a { white-space: nowrap; width: auto; }
+}

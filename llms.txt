@@ -85,6 +85,10 @@ site in Zimbabwe. Training covers:
 Training supports a site's emergency plan and does not replace a maintained
 building, working systems or professional system maintenance.
 
+## Publications and industry news
+
+- [Blog & News](https://extremefire.co.zw/blog-news.html): three downloadable Extreme Fire technical publications about sprinkler engineering, PIV/FDC water paths, and warehouse commodity/in-rack protection; dated summaries of independent fire-protection news with original source links. International updates are not claims of Zimbabwean adoption.
+
 ## Company pages
 
 - [Services overview](https://extremefire.co.zw/services.html)

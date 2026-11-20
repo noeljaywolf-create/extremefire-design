@@ -1,10 +1,11 @@
 # Site map
 
-The machine-readable sitemap is [`sitemap.xml`](sitemap.xml). It lists the following 42 indexable URLs under the currently configured canonical origin, `https://extremefire.co.zw`. This is an inventory, not a claim that every page is linked directly from every other page.
+The machine-readable sitemap is [`sitemap.xml`](sitemap.xml). It lists the following 43 indexable URLs under the currently configured canonical origin, `https://extremefire.co.zw`. This is an inventory, not a claim that every page is linked directly from every other page.
 
 | Page | Purpose |
 |---|---|
 | `/` (`index.html`) | Home, overview, industries, resources and FAQs |
+| `/blog-news.html` | Technical publications and sourced industry news |
 | `/about.html` | Company information |
 | `/services.html` | Fire protection services |
 | `/systems.html` | Fire protection systems |

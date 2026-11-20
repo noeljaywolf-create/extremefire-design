@@ -283,3 +283,11 @@ These block keyword pages or claims and are tracked in
 ---
 
 *Maintained alongside [SITEMAP.md](SITEMAP.md) and [CONFIRM-REQUIRED.md](CONFIRM-REQUIRED.md).*
+
+## Blog & News
+
+- Page: `blog-news.html`
+- Primary keyword: fire protection news
+- Intent: educational technical publications and sourced international news
+- Title: Fire Protection Blog & News | Extreme Fire Design
+- Updated: 20 November 2026
