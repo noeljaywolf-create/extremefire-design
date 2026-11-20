@@ -3782,11 +3782,5 @@ main .educational-more:not([hidden]) {
   .header .nav a { white-space: nowrap; width: auto; }
 }
 
-/* Progressive disclosure for long body paragraphs. */
-main p.copy-managed,.live-footer-about p.copy-managed{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;max-height:none!important}
-main p.copy-managed.copy-collapsed,.live-footer-about p.copy-managed.copy-collapsed{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:4!important;overflow:hidden!important}
-.copy-more{display:block;width:fit-content;margin:10px auto 18px;padding:8px 15px;min-height:44px;border:1px solid currentColor;border-radius:4px;background:transparent;color:inherit;font:600 .875rem/1.5 var(--font-sans,Arial,sans-serif);cursor:pointer}
-.copy-more[hidden]{display:none!important}
-.copy-more:hover{background:rgba(128,128,128,.12)}
-.copy-more:focus-visible{outline:3px solid #3178d4;outline-offset:4px}
-@media print{main p.copy-managed.copy-collapsed,.live-footer-about p.copy-managed.copy-collapsed{display:block!important;overflow:visible!important;-webkit-line-clamp:unset!important}.copy-more{display:none!important}}
+/* Keep body copy fully visible, including legacy media cards. */
+main .combo-card--media p { display:block!important; -webkit-line-clamp:unset!important; overflow:visible!important; max-height:none!important; }
