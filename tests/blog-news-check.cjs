@@ -12,7 +12,10 @@ for (const file of pages) {
 }
 assert.match(html, /href="blog-news.html" class="active" aria-current="page"/);
 assert.equal((html.match(/class="publication-card"/g) || []).length, 3);
-assert.equal((html.match(/class="journal-news-card"/g) || []).length, 4);
+assert.equal((html.match(/class="journal-news-card"/g) || []).length, 8);
+assert.equal((html.match(/data-region="zimbabwe"/g) || []).length, 4);
+assert.equal((html.match(/class="journal-slide(?: is-active)?"/g) || []).length, 3);
+assert.match(html, /data-slide="toggle"/);
 const slugs = ['automatic-fire-sprinkler-systems', 'the-water-path-connections', 'storage-hazards-commodities-inrack'];
 for (const slug of slugs) {
   const pdf = `documents/publications/${slug}.pdf`;
@@ -23,12 +26,12 @@ for (const slug of slugs) {
 for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
   const target = match[1];
   if (/^(?:https?:|mailto:|tel:)/.test(target)) continue;
-  assert(fs.existsSync(path.join(root, target.split('#')[0])), `Missing local asset: ${target}`);
+  assert(fs.existsSync(path.join(root, target.split(/[?#]/)[0])), `Missing local asset: ${target}`);
 }
 const sources = [...html.matchAll(/class="journal-source" href="([^"]+)"/g)].map(match => new URL(match[1]));
-assert.equal(sources.length, 4);
-for (const source of sources) assert(['www.nfpa.org', 'www.nist.gov', 'landingpage.bsigroup.com'].includes(source.hostname));
+assert.equal(sources.length, 8);
+for (const source of sources) assert(['www.nfpa.org', 'www.nist.gov', 'landingpage.bsigroup.com', 'cite.org.zw', 'www.heraldonline.co.zw', 'www.zbcnews.co.zw'].includes(source.hostname));
 for (const match of html.matchAll(/datetime="([^"]+)"/g)) assert(match[1] <= '2026-11-20', 'Future-dated content');
 assert.match(read('sitemap.xml'), /https:\/\/extremefire.co.zw\/blog-news.html/);
 assert.equal((html.match(/GTM-KT2WWMKV/g) || []).length, 3);
-console.log(`Blog & News verified: navigation across ${pages.length} pages, three PDFs and covers, four primary-source updates, local links and sitemap.`);
+console.log(`Blog & News verified: navigation across ${pages.length} pages, three PDFs, three background slides, four Zimbabwe and four international updates, local links and sitemap.`);

@@ -48,3 +48,37 @@ body.journal-page{background:#fff;color:#172533;color-scheme:light}
 @media(max-width:1000px){.publication-grid{gap:16px}.publication-copy{padding:20px}.publication-cover{padding:16px;min-height:285px}.publication-cover img{height:250px}}
 @media(max-width:760px){.journal-hero{padding:55px 0}.journal-section{padding:48px 0}.publication-grid,.journal-news-grid{grid-template-columns:1fr}.publication-grid{max-width:520px;margin-inline:auto;gap:28px}.publication-cover img{height:340px}.publication-cover{min-height:380px}.publication-copy{padding:26px}.publication-copy .journal-kicker{min-height:0}.journal-news-card{padding:25px}.journal-news-meta{font-size:.875rem}.journal-consult{padding:48px 0}}
 @media(prefers-reduced-motion:reduce){.publication-cover img{transition:none}}
+
+/* Full-bleed magazine photography remains behind the complete reading page. */
+body.journal-page{background:#0b1821;isolation:isolate}
+.journal-backdrop{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#13232d;pointer-events:none}
+.journal-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
+.journal-slide.is-active{opacity:1}
+.journal-slide img{width:100%;height:100%;object-fit:cover;object-position:65% center}
+.journal-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,16,23,.72),rgba(6,16,23,.22)),linear-gradient(0deg,rgba(6,16,23,.4),transparent 60%)}
+.journal-page main{background:transparent}
+.journal-page .journal-hero{background:transparent;min-height:82vh;min-height:82svh;display:flex;align-items:center;padding:72px 0 35px;border-bottom:1px solid #ffffff35}
+.journal-hero .journal-intro{text-shadow:0 2px 8px #000;color:#f2f5f7}
+.journal-page .journal-hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:clamp(3.2rem,6.4vw,6.4rem);letter-spacing:-.045em;text-shadow:0 3px 22px #0006}
+.journal-hero .journal-jump a{background:#0b182177;border-color:#ffffff80}
+.journal-hero .journal-jump a:hover{background:#fff;color:#13232d}
+.journal-slideshow{border-top:1px solid #ffffff55;max-width:900px;margin:48px auto 0;padding-top:22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;color:#fff}
+.journal-slide-caption{display:flex;align-items:center;gap:20px;font:1.1rem/1.5 Georgia,serif}
+.journal-slide-count{font:700 .85rem/1.5 Inter,Arial,sans-serif;letter-spacing:.12em;color:#ffbbac;white-space:nowrap}
+.journal-slide-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.journal-slide-controls[hidden]{display:none}
+.journal-slide-controls button{border:1px solid #ffffff80;background:#10232dc9;color:#fff;border-radius:3px;min-height:44px;padding:8px 13px;font-size:.875rem;cursor:pointer}
+.journal-slide-controls button:hover{background:#fff;color:#13232d}
+.journal-slide-controls button:focus-visible{outline:3px solid #ffb19c;outline-offset:3px}
+.journal-image-credit{grid-column:1/-1;font-size:.75rem;line-height:1.6;color:#d8e2e8;text-align:center;margin:0}
+.journal-page .journal-section{background:rgba(248,250,252,.95);border-bottom:1px solid #dce2e6}
+.journal-page .journal-zimbabwe{background:rgba(12,29,41,.84);padding-block:84px;border-bottom:1px solid #ffffff30}
+.journal-page .journal-zimbabwe .journal-section-head h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.7rem,4.5vw,4.2rem);font-weight:400;color:#fff}
+.journal-page .journal-zimbabwe .journal-section-head>p:not(.journal-kicker),.journal-zimbabwe .journal-note{color:#e0e8ef}
+.journal-zimbabwe .journal-section-head .journal-kicker{color:#ffb19c}
+.journal-zimbabwe .journal-news-card{background:#fff;border-top-color:#d63a2e}
+.journal-page .journal-news{background:rgba(242,246,249,.96)}
+.journal-page .journal-consult{background:rgba(248,250,252,.96)}
+@media(max-width:760px){.journal-page .journal-hero{min-height:88svh;padding:48px 0 30px}.journal-slide img{object-position:70% center}.journal-backdrop::after{background:rgba(6,16,23,.58)}.journal-slideshow{grid-template-columns:1fr;margin-top:32px;gap:18px}.journal-slide-caption{justify-content:center;flex-wrap:wrap;text-align:center;gap:10px}.journal-slide-controls{justify-content:center}.journal-page .journal-zimbabwe{padding-block:52px}}
+@media(prefers-reduced-motion:reduce){.journal-slide{transition:none}}
+@media print{.journal-backdrop,.journal-slideshow{display:none}.journal-page .journal-section,.journal-page .journal-consult{background:white}.journal-page .journal-zimbabwe .journal-section-head h2,.journal-page .journal-zimbabwe .journal-section-head>p:not(.journal-kicker),.journal-zimbabwe .journal-note{color:#172533}}
