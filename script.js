@@ -691,3 +691,15 @@
      range can never collapse into "2026-2026" */
   document.querySelectorAll("[data-efd-year-now]").forEach(function (el) { el.textContent = y; });
 })();
+
+/* Remove obsolete expansion UI if an older cached script has run in this page. */
+(function () {
+  function showFullCopy() {
+    document.querySelectorAll('.educational-more, .copy-more, .why-more').forEach(function (button) { button.remove(); });
+    document.querySelectorAll('.educational-collapsed, .copy-collapsed, .copy-managed').forEach(function (paragraph) {
+      paragraph.classList.remove('educational-collapsed', 'copy-collapsed', 'copy-managed');
+    });
+  }
+  showFullCopy();
+  window.addEventListener('load', showFullCopy, { once: true });
+})();

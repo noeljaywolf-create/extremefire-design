@@ -3784,3 +3784,7 @@ main .educational-more:not([hidden]) {
 
 /* Keep body copy fully visible, including legacy media cards. */
 main .combo-card--media p { display:block!important; -webkit-line-clamp:unset!important; overflow:visible!important; max-height:none!important; }
+
+/* Also neutralise controls/classes left in an already-open cached page. */
+.educational-more,.copy-more,.why-more{display:none!important}
+main p.educational-collapsed,main p.copy-collapsed,main p.copy-managed.copy-collapsed,main p.why-clamp,main p.nine-clamp{display:block!important;-webkit-line-clamp:unset!important;overflow:visible!important;max-height:none!important}
